@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE jsp PUBLIC "-//W3C//DTD jsp 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<button class="login">登&nbsp;&nbsp;&nbsp;录</button>
 				<div class="unlogin">
 					<div class="forget-pass"><a href="#">忘记密码&nbsp;&nbsp;|</a></div>
-					<div class="register"><a href="register.html">&nbsp;&nbsp;注册账号</a></div>
+					<div class="register"><a href="register.jsp">&nbsp;&nbsp;注册账号</a></div>
 				</div>
 				<div class="division">
 					<div class="line-left"></div>
