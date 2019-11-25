@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!--导航条右边-->
 					<ul class=" navbar-nav hidden-xs" id="myNav">
 						<li>
-							<a href="introduction.html">插线板</a>
+							<a href="introduction.jsp">插线板</a>
 							<div class="dropdown" style="display: none; left: -180%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li>
-							<a href="introduction.html">音响耳机</a>
+							<a href="introduction.jsp">音响耳机</a>
 							<div class="dropdown" style="display: none; left: -280%;" >
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li>
-							<a href="introduction.html">手机配件</a>
+							<a href="introduction.jsp">手机配件</a>
 							<div class="dropdown" style="display: none; left: -380%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -69,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li>
-							<a href="introduction.html">电脑办公</a>
+							<a href="introduction.jsp">电脑办公</a>
 							<div class="dropdown" style="display: none; left: -480%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li>
-							<a href="introduction.html">电池电源</a>
+							<a href="introduction.jsp">电池电源</a>
 							<div class="dropdown" style="display: none; left: -580%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -89,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li>
-							<a href="introduction.html">生活电器</a>
+							<a href="introduction.jsp">生活电器</a>
 							<div class="dropdown" style="display: none; left: -680%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -115,10 +115,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!--用户 包含登录注册-->
 					<span class="glyphicon glyphicon-user text-center hidden-sm hidden-xs hidden-md ">
 						<div class="dropdown" style="display: none;">
-							<a href="register.html">
+							<a href="register.jsp">
 								<button class="btn btn-default navbar-btn navbar-right">注册</button>
 							</a>
-							<a href="login.html">
+							<a href="login.jsp">
 								<button class="btn btn-default navbar-btn navbar-right">登录</button>
 							</a>
 						</div>
@@ -137,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="dropdown" style="display: none; " id="allgoods">
 								<div id="shop-top" style="display: none;">
 									<ul style=" overflow-x: auto; ">
-										<li><a href="introduction.html"><img src="img/chazuo1.jpg" /></a>
+										<li><a href="introduction.jsp"><img src="img/chazuo1.jpg" /></a>
 										    <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
 												<p style="display: block;">万能插座</p>
 												<p style="display: block;">价格:￥135.00</p>
@@ -146,7 +146,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							            </li>
 							                
 							            <li>
-											<a href="introduction.html">
+											<a href="introduction.jsp">
 											    <img src="img/chazuo1.jpg" />
 										    </a>
 										    <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
@@ -158,7 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							             
 							                <li>
 							                
-												<a href="introduction.html">
+												<a href="introduction.jsp">
 											       <img src="img/chazuo1.jpg" />
 										        </a>
 										        <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
@@ -170,7 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							                </li>
 							                
 							                <li>
-												<a href="introduction.html">
+												<a href="introduction.jsp">
 											       <img src="img/chazuo1.jpg" />
 										        </a>
 										        <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
@@ -193,7 +193,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</div>
 									<div id="shop-down" style="display: none;" >
 										<h1>总价:￥135.00</h1>
-							        			<a href="shoppingCar.html"><button >去购物车</button></a>
+							        			<a href="shoppingCar.jsp"><button >去购物车</button></a>
 									</div>
 									<div id="no-goods" style=" color: gray;height: 50%; " >
 									    <span style="margin: 50% 20%;">还没有商品,快去购物车</span>
@@ -266,7 +266,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!--精选商品-->
 		<div class="chosed">
 			<h1>精选商品</h1>
-			<ul class="bettergoods">
+			<ul class="betterGoods()">
 				
 			</ul>
 			</div>
