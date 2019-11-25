@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<!--导航条左边-->
 								<!--logo-->
 								<div class="navbar-brand">
-									<a href="index.html">OurLogo</a>
+									<a href="index.jsp">OurLogo</a>
 								</div>
 							</div>
 							<!--导航条右边-->
@@ -135,7 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<div class="dropdown" style="display: none; " id="allgoods">
 										<div id="shop-top" style="display: none;">
 											<ul style=" overflow-x: auto; ">
-												<li><a href="introduction.html"><img src="img/chazuo1.jpg" /></a>
+												<li><a href="introduction.jsp"><img src="img/chazuo1.jpg" /></a>
 												    <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
 														<p style="display: block;">万能插座</p>
 														<p style="display: block;">价格:￥135.00</p>
@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									            </li>
 									                
 									            <li>
-													<a href="introduction.html">
+													<a href="introduction.jsp">
 													    <img src="img/chazuo1.jpg" />
 												    </a>
 												    <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
@@ -156,7 +156,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									             
 									                <li>
 									                
-														<a href="introduction.html">
+														<a href="introduction.jsp">
 													       <img src="img/chazuo1.jpg" />
 												        </a>
 												        <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
@@ -168,7 +168,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									                </li>
 									                
 									                <li>
-														<a href="introduction.html">
+														<a href="introduction.jsp">
 													       <img src="img/chazuo1.jpg" />
 												        </a>
 												        <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
@@ -178,7 +178,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														<span class="glyphicon glyphicon-remove" style="float: right;"></span>
 									                </li>
 									                <li>
-														<a href="introduction.html">
+														<a href="introduction.jsp">
 													       <img src="img/chazuo1.jpg" />
 												        </a>
 												        <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
