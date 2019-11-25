@@ -1,0 +1,224 @@
+.buy{
+	width: 100%;
+	height: 1269px;
+}
+.buy .content{
+	width: 1232px;
+	height: 628px;
+	margin: 0px auto;
+	padding-top: 40px;
+	position: relative;
+}
+.buy .content .buy_img{
+	width: 580px;
+	height: 580px;
+	float: left;
+}
+.buy>.content>.buy_img>.img_box{
+	width: 580px;
+	height: 420px;
+	position: relative;
+	overflow: hidden;
+	box-shadow: 0px 0px 13px 3px lightgray;
+}
+.buy .content .buy_img .img_box img{
+	width: 580px;
+	height: 420px;
+}
+.buy>.content>.buy_img ul{
+	width: 580px;
+	height: 120px;
+	padding-top: 20px;
+}
+.buy>.content>.buy_img>ul>li{
+	width: 100px;
+	height: 100px;
+	margin-left: 70px;
+	float: left;
+	overflow: hidden;
+}
+.buy>.content>.buy_img>ul>li.selected{
+	box-shadow: 0px 0px 5px blue;
+}
+.buy>.content>.buy_img>ul>li>img{
+	width: 100px;
+	height: 100px;
+}
+.buy>.content>.buy_img>.img_box>.slide{
+	width:290px; height: 210px;
+	background: rgba(0,0,0,0.6);
+	position: absolute;
+	left: 0px;
+	top:0px;
+	display: none;
+}
+.buy>.content>.big{
+	width: 580px;
+	height: 420px;
+	position: absolute;
+	top: 40px;
+	left: 628px;
+	background: url(../img/details/details1.jpg);
+	background-size: 1160px 840px;
+	background-repeat: no-repeat;
+	z-index: 999;
+	overflow: hidden;
+	display: none;
+	box-shadow: 0px 0px 13px 3px lightgray;
+}
+.buy .buy_standard{
+	width: 604px;
+	height: 580px;
+	float: right;
+	margin-top: 18px;
+	overflow: hidden;
+}
+.buy .buy_standard h1{
+	width: 100%;
+	height: 34px;
+	font-size: 34px;
+	line-height: 34px;
+	color: #333;
+	font-family: 'Microsoft Yahei',STHeiti;
+	font-weight: lighter;
+}
+.buy .buy_standard .desc{
+	width: 604px;
+	height: 57px;
+}
+.buy .buy_standard .desc p{
+	width: 504px;
+	height: 57px;
+	float: left;
+	font-size: 14px;
+	line-height: 56px;
+	color: #999;
+	border-bottom: 1px solid #d6d6d6;
+	display: inline-block;
+	overflow: hidden;
+}
+.buy .buy_standard .desc a{
+	width: 100px;
+	height: 57px;
+	text-decoration: none;
+	border-bottom: 1px solid #d6d6d6;
+	float: right;
+	font-size: 14px;
+	color: #666;
+	line-height: 57px;
+	font-family: 'Microsoft Yahei',STHeiti;
+	font-weight: lighter;
+	display: inline-block;
+}
+.buy .buy_standard .desc a:hover{
+	color: #999;
+}
+.buy .buy_standard>h2{
+	margin-top: 36px;
+	width: 604px;
+	height: 20px;
+	font-size: 20px;
+	line-height: 20px;
+	font-family: 'Microsoft Yahei',STHeiti;
+	font-weight: lighter;
+}
+.buy .buy_standard .types{
+	width: 604px;
+	min-height: 52px;
+}
+.buy .buy_standard .types:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.buy .buy_standard .types .type{
+	width: 286px;
+	height: 52px;
+	float: left;
+	line-height: 52px;
+	margin: 18px 15px 0 0;
+	border: 2px solid #EBCCD1;
+	text-align: center;
+	border-radius: 3px;
+	cursor: pointer;
+	font-family: 'Microsoft Yahei',STHeiti;
+	font-weight: lighter;
+}
+.buy .buy_standard .types .type:hover{
+	border: 2px solid red;
+}
+.buy .buy_standard .types .type_selected{
+	border: 2px solid #1989e9;
+}
+.buy .buy_standard .buy_module{
+	width: 604px;
+	height: 190px;
+	padding-bottom: 20px;
+	margin-top: 40px;
+	padding-top: 15px;
+	background: #fafafa;
+}
+.buy>.buy_standard>.buy_module>p{
+	width: 588px;
+	height: 24px;
+	margin-left: 16px;
+	font-size: 14px;
+	color: #999;
+	line-height: 24px;
+	font-family: 'Microsoft Yahei',STHeiti;
+	font-weight: lighter;
+}
+.buy .buy_standard .buy_module .price{
+	width: 588px;
+	height: 34px;
+	margin: 10px 0 0 16px;
+	font-size: 34px;
+	line-height: 34px;
+	color: #1989e9;
+}
+.buy .buy_standard .buy_module .buy_now{
+	display: inline-block;
+	width: 198px;
+	height: 48px;
+	margin: 30px 0 0 16px;
+	font-size: 18px;
+	text-align: center;
+	border: 1px solid #1989e9;
+	line-height: 48px;
+	background: #fff;
+	border-radius: 3px;
+	color: #1989e9;
+	font-family: 'Microsoft Yahei',STHeiti;
+	font-weight: lighter;
+	cursor: pointer;
+	text-decoration: none;
+}
+.buy .buy_standard .buy_module .buy_intocar{
+	display: inline-block;
+	width: 198px;
+	height: 48px;
+	margin: 30px 0 0 16px;
+	font-size: 18px;
+	text-align: center;
+	border: 1px solid #1989e9;
+	line-height: 48px;
+	background: #1989e9;
+	border-radius: 3px;
+	color: #fff;
+	font-family: 'Microsoft Yahei',STHeiti;
+	font-weight: lighter;
+	cursor: pointer;
+	text-decoration: none;
+}
+.pic{
+	width: 100%;
+	height: 590px;
+	background: #f9f9f9;
+	border-top: 1px solid #cdcdcd;
+	padding-bottom: 10px;
+}
+.pic img{
+	display: block;
+	width: 1226px;
+	margin: 0 auto;
+}

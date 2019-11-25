@@ -1,0 +1,290 @@
+*{margin: 0px; padding: 0px;}
+li{list-style: none;}
+a{text-decoration: none;}
+img{border: none;vertical-align: bottom;}
+
+/* nav */
+.wholenav{
+				height: 100px;
+			}
+			
+			.navbar-white {
+				top: 0px;
+				left: 0px;
+				margin: 0 auto;
+				z-index: 14;
+				text-align: center;
+			}
+			
+           .navbar-white>.container{
+            	text-align: center;
+            	margin: 0 auto;
+            	padding: 0;
+				border: none;
+            }
+            
+			.navbar-brand {
+				margin-top: 30px;
+				padding: 15px 15px;
+			}
+			.navbar-brand>a{
+				font-size: 30px;
+				color: red;
+			}
+			#myNav {
+				height: 100px;
+				width: 55%;
+				margin-left: 0px;
+			}
+			
+			#myNav li {
+				position: relative;
+				width: 16%;
+				height: 100px;
+			}
+			
+			
+			#myNav li a {
+				font-size: 16px;
+				color: #666;
+				line-height: 100px;
+				font-family: 'Microsoft Yahei',STHeiti;
+				font-weight: lighter;
+				text-decoration: none;
+				text-align: center;
+			}
+			
+			#myNav>li .dropdown{
+				position: absolute;
+				left: 10%;
+				width: 1340%; 
+				background: white;
+			}
+			
+			#myNav>li .dropdown .card-list li{
+				display: block;
+				float: left;
+				margin-bottom: 10%;
+			}
+			
+			#myNav>li .dropdown .card-list li a{
+				height: 99%;
+				line-height:40%;
+			}
+			
+			#myNav>li .dropdown .card-list li img{
+				width:50%; 
+				margin-bottom: 10%;
+			}
+			
+			#myNav>li .dropdown .card-list li p{
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				height: 20%;
+				color: deepskyblue;
+			}
+			
+/*搜索框*/
+			
+			#search {
+				margin-top: 30px;
+				width: 20%;
+				float: right;
+			}
+			/*登录注册的图标*/
+			
+			.glyphicon-user {
+				font-size: 30px;
+				width: 30px;
+				height: 30px;
+				margin-top: 35px;
+				display: inline-block;
+			}
+			
+			.glyphicon-user .dropdown button {
+				margin: auto 0;
+				width: 70px;
+				height: 30px;
+				text-align: center;
+			}
+			/*购物车*/
+			
+			.badge {
+				margin-top: 0px;
+			}
+			
+			.glyphicon-shopping-cart {
+				font-size: 30px;
+				color: black;
+				margin-bottom: 23px;
+			}
+			
+/*购物车的物品数量*/
+			
+			.badge .count {
+				width: 10px;
+				float: right;
+				border-radius: 50%;
+				background: lightskyblue;
+			}
+			
+			.bg-danger {
+				position: relative;
+			}
+			/*购物车的所有物品*/
+			
+			#allgoods {
+				width: 640%;
+				height: 1200%;
+				position: absolute;
+				left: -250px;
+				top: 20px;
+				background: white;
+				z-index: 15;
+				
+			}
+			
+			#allgoods #shop-top{
+				height: 80%;
+				overflow-y: auto;
+			}
+			
+			.shop-top li .glyphicon-remove{
+				float: right;
+			}
+			
+			#allgoods #shop-down{
+				height: 20%;
+				background: white;
+			}
+			
+			#allgoods #shop-down a{
+				display: inline-block;
+				position: absolute;
+				bottom: 8%;
+				left: 72%;
+				color: white;
+			}
+			
+			#allgoods #shop-down button{
+				bottom: 100%;
+				left: 100%;
+				border: none;
+				background: #1989e9;
+				border-radius: 10%;
+			}
+			
+			#allgoods li{
+				margin: 6% 6%;
+				color: black;
+		        float: left;
+			}
+			
+		    #allgoods img{
+		  	width: 20%;  height: 40px;
+		  	display: inline-block;
+		  	float: left;
+		   }
+		  
+		    #allgoods p{
+		  	width: 10%;  height: 20px;
+		  	display: inline-block;
+		   }
+		  
+		   #allgoods span{
+		  	width: 10%;  height: 6%;
+		  	display: inline-block;
+		  	float: left;
+		  		color: black;
+		  }
+		  
+		  #allgoods h1{
+		  	font-size: 20px;
+		  	width: 40%;
+		  	float: left;
+		  	color: black;
+		  }
+		  
+		  #allgoods>button{
+		  	width: 40%;
+		  	border: none;
+		  	float: right;
+		  	
+		  	font-size: 20px;
+		  	background: skyblue;
+		  }
+		  
+	/* footer */
+	.footer {
+		width: 1348px;
+		height: 237px;
+		background: #333333;
+		margin: 0 auto;
+	}
+	
+	.footer-top {
+		width: 86%;
+		height: 157px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	
+	.footer ul {
+		width: 84%;
+		height: 127px;
+		float: left;
+		border: white;
+	}
+	
+	.footer ul li {
+		width: 24%;
+		height: 157px;
+		float: left;
+		line-height: 157px;
+	}
+	
+	.footer ul li span {
+		display: inline-block;
+		color: white;
+		font-size: 36px;
+		top: 10px;
+	}
+	
+	.footer ul li p {
+		display: inline-block;
+		color: white;
+		font-size: 24px;
+	}
+	
+	.footer .footer-top-r {
+		width: 10%;
+		float: left;
+		margin-top: 2%;
+	}
+	
+	.footer .footer-top-r img {
+		width: 60%;
+	}
+	
+	footer .footer-bottom {
+		width: 100%;
+	}
+	
+	.footer .footer-bottom span {
+		color: white;
+	}
+	
+	.footer .footer-bottom a {
+		color: white;
+		display: inline;
+	}
+	
+	.footer .footer-bottom a:hover {
+		cursor: pointer;
+	}
+	
+	.footer .footer-bottom p {
+		color: white;
+		display: inline;
+	}

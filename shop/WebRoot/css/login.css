@@ -1,0 +1,217 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+img{border: none;}
+li{list-style: none;}
+a{
+	text-decoration: none;
+}
+
+body{
+    background: #F4F4F4;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+header{
+	width: 100%;
+	height: 64px;
+    background: #fff;
+	margin-bottom: 22px;
+}
+header nav{
+	width: 1100px;
+    line-height: 64px;
+	margin: 0px auto;
+}
+header nav>.logo>a{
+	display: block;
+	width: 168px;
+	height: 64px;
+}
+header nav>.logo>a>img{
+	width: 168px;
+	height: 24px;
+	vertical-align: middle;
+	margin-left: 20px;
+}
+
+.content{
+	width: 600px;
+    height: 570px;
+    margin: 60px auto 30px;
+    background: #FFFFFF;
+}
+.content .title{
+    height: 18px;
+    font-size: 35px;
+    color: #666;
+    line-height: 25px;
+    padding: 70px 0px 30px 0px;
+    text-align: center;
+}
+.content>form{
+	height: 144px;
+	width: 400px;
+	padding: 0px 80px;
+	margin: 23px auto 0px;
+}
+.content>form>div{
+	height: 72px;
+	font-size: 0px;
+}
+.content>form>div>input{
+	width: 344px;
+	height: 42px;
+	padding: 4px 42px 4px 12px;
+	outline: none;
+	border: 1px solid #CCCCCC;
+	font-size: 15px;
+}
+.content>form>div>p{
+	width: 400px;
+	height: 20px;
+	line-height: 20px;
+	color: #ff6700;
+	font-size: 16px;
+}
+.content>div{
+	width: 400px;
+	margin: 30px auto 0px;
+}
+.content>div>.login{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	color: #FFFFFF;
+	font-size: 18px;
+	font-weight: bold;
+	background: #1989E9;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	border-radius: 3px;
+}
+.content>div>.login:hover{
+	background: #4790FF;
+}
+.content>div>.login:active{
+	background: #146EF7;
+}
+.content>div>.unlogin{
+	width: 186px;
+	height: 40px;
+	margin: 20px auto 0px;
+	line-height: 40px;
+	cursor: pointer;
+}
+.content>div>.unlogin a{
+	color: #666666;
+}
+.content>div>.unlogin .forget-pass{
+	float: left;
+	width: 93px;
+	text-align: right;
+}
+.content>div>.unlogin .register{
+	float: left;
+	width: 93px;
+}
+.content>div>.division{
+	height: 26px;
+}
+.content>div>.division .line-left,
+.content>div>.division .line-right{
+	float: left;
+	width: 140px;
+	height: 1px;
+	background: #f4f4f4;
+	margin: 12px 0px;
+}
+.content>div>.division .other-tip{
+	float: left;
+	width: 120px;
+	height: 22px;
+	text-align: center;
+	margin-top: 4px;
+	font-size: 14px;
+	color: #999999;
+}
+.content>div>.other-login{
+	width: 222px;
+	height: 52px;
+	margin: 20px auto 0px;
+	font-size: 0px;
+}
+.content>div>.other-login .weixin,
+.content>div>.other-login .qq,
+.content>div>.other-login .weibo{
+	display: inline-block;
+	width: 74px;
+	height: 52px;
+	background: url(../img/14794834568570063.png) no-repeat;
+}
+.content>div>.other-login .weixin{
+	background-position-x: 22px;
+}
+.content>div>.other-login .qq{
+	background-position-x: -65px;
+}
+.content>div>.other-login .weibo{
+	background-position-x: -155px
+}
+.content>div>.other-login .weixin:hover,
+.content>div>.other-login .qq:hover,
+.content>div>.other-login .weibo:hover{
+	background-position-y: -106px;
+}
+
+
+/*尾部*/
+footer{
+	width: 542px;
+	height: 60px;
+	padding-top: 46px;
+	margin: 0px auto;
+}
+footer>ul>li{
+	float: left;
+	width: 60px;
+	height: 20px;
+	text-align: center;
+	vertical-align: middle;
+	padding-bottom: 10px;
+	margin: 0px 3px;
+}
+footer>ul>div{
+	float: left;
+	width: 2px;
+	height: 16px;
+	margin-top: 4px;
+	background: #b8b8b8;
+}
+footer>ul>li>a,
+footer>p{
+	font-size: 12px;
+    color: #b8b8b8;
+}
+footer>a:hover{
+	color: #666666;
+}
+footer>p{
+	text-align: center;
+}
+
+
+/*主要内容的媒体查询 and (min-width:992px)*/
+@media screen and (max-width:1100px) {
+	section{
+		width: 100%;
+	}
+}
+@media screen and (max-width:502px){
+	footer{
+		display: none;
+	}
+}
