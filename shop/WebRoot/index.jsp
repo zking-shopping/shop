@@ -210,12 +210,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!--最小框的登录和注册-->
 		<ul id="min-reg" class="nav navbar-nav navbar-collapse collapse ">
 			<li class="visible-xs">
-				<a href="register.html">
+				<a href="register.jsp">
 					<button class="btn btn-primary btn-xs">注册</button>
 				</a>
 			</li>
 			<li class="visible-xs">
-				<a href="login.html">
+				<a href="login.jsp">
 					<button class="btn btn-success btn-xs">登录</button>
 				</a>
 			</li>
@@ -314,5 +314,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
   </body>
 </html>
-<script src="/shopdemo/js/jquery-3.4.1.min.js"></script>
-<script src="/shopdemo/js/index.js"></script>
+<script src="/shop/js/jquery-3.4.1.min.js"></script>
+<script src="/shop/js/index.js"></script>
