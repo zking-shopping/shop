@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="com.shopping.pojo.Type" table="t_type">
+	<property name="id">id</property>
+	<property name="name">name</property>
+	<property name="del">del</property>
+</class>

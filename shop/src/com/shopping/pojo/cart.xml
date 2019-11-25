@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="com.shopping.pojo.Cart" table="t_cart">
+	<property name="id">id</property>
+	<property name="memberId">memberId</property>
+	<property name="goodsId">goodsId</property>
+	<property name="number">number</property>
+	
+	<select id="selectCart" target="com.gyh.Cart">
+		select * from t_cart where memberId=#{memberId} and goodsId=#{goodsId};
+	</select>
+	<update id="add">
+		update t_cart set number=number+1 where memberId=#{memberId} and goodsId=#{goodsId};
+	</update>
+	<update id="addNumber">
+		update t_cart set number=number+1 where id=#{id};
+	</update>
+	<update id="reduceNumbe">
+		update t_cart set number=number-1 where id=#{id};
+	</update>
+</class>

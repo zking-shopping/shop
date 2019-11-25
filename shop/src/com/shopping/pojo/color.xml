@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="com.shopping.pojo.Color" table="t_color">
+	<property name="id">id</property>
+	<property name="goodsId">goodsId</property>
+	<property name="goodsColor">goodsColor</property>
+	<property name="stock">stock</property>
+	<property name="hide">hide</property>
+</class>

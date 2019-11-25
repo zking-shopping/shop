@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="com.shopping.pojo.Order" table="t_order">
+	<property name="id">id</property>
+	<property name="memberId">memberId</property>
+	<property name="goodsName">goodsName</property>
+	<property name="total">total</property>
+	<property name="time">time</property>
+	<property name="state">state</property>
+	<property name="del">del</property>
+	
+	<update id="deleteOne">
+		update t_order set del=#{del} where id=#{id};
+	</update>
+	<update id="updateState">
+		update t_order set state=#{state} where id=#{id};
+	</update>
+</class>

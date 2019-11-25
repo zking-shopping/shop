@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="com.shopping.pojo.Address" table="t_address">
+	<property name="id">id</property>
+	<property name="memberId">memberId</property>
+	<property name="cousignee">cousignee</property>
+	<property name="phoneNumber">phoneNumber</property>
+	<property name="provinces">provinces</property>
+	<property name="city">city</property>
+	<property name="area">area</property>
+	<property name="detailAddress">detailAddress</property>
+</class>

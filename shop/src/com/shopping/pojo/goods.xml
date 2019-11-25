@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="com.shopping.pojo.Goods" table="t_goods">
+	<property name="id">id</property>
+	<property name="goodsName">goodsName</property>
+	<property name="price">price</property>
+	<property name="introduction">introduction</property>
+	<property name="sort">sort</property>
+	<property name="color">color</property>
+	<property name="picId">picId</property>
+	<property name="time">time</property>
+	<property name="del">del</property>
+	
+	<update id="deleteOne">
+		update t_goods set del=#{del} where id=#{id};
+	</update>
+	<update id="updateTime">
+		update t_goods set time=#{time} where id=#{id};
+	</update>
+</class>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="com.shopping.pojo.MemberStatistics" table="t_memberstatisticss">
+	<property name="id">id</property>
+	<property name="memberId">memberId</property>
+	<property name="cost">cost</property>
+	<property name="time">time</property>
+</class>

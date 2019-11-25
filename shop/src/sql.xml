@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mappings>
+	<mapping path="com/shopping/pojo/address.xml"></mapping>
+	<mapping path="com/shopping/pojo/admin.xml"></mapping>
+	<mapping path="com/shopping/pojo/cart.xml"></mapping>
+	<mapping path="com/shopping/pojo/color.xml"></mapping>
+	<mapping path="com/shopping/pojo/detailorder.xml"></mapping>
+	<mapping path="com/shopping/pojo/goods.xml"></mapping>
+	<mapping path="com/shopping/pojo/goodsstatistics.xml"></mapping>
+	<mapping path="com/shopping/pojo/member.xml"></mapping>
+	<mapping path="com/shopping/pojo/memberstatistics.xml"></mapping>
+	<mapping path="com/shopping/pojo/order.xml"></mapping>
+	<mapping path="com/shopping/pojo/pic.xml"></mapping>
+	<mapping path="com/shopping/pojo/type.xml"></mapping>
+</mappings>

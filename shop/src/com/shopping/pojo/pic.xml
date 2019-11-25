@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="com.shopping.pojo.Pic" table="t_pic">
+	<property name="id">id</property>
+	<property name="picture1">picture1</property>
+	<property name="picture2">picture2</property>
+	<property name="picture3">picture3</property>
+	<property name="del">del</property>
+</class>

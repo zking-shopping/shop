@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="com.shopping.pojo.DetailOrder" table="t_detailorder">
+	<property name="id">id</property>
+	<property name="orderId">orderId</property>
+	<property name="goodsId">goodsId</property>
+	<property name="url">url</property>
+	<property name="price">price</property>
+	<property name="number">number</property>
+	<property name="colorId">colorId</property>
+	<property name="goodsColor">goodsColor</property>
+</class>

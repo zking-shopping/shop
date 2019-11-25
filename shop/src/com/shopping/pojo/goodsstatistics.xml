@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="com.shopping.pojo.GoodsStatistics" table="t_goodsstatistics">
+	<property name="id">id</property>
+	<property name="goodsId">goodsId</property>
+	<property name="time">time</property>
+	<property name="clickNumber">clickNumber</property>
+	<property name="buyNumber">buyNumber</property>
+	
+	<update id="updateBuyNumber">
+		update t_goods set buyNumber=#{buyNumber} where id=#{id};
+	</update>
+	<update id="updateClickNumber">
+		update t_goods set clickNumber=#{clickNumber} where id=#{id};
+	</update>
+	<update id="addClickNumber">
+		update t_goods set clickNumber=clickNumber+1 where id=#{id};
+	</update>
+</class>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="com.shopping.pojo.Member" table="t_member">
+	<property name="id">id</property>
+	<property name="username">username</property>
+	<property name="password">password</property>
+	<property name="name">name</property>
+	<property name="phoneNumber">phoneNumber</property>
+	<property name="statistics">statistics</property>
+	<property name="cost">cost</property>
+	<property name="time">time</property>
+	<property name="date">date</property>
+	<property name="del">del</property>
+	
+	<select id="selectForLogin" target="com.shopping.pojo.Member">
+		select * from t_member where username=#{username} and password=#{password};
+	</select>
+	<select id="selectByUsername" target="com.shopping.pojo.Member">
+		select * from t_member where username=#{username};
+	</select>
+	<update id="deleteOne">
+		update t_member set del=#{del} where id=#{id};
+	</update>
+	<update id="updateStatistics">
+		update t_member set cost=#{cost}, time=#{time}, date=#{date} where id=#{id};
+	</update>
+	<update id="updateTime">
+		update t_member set time=#{time} where id=#{id};
+	</update>
+	<update id="updateCost">
+		update t_member set cost=#{cost} where id=#{id};
+	</update>
+</class>
