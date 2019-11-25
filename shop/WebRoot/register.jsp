@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE jsp PUBLIC "-//W3C//DTD jsp 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
@@ -66,7 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<button class="next-step">下一步</button>
 				<div class="to-login">
 					已有账号?
-					<a href="login.html">去登陆</a>
+					<a href="login.jsp">去登陆</a>
 				</div>
 			</div>
 			<!--注册第二步：验证手机号码-->

@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE jsp PUBLIC "-//W3C//DTD jsp 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<!--导航条左边-->
 							<!--logo-->
 							<div class="navbar-brand">
-								<a href="index.html">OurLogo</a>
+								<a href="index.jsp">OurLogo</a>
 							</div>
 						</div>
 						<!--导航条右边-->
@@ -114,10 +114,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!--用户 包含登录注册-->
 						<span class="glyphicon glyphicon-user text-center hidden-sm hidden-xs hidden-md ">
 							<div class="dropdown" style="display: none;">
-								<a href="register.html">
+								<a href="register.jsp">
 									<button class="btn btn-default navbar-btn navbar-right">注册</button>
 								</a>
-								<a href="login.html">
+								<a href="login.jsp">
 									<button class="btn btn-default navbar-btn navbar-right">登录</button>
 								</a>
 							</div>
@@ -136,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="dropdown" style="display: none; " id="allgoods">
 									<div id="shop-top" style="display: none;">
 										<ul style=" overflow-x: auto; ">
-											<li><a href="introduction.html"><img src="img/chazuo1.jpg" /></a>
+											<li><a href="introduction.jsp"><img src="img/chazuo1.jpg" /></a>
 											    <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
 													<p style="display: block;">万能插座</p>
 													<p style="display: block;">价格:￥135.00</p>
@@ -145,7 +145,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								            </li>
 								                
 								            <li>
-												<a href="introduction.html">
+												<a href="introduction.jsp">
 												    <img src="img/chazuo1.jpg" />
 											    </a>
 											    <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
@@ -157,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								             
 								                <li>
 								                
-													<a href="introduction.html">
+													<a href="introduction.jsp">
 												       <img src="img/chazuo1.jpg" />
 											        </a>
 											        <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
@@ -169,7 +169,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								                </li>
 								                
 								                <li>
-													<a href="introduction.html">
+													<a href="introduction.jsp">
 												       <img src="img/chazuo1.jpg" />
 											        </a>
 											        <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
@@ -179,7 +179,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													<span class="glyphicon glyphicon-remove" style="float: right;"></span>
 								                </li>
 								                <li>
-													<a href="introduction.html">
+													<a href="introduction.jsp">
 												       <img src="img/chazuo1.jpg" />
 											        </a>
 											        <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
@@ -192,13 +192,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 										<div id="shop-down" style="display: none;" >
 											<h1>总价:￥135.00</h1>
-								        			<a href="shoppingCar.html"><button >去购物车</button></a>
+								        			<a href="shoppingCar.jsp"><button >去购物车</button></a>
 										</div>
 										<div id="no-goods" style=" color: gray;height: 80%; " >
 										    <span style="margin: 50% 20%;">还没有商品,快去购物车</span>
 										</div>
 										<div id="goshopping">
-											<a style="margin: 50% 20%;" href="shoppingCar.html"><button>去购物车</button></a>
+											<a style="margin: 50% 20%;" href="shoppingCar.jsp"><button>去购物车</button></a>
 										</div>
 							    </div>
 							</div>
