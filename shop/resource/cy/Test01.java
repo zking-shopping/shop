@@ -1,5 +1,12 @@
+
 package cy;
 
+
+
+
 public class Test01 {
-     String name;
+public static void main(String[] args) {
+	System.out.println();
+	
 }
+} 
