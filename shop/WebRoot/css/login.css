@@ -85,15 +85,15 @@ header nav>.logo>a>img{
 	height: 50px;
 	line-height: 50px;
 	color: #FFFFFF;
+	
 	font-size: 18px;
 	font-weight: bold;
-	font-spacing: 10px;
+	
 	background: #1989E9;
 	border: none;
 	outline: none;
 	cursor: pointer;
 	border-radius: 3px;
-	
 }
 .content>div>.login:hover{
 	background: #4790FF;
