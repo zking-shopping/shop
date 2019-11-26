@@ -260,7 +260,7 @@ public abstract class BaseDao {
 		String tableName = attr.getValue();
 		Attribute attr2 = (Attribute) doc.selectSingleNode("/class/select[@id='" + id + "']/@target");
 		String target = attr2.getValue();
-		System.out.println("selectForLogin" + target);
+//		System.out.println("selectForLogin" + target);
 		Element ele = (Element)doc.selectSingleNode("/class/select[@id='" + id + "']");
 		
 		String str = ele.getTextTrim();
