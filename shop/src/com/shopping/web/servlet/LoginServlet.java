@@ -24,30 +24,29 @@ public class LoginServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-            MemberDao md = new MemberDaoImpl();
-            Connection conn = DBHelper.getConnection();
-    		MemberDao dao = new MemberDaoImpl();
-    		Member m = new Member();
-    		response.setCharacterEncoding("UTF-8");
-    		response.setHeader("Content-Type", "application/json;charset=utf-8");
-    		m.setUsername(request.getParameter("username"));
-    		m.setPassword(request.getParameter("password"));
-    		//根据名字和密码获得的member全部信息
-    		Member member = (Member) dao.select("selectForLogin", m, conn);
-    		request.getSession().setAttribute("member", member);
-    		if(member!=null){
-    			JSONObject jo = JSONObject.fromObject(member);
-    			PrintWriter out = response.getWriter();
-    			out.print(jo);
-    		}
-    		
+		
+		this.doPost(request, response);
 	}
 
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		this.doGet(request, response);
+		  MemberDao md = new MemberDaoImpl();
+          Connection conn = DBHelper.getConnection();
+  		MemberDao dao = new MemberDaoImpl();
+  		Member m = new Member();
+  		response.setCharacterEncoding("UTF-8");
+  		response.setHeader("Content-Type", "application/json;charset=utf-8");
+  		m.setUsername(request.getParameter("username"));
+  		m.setPassword(request.getParameter("password"));
+  		//根据名字和密码获得的member全部信息
+  		Member member = (Member) dao.select("selectForLogin", m, conn);
+  		PrintWriter out = response.getWriter();
+  		if(member!=null){
+  			request.getSession().setAttribute("member", member);
+  			request.getRequestDispatcher("index.jsp").forward(request, response);
+  		}
+  	
 	}
 
 	/**
