@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</form>
 			<div>
-				<button class="login">登&nbsp;&nbsp;&nbsp;录</button>
+				<input class="login" value="登录"></input>
 				<div class="unlogin">
 					<div class="forget-pass"><a href="#">忘记密码&nbsp;&nbsp;|</a></div>
 					<div class="register"><a href="register.jsp">&nbsp;&nbsp;注册账号</a></div>

@@ -92,6 +92,7 @@ header nav>.logo>a>img{
 	outline: none;
 	cursor: pointer;
 	border-radius: 3px;
+	text-align:center;
 }
 .content>div>.login:hover{
 	background: #4790FF;
@@ -168,7 +169,7 @@ header nav>.logo>a>img{
 }
 
 
-/*尾部*/
+/*灏鹃儴*/
 footer{
 	width: 542px;
 	height: 60px;
@@ -204,7 +205,7 @@ footer>p{
 }
 
 
-/*主要内容的媒体查询 and (min-width:992px)*/
+/*涓昏鍐呭鐨勫獟浣撴煡璇�and (min-width:992px)*/
 @media screen and (max-width:1100px) {
 	section{
 		width: 100%;
