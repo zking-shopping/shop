@@ -28,7 +28,7 @@ function showMyProducts(result){
         $('.myNullOrder').hide();
         $('.myrightinfo_body').show();
         var myProduct = `
-          <div class="odder_info">下单时间<span></span> 订单号<span></span></div>
+          <div class="odder_info">下单时间:<span></span> 订单号:<span></span></div>
           <ul>
 			<li>
                <a><img src="${productsList[i].goods_thumb}"/></a>
@@ -41,9 +41,12 @@ function showMyProducts(result){
 			<li>${productsList[i].price}</li>
 			<li>
                1
-			<li>${productsList[i].price}</li>
+			<li style="font-weight: bold;">${productsList[i].price}</li>
 			<li>已关闭</li>
-			<li><p><a href="shoppingCar.html">重新购买</a></p><p class="showDetails"><a>查看详情</a></p></li>
+			<li class="a-hover">
+				<p><a href="shoppingCar.html">重新购买</a></p>
+				<p class="showDetails"><a>查看详情</a></p>
+			</li>
          </ul>
 `;
         $('.myProducts').append(myProduct);
@@ -85,6 +88,7 @@ $('.showMyOrder').click(function () {
         $('#myPersonInfo').hide();
         $('.myOrder').show();
 
+	$('.main-info').hide();
     $('.showMyOrder').siblings().css("border-left","0px");
     $('.showMyOrder').siblings().css("background","white");
     $('.showMyOrder').siblings().children().css("color","black");
@@ -114,13 +118,13 @@ $('.myPersonInfo').click(function () {
         showMyDetails(result);
     });
         var myProduct = `
-                <p><span>用户</span><span>ID169853895</span></p>
-                <p><span>账号</span><span>282237742@qq.com</span></p>
-                <p><span>手机号码</span><span>绑定手机号码</span></p>        
+            <p><span>用户</span><span>ID169853895</span></p>
+            <p><span>账号</span><span>282237742@qq.com</span></p>
+            <p><span>手机号码</span><span>绑定手机号码</span></p>        
 `;
         $('.myOrder').hide();
         $('.viewDetails').hide();
-        $('.myReceiptAddress').hide();
+        $('.main-info').hide();
         $('#myPersonInfo').html(myProduct);
         $('#myPersonInfo').show();
 
@@ -139,8 +143,8 @@ $('.myPersonInfo').click(function () {
 
 //收货地址--左
 $('.receiptAddress').click(function () {
-    $('.myReceiptAddress').siblings().hide();
-    $('.myReceiptAddress').show();
+    $('.main-info').siblings().hide();
+    $('.main-info').show();
 
     $('.receiptAddress').siblings().css("border-left","0px");
     $('.receiptAddress').siblings().css("background","white");

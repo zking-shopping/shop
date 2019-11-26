@@ -13,7 +13,17 @@ a:hover{
     text-decoration: none;
     cursor: pointer;
 }
-body{background:#F1EFEF;}
+.showDetails a{
+	color: #999999;
+}
+.a-hover a:hover{
+	color: #1989E9;
+}
+
+body{
+	background:#F1EFEF;
+	font-weight: lighter;
+}
 .odder_info{
     height: 40px;
     line-height: 40px;
@@ -80,6 +90,10 @@ body{background:#F1EFEF;}
 
 .myrightinfo_body ul{
     position: relative;
+}
+.myrightinfo_body>li{
+    font-weight: bold;
+    color: #666666;
 }
 .myrightinfo_body li{
     display: inline-block;
