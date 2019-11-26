@@ -1,0 +1,265 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{margin: 0px;padding: 0px auto;}
+
+.viewDetails,.myrightinfo_body{
+    display: none;
+}
+a{
+    color: black;
+}
+a:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+body{background:#F1EFEF;}
+.odder_info{
+    height: 40px;
+    line-height: 40px;
+    background: #f4f4f4;
+    padding-left: 20px;
+    margin: 20px 0px;
+}
+
+.headfont{
+    font-size: 16px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+.myleft{
+    width: 18%;
+    float: left;
+    background: white;
+    letter-spacing: 1px;
+    font-size: 18px;
+}
+.myleft>div{
+    margin-top: 25px;
+}
+.myleft>div>p{
+    padding-left: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.myleft>div>p>img{
+    margin-right: 8px;
+}
+.myleft>div>p>a{
+    font-size: 15px;
+    margin-left: 30px;
+}
+.myright{
+    float: right;
+    width: 80%;
+    background: white;
+}
+.myrightinfo_head:hover{
+    cursor: pointer;
+}
+.myrightinfo{
+    width: 95%;
+    margin: 0 auto;
+}
+.myrightinfo_head{
+    margin-top: 10px;
+    border-bottom: #f4f4f4 1px solid;
+}
+.myrightinfo_head li{
+    font-size: 18px;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+}
+.myrightinfo_head li:nth-child(odd){
+    width: 15%;
+}
+.myrightinfo_head li:nth-child(even){
+    width: 3%;
+}
+
+.myrightinfo_body ul{
+    position: relative;
+}
+.myrightinfo_body li{
+    display: inline-block;
+    width: 12%;
+    line-height: 50px;
+    overflow: hidden;
+}
+.myrightinfo_body img{
+    width: 100px;
+    height: 100px;
+    vertical-align: top;
+    display: inline-block;
+}
+.myrightinfo_body li:first-child{
+    padding-left: 20px;
+    width: 35%;
+}
+.myProducts li{
+   height: 105px;
+   overflow: hidden;
+    line-height: 105px;
+}
+.myrightinfo_body li:first-child>div{
+    width: 135px;
+    display: inline-block;
+    font-size: 15px;
+    padding-top: 8%;
+    padding-left: 5px;
+    line-height: 120%;
+}
+.myrightinfo_body li:first-child>div p{
+    font-size: 13px;
+    margin-top: 10px;
+
+}
+.myrightinfo_body li:last-child{
+    position: absolute;
+    top: -18px;
+}
+.myrightinfo_body li:last-child>p{
+    height: 20px;
+}
+
+.viewDetails li,.viewDetails_left,.viewDetails_right{
+    display: inline-block;
+
+}
+.viewDetails_buttom{
+    margin: 0;
+    border-bottom:1px solid #f4f4f4 ;
+    margin-bottom: 15px;
+}
+.viewDetails_left{
+
+    width: 27%;
+    text-align: center;
+    border-right: 1px solid #f4f4f4;
+
+}
+.viewDetails_right{
+    margin-top: 0px;
+    width: 70%;
+    text-align: center;
+
+}
+.viewDetails_right>ul>li{
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    width: 33%;
+    margin-right: 0px;
+    margin-left: 0px;
+    position: relative;
+}
+
+.viewDetails_buttom_body>li,.viewDetails_buttom_body_details>ul>li{
+    width: 15%;
+    text-align: center;
+}
+.viewDetails_buttom_body>li:first-child,.viewDetails_buttom_body_details>ul>li:first-child{
+    width: 52%;
+    text-align: left;
+    padding-left: 5px;
+}
+.viewDetails_buttom_body_details img{
+    width: 100px;
+    height: 100px;
+    vertical-align: top;
+    display: inline-block;
+}
+.viewDetails_buttom_body_details>ul{
+    padding: 20px 5px;
+    border: 1px solid lightgrey;
+}
+.viewDetails_buttom_body_details li:first-child>div{
+    width: 320px;
+    display: inline-block;
+    font-size: 15px;
+    padding-top: 5%;
+    padding-left: 10px;
+    line-height: 120%;
+}
+.viewDetails_buttom_body_details li:first-child>div p{
+    font-size: 13px;
+    margin-top: 10px;
+
+}
+.logistics{
+    height: 40px;
+    width: 100%;
+    text-align: right;
+    color: lightgrey;
+    line-height: 40px;
+    background: #f4f4f4 ;
+    border: 1px solid lightgray;
+    padding-right: 5px;
+}
+.orderInfo>p>span{
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+    margin: 5px 0px;
+}
+.orderInfo>p>span:first-child{
+    width: 40%;
+    text-align: left;
+    padding-left: 10px;
+}
+.myNullOrder{
+    height: 430px;
+    padding-top: 30px;
+}
+.myNullOrder p{
+    text-align: center;
+}
+
+.wool_left,.wool_right{
+
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    border-bottom: 1px solid dodgerblue;
+}
+.wool_right{
+    position: absolute;
+    right: 0px;
+}
+.wool_left{
+    position: absolute;
+    left: 0px;
+}
+#myPersonInfo{
+    height: 405px;
+    display: none;
+}
+#myPersonInfo p{
+    margin-left: 50px;
+    margin-top: 10px;
+    font-size: 18px;
+
+}
+#myPersonInfo p:first-child{
+    margin-top: 50px;
+}
+#myPersonInfo p>span{
+    display: inline-block;
+    padding-right: 80px;
+    text-align: center;
+}
+
+.showMyOrder{
+    border-left: 3px solid cornflowerblue;
+    background: rgba(102, 107, 255, 0.1);
+
+}
+.showMyOrder>a{
+    color: dodgerblue;
+}
+.allOrder{color: dodgerblue}
+.footer{
+    margin-top: 50px;
+}
+

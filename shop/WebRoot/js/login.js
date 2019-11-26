@@ -1,24 +1,19 @@
 
 $('a').prop('target','_blank');
 
-
-//登录验证
-function login(){
-	console.log(111);
-}
 //点击登录按钮
-//$('.login').click(function(){
-//	var usernames = $('.username').val();
-//	var passwords = $('.password').val();
-//	console.log(usernames);
-//	console.log(passwords);
-//	if(usernames==''){
-//		$('.name-tip').html('请输入账号！').siblings('input').css('border-color','#ff6700');
-//	};
-//	if(passwords==''){
-//		$('.pass-tip').html('请输入密码！').siblings('input').css('border-color','#ff6700');
-//	};
-//	if(usernames!=''&&passwords!=''){
+$('.login').click(function(){
+	var username = $('.username').val();
+	var password = $('.password').val();
+	console.log(username);
+	console.log(password);
+	if(username==''){
+		$('.name-tip').html('请输入账号！').siblings('input').css('border-color','#ff6700');
+	};
+	if(password==''){
+		$('.pass-tip').html('请输入密码！').siblings('input').css('border-color','#ff6700');
+	};
+	if(usernames!=''&&passwords!=''){
 //		$.post('http://www.wjian.top/shop/api_user.php',{
 //			status : 'login',
 //			username : usernames,
@@ -35,8 +30,26 @@ function login(){
 //				$('.pass-tip').html(result).siblings('input').css('border-color','#ff6700');
 //			};
 //		});
-//	};
-//});
+		
+		 $.ajax({
+             url : ".login",
+             type : "POST",
+             async : true,
+             dataType : "json",
+             data : {
+     			username : usernames,
+     			password : passwords,
+             },
+             success : function(result) {
+//                 $("#mydiv").html(result.name);
+            	 System.out.println("成功了");
+             },
+             error : function(xhr) {
+ 				$('.name-tip').html(result).siblings('input').css('border-color','#ff6700');
+             }
+         });
+	};
+});
 
 //输入事件
 $('.content>form>div>input').keydown(function(event){
