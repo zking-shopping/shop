@@ -42,9 +42,11 @@ public class LoginServlet extends HttpServlet {
   		//根据名字和密码获得的member全部信息
   		Member member = (Member) dao.select("selectForLogin", m, conn);
   		PrintWriter out = response.getWriter();
-  		if(member!=null){
+  		if(member.getPassword()!=null){
   			request.getSession().setAttribute("member", member);
   			request.getRequestDispatcher("index.jsp").forward(request, response);
+  		}else{
+  			request.getRequestDispatcher("login.jsp").forward(request, response);
   		}
   	
 	}
