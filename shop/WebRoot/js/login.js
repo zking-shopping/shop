@@ -2,7 +2,7 @@
 $('a').prop('target','_blank');
 
 //点击登录按钮
-function login(obj){
+function login(){
 	var username = $('.username').val();
 	var password = $('.password').val();
 	console.log(username);
@@ -24,10 +24,11 @@ function login(obj){
      			password : password,
              },
             success : function(result) { 
-            	console.log(result);
-            
-// 				$('.name-tip').html(xhr).siblings('input').css('border-color','#ff6700');
-             }
+                 window.location.href = "/shop/index.jsp?user"+result.user;
+                 
+//            	request.getRequestDispatcher("/shop/index.jsp").forward(request, response);
+                
+            }
          });
 	};
 }
