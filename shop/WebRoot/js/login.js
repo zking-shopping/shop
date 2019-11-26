@@ -1,6 +1,11 @@
 
 $('a').prop('target','_blank');
 
+
+//登录验证
+function login(obj){
+	alert(111);
+}
 //点击登录按钮
 $('.login').click(function(){
 	var usernames = $('.username').val();
@@ -46,3 +51,4 @@ $('.content>form>div>input').keydown(function(event){
 		$(this).css('border-color','#CCCCCC').siblings('p').html('');
 	};
 });
+}
