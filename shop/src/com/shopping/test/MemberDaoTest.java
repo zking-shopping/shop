@@ -18,7 +18,6 @@ public class MemberDaoTest {
 		m.setUsername("aaa");
 		m.setPassword("aaa");
 		Member member = (Member) dao.select("selectForLogin", m, conn);
-		System.out.println(member.getTime());
 	}
 	
 }
