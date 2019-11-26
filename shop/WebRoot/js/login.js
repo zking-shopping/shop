@@ -23,12 +23,10 @@ function login(obj){
      			username : username,
      			password : password,
              },
-             success : function(result) {
-//                 $("#mydiv").html(result.name);
-            	 System.out.println("成功了");
-             },
-             error : function(xhr) {
- 				$('.name-tip').html(xhr).siblings('input').css('border-color','#ff6700');
+            success : function(result) { 
+            	console.log(result);
+            
+// 				$('.name-tip').html(xhr).siblings('input').css('border-color','#ff6700');
              }
          });
 	};
