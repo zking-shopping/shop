@@ -87,12 +87,13 @@ header nav>.logo>a>img{
 	color: #FFFFFF;
 	font-size: 18px;
 	font-weight: bold;
+	font-spacing: 10px;
 	background: #1989E9;
 	border: none;
 	outline: none;
 	cursor: pointer;
 	border-radius: 3px;
-	text-align:center;
+	
 }
 .content>div>.login:hover{
 	background: #4790FF;
