@@ -32,12 +32,13 @@ public class LoginServlet extends HttpServlet {
     		response.setHeader("Content-Type", "application/json;charset=utf-8");
     		m.setUsername(request.getParameter("username"));
     		m.setPassword(request.getParameter("password"));
+    		//根据名字和密码获得的member全部信息
     		Member member = (Member) dao.select("selectForLogin", m, conn);
-    		JSONObject jo = JSONObject.fromObject(member);
-    		System.out.println(jo);
+    		request.getSession().setAttribute("member", member);
     		if(member!=null){
+    			JSONObject jo = JSONObject.fromObject(member);
     			PrintWriter out = response.getWriter();
-    			out.print(member.toString());
+    			out.print(jo);
     		}
     		
 	}

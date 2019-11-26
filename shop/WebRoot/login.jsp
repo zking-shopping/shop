@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</header>
 		<section class="content">
 			<div class="title">账号登录</div>
-			<form>
+			<form id="frm">
 				<div>
 					<input name="username" class="username" type="text" placeholder="请输入账号"/>
 					<p class="name-tip"></p>
@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</form>
 			<div>
-				<input class="login" type="button" value="登录" style="text-align:center;" onclick="login(this)"/>
+				<input class="login" type="button" value="登录" style="text-align:center;" onclick="login()"/>
 				<div class="unlogin">
 					<div class="forget-pass"><a href="#">忘记密码&nbsp;&nbsp;|</a></div>
 					<div class="register"><a href="register.jsp">&nbsp;&nbsp;注册账号</a></div>
