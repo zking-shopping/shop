@@ -3,8 +3,8 @@ $('a').prop('target','_blank');
 
 
 //登录验证
-function login(obj){
-	alert(111);
+function login(){
+	console.log(111);
 }
 //点击登录按钮
 $('.login').click(function(){
@@ -51,4 +51,3 @@ $('.content>form>div>input').keydown(function(event){
 		$(this).css('border-color','#CCCCCC').siblings('p').html('');
 	};
 });
-}
