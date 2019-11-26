@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
+import net.sf.json.JSONObject;
+
 import com.shopping.dao.MemberDao;
 import com.shopping.dao.daoImpl.MemberDaoImpl;
 import com.shopping.db.DBHe;
@@ -24,10 +28,17 @@ public class LoginServlet extends HttpServlet {
             Connection conn = DBHelper.getConnection();
     		MemberDao dao = new MemberDaoImpl();
     		Member m = new Member();
+    		response.setCharacterEncoding("UTF-8");
+    		response.setHeader("Content-Type", "application/json;charset=utf-8");
     		m.setUsername(request.getParameter("username"));
     		m.setPassword(request.getParameter("password"));
     		Member member = (Member) dao.select("selectForLogin", m, conn);
-    		System.out.println("密码是"+member.getPassword());
+    		JSONObject jo = JSONObject.fromObject(member);
+    		System.out.println(jo);
+    		if(member!=null){
+    			PrintWriter out = response.getWriter();
+    			out.print(member.toString());
+    		}
     		
 	}
 
