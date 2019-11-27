@@ -4,6 +4,10 @@
 	<property name="memberId">memberId</property>
 	<property name="goodsId">goodsId</property>
 	<property name="number">number</property>
+	<property name="url">url</property>
+	<property name="price">price</property>
+	<property name="colorId">colorId</property>
+	<property name="goodsColor">goodsColor</property>
 	
 	<select id="selectCart" target="com.gyh.Cart">
 		select * from t_cart where memberId=#{memberId} and goodsId=#{goodsId};

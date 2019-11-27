@@ -8,6 +8,9 @@ public class DateHelper {
 		Date date = new Date();
 		int year = date.getYear() + 1900;
 		int month = date.getMonth() + 1;
+		if(month < 10){
+			return String.valueOf(year + "0" + month);
+		}
 		return String.valueOf(year + "" + month);
 	}
 	public static String getComplexDate(){
