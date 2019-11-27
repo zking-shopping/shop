@@ -14,7 +14,6 @@ img{border: none;vertical-align: bottom;}
 				margin: 0 auto;
 				z-index: 14;
 				text-align: center;
-				background:white;
 			}
 			
            .navbar-white>.container{
@@ -136,15 +135,14 @@ img{border: none;vertical-align: bottom;}
 			/*购物车的所有物品*/
 			
 			#allgoods {
-				width: 550%;
-				height: 600%;
-				border:1px solid lightgrey;
+				width: 640%;
+				height: 1200%;
 				position: absolute;
 				left: -250px;
 				top: 20px;
 				background: white;
 				z-index: 15;
-				box-shadow: 0px 0px 20px lightgray;
+				
 			}
 			
 			#allgoods #shop-top{

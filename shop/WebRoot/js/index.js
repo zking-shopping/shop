@@ -121,6 +121,7 @@ function index(){
 	//	登录注册
 	
 	$('.glyphicon-user').click(function() {
+		alert(111);
 		$('.glyphicon-user .dropdown').show();
 	})
 	
