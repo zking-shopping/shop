@@ -78,7 +78,6 @@ public class ActionServlet extends HttpServlet {
         
         //获取action名
         String actionName = url.substring(url.lastIndexOf("/")+1,url.lastIndexOf(".do"));
-        
         //通过action名获取action所对应的的类的全路径
         Element element = (Element) doc.selectSingleNode("/actions/action[@name='"+actionName+"']");
         //获得执行动作的相关action类路径
@@ -144,7 +143,6 @@ public class ActionServlet extends HttpServlet {
 	 * @throws ServletException if an error occurs
 	 */
 	public void init() throws ServletException {
-		
 		String configFileName = this.getServletConfig().getInitParameter("configLocation");
         
 		if (configFileName == null){
