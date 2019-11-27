@@ -12,7 +12,7 @@ public class LoginActionTest extends ActionFather{
 	public String doAction(HttpServletRequest request,
 			HttpServletResponse response, FormFather ff) {
 		
-		return "error";
+		return "success";
 	}
 
 }

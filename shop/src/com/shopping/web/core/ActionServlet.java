@@ -77,10 +77,9 @@ public class ActionServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		//获取客户传过来的uri
         String url = request.getRequestURI();
-        
+        System.out.println(url);
         //获取action名
         String actionName = url.substring(url.lastIndexOf("/")+1,url.lastIndexOf(".do"));
         System.out.println(actionName);
