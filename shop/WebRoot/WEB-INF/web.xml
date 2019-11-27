@@ -38,7 +38,9 @@
   	</res-auth>
   </resource-ref>
   
+
   <listener>
        <listener-class>com.shopping.web.listener.SingleLogListener</listener-class>
   </listener>
+
 </web-app>

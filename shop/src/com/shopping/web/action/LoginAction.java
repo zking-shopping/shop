@@ -16,7 +16,7 @@ import com.shopping.web.form.FormFather;
 public class LoginAction extends ActionFather{
 
 	@Override
-	public String doAction(HttpServletRequest request,
+	public Object doAction(HttpServletRequest request,
 			HttpServletResponse response, FormFather ff) {
 		String forward = null;
 		MemberDao md = new MemberDaoImpl();
