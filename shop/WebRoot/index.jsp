@@ -267,7 +267,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!--精选商品-->
 		<div class="chosed">
 			<h1>精选商品</h1>
-			<ul class="betterGoods()">
+			<ul class="bettergoods">
 				
 			</ul>
 			</div>

@@ -5,4 +5,10 @@
         <result name="success" direct="false">success.html</result>
         <result name="error">error.html</result>
     </action>
+    
+     <action name="login" class="com.shopping.servlet.LoginAction">
+        <form>com.shopping.web.form.LoginForm</form>
+        <result name="success" direct="false">index.jsp</result>
+        <result name="error">login.jsp</result>
+    </action>
 </actions>
