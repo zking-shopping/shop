@@ -46,6 +46,7 @@ body{
 }
 .myleft>div{
     margin-top: 25px;
+    line-height: 25px;
 }
 .myleft>div>p{
     padding-left: 30px;

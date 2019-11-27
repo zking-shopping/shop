@@ -11,13 +11,11 @@ import com.shopping.pojo.Member;
 
 public class SingleLogListener implements HttpSessionAttributeListener{
 
-	
-
 	 Map<String, HttpSession> map = new HashMap<String, HttpSession>();
 		@Override
 		public void attributeAdded(HttpSessionBindingEvent arg0) {
 			String infoName = arg0.getName();
-			if(infoName.equals("info")){   //如果名字是info 
+			if(infoName.equals("member")){   //如果名字是info 
 				
 				  //拿到对应的pojo对象
 				Member newInfo = (Member)arg0.getValue();
@@ -25,7 +23,7 @@ public class SingleLogListener implements HttpSessionAttributeListener{
 				if(map.get(infoName)!=null){   //如果新对象的账号对应的session值不为空，说明已经有人登录过了
 					 HttpSession session = map.get(infoName);
 					 Member oldInfo = (Member)session.getAttribute(infoName);
-					 session.removeAttribute("info");
+					 session.removeAttribute("member");
 					 System.out.println(oldInfo.getUsername()+"已经在线了");
 				}
 			}
@@ -39,7 +37,7 @@ public class SingleLogListener implements HttpSessionAttributeListener{
 			// TODO Auto-generated method stub
 			//拿到新对象的名字
 			String infoName = arg0.getName();
-			if(infoName.equals("info")){   //如果名字是info 
+			if(infoName.equals("member")){   //如果名字是info 
 				  //拿到对应的pojo对象
 				Member newInfo = (Member)arg0.getValue();
 				//拿到新的对象的名字
@@ -52,7 +50,7 @@ public class SingleLogListener implements HttpSessionAttributeListener{
 		@Override
 		public void attributeReplaced(HttpSessionBindingEvent arg0) {
 			  String infoName = arg0.getName();
-				if(infoName.equals("info")){ 
+				if(infoName.equals("member")){ 
 					//移除旧的账号
 					Member oldInfo = (Member)arg0.getValue();
 					map.remove(oldInfo.getUsername());

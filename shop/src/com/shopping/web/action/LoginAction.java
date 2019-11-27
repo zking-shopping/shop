@@ -16,7 +16,7 @@ import com.shopping.web.form.FormFather;
 public class LoginAction extends ActionFather{
 
 	@Override
-	public String doAction(HttpServletRequest request,
+	public Object doAction(HttpServletRequest request,
 			HttpServletResponse response, FormFather ff) {
 		String forward = null;
 		MemberDao md = new MemberDaoImpl();
@@ -33,9 +33,9 @@ public class LoginAction extends ActionFather{
 			PrintWriter out = response.getWriter();
 			if(member.getPassword()!=null){
 	  			request.getSession().setAttribute("member", member);
-	  			forward = "index";
+	  			forward = "success";
 	  		}else{
-	  			forward = "login";
+	  			forward = "error";
 	  		}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

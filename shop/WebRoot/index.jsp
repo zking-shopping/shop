@@ -4,7 +4,6 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -34,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!--导航条左边-->
 						<!--logo-->
 						<div class="navbar-brand">
-							<a href="index.html">OurLogo</a>
+							<a href="index.jsp">OurLogo</a>
 						</div>
 					</div>
 					<!--导航条右边-->
@@ -181,7 +180,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<span class="glyphicon glyphicon-remove" style="float: right;"></span>
 							                </li>
 							                <li>
-												<a href="introduction.html">
+												<a href="introduction.jsp">
 											       <img src="img/chazuo1.jpg" />
 										        </a>
 										        <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
@@ -200,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									    <span style="margin: 50% 20%;">还没有商品,快去购物车</span>
 									</div>
 									<div id="goshopping">
-										<a style="margin: 50% 20%;" href="shoppingCar.html"><button>去购物车</button></a>
+										<a style="margin: 50% 20%;" href="shoppingCar.jsp"><button>去购物车</button></a>
 									</div>
 						    </div>
 						</div>
@@ -315,5 +314,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
   </body>
 </html>
-<script src="/shop/js/jquery-3.4.1.min.js"></script>
-<script src="/shop/js/index.js"></script>
+<script src="/shopdemo/js/jquery-3.4.1.min.js"></script>
+<script src="/shopdemo/js/index.js"></script>
