@@ -33,9 +33,9 @@ public class LoginAction extends ActionFather{
 			PrintWriter out = response.getWriter();
 			if(member.getPassword()!=null){
 	  			request.getSession().setAttribute("member", member);
-	  			forward = "index";
+	  			forward = "success";
 	  		}else{
-	  			forward = "login";
+	  			forward = "error";
 	  		}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
