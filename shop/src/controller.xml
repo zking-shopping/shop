@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
     <action name="login" class="xy.action.LoginActionTest">
@@ -13,3 +14,19 @@
     </action>
 
 </actions>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action name="login" class="xy.action.LoginActionTest">
+        <form>xy.form.LoginFormTest</form>
+        <result name="success" direct="false">success.html</result>
+        <result name="error">error.html</result>
+    </action>
+    
+     <action name="login" class="com.shopping.servlet.LoginAction">
+        <form>com.shopping.web.form.LoginForm</form>
+        <result name="success" direct="false">index.jsp</result>
+        <result name="error">login.jsp</result>
+    </action>
+</actions>
+>>>>>>> branch 'master' of https://github.com/zking-shopping/shop.git

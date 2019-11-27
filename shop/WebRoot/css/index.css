@@ -1,4 +1,4 @@
-			/*轮播图*/
+			/*杞挱鍥�/
 			.banner {
 				width: 1348px;
 				height: 500px;
@@ -96,7 +96,7 @@
 			}
 			
 			.bettergoods li {
-				height: 40%;
+				height: 200%;
 				width: 25%;
 				float: left;
 				text-align: center;
@@ -104,7 +104,7 @@
 			}
 			
 			.bettergoods li .thumbnail {
-				height: 40%;
+				height: 200%;
 			}
 			
 			.chosed:after {
@@ -134,6 +134,7 @@
 			
 			.bettergoods li img {
 				width: 200px;
+				
 			}
 			
 			 .bettergoods li p {

@@ -1,3 +1,3 @@
 eclipse.preferences.version=1
-validator.Checked=WebRoot/js
+validator.Checked=WebRoot/css,WebRoot/js
 validator.Unchecked=

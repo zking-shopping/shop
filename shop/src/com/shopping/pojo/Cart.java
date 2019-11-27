@@ -4,6 +4,7 @@ public class Cart {
 	private int id;
 	private String memberId;
 	private int goodsId;
+	private String goodsName;
 	private int number;
 	private String url;
 	private String price;
@@ -26,6 +27,12 @@ public class Cart {
 	}
 	public void setGoodsId(int goodsId) {
 		this.goodsId = goodsId;
+	}
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
 	}
 	public int getNumber() {
 		return number;

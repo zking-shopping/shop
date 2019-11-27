@@ -18,28 +18,26 @@
     
   
     betterGoods(1,function(result){
-//         console.log(result);
          var res = JSON.parse(result);
-         console.log(res);
+//         console.log(res);
     	 var goodList = res.data;
-         
     	 var str = "";
 //    	 console.log(goodList);
-    	 for(var i =0;i<goodList.length;i++){
-    		console.log(goodList[i].goods_thumb);
-//    		 str +="<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+
-//    		          "  <div class='thumbnail'>"+
-//    		          "<a href='introduction.jsp'>"+
-//    		          "<img src="+goodList[i].goods_thumb"+ alt= />"+
-//    		          "<p>商品名:"+goodList[i].goods_name+"</p>"+
-//    		          "<p class='desc'>商品介绍:"+goodList[i].goods_desc"+</p>"+
-//    		          "<p>价格:"+goodList[i].price"+</p>"+
-//    		          "<p>点赞:❤+"+goodList[i].star_number"+</p>"+
-//    		          "</a>"+"<div>"+"</li>"
-//    		 
+    	 for(var i =0;i<4;i++){
+//    		 console.log(goodList[i].goods_thumb);
+    		 str +="<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+
+    		          "  <div class='thumbnail' style='height:500px;'>"+
+    		          "<a href='introduction.jsp'>"+
+    		          "<img src="+goodList[i].goods_thumb+" alt='' />"+
+    		          "<p>商品名:"+goodList[i].goods_name+"</p>"+
+    		          "<p class='desc'>商品介绍:"+goodList[i].goods_desc+"</p>"+
+    		          "<p>价格:"+goodList[i].price+"</p>"+
+    		          "<p>点赞:❤"+goodList[i].star_number+"</p>"+
+    		          "</a>"+"<div>"+"</li>"
     	 }
 //    	 console.log($('.bettergoods'));
-    	 $('.bettergoods').append(str);
+//    	 console.log($('.bettergoods'));
+    	 $('.bettergoods').html(str);
     	
     });
 
@@ -47,51 +45,37 @@
 
 	 function cardList(page,callback){
     	var page = page?page:1;
-    	$.get('http://www.wjian.top/shop/api_goods.php',{
-                 'pagesize' :1,
-                 'page':page,
-          }, function(result){
-           var result = JSON.parse(result);
-               if(result.code!=0){
-               	console.log('数据请求失败');
-     	           return;
-               }
+    	$.get({url:"http://www.wjian.top/shop/api_goods.php",
+    			data:{
+                 "pagesize" :3,
+                 "page":page,
+          },
+          success:function(result){
+              
                   callback(result);
-          });
+          }
+    	});
 
     };
     
       cardList(5,function(result){
-
-    	 var cardList = result.data;
+    	  var res = JSON.parse(result);
+    	 var cardList = res.data;
     	 var str = "";
-//    	 for(var i =0;i<cardList.length;i++){
-//    	 	
-//    	 	     str += `
-//      	 	            <li class="col-4-lg col-3-md col-6-sm col-12-xs">
-//      	 	            
-//                          <a href="introduction.html">
-//                                  <img src="${cardList[i].goods_thumb}" alt="" />
-//                          </a>
-//                                  <p>${cardList[i].goods_name}</p>
-//                                  <p>价格:${cardList[i].price}</p>
-//                       </li>
-//                       `;
-//    	 };
-//    	 for(var i =0;i<cardList.length;i++){
-//     	 	
-//	 	     str += ""+
-//  	 	            "<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+  	 	            
-//                      "<a href='introduction.html'>"
-//                              <img src="${cardList[i].goods_thumb}" alt="" />
-//                      </a>
-//                              <p>${cardList[i].goods_name}</p>
-//                              <p>价格:${cardList[i].price}</p>
-//                   </li>
-//                   ;
-//	 };
-    	 $('.nav-cateCard .card-list').html(str);
-		 index();
+    	 for(var i =0;i<3;i++){
+    	 	     str += "<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+
+                          "<a href='introduction.jsp'>"+
+                                  "<img src="+cardList[i].goods_thumb+" alt='' />"
+                          "</a>"+
+                                  "<p>"+cardList[i].goods_name+"</p>"
+                                  "<p>价格:"+cardList[i].price+"</p>"+
+                       "</li>"
+                       ;
+                                  $('.nav-cateCard .card-list').html(str);
+    	 };
+    	
+     	 	
+    	
     });
 
 function index(){
