@@ -48,4 +48,8 @@
    		 Container
   	</res-auth>
   </resource-ref>
+  
+  <listener>
+       <listener-class>/shop/src/com/shopping/web/listener/SingleLogListener.java</listener-class>
+  </listener>
 </web-app>
