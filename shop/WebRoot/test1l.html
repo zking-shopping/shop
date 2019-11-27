@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test1l.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+  12335445
+    <a href="shoppingCar.do">click</a>
+  </body>
+</html>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script>
+productsList();
+
+function productsList(){
+   
+    $.ajaxSettings.async = false;
+   
+	$.get('shoppingCar.do', 
+	      function(result) {
+	        
+			var result = JSON.parse(result);
+			
+			$("a").html(result+"6666");
+			
+			
+		  });
+	};
+</script>
+

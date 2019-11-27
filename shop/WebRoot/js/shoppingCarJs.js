@@ -24,7 +24,7 @@ function productsList(page, showMyProducts){
 
 function showMyProducts(result){
     $('.products').hide();
-    console.log(result)
+    console.log(result);
     var productsList = result.data;
     for(var i = 0; i < productsList.length; i++){
         var myProduct = `

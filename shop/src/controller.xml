@@ -4,5 +4,12 @@
         <form>xy.form.LoginFormTest</form>
         <result name="success" direct="false">success.html</result>
         <result name="error">error.html</result>
+        <pagejump>true</pagejump>
     </action>
+    
+    <action name="shoppingCar" class="com.shopping.web.servlet.ShoppingCarAction">
+        <form>xy.form.LoginFormTest</form>
+        <pagejump>false</pagejump>
+    </action>
+
 </actions>
