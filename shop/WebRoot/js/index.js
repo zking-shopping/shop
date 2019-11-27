@@ -20,23 +20,36 @@
 //  	var count=0;
 //  	var allCount = 0;
     	 var goodList = result.data;
-    	 var str = ``;
+//    	 var str = ``;
+//    	 for(var i =0;i<goodList.length;i++){
+//    	 	     str += `
+//      	 	            <li class="col-4-lg col-3-md col-6-sm col-12-xs">
+//      	 	              <div class="thumbnail">
+//                          <a href="introduction.html">
+//                                  <img src="${goodList[i].goods_thumb}" alt="" />
+//                          
+//                                  <p>商品名:${goodList[i].goods_name}</p>
+//                                  <p class="desc">商品介绍:${goodList[i].goods_desc}</p>
+//                                  <p>价格:${goodList[i].price}</p>
+//                                  <p>点赞:❤${goodList[i].star_number}</p>
+//                          </a>
+//                          <div>
+//                       </li>
+//                       `;
+//    	 };
+    	 var str = "";
     	 for(var i =0;i<goodList.length;i++){
-    	 	     str += `
-      	 	            <li class="col-4-lg col-3-md col-6-sm col-12-xs">
-      	 	              <div class="thumbnail">
-                          <a href="introduction.html">
-                                  <img src="${goodList[i].goods_thumb}" alt="" />
-                          
-                                  <p>商品名:${goodList[i].goods_name}</p>
-                                  <p class="desc">商品介绍:${goodList[i].goods_desc}</p>
-                                  <p>价格:${goodList[i].price}</p>
-                                  <p>点赞:❤${goodList[i].star_number}</p>
-                          </a>
-                          <div>
-                       </li>
-                       `;
-    	 };
+    		 str +="<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+
+    		          "  <div class='thumbnail'>"+
+    		          "<a href='introduction.html'>"+
+    		          "<img src='${goodList[i].goods_thumb} alt='' />"+
+    		          "<p>商品名:${goodList[i].goods_name}</p>"+
+    		          "<p class='desc'>商品介绍:${goodList[i].goods_desc}</p>"+
+    		          "<p>价格:${goodList[i].price}</p>"+
+    		          "<p>点赞:❤${goodList[i].star_number}</p>"+
+    		          "</a>"+"<div>"+"</li>"
+    		 
+    	 }
     	 $('.bettergoods').append(str);
     	
     });
@@ -62,20 +75,32 @@
       cardList(5,function(result){
 
     	 var cardList = result.data;
-    	 var str = ``;
-    	 for(var i =0;i<cardList.length;i++){
-    	 	
-    	 	     str += `
-      	 	            <li class="col-4-lg col-3-md col-6-sm col-12-xs">
-      	 	            
-                          <a href="introduction.html">
-                                  <img src="${cardList[i].goods_thumb}" alt="" />
-                          </a>
-                                  <p>${cardList[i].goods_name}</p>
-                                  <p>价格:${cardList[i].price}</p>
-                       </li>
-                       `;
-    	 };
+    	 var str = "";
+//    	 for(var i =0;i<cardList.length;i++){
+//    	 	
+//    	 	     str += `
+//      	 	            <li class="col-4-lg col-3-md col-6-sm col-12-xs">
+//      	 	            
+//                          <a href="introduction.html">
+//                                  <img src="${cardList[i].goods_thumb}" alt="" />
+//                          </a>
+//                                  <p>${cardList[i].goods_name}</p>
+//                                  <p>价格:${cardList[i].price}</p>
+//                       </li>
+//                       `;
+//    	 };
+//    	 for(var i =0;i<cardList.length;i++){
+//     	 	
+//	 	     str += ""+
+//  	 	            "<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+  	 	            
+//                      "<a href='introduction.html'>"
+//                              <img src="${cardList[i].goods_thumb}" alt="" />
+//                      </a>
+//                              <p>${cardList[i].goods_name}</p>
+//                              <p>价格:${cardList[i].price}</p>
+//                   </li>
+//                   ;
+//	 };
     	 $('.nav-cateCard .card-list').html(str);
 		 index();
     });
