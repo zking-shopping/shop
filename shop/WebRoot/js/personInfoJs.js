@@ -83,22 +83,22 @@ $(function(){
 	$('.myReceiptAddress').hide();
 	
 	//查看详情--右
-	$('.showDetails').click(function(){
-		$('.myOrder').hide();
-		
-		$.ajaxSettings.async = false;
-		$.get('http://www.wjian.top/shop/api_goods.php',{
-		    'pagesize':1,
-		    'page':2,
-		}, function(result){
-			var result = JSON.parse(result);
-			if(result.code != 0){
-				console.log('数据请求失败');
-				return;
-			};
-			showMyDetails(result);
-		});
-		$('.viewDetails').show();
+	$(document).on('click','.showDetails',function(){
+	    $('.myOrder').hide();
+	    $('#myPersonInfo').hide();
+	    $.ajaxSettings.async = false;
+	    $.get('http://www.wjian.top/shop/api_goods.php',{
+	        'pagesize':1,
+	        'page':1,
+	    }, function(result){
+	        var result = JSON.parse(result);
+	        if(result.code != 0){
+	            console.log('数据请求失败');
+	            return;
+	        };
+	        showMyDetails(result);
+	    });
+	    $('.viewDetails').show();
 	});
 	
 	//我的订单--左
