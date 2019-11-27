@@ -108,6 +108,7 @@ public class ActionServlet extends HttpServlet {
         //获取相关form对象
         FormFather ff = null;
         String formInstanceClass = element.selectSingleNode("form").getStringValue().trim();
+        System.out.println(formInstanceClass);
         try{
         	if(formInstanceClass!=null){
             	Class formClass = Class.forName(formInstanceClass);
