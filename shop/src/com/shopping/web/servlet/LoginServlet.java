@@ -31,8 +31,8 @@ public class LoginServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		  MemberDao md = new MemberDaoImpl();
-          Connection conn = DBHelper.getConnection();
+		MemberDao md = new MemberDaoImpl();
+        Connection conn = DBHelper.getConnection();
   		MemberDao dao = new MemberDaoImpl();
   		Member m = new Member();
   		response.setCharacterEncoding("UTF-8");
