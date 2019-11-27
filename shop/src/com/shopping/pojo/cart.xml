@@ -3,6 +3,7 @@
 	<property name="id">id</property>
 	<property name="memberId">memberId</property>
 	<property name="goodsId">goodsId</property>
+	<property name="goodsName">goodsName</property>
 	<property name="number">number</property>
 	<property name="url">url</property>
 	<property name="price">price</property>
