@@ -1,55 +1,44 @@
 	 function betterGoods(page,callback){
 
     	var page = page?page:3;
-    	$.get('http://www.wjian.top/shop/api_goods.php',{
-                 'pagesize' :8,
-                 'page':page,
-          }, function(result){
-           var result = JSON.parse(result);
-               if(result.code!=0){
-               	console.log('数据请求失败');
-     	           return;
-               }
+    	$.get({
+    			url:"http://www.wjian.top/shop/api_goods.php",
+//    			dataType:"jsonp",
+    			data:{
+                 "pagesize":8,
+                 "page":page,
+                  },
+          success: function(result){
+          
                   callback(result);
-          });
-    };
+    	
+    	   }
+    	})
+	 }
+    
   
     betterGoods(1,function(result){
-
-
-//  	var count=0;
-//  	var allCount = 0;
-    	 var goodList = result.data;
-//    	 var str = ``;
-//    	 for(var i =0;i<goodList.length;i++){
-//    	 	     str += `
-//      	 	            <li class="col-4-lg col-3-md col-6-sm col-12-xs">
-//      	 	              <div class="thumbnail">
-//                          <a href="introduction.html">
-//                                  <img src="${goodList[i].goods_thumb}" alt="" />
-//                          
-//                                  <p>商品名:${goodList[i].goods_name}</p>
-//                                  <p class="desc">商品介绍:${goodList[i].goods_desc}</p>
-//                                  <p>价格:${goodList[i].price}</p>
-//                                  <p>点赞:❤${goodList[i].star_number}</p>
-//                          </a>
-//                          <div>
-//                       </li>
-//                       `;
-//    	 };
+//         console.log(result);
+         var res = JSON.parse(result);
+         console.log(res);
+    	 var goodList = res.data;
+         
     	 var str = "";
+//    	 console.log(goodList);
     	 for(var i =0;i<goodList.length;i++){
-    		 str +="<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+
-    		          "  <div class='thumbnail'>"+
-    		          "<a href='introduction.html'>"+
-    		          "<img src='${goodList[i].goods_thumb} alt='' />"+
-    		          "<p>商品名:${goodList[i].goods_name}</p>"+
-    		          "<p class='desc'>商品介绍:${goodList[i].goods_desc}</p>"+
-    		          "<p>价格:${goodList[i].price}</p>"+
-    		          "<p>点赞:❤${goodList[i].star_number}</p>"+
-    		          "</a>"+"<div>"+"</li>"
-    		 
+    		console.log(goodList[i].goods_thumb);
+//    		 str +="<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+
+//    		          "  <div class='thumbnail'>"+
+//    		          "<a href='introduction.jsp'>"+
+//    		          "<img src="+goodList[i].goods_thumb"+ alt= />"+
+//    		          "<p>商品名:"+goodList[i].goods_name+"</p>"+
+//    		          "<p class='desc'>商品介绍:"+goodList[i].goods_desc"+</p>"+
+//    		          "<p>价格:"+goodList[i].price"+</p>"+
+//    		          "<p>点赞:❤+"+goodList[i].star_number"+</p>"+
+//    		          "</a>"+"<div>"+"</li>"
+//    		 
     	 }
+//    	 console.log($('.bettergoods'));
     	 $('.bettergoods').append(str);
     	
     });
@@ -118,19 +107,19 @@ function index(){
 	var flag = true;
 	
 	//购物车商标添加货物
-	var str = `
-		                   <li>
-												    	<a href="introduction.html">
-												       <img src="img/chazuo1.jpg" />
-											        </a>
-											      <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
-													  	<p style="display: block;">万能插座</p>
-													  	<p style="display: block;">价格:￥135.00</p>
-													  </div>
-													<span class="glyphicon glyphicon-remove" style="float: right;"></span>
-								        </li>
-							`
-	
+//	var str = `
+//		                   <li>
+//												    	<a href="introduction.html">
+//												       <img src="img/chazuo1.jpg" />
+//											        </a>
+//											      <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
+//													  	<p style="display: block;">万能插座</p>
+//													  	<p style="display: block;">价格:￥135.00</p>
+//													  </div>
+//													<span class="glyphicon glyphicon-remove" style="float: right;"></span>
+//								        </li>
+//							`
+//	
 	//定时器
 	var timer;
 	
