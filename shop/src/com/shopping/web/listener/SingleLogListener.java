@@ -11,8 +11,6 @@ import com.shopping.pojo.Member;
 
 public class SingleLogListener implements HttpSessionAttributeListener{
 
-	
-
 	 Map<String, HttpSession> map = new HashMap<String, HttpSession>();
 		@Override
 		public void attributeAdded(HttpSessionBindingEvent arg0) {
