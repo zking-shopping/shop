@@ -5,6 +5,8 @@ public class Cart {
 	private String memberId;
 	private int goodsId;
 	private int number;
+	private String url;
+	private String price;
 	private int colorId;
 	private String goodsColor;
 	public int getId() {
@@ -30,6 +32,18 @@ public class Cart {
 	}
 	public void setNumber(int number) {
 		this.number = number;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
 	}
 	public int getColorId() {
 		return colorId;
