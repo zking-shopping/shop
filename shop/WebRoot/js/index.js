@@ -65,9 +65,9 @@
     	 for(var i =0;i<3;i++){
     	 	     str += "<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+
                           "<a href='introduction.jsp'>"+
-                                  "<img src="+cardList[i].goods_thumb+" alt='' />"
-                          "</a>"+
-                                  "<p>"+cardList[i].goods_name+"</p>"
+                                  "<img src="+cardList[i].goods_thumb+" alt='' />"+
+                            "</a>"+
+                                  "<p>"+cardList[i].goods_name+"</p>"+
                                   "<p>价格:"+cardList[i].price+"</p>"+
                        "</li>"
                        ;
