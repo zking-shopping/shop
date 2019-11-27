@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 *{
 	margin: 0px;
 	padding: 0px auto;
@@ -10,7 +12,62 @@ a{text-decoration: none;}
 header{
 	width: 100%;
 	height: 100px;
-	background: gainsboro;
+	background: white;
+}
+.header-nav{
+	width: 1100px;
+	margin: 0px auto;
+	line-height: 100px;
+	position: relative;
+}
+.left-logo{
+	float: left;
+}
+.left-logo a{
+	font-size: 30px;
+    color: red;
+    font-weight: normal;
+}
+.user-header{
+	float: right;
+	width: 30px;
+	height: 30px;
+	margin-top: 35px;
+	background: url(../img/icon-index.png) no-repeat 0px -43px;
+	cursor: pointer;
+}
+.user-header:hover{
+	background: url(../img/icon-index.png);
+}
+.user-header a{
+	display: block;
+	width: 30px;
+	height: 30px;
+}
+.dropdown{
+	display: none;
+	width: 70px;
+	height: 60px;
+	position: absolute;
+	top: 65px;
+	right: 0px;
+}
+.dropdown a{
+	display: block;
+	width: 70px;
+	height: 30px;
+	text-align: center;
+}
+.dropdown a button{
+	display: block;
+	width: 70px;
+	height: 30px;
+	margin: 0px;
+	padding: 0px;
+	background: white;
+	color: black;
+	font-size: 14px;
+	border: 1px solid #AAAAAA;
 }
 
 body{
@@ -544,4 +601,46 @@ h3.address-title{
 	color: #FF6700;
 	text-decoration: none;
 	cursor: pointer;
+}
+
+/*底部样式*/
+footer{
+	padding-bottom: 50px;
+	background: #333333;
+	color: white;
+}
+.footer-tops{
+	width: 1050px;
+	margin: 0px auto;
+}
+.footer-tops ul li{
+	float: left;
+	width: 200px;
+	height: 116px;
+	line-height: 116px;
+	text-align: center;
+	font-size: 24px;
+}
+.cuts{
+	display: inline-block;
+	width :1px;
+	height: 70px;
+	background :white;
+	margin: 25px 0px 0px 40px;
+}
+.qr-code,.qr-code img{
+	display: inline-block;
+	width: 70px;
+	height: 70px;
+}
+.qr-code{
+	margin: 25px 0px 0px 40px;
+}
+.footer-bottoms{
+	width: 1200px;
+	text-align: center;
+	margin: 0px auto;
+}
+.footer-bottoms span,.footer-bottoms p,.footer-bottoms a{
+	display: inline-block;
 }
