@@ -15,8 +15,11 @@ header{
 
 body{
 	background: #F4F4F4;
+	font-weight: lighter;
 }
-
+h2,h3,label{
+	font-weight: lighter;
+}
 /*收货信息内容*/
 .receiveSection{
 	width: 1000px;
@@ -37,7 +40,6 @@ body{
 	margin-left: 40px;
 	font-size: 25px;
 	color: #333333;
-	font-weight: lighter;
 }
 /*收货信息*/
 
@@ -53,7 +55,6 @@ body{
 	font-size: 20px;
 	font-family: "微软雅黑";
 	border-bottom: 1px solid #D6D6D6;
-	font-weight: lighter;
 }
 /*具体信息样式*/
 .receiver,.tel,.address,.main-address{
@@ -74,7 +75,6 @@ p.no-deliverys{
 	font-size: 16px;
 	height: 30px;
 	line-height: 30px;
-	font-weight: lighter;
 }
 p.no-delivery{
 	margin-left: 96px;
@@ -97,7 +97,6 @@ p.no-delivery{
 	/*text-align: center;*/
 	color: #333333;
 	font-size: 14px;
-	font-weight: lighter;
 }
 .area{
 	vertical-align: top;
@@ -164,7 +163,6 @@ select{
 	font-size: 14px;
 	position: absolute;
 	left: 120px;
-	font-weight: lighter;
 }
 /*保存*/
 .keep{
@@ -200,7 +198,6 @@ button#exit-add{
 }
 .select-address table{
 	display: block;
-
 	border-collapse:collapse;
 	font-size: 0px;
 	margin: 10px;
@@ -220,9 +217,9 @@ button#exit-add{
 	width: 119px;
 	height: 20px;
 	line-height: 20px;
+	padding: 0px;
 	padding-bottom: 15px;
 	font-size: 16px;
-	font-weight: lighter;
 	color: #333333;
 }
 #phone-numbers,#set-defaults{
@@ -233,12 +230,16 @@ button#exit-add{
 	width: 238px;
 	/*height: 48px;*/
 	padding-bottom: 20px;
+	cursor: pointer;
 }
 #operation,#set-defaults{
 	color: #1989E9;
 	padding-bottom: 0px;
-	padding-top: 15px;
+	padding-top: 30px;
 	font-size: 14px;
+}
+#operation span{
+	display: none;
 }
 #separator{
 	margin: 0px 5px;
@@ -259,7 +260,6 @@ button#exit-add{
 #add-address p{
 	height: 20px;
 	font-size: 18px;
-	font-weight: lighter;
 	margin-top: 20px;
 	color: #999999;
 	text-align: center;
@@ -276,12 +276,12 @@ section.goodsSection{
 .goodsSection>h3{
 	height: 20px;
 	font-size: 20px;
-	font-weight: lighter;
 	padding-bottom: 20px;
 	line-height: 20px;
 }
 /*商品信息列表*/
-.goodsSection table{
+.goodsSection table,.address-list{
+	width: 100%;
 	border: 1px solid #d6d6d6;
 	border-bottom: none;
 	border-collapse:collapse;
@@ -292,7 +292,6 @@ section.goodsSection{
 	line-height: 20px;
 	padding: 20px;
 	font-size: 16px;
-	font-weight: lighter;
 	text-align: center;
 	background: #FAFAFA;
 	border-bottom: 1px solid #d6d6d6;
@@ -307,7 +306,6 @@ section.goodsSection{
 	background: white;
 	text-align: center;
 	font-size: 16px;
-	font-weight: lighter;
 	color: #333333;
 	position: relative;
 }
@@ -330,7 +328,6 @@ section.goodsSection{
 .goodsSection table tbody tr td p{
 	display: inline-block;
 	font-size: 17px;
-	font-weight: lighter;
 	color: #333333;
 	position: absolute;
 	top: 50px;
@@ -373,7 +370,6 @@ section.goodsSection{
 }
 .total-price h2,.discount h2,.freight h2{
 	font-size: 18px;
-	font-weight: lighter;
 }
 
 .pay-one ul li p{
@@ -388,7 +384,6 @@ section.goodsSection{
 ,.discount p span
 ,.freight p span{
 	font-size: 20px;
-	font-weight: lighter;
 	color: #333333;
 }
 .payable{
@@ -413,7 +408,6 @@ input#agree-bule{
 }
 .agree-clause label{
 	display: inline-block;
-	font-weight: lighter;
 	color: #666666;
 	position: absolute;
 	top: 0px;
@@ -421,7 +415,6 @@ input#agree-bule{
 }
 .agree-clause label a{
 	display: inline-block;
-	font-weight: lighter;
 	color: #1989E9;
 }
 /*去付款按钮样式*/
@@ -430,7 +423,6 @@ input#agree-bule{
 	height: 50px;
 	margin: 20px 105px 0px 0px;
 	font-size: 18px;
-	font-weight: lighter;
 }
 
 /*确认删除界面*/
@@ -458,7 +450,6 @@ section.transparent{
 	padding-top: 30px;
 	line-height: 30px;
 	font-size: 24px;
-	font-weight: lighter;
 	color: #333333;
 }
 .center-delete input{
@@ -469,7 +460,6 @@ section.transparent{
 	background: #1989e9;
 	border: none;
 	cursor: pointer;
-	font-weight: lighter;
 	font-size: 20px;
 	color: white;
 	border-radius: 3px;
@@ -489,4 +479,69 @@ section.transparent{
 }
 .close-ask:hover{
 	background-position: 0px -263px;
+}
+
+/*收货地址样式*/
+.haved-address{
+	width: 100%;
+	margin-top: 40px;
+	padding-bottom: 20px;
+}
+h3.number-title{
+    margin: 20px 0px;
+    font-size: 14px;
+    padding: 12px 0px 12px 20px;
+    background: #f4f4f4;
+    color: #666666;
+    font-weight: lighter;
+}
+h3.address-title{
+    color: #000000;
+    background: white;
+    font-size: 18px;
+    margin: 0px;
+    padding: 20px;
+}
+.address-list td{
+	text-align: center;
+	height: 40px;
+	border-bottom: 1px solid #D6D6D6;
+}
+.address-list thead td{
+	width: 200px;
+	line-height: 40px;
+	background: #FAFAFA;
+}
+.address-list thead td:last-child{
+	width: 140px;
+}
+.address-list tbody tr:hover{
+    background: #FAFAFA;
+}
+.address-list tbody td{
+	padding: 40px 0px;
+	line-height: 20px;
+}
+.address-list tbody td:last-child{
+	padding: 0px;
+	text-align: left;
+}
+.address-list span{
+	color: #1989E9;
+}
+.address-list span:hover{
+	text-decoration: underline;
+}
+#default-address{
+	display: inline-block;
+	width: 66px;
+	height: 30px;
+	line-height: 30px;
+	border: 1px solid #FF6700;
+	border-radius: 3px;
+	font-size: 14px;
+	text-align: center;
+	color: #FF6700;
+	text-decoration: none;
+	cursor: pointer;
 }
