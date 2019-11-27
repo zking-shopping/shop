@@ -46,7 +46,6 @@ public class SingleLogListener implements HttpSessionAttributeListener{
 				if(map.get(infoName)!=null){   //如果新对象的账号对应的session值不为空，说明已经有人登录过了
 					 map.remove(infoName);
 				}
-			
 			}
 		}
 
