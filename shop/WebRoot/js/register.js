@@ -281,5 +281,5 @@ $('.ensure-reg').click(function(){
 
 //点击按钮跳转到登录界面
 $('.goto-login').click(function(){
-	window.open('login.html');
+	window.open('login.jsp');
 });

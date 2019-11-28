@@ -25,9 +25,6 @@ public class RegisterAction extends ActionFather{
   		response.setCharacterEncoding("UTF-8");
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
 		RegisterForm rf = (RegisterForm) ff;
-		System.out.println("Username："+rf.getUsername());
-		System.out.println("Password："+rf.getPassword());
-		System.out.println("PhoneNumber："+rf.getPhoneNumber());
 		
 		MemberDao md = new MemberDaoImpl();
         Connection conn = DBHelper.getConnection();
@@ -46,7 +43,6 @@ public class RegisterAction extends ActionFather{
 				new String(name.getBytes("ISO8859-1"),"UTF-8");
 				//设置账号初始值
 				m.setName(name);
-				System.out.println("用户"+uuid.substring(0, 8));
 				m.setId(uuid);
 				m.setCost("0");
 				m.setTime("0");
