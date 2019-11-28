@@ -173,8 +173,7 @@ public class ActionServlet extends HttpServlet {
 	 */
 	public void init() throws ServletException {
 		String configFileName = this.getServletConfig().getInitParameter("configLocation");
-		System.out.println("configFileName："+configFileName);
-        
+		
 		if (configFileName == null){
             configFileName = "/controller.xml";
             PrintWriter printWriter = null;
@@ -189,7 +188,6 @@ public class ActionServlet extends HttpServlet {
                 }
             }
         }
-        
         SAXReader reader = new SAXReader();
         try {
             doc = reader.read(ActionServlet.class.getResourceAsStream(configFileName));
