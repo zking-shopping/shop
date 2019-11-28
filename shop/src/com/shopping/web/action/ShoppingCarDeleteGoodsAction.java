@@ -16,8 +16,10 @@ public class ShoppingCarDeleteGoodsAction extends ActionFather{
 	@Override
 	public Object doAction(HttpServletRequest request,
 			HttpServletResponse response, Object o) {
-		// TODO Auto-generated method stub
-		String[] ids = (String[])o;
+		
+		String id = request.getParameter("id").substring(1);
+      	String[] ids = id.split(",");
+		
 		CartDao cd = new CartDaoImpl();
 		Cart c = new Cart();
 		

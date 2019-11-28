@@ -91,7 +91,7 @@ $(function(){
 	    $('.myOrder').hide();
 	    $('#myPersonInfo').hide();
 	    $.ajaxSettings.async = false;
-	    $.get('http://www.wjian.top/shop/api_goods.php',{
+	    $.get('personInfoShowDetails.do',{
 	        'pagesize':1,
 	        'page':1,
 	    }, function(result){
