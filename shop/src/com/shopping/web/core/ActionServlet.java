@@ -80,7 +80,7 @@ public class ActionServlet extends HttpServlet {
 			throws ServletException, IOException {
 		//获取客户传过来的uri
         String url = request.getRequestURI();
-        System.out.println("url："+url);
+        
         //获取action名
         String actionName = url.substring(url.lastIndexOf("/")+1,url.lastIndexOf(".do"));
         System.out.println("actionName："+actionName);
@@ -157,26 +157,22 @@ public class ActionServlet extends HttpServlet {
         	//通过action判断返回值
         	 if("shoppingCar".equalsIgnoreCase(actionName)){
         		
-        		ArrayList getResult = (ArrayList)af.doAction(request, response, ff);        		 
-        		
+        		ArrayList getResult = (ArrayList)af.doAction(request, response, ff);        		         		
              	response.setContentType("text/html;charset=UTF-8");
              	PrintWriter out = response.getWriter();
              	JSONArray json  =  JSONArray.fromObject(getResult);
              	out.write(json.toString());
              }else if("shoppingCarCountChange".equalsIgnoreCase(actionName)){
              	
-            	String count = request.getParameter("count");  
-            	
+            	String count = request.getParameter("count");             	
              	String id = request.getParameter("id");
              	ShoppingCarCountChangeForm scccf = new ShoppingCarCountChangeForm();
              	scccf.setCount(count);             	
              	scccf.setId(id);             	
              	af.doAction(request, response, scccf);            	
-             }else if("shoppingCarDeleteGoods".equalsIgnoreCase(actionName)){
-              	
+             }else if("shoppingCarDeleteGoods".equalsIgnoreCase(actionName)){             	
               	String id = request.getParameter("id").substring(1);
-              	String[] ids = id.split(",");
-              	System.out.println("id=="+id);
+              	String[] ids = id.split(",");            	
               	af.doAction(request, response, ids);            	
               }
         	
