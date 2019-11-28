@@ -73,4 +73,49 @@ public class MemberDaoImpl extends BaseDao implements MemberDao{
 		}
 		return false;
 	}
+
+
+	@Override
+	public int selectMax(int pageSize, Connection conn) {
+		String sql = "select count(*) from t_member";
+		int count = 0;
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count%pageSize == 0 ? count/pageSize : count/pageSize+1;
+	}
+	
+	public List<Member> selectByPages(int pageNumber, int pageSize, Connection conn) {
+		String sql = "select * from t_member limit ?,?";
+		List<Member> list = new ArrayList<Member>();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, (pageNumber-1)*pageSize);
+			ps.setInt(2, pageSize);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Member member = new Member();
+				member.setId(rs.getString("id"));
+				member.setUsername(rs.getString("username"));
+				member.setPassword(rs.getString("password"));
+				member.setName(rs.getString("name"));
+				member.setPhoneNumber(rs.getString("phoneNumber"));
+				member.setStatistics(rs.getString("statistics"));
+				member.setCost(rs.getString("cost"));
+				member.setTime(rs.getString("time"));
+				member.setDate(rs.getString("date"));
+				member.setDel(rs.getString("del"));
+				list.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }
