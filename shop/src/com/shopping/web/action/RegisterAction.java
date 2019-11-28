@@ -23,11 +23,11 @@ import com.shopping.web.form.RegisterForm;
 public class RegisterAction extends ActionFather{
 
 	public Object doAction(HttpServletRequest request,
-			HttpServletResponse response, FormFather ff) {
+			HttpServletResponse response, Object o) {
   		response.setCharacterEncoding("UTF-8");
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
   		//将ff的类型转换为需要的
-		RegisterForm rf = (RegisterForm) ff;
+		RegisterForm rf = (RegisterForm) o;
 		//获得连接
         Connection conn = DBHelper.getConnection();
         //设置会员基础信息

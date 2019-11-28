@@ -3,52 +3,79 @@
 productsList(1,showMyProducts);
 
 function productsList(page, showMyProducts){
-    var page = page ? page : 1;
+	
     $.ajaxSettings.async = false;
-    $.get('http://www.wjian.top/shop/api_goods.php',{
-        'pagesize':6,
-        'page':page,
-    }, function(result){
+    $.get('shoppingCar.do',function(result){
+    	console.log(result);
         var result = JSON.parse(result);
-        if(result.code != 0){
-            console.log('数据请求失败');
-            return;
-        };
-        showMyProducts(result);
-    });
+//        if(result.code != 0){
+//            console.log('数据请求失败');
+//            return;
+//        };
+       showMyProducts(result);
+//    	var page = page ? page : 1;
+//        $.ajaxSettings.async = false;
+//        $.get('http://www.wjian.top/shop/api_goods.php',{
+//            'pagesize':6,
+//            'page':page,
+//        }, function(result){
+//            var result = JSON.parse(result);
+//            if(result.code != 0){
+//                console.log('数据请求失败');
+//                return;
+//            };
+//            showMyProducts(result);
+        });
 };
 	
 	//做判断，在数据库如果返回有购物车信息，则把.products设为hide(),把数据库的商品内容设置在.myProducts的ul中
 
     //----------------------------------------------------------------------------------------------
 
+function countChange(id,count){
+	$.ajaxSettings.async = false;
+    $.get('shoppingCarCountChange.do',
+    	{'id':id,'count':count}
+    		);
+}
+
+function deleteGoods(id){
+	$.ajaxSettings.async = false;
+    $.get('shoppingCarDeleteGoods.do',{'id':id});
+}
+
+
 function showMyProducts(result){
     $('.products').hide();
     console.log(result);
-    var productsList = result.data;
+    var productsList = result;
+    
     for(var i = 0; i < productsList.length; i++){
         var myProduct = `
           <ul>
-            <li><input type="checkbox" class="oneCheckbox"/></li>
+            <li>
+            <input type="text" class="goodsId" style="display:none" value="${productsList[i].id}"/>
+            <input type="checkbox" class="oneCheckbox"/>
+            </li>
 			<li>
-               <a><img src="${productsList[i].goods_thumb}"/></a>
+               <a><img src="${productsList[i].url}"/></a>
                <div>
-                  <a>${productsList[i].goods_name}</a>
-                  <p>${productsList[i].goods_desc}</p>
+                  <a>${productsList[i].goodsName}</a>
+                  <p>${productsList[i].goodsColor}</p>
                </div>
                
 	        </li>
-			<li>${productsList[i].price}</li>
+			<li>${productsList[i].price}.00</li>
 			<li>
-               <span class="reduce">-</span><input type="text" class="myProductCount" value="1"/><span class="add">+</span></li>
-			<li>${productsList[i].price}</li>
+               <span class="reduce">-</span><input type="text" class="myProductCount" value="${productsList[i].number}"/><span class="add">+</span></li>
+			<li>${productsList[i].price*productsList[i].number}.00</li>
 			<li><span class="deleteOne">&times</span></li>
          </ul>
 `;
         $('.myProducts').append(myProduct);
     };
     showMySumPrice();
-
+    isHasProduct();
 };
 
 	//底部显示总价
@@ -81,8 +108,12 @@ function showMyProducts(result){
 			number--;
 			e.target.nextElementSibling.value = number;
 			var price = e.target.parentNode.previousElementSibling.innerHTML;
+			var id = e.target.parentNode.parentNode.firstElementChild.firstElementChild.value;
 			e.target.parentNode.nextElementSibling.innerHTML = price*number+".00";
 			calculateSumPrice();
+			
+			countChange(id,number);
+			
 
 		}
 		//加
@@ -91,21 +122,31 @@ function showMyProducts(result){
 			number++;
 			e.target.previousElementSibling.value = number;
 			var price = e.target.parentNode.previousElementSibling.innerHTML;
+			var id = e.target.parentNode.parentNode.firstElementChild.firstElementChild.value;
 			e.target.parentNode.nextElementSibling.innerHTML = price*number+".00";
 			calculateSumPrice();
+			countChange(id,number);
 		}
 		//后面删除一条
 		if(e.target.className=='deleteOne'){
+			
 			e.target.setAttribute('data-toggle','modal');
 			e.target.setAttribute('data-target','#delOneProductModal');
 			deleteOneRemenber=e.target;
+			var id = e.target.parentNode.parentNode.firstElementChild.firstElementChild.value;
+			isHasProduct();
+			deleteGoods(id);
 		}
 		//总价ul中删除
 		if(e.target.className=='deleteChecked'){	
 			var isDel = false;
+			var id = "";
 			$('.oneCheckbox').each(function(){
 					if($(this).prop('checked')){
 					isDel = true;
+					var getId = $(this).prev().val();
+					id = id +"," + getId;
+					getId = null;
 					return;
 				}	
 			});
@@ -116,6 +157,8 @@ function showMyProducts(result){
 				e.target.setAttribute('data-toggle','modal');
 				e.target.setAttribute('data-target','#noProductModal');
 			}
+			deleteGoods(id);
+			isHasProduct();
 		}
 		//全选
 		if(e.target.className=='checkAll'){
@@ -164,7 +207,7 @@ function showMyProducts(result){
 		var scrollH = $(document).scrollTop();
 		var myProductsH = 160*$('.oneCheckbox').length;
 		var clientH = $(window).height();
-		console.log(clientH)
+		
 		if(scrollH>=myProductsH+108-clientH){
 			$('.mySumPrice').removeClass('affix');
 		}else{
@@ -179,8 +222,10 @@ function showMyProducts(result){
 		    number=number>0 ?number : 1;
 		    $(this).val(number);
 			var price = $(this).parent().prev().text();
+			var id = $(this).parent().parent().children("li:first-child").children("input:first-child").val();
 			$(this).parent().next().text(price*number+".00");
 			calculateSumPrice();
+			countChange(id,number);
 	});
 	
    //-----------------------------------------------------------------------------------------------

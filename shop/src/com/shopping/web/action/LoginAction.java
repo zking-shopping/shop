@@ -18,7 +18,7 @@ public class LoginAction extends ActionFather{
 
 	@Override
 	public Object doAction(HttpServletRequest request,
-			HttpServletResponse response, FormFather ff) {
+			HttpServletResponse response, Object o) {
 		String forward = null;
 		MemberDao md = new MemberDaoImpl();
         Connection conn = DBHelper.getConnection();

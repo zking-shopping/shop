@@ -108,7 +108,11 @@ public class ActionServlet extends HttpServlet {
         //调用相关action方法
         //获取相关form对象
         FormFather ff = null;
-        String formInstanceClass = element.selectSingleNode("form").getStringValue().trim();
+        String formInstanceClass = null;
+        if(element.selectSingleNode("form")!=null){
+        	
+        	formInstanceClass = element.selectSingleNode("form").getStringValue().trim();
+        }
         
         try{
         	if(formInstanceClass!=null){
@@ -166,10 +170,16 @@ public class ActionServlet extends HttpServlet {
              	String id = request.getParameter("id");
              	ShoppingCarCountChangeForm scccf = new ShoppingCarCountChangeForm();
              	scccf.setCount(count);             	
-             	scccf.setId(id);
-             	af.doAction(request, response, scccf);
-             	System.out.println("end sssf");
-             }
+             	scccf.setId(id);             	
+             	af.doAction(request, response, scccf);            	
+             }else if("shoppingCarDeleteGoods".equalsIgnoreCase(actionName)){
+              	
+              	String id = request.getParameter("id").substring(1);
+              	String[] ids = id.split(",");
+              	System.out.println("id=="+id);
+              	af.doAction(request, response, ids);            	
+              }
+        	
         }
         
         
