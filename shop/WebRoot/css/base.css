@@ -136,9 +136,9 @@ img{border: none;vertical-align: bottom;}
 			
 			#allgoods {
 				width: 640%;
-				height: 1200%;
+				height: 640%;
 				position: absolute;
-				left: -250px;
+				left: -320px;
 				top: 20px;
 				background: white;
 				z-index: 15;
@@ -221,6 +221,7 @@ img{border: none;vertical-align: bottom;}
 		height: 237px;
 		background: #333333;
 		margin: 0 auto;
+		display:block;
 	}
 	
 	.footer-top {
@@ -267,7 +268,7 @@ img{border: none;vertical-align: bottom;}
 		width: 60%;
 	}
 	
-	footer .footer-bottom {
+	.footer .footer-bottom {
 		width: 100%;
 	}
 	
