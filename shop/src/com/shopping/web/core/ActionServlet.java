@@ -27,6 +27,7 @@ import org.xml.sax.Attributes;
 import com.shopping.pojo.Cart;
 import com.shopping.web.action.ActionFather;
 import com.shopping.web.form.FormFather;
+import com.shopping.web.form.ShoppingCarCountChangeForm;
 
 public class ActionServlet extends HttpServlet {
 	
@@ -158,8 +159,16 @@ public class ActionServlet extends HttpServlet {
              	PrintWriter out = response.getWriter();
              	JSONArray json  =  JSONArray.fromObject(getResult);
              	out.write(json.toString());
-             }else if("123".equalsIgnoreCase(actionName)){
+             }else if("shoppingCarCountChange".equalsIgnoreCase(actionName)){
              	
+            	String count = request.getParameter("count");  
+            	
+             	String id = request.getParameter("id");
+             	ShoppingCarCountChangeForm scccf = new ShoppingCarCountChangeForm();
+             	scccf.setCount(count);             	
+             	scccf.setId(id);
+             	af.doAction(request, response, scccf);
+             	System.out.println("end sssf");
              }
         }
         
