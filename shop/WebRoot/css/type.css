@@ -20,26 +20,27 @@ img {
 .goods {
 	width:  25%;
 	height: 80%;
-	height: 600px;
+	height: 420px;
 	float: left;
 }
 
 .thumbnail{
-	height: 800px;
+	height: 400px;
 }
 
 .goods img {
-	width: 36%;
+	width: 50%;
 	margin: 20px auto;
 }
 
 
 .c{
 	width: 80%;
-	
 }
 
-.footer li {
+
+
+.footer>ul>li {
 	padding: 10px;
 	border: 1px solid gray;
 	display: block;
@@ -47,29 +48,29 @@ img {
 	background: white;
 }
 
-.footer li.current {
-	background: orange;
+.footer>ul>li.current {
+	border:none;
 }
 
-.footer li:hover {
+.footer>ul>li:hover {
 	border-color: orange;
 	cursor: pointer;
 }
 
-.footer li.ignore {
+.footer>ul>li.ignore {
 	padding: 10px;
 	border: none;
 	display: block;
 	float: left;
 }
 
-.footer li.ignore:hover {
+.footer>ul>li.ignore:hover {
 	border: none;
 	cursor: default;
 }
 
 .footer {
-	width: 50%;
+	width: 80%;
 	margin-left: 50%;
 }
 
@@ -79,7 +80,7 @@ img {
 }
 
 #next {
-		
+	
 	float: left;
 }
 
