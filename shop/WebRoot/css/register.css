@@ -1,3 +1,4 @@
+@charset "utf-8";
 *{
 	margin: 0px;
 	padding: 0px;
@@ -130,7 +131,7 @@ section .register-step2>form>div{
 /*输入框的样式*/
 section .register-step1>form>div>input,
 section .register-step2>form>div>input{
-	width: 416px;
+	width: 444px;
 	height: 44px;
 	padding: 0px 16px 0px 10px;
 	outline: none;
@@ -138,13 +139,13 @@ section .register-step2>form>div>input{
 	font-size: 15px;
 }
 section .register-step2>form>div>input{
-	width: 356px;
+	width: 444px;
 }
 section .register-step2>form>div>.tel{
 	padding-left: 70px;
 }
 section .register-step2>form>div>.verify{
-	width: 80px;
+	width: 106px;
 }
 /*输入框下面提示框的样式*/
 section .register-step1>form>div>p,
