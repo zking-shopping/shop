@@ -16,6 +16,9 @@
 	<update id="add">
 		update t_cart set number=number+1 where memberId=#{memberId} and goodsId=#{goodsId};
 	</update>
+	<update id="changeNumber">
+		update t_cart set number=#{number} where id=#{id};
+	</update>
 	<update id="addNumber">
 		update t_cart set number=number+1 where id=#{id};
 	</update>
