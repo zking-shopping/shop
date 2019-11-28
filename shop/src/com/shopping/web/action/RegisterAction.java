@@ -3,6 +3,7 @@ package com.shopping.web.action;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import com.shopping.dao.daoImpl.MemberDaoImpl;
 import com.shopping.db.DBHelper;
 import com.shopping.pojo.Member;
 import com.shopping.util.DateHelper;
+import com.shopping.util.EncryptionHelper;
 import com.shopping.util.UUIDHelper;
 import com.shopping.web.form.FormFather;
 import com.shopping.web.form.RegisterForm;
@@ -24,18 +26,28 @@ public class RegisterAction extends ActionFather{
 			HttpServletResponse response, FormFather ff) {
   		response.setCharacterEncoding("UTF-8");
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
+  		//将ff的类型转换为需要的
 		RegisterForm rf = (RegisterForm) ff;
-		
-		MemberDao md = new MemberDaoImpl();
+		//获得连接
         Connection conn = DBHelper.getConnection();
+        //设置会员基础信息
 		Member m = new Member();
 		m.setUsername(rf.getUsername());
-		m.setPassword(rf.getPassword());
+		//密码加密
+		String pass = EncryptionHelper.encryption(rf.getPassword());
+		m.setPassword(pass);
 		m.setPhoneNumber(rf.getPhoneNumber());
-		Member ms = (Member) md.select("selectByUsername", m, conn);
+		
 		JSONArray jarr = null;
 		PrintWriter out = null;
-		try {
+        try {
+            //设置不自动提交
+			conn.setAutoCommit(false);
+    		//查询账号是否存在
+    		MemberDao md = new MemberDaoImpl();
+    		Member ms = (Member) md.select("selectByUsername", m, conn);
+    		conn.commit();
+			//获得输出流
 			out = response.getWriter();
 			if(ms.getUsername()==null){
 				String uuid = UUIDHelper.getUUID();
@@ -49,6 +61,7 @@ public class RegisterAction extends ActionFather{
 				m.setDate(DateHelper.getSimpleDate());
 				m.setDel("false");
 				boolean b = md.insert(m, conn);
+	    		conn.commit();
 				if(b==true){
 					jarr = JSONArray.fromObject(0);
 				}else{
@@ -57,6 +70,13 @@ public class RegisterAction extends ActionFather{
 			}else{
 				jarr = JSONArray.fromObject(2);
 			}
+		} catch (SQLException e) {
+			try {
+				//回滚
+	            conn.rollback();
+	        } catch (SQLException e1) {
+	            e1.printStackTrace();
+	        }
 		} catch (IOException e) {
 			e.printStackTrace();
 		}finally{
