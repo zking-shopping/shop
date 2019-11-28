@@ -467,9 +467,27 @@ function searchpage(obj){
 			}
 
 			if(page < 3) {
+//				$('[class="ignore1"]').hide();
+//				$('[class="ignore2"]').hide();
+//				$('[class="add"]').hide();
+
+				$('ul').children('li').eq(2).addClass('ignore1');
+				$('ul').children('li').eq(7).addClass('add');
+				$('ul').children('li').eq(8).addClass('ignore2');
 				$('[class="ignore1"]').hide();
 				$('[class="ignore2"]').hide();
 				$('[class="add"]').hide();
+				var content = $('ul').children("#page");
+				var a = 2;
+				
+				$('[class="current"]').removeClass('current');
+				content.each(function() {
+					a = a + 1;
+					$(this).text(a.toString());
+
+				})
+				$('ul').children("#page").eq(2).addClass('current');
+			
 			}
 		});
 
