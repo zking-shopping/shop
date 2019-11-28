@@ -208,7 +208,6 @@ public class ActionServlet extends HttpServlet {
                 }
             }
         }
-        
         SAXReader reader = new SAXReader();
         try {
             doc = reader.read(ActionServlet.class.getResourceAsStream(configFileName));

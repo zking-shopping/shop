@@ -33,4 +33,11 @@
         <form>com.shopping.web.form.RegisterForm</form>
         <pagejump>true</pagejump>
     </action>
+    
+    <action name="type" class="com.shopping.web.action.TypeAction">
+        <form>com.shopping.web.form.TypeForm</form>
+        <result name="success" direct="false">type.jsp</result>
+        <result name="error">index.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
 </actions>
