@@ -4,7 +4,7 @@
 			url:"http://www.wjian.top/shop/api_goods.php",
 			data:{
              "pagesize":32,
-             "page":1,
+             "page":2,
               },
       success: function(result){
 

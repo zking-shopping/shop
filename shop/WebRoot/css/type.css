@@ -25,11 +25,11 @@ img {
 }
 
 .thumbnail{
-	height: 800px;
+	height: 400px;
 }
 
 .goods img {
-	width: 36%;
+	width: 50%;
 	margin: 20px auto;
 }
 

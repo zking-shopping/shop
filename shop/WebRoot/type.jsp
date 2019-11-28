@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 		<meta name="viewport" content="width=device-width,initial-scale=1,userable-scale=no" />
-		<link rel="stylesheet" type="text/css" href="css/type.css" />
+		<link rel="stylesheet" type="text/css" href="/shop/css/type.css" />
 		<title></title>
 	</head>
 
