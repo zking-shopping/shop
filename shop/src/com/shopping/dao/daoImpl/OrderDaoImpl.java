@@ -25,7 +25,7 @@ public class OrderDaoImpl extends BaseDao implements OrderDao{
 				Order order = new Order();
 				order.setId(rs.getInt("id"));
 				order.setMemberId(rs.getString("memberId"));
-				order.setOrderNumber(rs.getString("orderNumber"));
+//				order.setOrderNumber(rs.getString("orderNumber"));
 				order.setTotal(rs.getString("total"));
 				order.setMemberId(rs.getString("memberId"));
 				list.add(order);

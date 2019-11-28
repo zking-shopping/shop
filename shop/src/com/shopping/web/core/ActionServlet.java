@@ -25,6 +25,7 @@ import org.dom4j.io.SAXReader;
 import org.xml.sax.Attributes;
 
 import com.shopping.pojo.Cart;
+import com.shopping.pojo.Member;
 import com.shopping.web.action.ActionFather;
 import com.shopping.web.form.FormFather;
 import com.shopping.web.form.ShoppingCarCountChangeForm;
@@ -154,12 +155,12 @@ public class ActionServlet extends HttpServlet {
             	
             }
         }else if("false".equalsIgnoreCase(isPageJump)){
+        	response.setContentType("text/html;charset=UTF-8");
+         	PrintWriter out = response.getWriter();
         	//通过action判断返回值
         	 if("shoppingCar".equalsIgnoreCase(actionName)){
         		
-        		ArrayList getResult = (ArrayList)af.doAction(request, response, ff);        		         		
-             	response.setContentType("text/html;charset=UTF-8");
-             	PrintWriter out = response.getWriter();
+        		ArrayList getResult = (ArrayList)af.doAction(request, response, ff);        		         		            	
              	JSONArray json  =  JSONArray.fromObject(getResult);
              	out.write(json.toString());
              }else if("shoppingCarCountChange".equalsIgnoreCase(actionName)){
@@ -174,7 +175,12 @@ public class ActionServlet extends HttpServlet {
               	String id = request.getParameter("id").substring(1);
               	String[] ids = id.split(",");            	
               	af.doAction(request, response, ids);            	
-              }
+             }else if("personInfo".equalsIgnoreCase(actionName)){
+            	 Member m = (Member)request.getSession().getAttribute("member");
+            	 ArrayList getResult = (ArrayList)af.doAction(request, response, m.getId());
+            	 JSONArray json  =  JSONArray.fromObject(getResult);
+              	 out.write(json.toString());
+             }
         	
         }
         
