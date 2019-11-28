@@ -1,15 +1,12 @@
 function productsList(page, showMyProducts){
     var page = page ? page : 1;
     $.ajaxSettings.async = false;
-    $.get('http://www.wjian.top/shop/api_goods.php',{
-        'pagesize':3,
-        'page':page,
-    }, function(result){
+    $.get('personInfo.do', function(result){
         var result = JSON.parse(result);
-        if(result.code != 0){
-            console.log('数据请求失败');
-            return;
-        };
+//        if(result.code != 0){
+//            console.log('数据请求失败');
+//            return;
+//        };
         showMyProducts(result);
     });
 };
@@ -19,33 +16,40 @@ function showMyProducts(result){
     $('.myNullOrder').show();
     $('.myrightinfo_body').hide();
     console.log(result);
-    var productsList = result.data;
-    for(var i = 0; i < productsList.length; i++){
+//    var productsList = result;
+    var orders = result[0];
+    var detailOrderss = result[1];
+    for(var i = 0; i < orders.length; i++){
+    	var myOrders = `
+        <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span></div>
+        `;
+        $('.myProducts').append(myOrders);
+    	for (var j = 0; j < detailOrderss[i].length; j++) {
+    		var myDetailOrders = `          
+            <ul>
+  			<li>
+                 <a><img src="${detailOrderss[i][j].url}"/></a>
+                 <div>
+                    <a>${detailOrderss[i][j].goodsName}</a>
+                    <p>${detailOrderss[i][j].goodsColor}</p>
+                 </div>
+                 
+  	        </li>
+  			<li>${detailOrderss[i][j].price}</li>
+  			<li>
+  			${detailOrderss[i][j].number}
+  			<li style="font-weight: bold;">${detailOrderss[i][j].price*detailOrderss[i][j].number}</li>
+  			<li>已关闭</li>
+  			<li class="a-hover">
+  				<p><a href="shoppingCar.jsp">重新购买</a></p>
+  				<p class="showDetails"><a>查看详情</a></p>
+  			</li>
+           </ul>
+  `;
+        $('.myProducts').append(myDetailOrders);	
+		}
         $('.myNullOrder').hide();
-        $('.myrightinfo_body').show();
-        var myProduct = `
-          <div class="odder_info">下单时间:<span></span> 订单号:<span></span></div>
-          <ul>
-			<li>
-               <a><img src="${productsList[i].goods_thumb}"/></a>
-               <div>
-                  <a>${productsList[i].goods_name}</a>
-                  <p>${productsList[i].goods_desc}</p>
-               </div>
-               
-	        </li>
-			<li>${productsList[i].price}</li>
-			<li>
-               1
-			<li style="font-weight: bold;">${productsList[i].price}</li>
-			<li>已关闭</li>
-			<li class="a-hover">
-				<p><a href="shoppingCar.html">重新购买</a></p>
-				<p class="showDetails"><a>查看详情</a></p>
-			</li>
-         </ul>
-`;
-        $('.myProducts').append(myProduct);
+        $('.myrightinfo_body').show();                
     };
 };
 
