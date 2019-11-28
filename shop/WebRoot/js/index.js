@@ -23,17 +23,17 @@
     	 var goodList = res.data;
     	 var str = "";
 //    	 console.log(goodList);
-    	 for(var i =0;i<4;i++){
+    	 for(var i =0;i<8;i++){
 //    		 console.log(goodList[i].goods_thumb);
-    		 str +="<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+
-    		          "  <div class='thumbnail' style='height:500px;'>"+
+    		 str +="<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='height:440px'>"+
+    		          "  <div class='thumbnail' style='height:400px;'>"+
     		          "<a href='introduction.jsp'>"+
     		          "<img src="+goodList[i].goods_thumb+" alt='' />"+
     		          "<p>商品名:"+goodList[i].goods_name+"</p>"+
     		          "<p class='desc'>商品介绍:"+goodList[i].goods_desc+"</p>"+
     		          "<p>价格:"+goodList[i].price+"</p>"+
     		          "<p>点赞:❤"+goodList[i].star_number+"</p>"+
-    		          "</a>"+"<div>"+"</li>"
+    		          "</a>"+"</div>"+"</li>"
     	 }
 //    	 console.log($('.bettergoods'));
 //    	 console.log($('.bettergoods'));
@@ -65,9 +65,9 @@
     	 for(var i =0;i<3;i++){
     	 	     str += "<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+
                           "<a href='introduction.jsp'>"+
-                                  "<img src="+cardList[i].goods_thumb+" alt='' />"
-                          "</a>"+
-                                  "<p>"+cardList[i].goods_name+"</p>"
+                                  "<img src="+cardList[i].goods_thumb+" alt='' />"+
+                            "</a>"+
+                                  "<p>"+cardList[i].goods_name+"</p>"+
                                   "<p>价格:"+cardList[i].price+"</p>"+
                        "</li>"
                        ;
@@ -78,7 +78,6 @@
     	
     });
 
-function index(){
 	//轮播图中图片的个数
 	var liL = $('.banner>ul li').length;
 	
@@ -120,8 +119,7 @@ function index(){
 	
 	//	登录注册
 	
-	$('.glyphicon-user').click(function() {
-		alert(111);
+	$('.glyphicon-user').mouseover(function() {
 		$('.glyphicon-user .dropdown').show();
 	})
 	
@@ -244,4 +242,3 @@ function index(){
 		$('.banner a.next').hide();
 		timer = setInterval(rightBtn, 2000);
 	})
-}

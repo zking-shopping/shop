@@ -26,6 +26,7 @@ public class LoginAction extends ActionFather{
   		response.setCharacterEncoding("UTF-8");
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
   		m.setUsername(request.getParameter("username"));
+  		
   		m.setPassword(request.getParameter("password"));
   		//根据名字和密码获得的member全部信息
   		Member member = (Member) dao.select("selectForLogin", m, conn);

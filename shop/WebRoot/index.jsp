@@ -9,15 +9,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'index.jsp' starting page</title>
+    <title>首页</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 		<meta name="viewport" content="width=device-width,initial-scale=1,userable-scale=no" />
-		<link rel="stylesheet" href="css/base.css" type="text/css" />
-		<link rel="stylesheet" href="css/index.css" type="text/css" />
+		<link rel="stylesheet" href="/shop/css/base.css" type="text/css" />
+		<link rel="stylesheet" href="/shop/css/index.css" type="text/css" />
 		<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css" />
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
@@ -33,13 +33,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!--导航条左边-->
 						<!--logo-->
 						<div class="navbar-brand">
-							<a href="index.jsp">OurLogo</a>
+							<a href="index.jsp" style="text-decoration:none">OurLogo</a>
 						</div>
 					</div>
 					<!--导航条右边-->
 					<ul class=" navbar-nav hidden-xs" id="myNav">
 						<li>
-							<a href="introduction.jsp">插线板</a>
+							<a href="type.jsp">插线板</a>
 							<div class="dropdown" style="display: none; left: -180%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li>
-							<a href="introduction.jsp">音响耳机</a>
+							<a href="type.jsp">音响耳机</a>
 							<div class="dropdown" style="display: none; left: -280%;" >
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li>
-							<a href="introduction.jsp">手机配件</a>
+							<a href="type.jsp">手机配件</a>
 							<div class="dropdown" style="display: none; left: -380%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -69,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li>
-							<a href="introduction.jsp">电脑办公</a>
+							<a href="type.jsp">电脑办公</a>
 							<div class="dropdown" style="display: none; left: -480%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li>
-							<a href="introduction.jsp">电池电源</a>
+							<a href="type.jsp">电池电源</a>
 							<div class="dropdown" style="display: none; left: -580%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -89,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li>
-							<a href="introduction.jsp">生活电器</a>
+							<a href="type.jsp">生活电器</a>
 							<div class="dropdown" style="display: none; left: -680%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -196,9 +196,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							        			<a href="shoppingCar.jsp"><button >去购物车</button></a>
 									</div>
 									<div id="no-goods" style=" color: gray;height: 50%; " >
-									    <span style="margin: 50% 20%;">还没有商品,快去购物车</span>
+									    <span style="margin: 50% 20%; font-size:18px; font-weight:lighter; letter-spacing:1px" >还没有商品,快去选中商品</span>
 									</div>
-									<div id="goshopping">
+									<div id="goshopping" style="display:none">
 										<a style="margin: 50% 20%;" href="shoppingCar.jsp"><button>去购物车</button></a>
 									</div>
 						    </div>
@@ -269,10 +269,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul class="bettergoods">
 				
 			</ul>
-			</div>
+		</div>
 
 			<!--底部-->
-			<div class="footer">
+			<div class="footer" >
 				<div class="footer-top text-center">
 					<ul>
 						<li>
@@ -314,5 +314,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
   </body>
 </html>
-<script src="/shopdemo/js/jquery-3.4.1.min.js"></script>
-<script src="/shopdemo/js/index.js"></script>
+<script src="/shop/js/jquery-3.4.1.min.js"></script>
+<script src="/shop/js/index.js"></script>
