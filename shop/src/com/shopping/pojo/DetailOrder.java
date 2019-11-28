@@ -4,11 +4,18 @@ public class DetailOrder {
 	private int id;
 	private int orderId;
 	private int goodsId;
+	private String goodsName;
 	private String url;
 	private String price;
 	private String number;
 	private int colorId;
 	private String goodsColor;
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
 	public int getId() {
 		return id;
 	}
