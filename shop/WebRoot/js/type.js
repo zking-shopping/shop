@@ -1,485 +1,479 @@
- (function() {
+(function() {
 	//分类ID
-	 	$.get({
-			url:"http://www.wjian.top/shop/api_goods.php",
-			data:{
-             "pagesize":32,
-             "page":2,
-              },
-      success: function(result){
+	$.get('http://www.wjian.top/shop/api_goods.php', {
+		page: 1,
+		pagesize: 32
+	}, function(result) {
+		var obj = JSON.parse(result);
+		//验证
+		if(obj.code != 0) {
+			return;
+		};
+		//渲染
+		for(var i = 0; i < obj.data.length; i++) {
+			var str = `
+        <div class="col-md-3 goods">
+          <div class="thumbnail">
+            <img src="${obj.data[i].goods_thumb}"/>
+            <caption>
+              <p class="goods-name">${obj.data[i].goods_name}</p>
+              <p class="goods-desc">${obj.data[i].goods_desc}</p>
+              <p>${obj.data[i].price}</p>
+              <p><span class="glyphicon  glyphicon-star"></span>${obj.data[i].star_number}</p>
+              <button class="btn btn-info">加入购物车</button>
+            </caption>
+          </div>
+        </div>
+        `;
+			//每遍历一次就要去添加一次
 
-          var res = JSON.parse(result);
-//          console.log(res);
-     	 var goodList = res.data;
-//     	 console.log(goodList);
-     	 for(var i =0;i<32;i++){
-//     		 console.log(goodList[i].goods_thumb);
-     		var str = ""+
-	        "<div class='col-md-3 goods'>"+
-	          "<div class='thumbnail'>"+
-	            "<img src="+goodList[i].goods_thumb+"/>"+
-	            "<caption>"+
-	              "<p class='goods-name'>"+goodList[i].goods_name+"</p>"+
-	              "<p class='goods-desc'>"+goodList[i].goods_desc+"</p>"+
-	              "<p>"+goodList[i].price+"</p>"+
-	              "<p><span class='glyphicon  glyphicon-star'></span>"+goodList[i].star_number+"</p>"+
-	              "<button class='btn btn-info'>加入购物车</button>"+
-	            "</caption>"+
-	          "</div>"+
-	        "</div>"
-	          $('#goodsList').append(str);
-     	 }
-     	
-     	
-     
-	
-	   }
-	})
+			$('#goodsList').append(str);
+		};
+
+	});
 
 })();
 
-//var page = 1;
-//$('li.current').attr('background', 'oranged');
-////点击li确定去哪一页
-//$('li').click(function() {
-//	//记录哪一页
-//	var num = parseInt($(this).children().eq(0).context.innerText);
-//
-//	$('#goodsList .goods').remove();
-//
-//	(function() {
-//		//分类ID
-//		$.get('http://www.wjian.top/shop/api_goods.php', {
-//			page: num,
-//			pagesize: 32,
-//		}, function(result) {
-//			var obj = JSON.parse(result);
-//			//验证
-//			if(obj.code != 0) {
-//				return;
-//			};
-//			//渲染
-//			for(var i = 0; i < obj.data.length; i++) {
-//				var str = `
-//		        <div class="col-md-3 goods">
-//		          <div class="thumbnail">
-//		            <img src="${obj.data[i].goods_thumb}"/>
-//		            <caption>
-//		              <p class="goods-name">${obj.data[i].goods_name}</p>
-//		              <p class="goods-desc">${obj.data[i].goods_desc}</p>
-//		              <p>${obj.data[i].price}</p>
-//		              <p><span class="glyphicon  glyphicon-star"></span>${obj.data[i].star_number}</p>
-//		              <button class="btn btn-info">加入购物车</button>
-//		            </caption>
-//		          </div>
-//		        </div>
-//		        `;
-//				//每遍历一次就要去添加一次
-//
-//				$('#goodsList').append(str);
-//			};
-//			page = num;
-//
-//			//选择的页面大于4，选择方式改变
-//			if(num > 4) {
-//				$('[class="ignore1"]').show();
-//				$('[class="ignore2"]').show();
-//				$('[class="add"]').show();
-//				$('[class="ignore1"]').removeClass("ignore1");
-//				$('[class="ignore2"]').removeClass("ignore2");
-//				$('[class="add"]').removeClass("add");
-//				var content = $('ul').children("#page");
-//				var a;
-//				$('[class="current"]').removeClass('current');
-//				content.each(function() {
+var page = 1;
+$('li.current').attr('background', 'oranged');
+//点击li确定去哪一页
+$('li').click(function() {
+	//记录哪一页
+	var num = parseInt($(this).children().eq(0).context.innerText);
+
+	$('#goodsList .goods').remove();
+
+	(function() {
+		//分类ID
+		$.get('http://www.wjian.top/shop/api_goods.php', {
+			page: num,
+			pagesize: 32,
+		}, function(result) {
+			var obj = JSON.parse(result);
+			//验证
+			if(obj.code != 0) {
+				return;
+			};
+			//渲染
+			for(var i = 0; i < obj.data.length; i++) {
+				var str = `
+		        <div class="col-md-3 goods">
+		          <div class="thumbnail">
+		            <img src="${obj.data[i].goods_thumb}"/>
+		            <caption>
+		              <p class="goods-name">${obj.data[i].goods_name}</p>
+		              <p class="goods-desc">${obj.data[i].goods_desc}</p>
+		              <p>${obj.data[i].price}</p>
+		              <p><span class="glyphicon  glyphicon-star"></span>${obj.data[i].star_number}</p>
+		              <button class="btn btn-info">加入购物车</button>
+		            </caption>
+		          </div>
+		        </div>
+		        `;
+				//每遍历一次就要去添加一次
+
+				$('#goodsList').append(str);
+			};
+			page = num;
+			//选择的页面大于4，选择方式改变
+			if(num > 5) {
+				$('[class="ignore1"]').show();
+				$('[class="ignore2"]').show();
+				$('[class="add"]').show();
+				$('[class="ignore1"]').removeClass("ignore1");
+				$('[class="ignore2"]').removeClass("ignore2");
+				$('[class="add"]').removeClass("add");
+				var content = $('ul').children("#page");
+				var a = page-3;
+				$('[class="current"]').removeClass('current');
+				content.each(function() {
 //					a = parseInt($(this).text());
-//					a = a + 1;
-//					$(this).text(a.toString());
-//
-//				})
-//				$('ul').children("#page").eq(2).addClass('current');
-//			}
-//
-//			if(page < 3) {
-//				$('[class="ignore1"]').hide();
-//				$('[class="ignore2"]').hide();
-//				$('[class="add"]').hide();
-//			}
-//		});
-//
-//	})();
-//	$('[class="current"]').removeClass('current');
-//	$(this).addClass('current');
-//})
-//
-////点击上一页
-//$('#prev').click(function() {
-//	page--;
-//	//记录哪一页
-//	var num = page;
-//	$('#goodsList .goods').remove();
-//	//分类ID
-//	$.get('http://www.wjian.top/shop/api_goods.php', {
-//		page: num,
-//		pagesize: 32,
-//	}, function(result) {
-//		var obj = JSON.parse(result);
-//		//验证
-//		if(obj.code != 0) {
-//			return;
-//		};
-//		//渲染
-//		for(var i = 0; i < obj.data.length; i++) {
-//			var str = `
-//		        <div class="col-md-3 goods">
-//		          <div class="thumbnail">
-//		            <img src="${obj.data[i].goods_thumb}"/>
-//		            <caption>
-//		              <p class="goods-name">${obj.data[i].goods_name}</p>
-//		              <p class="goods-desc">${obj.data[i].goods_desc}</p>
-//		              <p>${obj.data[i].price}</p>
-//		              <p><span class="glyphicon  glyphicon-star"></span>${obj.data[i].star_number}</p>
-//		              <button class="btn btn-info">加入购物车</button>
-//		            </caption>
-//		          </div>
-//		        </div>
-//		        `;
-//			//每遍历一次就要去添加一次
-//
-//			$('#goodsList').append(str);
-//		};
-//
+						a += 1;
+					$(this).text(a.toString());
+				})
+				$('ul').children("#page").eq(2).addClass('current');
+			}
+
+			if(page < 3) {
+				$('[class="ignore1"]').hide();
+				$('[class="ignore2"]').hide();
+				$('[class="add"]').hide();
+			}
+		});
+
+	})();
+	$('[class="current"]').removeClass('current');
+	$(this).addClass('current');
+})
+
+//点击上一页
+$('#prev').click(function() {
+	page--;
+	//记录哪一页
+	var num = page;
+	$('#goodsList .goods').remove();
+	//分类ID
+	$.get('http://www.wjian.top/shop/api_goods.php', {
+		page: num,
+		pagesize: 32,
+	}, function(result) {
+		var obj = JSON.parse(result);
+		//验证
+		if(obj.code != 0) {
+			return;
+		};
+		//渲染
+		for(var i = 0; i < obj.data.length; i++) {
+			var str = `
+		        <div class="col-md-3 goods">
+		          <div class="thumbnail">
+		            <img src="${obj.data[i].goods_thumb}"/>
+		            <caption>
+		              <p class="goods-name">${obj.data[i].goods_name}</p>
+		              <p class="goods-desc">${obj.data[i].goods_desc}</p>
+		              <p>${obj.data[i].price}</p>
+		              <p><span class="glyphicon  glyphicon-star"></span>${obj.data[i].star_number}</p>
+		              <button class="btn btn-info">加入购物车</button>
+		            </caption>
+		          </div>
+		        </div>
+		        `;
+			//每遍历一次就要去添加一次
+
+			$('#goodsList').append(str);
+		};
+
+		$('[class="current"]').removeClass('current');
+		$('ul').children().eq(page - 1).addClass('current');
+		//当页码数小于3时，回复最初的选择
+		if(page < 6) {
+			$('ul').children('li').eq(2).addClass('ignore1');
+			$('ul').children('li').eq(7).addClass('add');
+			$('ul').children('li').eq(8).addClass('ignore2');
+			$('[class="ignore1"]').hide();
+			$('[class="ignore2"]').hide();
+			$('[class="add"]').hide();
+			var content = $('ul').children("#page");
+			var a;
+			$('[class="current"]').removeClass('current');
+			content.each(function() {
+				a = parseInt($(this).text());
+				a = a - 1;
+				$(this).text(a.toString());
+
+			})
+			$('ul').children("#page").eq(2).addClass('current');
+		}
+		if(page > 5) {
+
+			var content = $('ul').children("#page");
+			var a;
+			$('[class="current"]').removeClass('current');
+			content.each(function() {
+				a = parseInt($(this).text());
+				a = a - 1;
+				$(this).text(a.toString());
+
+			})
+			$('ul').children("#page").eq(2).addClass('current');
+		}
+	});
+
+})
+
+//点击下一页
+$('#next').click(function() {
+	page++;
+
+	//记录哪一页
+	var num = page;
+
+	$('#goodsList .goods').remove();
+
+	//分类ID
+	$.get('http://www.wjian.top/shop/api_goods.php', {
+		page: num,
+		pagesize: 32,
+	}, function(result) {
+		var obj = JSON.parse(result);
+		//验证
+		if(obj.code != 0) {
+			return;
+		};
+		//渲染
+		for(var i = 0; i < obj.data.length; i++) {
+			var str = `
+		        <div class="col-md-3 goods">
+		          <div class="thumbnail">
+		            <img src="${obj.data[i].goods_thumb}"/>
+		            <caption>
+		              <p class="goods-name">${obj.data[i].goods_name}</p>
+		              <p class="goods-desc">${obj.data[i].goods_desc}</p>
+		              <p>${obj.data[i].price}</p>
+		              <p><span class="glyphicon  glyphicon-star"></span>${obj.data[i].star_number}</p>
+		              <button class="btn btn-info">加入购物车</button>
+		            </caption>
+		          </div>
+		        </div>
+		        `;
+			//每遍历一次就要去添加一次
+			$('#goodsList').append(str);
+		};
+		$('[class="current"]').removeClass('current');
+		if(page > 2&&page<6) {
+			$('ul').children().eq(page).addClass('current');
+		} else {
+			$('ul').children().eq(page - 1).addClass('current');
+		}
+		//当页码数大于4时，选择需要改变
+
 //		$('[class="current"]').removeClass('current');
-//		$('ul').children().eq(page - 1).addClass('current');
-//		//当页码数小于3时，回复最初的选择
-//		if(page < 6) {
-//			$('ul').children('li').eq(2).addClass('ignore1');
-//			$('ul').children('li').eq(7).addClass('add');
-//			$('ul').children('li').eq(8).addClass('ignore2');
-//			$('[class="ignore1"]').hide();
-//			$('[class="ignore2"]').hide();
-//			$('[class="add"]').hide();
-//			var content = $('ul').children("#page");
-//			var a;
-//			$('[class="current"]').removeClass('current');
-//			content.each(function() {
-//				a = parseInt($(this).text());
-//				a = a - 1;
-//				$(this).text(a.toString());
-//
-//			})
-//			$('ul').children("#page").eq(2).addClass('current');
-//		}
-//		if(page > 5) {
-//
-//			var content = $('ul').children("#page");
-//			var a;
-//			$('[class="current"]').removeClass('current');
-//			content.each(function() {
-//				a = parseInt($(this).text());
-//				a = a - 1;
-//				$(this).text(a.toString());
-//
-//			})
-//			$('ul').children("#page").eq(2).addClass('current');
-//		}
-//	});
-//
-//})
-//
-////点击下一页
-//$('#next').click(function() {
-//	page++;
-//
-//	//记录哪一页
-//	var num = page;
-//
-//	$('#goodsList .goods').remove();
-//
-//	//分类ID
-//	$.get('http://www.wjian.top/shop/api_goods.php', {
-//		page: num,
-//		pagesize: 32,
-//	}, function(result) {
-//		var obj = JSON.parse(result);
-//		//验证
-//		if(obj.code != 0) {
-//			return;
-//		};
-//		//渲染
-//		for(var i = 0; i < obj.data.length; i++) {
-//			var str = `
-//		        <div class="col-md-3 goods">
-//		          <div class="thumbnail">
-//		            <img src="${obj.data[i].goods_thumb}"/>
-//		            <caption>
-//		              <p class="goods-name">${obj.data[i].goods_name}</p>
-//		              <p class="goods-desc">${obj.data[i].goods_desc}</p>
-//		              <p>${obj.data[i].price}</p>
-//		              <p><span class="glyphicon  glyphicon-star"></span>${obj.data[i].star_number}</p>
-//		              <button class="btn btn-info">加入购物车</button>
-//		            </caption>
-//		          </div>
-//		        </div>
-//		        `;
-//			//每遍历一次就要去添加一次
-//			$('#goodsList').append(str);
-//		};
+		if(page > 5) {
+//			$('ul').children('li').eq(2).addClass("ignore1");
+//			$('ul').children('li').eq(7).addClass("add");
+//			$('ul').children('li').eq(8).addClass("ignore2");
+			$('[class="ignore1"]').show();
+			$('[class="ignore2"]').show();
+			$('[class="add"]').show();
+			$('[class="ignore1"]').removeClass("ignore1");
+			$('[class="ignore2"]').removeClass("ignore2");
+			$('[class="add"]').removeClass("add");
+			var content = $('ul').children("#page");
+			var a;
+
+			content.each(function(){
+				a = parseInt($(this).text());
+				a = a + 1;
+				$(this).text(a.toString());
+
+			})
+           $('[class="current"]').removeClass('current');
+			$('ul').children("#page").eq(2).addClass('current');
+	    }
+	 
+
+})
+})
+
+//点击第一个省略号
+$('[class="ignore1"]').click(function() {
+
+       page--;
+	//记录哪一页
+	var num = page;
+	$('#goodsList .goods').remove();
+	//分类ID
+	$.get('http://www.wjian.top/shop/api_goods.php', {
+		page: num,
+		pagesize: 32,
+	}, function(result) {
+		var obj = JSON.parse(result);
+		//验证
+		if(obj.code != 0) {
+			return;
+		};
+		//渲染
+		for(var i = 0; i < obj.data.length; i++) {
+			var str = `
+		        <div class="col-md-3 goods">
+		          <div class="thumbnail">
+		            <img src="${obj.data[i].goods_thumb}"/>
+		            <caption>
+		              <p class="goods-name">${obj.data[i].goods_name}</p>
+		              <p class="goods-desc">${obj.data[i].goods_desc}</p>
+		              <p>${obj.data[i].price}</p>
+		              <p><span class="glyphicon  glyphicon-star"></span>${obj.data[i].star_number}</p>
+		              <button class="btn btn-info">加入购物车</button>
+		            </caption>
+		          </div>
+		        </div>
+		        `;
+			//每遍历一次就要去添加一次
+
+			$('#goodsList').append(str);
+		};
+
+		$('[class="current"]').removeClass('current');
+		$('ul').children().eq(page - 1).addClass('current');
+		//当页码数小于3时，回复最初的选择
+		if(page < 6) {
+			$('ul').children('li').eq(2).addClass('ignore1');
+			$('ul').children('li').eq(7).addClass('add');
+			$('ul').children('li').eq(8).addClass('ignore2');
+			$('[class="ignore1"]').hide();
+			$('[class="ignore2"]').hide();
+			$('[class="add"]').hide();
+			var content = $('ul').children("#page");
+			var a;
+			$('[class="current"]').removeClass('current');
+			content.each(function() {
+				a = parseInt($(this).text());
+				a = a - 1;
+				$(this).text(a.toString());
+
+			})
+			$('ul').children("#page").eq(2).addClass('current');
+		}
+		if(page > 5) {
+
+			var content = $('ul').children("#page");
+			var a;
+			$('[class="current"]').removeClass('current');
+			content.each(function() {
+				a = parseInt($(this).text());
+				a = a - 1;
+				$(this).text(a.toString());
+
+			})
+			$('ul').children("#page").eq(2).addClass('current');
+		}
+	});
+
+})
+
+//点击第二个省略号
+$('[class="ignore2"]').click(function() {
+
+     
+	page++;
+
+	//记录哪一页
+	var num = page;
+
+	$('#goodsList .goods').remove();
+
+	//分类ID
+	$.get('http://www.wjian.top/shop/api_goods.php', {
+		page: num,
+		pagesize: 32,
+	}, function(result) {
+		var obj = JSON.parse(result);
+		//验证
+		if(obj.code != 0) {
+			return;
+		};
+		//渲染
+		for(var i = 0; i < obj.data.length; i++) {
+			var str = `
+		        <div class="col-md-3 goods" style="height:500px">
+		          <div class="thumbnail" >
+		            <img src="${obj.data[i].goods_thumb}"/>
+		            <caption>
+		              <p class="goods-name">${obj.data[i].goods_name}</p>
+		              <p class="goods-desc">${obj.data[i].goods_desc}</p>
+		              <p>${obj.data[i].price}</p>
+		              <p><span class="glyphicon  glyphicon-star"></span>${obj.data[i].star_number}</p>
+		              <button class="btn btn-info">加入购物车</button>
+		            </caption>
+		          </div>
+		        </div>
+		        `;
+			//每遍历一次就要去添加一次
+			$('#goodsList').append(str);
+		};
+		$('[class="current"]').removeClass('current');
+		if(page > 2&&page<6) {
+			$('ul').children().eq(page).addClass('current');
+		} else {
+			$('ul').children().eq(page - 1).addClass('current');
+		}
+		//当页码数大于4时，选择需要改变
+
 //		$('[class="current"]').removeClass('current');
-//		if(page > 2&&page<6) {
-//			$('ul').children().eq(page).addClass('current');
-//		} else {
-//			$('ul').children().eq(page - 1).addClass('current');
-//		}
-//		//当页码数大于4时，选择需要改变
-//
-////		$('[class="current"]').removeClass('current');
-//		if(page > 5) {
-////			$('ul').children('li').eq(2).addClass("ignore1");
-////			$('ul').children('li').eq(7).addClass("add");
-////			$('ul').children('li').eq(8).addClass("ignore2");
-//			$('[class="ignore1"]').show();
-//			$('[class="ignore2"]').show();
-//			$('[class="add"]').show();
-//			$('[class="ignore1"]').removeClass("ignore1");
-//			$('[class="ignore2"]').removeClass("ignore2");
-//			$('[class="add"]').removeClass("add");
-//			var content = $('ul').children("#page");
-//			var a;
-//
-//			content.each(function(){
-//				a = parseInt($(this).text());
-//				a = a + 1;
-//				$(this).text(a.toString());
-//
-//			})
-//           $('[class="current"]').removeClass('current');
-//			$('ul').children("#page").eq(2).addClass('current');
-//	    }
-//	 
-//
-//})
-//})
-//
-////点击第一个省略号
-//$('[class="ignore1"]').click(function() {
-//
-//       page--;
-//	//记录哪一页
-//	var num = page;
-//	$('#goodsList .goods').remove();
-//	//分类ID
-//	$.get('http://www.wjian.top/shop/api_goods.php', {
-//		page: num,
-//		pagesize: 32,
-//	}, function(result) {
-//		var obj = JSON.parse(result);
-//		//验证
-//		if(obj.code != 0) {
-//			return;
-//		};
-//		//渲染
-//		for(var i = 0; i < obj.data.length; i++) {
-//			var str = `
-//		        <div class="col-md-3 goods">
-//		          <div class="thumbnail">
-//		            <img src="${obj.data[i].goods_thumb}"/>
-//		            <caption>
-//		              <p class="goods-name">${obj.data[i].goods_name}</p>
-//		              <p class="goods-desc">${obj.data[i].goods_desc}</p>
-//		              <p>${obj.data[i].price}</p>
-//		              <p><span class="glyphicon  glyphicon-star"></span>${obj.data[i].star_number}</p>
-//		              <button class="btn btn-info">加入购物车</button>
-//		            </caption>
-//		          </div>
-//		        </div>
-//		        `;
-//			//每遍历一次就要去添加一次
-//
-//			$('#goodsList').append(str);
-//		};
-//
-//		$('[class="current"]').removeClass('current');
-//		$('ul').children().eq(page - 1).addClass('current');
-//		//当页码数小于3时，回复最初的选择
-//		if(page < 6) {
-//			$('ul').children('li').eq(2).addClass('ignore1');
-//			$('ul').children('li').eq(7).addClass('add');
-//			$('ul').children('li').eq(8).addClass('ignore2');
-//			$('[class="ignore1"]').hide();
-//			$('[class="ignore2"]').hide();
-//			$('[class="add"]').hide();
-//			var content = $('ul').children("#page");
-//			var a;
-//			$('[class="current"]').removeClass('current');
-//			content.each(function() {
-//				a = parseInt($(this).text());
-//				a = a - 1;
-//				$(this).text(a.toString());
-//
-//			})
-//			$('ul').children("#page").eq(2).addClass('current');
-//		}
-//		if(page > 5) {
-//
-//			var content = $('ul').children("#page");
-//			var a;
-//			$('[class="current"]').removeClass('current');
-//			content.each(function() {
-//				a = parseInt($(this).text());
-//				a = a - 1;
-//				$(this).text(a.toString());
-//
-//			})
-//			$('ul').children("#page").eq(2).addClass('current');
-//		}
-//	});
-//
-//})
-//
-////点击第二个省略号
-//$('[class="ignore2"]').click(function() {
-//
-//     
-//	page++;
-//
-//	//记录哪一页
-//	var num = page;
-//
-//	$('#goodsList .goods').remove();
-//
-//	//分类ID
-//	$.get('http://www.wjian.top/shop/api_goods.php', {
-//		page: num,
-//		pagesize: 32,
-//	}, function(result) {
-//		var obj = JSON.parse(result);
-//		//验证
-//		if(obj.code != 0) {
-//			return;
-//		};
-//		//渲染
-//		for(var i = 0; i < obj.data.length; i++) {
-//			var str = `
-//		        <div class="col-md-3 goods" style="height:500px">
-//		          <div class="thumbnail" >
-//		            <img src="${obj.data[i].goods_thumb}"/>
-//		            <caption>
-//		              <p class="goods-name">${obj.data[i].goods_name}</p>
-//		              <p class="goods-desc">${obj.data[i].goods_desc}</p>
-//		              <p>${obj.data[i].price}</p>
-//		              <p><span class="glyphicon  glyphicon-star"></span>${obj.data[i].star_number}</p>
-//		              <button class="btn btn-info">加入购物车</button>
-//		            </caption>
-//		          </div>
-//		        </div>
-//		        `;
-//			//每遍历一次就要去添加一次
-//			$('#goodsList').append(str);
-//		};
-//		$('[class="current"]').removeClass('current');
-//		if(page > 2&&page<6) {
-//			$('ul').children().eq(page).addClass('current');
-//		} else {
-//			$('ul').children().eq(page - 1).addClass('current');
-//		}
-//		//当页码数大于4时，选择需要改变
-//
-////		$('[class="current"]').removeClass('current');
-//		if(page > 5) {
-////			$('ul').children('li').eq(2).addClass("ignore1");
-////			$('ul').children('li').eq(7).addClass("add");
-////			$('ul').children('li').eq(8).addClass("ignore2");
-//			$('[class="ignore1"]').show();
-//			$('[class="ignore2"]').show();
-//			$('[class="add"]').show();
-//			$('[class="ignore1"]').removeClass("ignore1");
-//			$('[class="ignore2"]').removeClass("ignore2");
-//			$('[class="add"]').removeClass("add");
-//			var content = $('ul').children("#page");
-//			var a;
-//
-//			content.each(function(){
-//				a = parseInt($(this).text());
-//				a = a + 1;
-//				$(this).text(a.toString());
-//
-//			})
-//           $('[class="current"]').removeClass('current');
-//			$('ul').children("#page").eq(2).addClass('current');
-//	    }
-//	 
-//
-//})
-//
-//})
-//
-//
-//function searchpage(obj){
-//	     var num = parseInt($('#find').val());
-//	     $('#goodsList .goods').remove();
-//
-//	
-//		//分类ID
-//		$.get('http://www.wjian.top/shop/api_goods.php', {
-//			page: num,
-//			pagesize: 32,
-//		}, function(result) {
-//			var obj = JSON.parse(result);
-//			//验证
-//			if(obj.code != 0) {
-//				return;
-//			};
-//			//渲染
-//			for(var i = 0; i < obj.data.length; i++) {
-//				var str = `
-//		        <div class="col-md-3 goods">
-//		          <div class="thumbnail">
-//		            <img src="${obj.data[i].goods_thumb}"/>
-//		            <caption>
-//		              <p class="goods-name">${obj.data[i].goods_name}</p>
-//		              <p class="goods-desc">${obj.data[i].goods_desc}</p>
-//		              <p>${obj.data[i].price}</p>
-//		              <p><span class="glyphicon  glyphicon-star"></span>${obj.data[i].star_number}</p>
-//		              <button class="btn btn-info">加入购物车</button>
-//		            </caption>
-//		          </div>
-//		        </div>
-//		        `;
-//				//每遍历一次就要去添加一次
-//
-//				$('#goodsList').append(str);
-//			};
-//			page = num;
-//			//选择的页面大于4，选择方式改变
-//			if(num > 3) {
-//					$('ul').children('li').eq(2).addClass('ignore1');
-//			$('ul').children('li').eq(7).addClass('add');
-//			$('ul').children('li').eq(8).addClass('ignore2');
-//				$('[class="ignore1"]').show();
-//				$('[class="ignore2"]').show();
-//				$('[class="add"]').show();
-//				$('[class="ignore1"]').removeClass("ignore1");
-//				$('[class="ignore2"]').removeClass("ignore2");
-//				$('[class="add"]').removeClass("add");
-//				$('ul').children("#page").eq(0).text((page-2).toString());
-//			    $('ul').children("#page").eq(1).text((page-1).toString());
-//			    $('ul').children("#page").eq(2).text((page).toString());
-//			    $('ul').children("#page").eq(3).text((page+1).toString());
-//			    $('ul').children("#page").eq(4).text((page+2).toString());
-//
-//			
-//				
-//			}
-//
-//			if(page < 3) {
-//				$('[class="ignore1"]').hide();
-//				$('[class="ignore2"]').hide();
-//				$('[class="add"]').hide();
-//			}
-//		});
-//
-//
-//	$('[class="current"]').removeClass('current');
-//	 $('ul').children("#page").eq(2).addClass('current');
-//}
+		if(page > 5) {
+//			$('ul').children('li').eq(2).addClass("ignore1");
+//			$('ul').children('li').eq(7).addClass("add");
+//			$('ul').children('li').eq(8).addClass("ignore2");
+			$('[class="ignore1"]').show();
+			$('[class="ignore2"]').show();
+			$('[class="add"]').show();
+			$('[class="ignore1"]').removeClass("ignore1");
+			$('[class="ignore2"]').removeClass("ignore2");
+			$('[class="add"]').removeClass("add");
+			var content = $('ul').children("#page");
+			var a;
+
+			content.each(function(){
+				a = parseInt($(this).text());
+				a = a + 1;
+				$(this).text(a.toString());
+
+			})
+           $('[class="current"]').removeClass('current');
+			$('ul').children("#page").eq(2).addClass('current');
+	    }
+	 
+
+})
+
+})
+
+
+function searchpage(obj){
+	     var num = parseInt($('#find').val());
+	     $('#goodsList .goods').remove();
+
+	
+		//分类ID
+		$.get('http://www.wjian.top/shop/api_goods.php', {
+			page: num,
+			pagesize: 32,
+		}, function(result) {
+			var obj = JSON.parse(result);
+			//验证
+			if(obj.code != 0) {
+				return;
+			};
+			//渲染
+			for(var i = 0; i < obj.data.length; i++) {
+				var str = `
+		        <div class="col-md-3 goods">
+		          <div class="thumbnail">
+		            <img src="${obj.data[i].goods_thumb}"/>
+		            <caption>
+		              <p class="goods-name">${obj.data[i].goods_name}</p>
+		              <p class="goods-desc">${obj.data[i].goods_desc}</p>
+		              <p>${obj.data[i].price}</p>
+		              <p><span class="glyphicon  glyphicon-star"></span>${obj.data[i].star_number}</p>
+		              <button class="btn btn-info">加入购物车</button>
+		            </caption>
+		          </div>
+		        </div>
+		        `;
+				//每遍历一次就要去添加一次
+
+				$('#goodsList').append(str);
+			};
+			page = num;
+			//选择的页面大于4，选择方式改变
+			if(num > 3) {
+					$('ul').children('li').eq(2).addClass('ignore1');
+			$('ul').children('li').eq(7).addClass('add');
+			$('ul').children('li').eq(8).addClass('ignore2');
+				$('[class="ignore1"]').show();
+				$('[class="ignore2"]').show();
+				$('[class="add"]').show();
+				$('[class="ignore1"]').removeClass("ignore1");
+				$('[class="ignore2"]').removeClass("ignore2");
+				$('[class="add"]').removeClass("add");
+				$('ul').children("#page").eq(0).text((page-2).toString());
+			    $('ul').children("#page").eq(1).text((page-1).toString());
+			    $('ul').children("#page").eq(2).text((page).toString());
+			    $('ul').children("#page").eq(3).text((page+1).toString());
+			    $('ul').children("#page").eq(4).text((page+2).toString());
+
+			
+				
+			}
+
+			if(page < 3) {
+				$('[class="ignore1"]').hide();
+				$('[class="ignore2"]').hide();
+				$('[class="add"]').hide();
+			}
+		});
+
+
+	$('[class="current"]').removeClass('current');
+	 $('ul').children("#page").eq(2).addClass('current');
+}
