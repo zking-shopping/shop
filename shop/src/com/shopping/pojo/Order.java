@@ -3,7 +3,7 @@ package com.shopping.pojo;
 public class Order {
 	private int id;
 	private String memberId;
-	private String goodsName;
+	private String orderNumber;
 	private String total;
 	private String time;
 	private String state;
@@ -20,11 +20,11 @@ public class Order {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public String getGoodsName() {
-		return goodsName;
+	public String getOrderNumber() {
+		return orderNumber;
 	}
-	public void setGoodsName(String goodsName) {
-		this.goodsName = goodsName;
+	public void setOrderNumber(String orderNumber) {
+		this.orderNumber = orderNumber;
 	}
 	public String getTotal() {
 		return total;

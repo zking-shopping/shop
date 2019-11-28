@@ -42,6 +42,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao{
 		return list;
 	}
 	
+	
 	public List<Goods> selectDeleted(Connection conn){
 		String sql = "select * from t_goods where del=false";
 		List<Goods> list = new ArrayList<Goods>();

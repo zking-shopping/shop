@@ -23,16 +23,17 @@ public class ShoppingCarAction extends ActionFather{
 
 	@Override
 	public Object doAction(HttpServletRequest request,
-			HttpServletResponse response, FormFather ff) {
+			HttpServletResponse response, Object o) {
 		
 		
 		//先判断session中有没有账户信息（用户登录会在session中存值），即判断用户有没有登录，
 		//如果有，就去数据库查询用户，没有，就在cookie中取值
 		Member m = (Member)request.getSession().getAttribute("member");
 		Connection conn = DBHelper.getConnection();
-		System.out.println(m);
+		
 		if(m!=null){			
 			CartDao cd = new CartDaoImpl();
+			System.out.println(m.getId()+"getId");
 			ArrayList<Cart> list = (ArrayList<Cart>)cd.selectByMemberId(m.getId(), conn);
 			System.out.println(m.getId());
 			DBHelper.closeConnection(conn);			

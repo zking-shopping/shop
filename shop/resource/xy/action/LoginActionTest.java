@@ -10,7 +10,7 @@ public class LoginActionTest extends ActionFather{
 
 	@Override
 	public String doAction(HttpServletRequest request,
-			HttpServletResponse response, FormFather ff) {
+			HttpServletResponse response, Object o) {
 		
 		return "success";
 	}

@@ -1,22 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
 <html>
   <head>
-    <base href="<%=basePath%>">
-    
-    <title>分类</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 		<meta name="viewport" content="width=device-width,initial-scale=1,userable-scale=no" />
-		<link rel="stylesheet" type="text/css" href="css/type.css" />
+		
+			<link rel="stylesheet" type="text/css" href="css/type.css" />
+			<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css" />
 		<title></title>
 	</head>
 
@@ -29,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="c">
 			<div class="footer">
-					 <button id="prev" style="width:100px;  height: 55px;" >上一页</button>
+					 <input type="button" id="prev" style="width:50px;  height: 42px; background:gray;" value="上一页"></input>
 				<ul style="margin: 0 auto;">
 					<li class="current">
 						<a>1</a>
@@ -38,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a>2</a>
 					</li>
 					<li class="ignore1" style="display: none;">
-						<a href="#">...</a>
+						<a href="javascript:;">...</a>
 					</li>
 					<!--当页面大于x时消失-->
 					<li style="display:block;" id="page">
@@ -58,10 +49,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</li>
 					
 					<li class="ignore2" style="display: none;">
-						<a href="#">...</a>
+						<a href="javascript:;">...</a>
 					</li>
 				</ul>
-				   <button id="next"  style="width:100px;  height: 55px;">下一页</button><input type="text" id="find" style="height: 52px;"></input><input type="button" ondblclick="searchpage($(this))" value="提交"/>
+				   <input id="next" type="button"  style="width:50px;  height: 42px; background:gray;" value="下一页"></input> <p style="height:42px; text-align:center; line-height:42px">&nbsp;共有20页  &nbsp;&nbsp;</p>   去<input type="text" id="find" style="height: 42px;"></input>页<input type="button" style="background:gray;" ondblclick="searchpage($(this))" value="确定"/>
 			</div>
 		</div>
 
@@ -70,4 +61,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </html>
 <script src="/shop/js/home-jquery.min.js"></script>
 <script src="/shop/js/home-bootstrap.min.js"></script>
-<script src="/shop/js/type.js"></script>
+<script src="js/type.js"></script>
