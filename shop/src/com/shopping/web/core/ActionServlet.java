@@ -80,10 +80,10 @@ public class ActionServlet extends HttpServlet {
 			throws ServletException, IOException {
 		//获取客户传过来的uri
         String url = request.getRequestURI();
-        
+        System.out.println("url："+url);
         //获取action名
         String actionName = url.substring(url.lastIndexOf("/")+1,url.lastIndexOf(".do"));
-        
+        System.out.println("actionName："+actionName);
         //通过action名获取action所对应的的类的全路径
         Element element = (Element) doc.selectSingleNode("/actions/action[@name='"+actionName+"']");
         //判断是否是要跳转页面
@@ -186,6 +186,7 @@ public class ActionServlet extends HttpServlet {
 	 */
 	public void init() throws ServletException {
 		String configFileName = this.getServletConfig().getInitParameter("configLocation");
+		System.out.println("configFileName："+configFileName);
         
 		if (configFileName == null){
             configFileName = "/controller.xml";

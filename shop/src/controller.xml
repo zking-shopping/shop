@@ -23,4 +23,9 @@
         <result name="error">login.jsp</result>
         <pagejump>true</pagejump>
     </action>
+    
+    <action name="register" class="com.shopping.web.action.RegisterAction">
+        <form>com.shopping.web.form.RegisterForm</form>
+        <pagejump>true</pagejump>
+    </action>
 </actions>

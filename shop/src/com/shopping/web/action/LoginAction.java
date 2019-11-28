@@ -11,6 +11,7 @@ import com.shopping.dao.MemberDao;
 import com.shopping.dao.daoImpl.MemberDaoImpl;
 import com.shopping.db.DBHelper;
 import com.shopping.pojo.Member;
+import com.shopping.util.EncryptionHelper;
 import com.shopping.web.form.FormFather;
 
 public class LoginAction extends ActionFather{
@@ -26,7 +27,9 @@ public class LoginAction extends ActionFather{
   		response.setCharacterEncoding("UTF-8");
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
   		m.setUsername(request.getParameter("username"));
-  		m.setPassword(request.getParameter("password"));
+  		//加密密码
+  		String pass = EncryptionHelper.encryption(request.getParameter("password"));
+  		m.setPassword(pass);
   		//根据名字和密码获得的member全部信息
   		Member member = (Member) dao.select("selectForLogin", m, conn);
   		try {
