@@ -123,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            </div> -->
 	
 	            <!--用户 包含登录注册-->
-	            <span class="glyphicon glyphicon-user text-center hidden-sm hidden-xs hidden-md " style="margin-left: 200px">
+	            <span class="glyphicon glyphicon-user text-center hidden-sm hidden-xs hidden-md "><!-- style="margin-left: 200px" 向宇从span中去掉样式-->
 					<div class="dropdown" style="display: none;">
 						<a href="register.html">
 							<button class="btn btn-default navbar-btn navbar-right">注册</button>

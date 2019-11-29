@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -79,12 +80,18 @@ public class ActionServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		//获取客户传过来的uri
         String url = request.getRequestURI();
         
         //获取action名
         String actionName = url.substring(url.lastIndexOf("/")+1,url.lastIndexOf(".do"));
         System.out.println("actionName："+actionName);
+        if(!("shoppingCar".equalsIgnoreCase(actionName)||"login".equalsIgnoreCase(actionName)||"register".equalsIgnoreCase(actionName))){
+        	//判断用户是否登录
+      		Object isLogin = request.getSession().getAttribute("member");
+      		if(isLogin==null){return;};
+        }    
         //通过action名获取action所对应的的类的全路径
         Element element = (Element) doc.selectSingleNode("/actions/action[@name='"+actionName+"']");
         //判断是否是要跳转页面
@@ -159,9 +166,14 @@ public class ActionServlet extends HttpServlet {
          	PrintWriter out = response.getWriter();
          	Object o = af.doAction(request, response, ff);
          	if(o!=null){
-         		ArrayList getResult = (ArrayList)o;
-             	JSONArray json  =  JSONArray.fromObject(getResult);
-             	out.write(json.toString());
+         		if(o instanceof List){
+         			ArrayList getResult = (ArrayList)o;
+                 	JSONArray json  =  JSONArray.fromObject(getResult);
+                 	out.write(json.toString());
+         		}else{
+         			JSONObject json = JSONObject.fromObject(o);
+         			out.write(json.toString());
+         		}        		
          	}   
         }
 	}

@@ -3,6 +3,7 @@ package com.shopping.pojo;
 public class Order {
 	private int id;
 	private String memberId;
+	private int addressId;
 	private String orderNumber;
 	private String total;
 	private String time;
@@ -19,6 +20,12 @@ public class Order {
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+	public int getAddressId() {
+		return addressId;
+	}
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
 	}
 	public String getOrderNumber() {
 		return orderNumber;

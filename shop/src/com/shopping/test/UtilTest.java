@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import com.shopping.util.DateHelper;
 import com.shopping.util.EncryptionHelper;
+import com.shopping.util.OrderNumberHelper;
 import com.shopping.util.TimeHelper;
 import com.shopping.util.UUIDHelper;
 
@@ -38,5 +39,10 @@ public class UtilTest {
 		System.out.println(end);
 		String time = TimeHelper.duration(start, end);
 		System.out.println(time);
+	}
+	
+	@Test
+	public void testOrderNumberHelper(){
+		System.out.println(OrderNumberHelper.getOrderNumber());
 	}
 }
