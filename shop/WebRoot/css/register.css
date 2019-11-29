@@ -256,23 +256,7 @@ section .register-step2>form>div .count{
 	top: 0px;
 	left: 118px;
 }
-section .register-step2>form>div .count .counts{
-	width: 200px;
-	height: 32px;
-	margin: 7px 3px;
-}
-section .register-step2>form>div .count .counts>div,
-section .register-step2>form>div .count .counts>p{
-	float: left;
-	width: 32px;
-	height: 32px;
-}
-section .register-step2>form>div .count .counts>p{
-	width: 24px;
-	font-size: 30px;
-	text-align: center;
-	line-height: 32px;
-}
+
 /*换算式按钮的样式*/
 section .register-step2>form>div>.get-verify{
     color: #2C82FF;

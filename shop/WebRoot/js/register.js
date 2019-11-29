@@ -109,7 +109,6 @@ $('.next-step').click(function(){
 			.children('.content').html('!').css('border-color','#ea3d3d');
 	};
 	if(nameIsTrue==0&&passIsTrue==0&&colorRGBtoHex($('.username').css('border-color'))!='#ea3d3d'){
-		result = createFormula();
 		//改变顶部步骤的样式
 		$('section .step ul li .line div').eq(0).css('background','none')
 			.parent('.line').css('background','#2C82FF')
@@ -137,7 +136,7 @@ $('.next-step').click(function(){
 
 //点击换算式的按钮
 $('.get-verify').click(function(){
-	result = createFormula();
+	
 });
 
 //点击上一步的按钮

@@ -106,6 +106,9 @@
 	//定时器
 	var timer;
 	
+	(function(){
+		
+	});
 	//	商品列表
 	
 	$('#myNav>li>a').mouseover(function() {

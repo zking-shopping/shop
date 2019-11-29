@@ -110,7 +110,6 @@ public class ActionServlet extends HttpServlet {
         FormFather ff = null;
         String formInstanceClass = null;
         if(element.selectSingleNode("form")!=null){
-        	
         	formInstanceClass = element.selectSingleNode("form").getStringValue().trim();
         }
         
