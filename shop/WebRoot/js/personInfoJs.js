@@ -3,10 +3,30 @@ function productsList(page, showMyProducts){
     $.ajaxSettings.async = false;
     $.get('personInfo.do', function(result){
         var result = JSON.parse(result);
-//        if(result.code != 0){
-//            console.log('数据请求失败');
-//            return;
-//        };
+        showMyProducts(result);
+    });
+};
+
+function waitPay(){	
+    $.ajaxSettings.async = false;
+    $.get('personInfo.do',{'state':1}, function(result){
+        var result = JSON.parse(result);
+        showMyProducts(result);
+    });
+};
+
+function waitDeliver(){	
+    $.ajaxSettings.async = false;
+    $.get('personInfo.do',{'state':2}, function(result){
+        var result = JSON.parse(result);
+        showMyProducts(result);
+    });
+};
+
+function waitRecieve(){	
+    $.ajaxSettings.async = false;
+    $.get('personInfo.do',{'state':3}, function(result){
+        var result = JSON.parse(result);
         showMyProducts(result);
     });
 };
@@ -16,7 +36,6 @@ function showMyProducts(result){
     $('.myNullOrder').show();
     $('.myrightinfo_body').hide();
     console.log(result);
-//    var productsList = result;
     var orders = result[0];
     var detailOrderss = result[1];
     for(var i = 0; i < orders.length; i++){
@@ -27,7 +46,7 @@ function showMyProducts(result){
     	for (var j = 0; j < detailOrderss[i].length; j++) {
     		var myDetailOrders = `          
             <ul>
-  			<li>
+  			<li> 
                  <a><img src="${detailOrderss[i][j].url}"/></a>
                  <div>
                     <a>${detailOrderss[i][j].goodsName}</a>
@@ -41,6 +60,7 @@ function showMyProducts(result){
   			<li style="font-weight: bold;">${detailOrderss[i][j].price*detailOrderss[i][j].number}</li>
   			<li>已关闭</li>
   			<li class="a-hover">
+  			    <input type="text" value="${orders[i].id}" style="display:none"/>
   				<p><a href="shoppingCar.jsp">重新购买</a></p>
   				<p class="showDetails"><a>查看详情</a></p>
   			</li>
@@ -55,30 +75,36 @@ function showMyProducts(result){
 
 
 function showMyDetails(result){
-    var myOders = result.data;
+    var myOders = result[0];
+    var myAddressInfo = result[1];
     $('.viewDetails_buttom_body_details').html("");
     for(var i = 0; i < myOders.length; i++){
         var myOrder = `
             <div class="logistics">暂无物流信息</div>
             <ul>
 			<li>
-               <a><img src="${myOders[i].goods_thumb}"/></a>
+               <a><img src="${myOders[i].url}"/></a>
                <div>
-                  <a>${myOders[i].goods_name}</a>
-                  <p>${myOders[i].goods_desc}</p>
-               </div>
-               
+                  <a>${myOders[i].goodsName}</a>
+                  <p>${myOders[i].goodsColor}</p>
+               </div>               
 	        </li>
 			<li>${myOders[i].price}</li>
 			<li>
-               1
-			<li>${myOders[i].price}</li>
+			    ${myOders[i].number}
+			<li>${myOders[i].price*myOders[i].number}</li>
 			</ul> 
 			
 `;
         $('.viewDetails_buttom_body_details').append(myOrder);
-
     };
+    var orderInfo = `
+    <p><span>收货人：${myAddressInfo.cousignee}</span><span>支付方式：未支付</span><span>实付款：￥0.00</span></p>
+    <p><span>联系方式：${myAddressInfo.phoneNumber}</span><span>活动优惠：-￥0.00</span><span>运费：￥0.00</span></p>
+    <p><span>收货地址：${myAddressInfo.provinces}${myAddressInfo.city}${myAddressInfo.area}${myAddressInfo.detailAddress}</span><span>优惠券：-￥0.00</span></p>
+    `;
+    $('#orderInfo').html("");
+    $('#orderInfo').append(orderInfo);
 };
 
 $(function(){
@@ -87,19 +113,16 @@ $(function(){
 	$('.myReceiptAddress').hide();
 	
 	//查看详情--右
-	$(document).on('click','.showDetails',function(){
+	$(document).on('click','.showDetails',function(e){
 	    $('.myOrder').hide();
 	    $('#myPersonInfo').hide();
 	    $.ajaxSettings.async = false;
+	    
+	    var id = e.target.parentNode.parentNode.firstElementChild.value;
 	    $.get('personInfoShowDetails.do',{
-	        'pagesize':1,
-	        'page':1,
+	        'id':id
 	    }, function(result){
-	        var result = JSON.parse(result);
-	        if(result.code != 0){
-	            console.log('数据请求失败');
-	            return;
-	        };
+	        var result = JSON.parse(result);	        
 	        showMyDetails(result);
 	    });
 	    $('.viewDetails').show();
@@ -107,7 +130,7 @@ $(function(){
 	
 	//我的订单--左
 	$(".showMyOrder").click(function () {
-		console.log(666);
+		
 	        productsList(1,showMyProducts);
 	        $('.viewDetails').hide();
 	        $('#myPersonInfo').hide();
@@ -125,6 +148,9 @@ $(function(){
 	    $('.showMyOrder').css("border-left","3px solid cornflowerblue");
 	    $('.showMyOrder').css("background","rgba(102, 107, 255, 0.1)");
 	    $('.showMyOrder').children().css("color","dodgerblue");
+	    
+	    $('.allOrder').siblings().css("color","black");
+	    $('.allOrder').css("color","dodgerblue");
 	    });
 
 	//个人信息--左
@@ -187,8 +213,9 @@ $(function(){
 
 	//待付款--右
 	$('.waitPay').click(function () {
-	    $('.myNullOrder').show();
-	    $('.myrightinfo_body').hide();
+		waitPay();
+//	    $('.myNullOrder').show();
+//	    $('.myrightinfo_body').hide();
 	    $('#myPersonInfo').hide();
 	    $('.waitPay').siblings().css("color","black");
 	    $('.waitPay').css("color","dodgerblue");
@@ -196,8 +223,9 @@ $(function(){
 
 	//代发货--右
 	$('.waitDeliver').click(function () {
-	    $('.myNullOrder').show();
-	    $('.myrightinfo_body').hide();
+		waitDeliver();
+//	    $('.myNullOrder').show();
+//	    $('.myrightinfo_body').hide();
 	    $('#myPersonInfo').hide();
 	    $('.waitDeliver').siblings().css("color","black");
 	    $('.waitDeliver').css("color","dodgerblue");
@@ -205,8 +233,9 @@ $(function(){
 
 	//待收货--右
 	$('.waitRecieve').click(function () {
-	    $('.myNullOrder').show();
-	    $('.myrightinfo_body').hide();
+		waitRecieve();
+//	    $('.myNullOrder').show();
+//	    $('.myrightinfo_body').hide();
 	    $('#myPersonInfo').hide();
 	    $('.waitRecieve').siblings().css("color","black");
 	    $('.waitRecieve').css("color","dodgerblue");

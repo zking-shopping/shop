@@ -14,5 +14,5 @@ public interface OrderDao {
 	public Object select(String id, Object o, Connection conn);
 	public Boolean update(String id, Object o, Connection conn);
 	
-	public List<Order> selectByMemberId(String MemberId, Connection conn);
+	public List<Order> selectByMemberId(String MemberId, String state, Connection conn);
 }

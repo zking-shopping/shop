@@ -1,4 +1,3 @@
-
 package com.shopping.web.action;
 
 import java.sql.Connection;
@@ -26,12 +25,16 @@ public class PersonInfoAction extends ActionFather{
 		// TODO Auto-generated method stub
 		List<Object> list = new ArrayList<Object>();
 		Member m = (Member)request.getSession().getAttribute("member");
+		String state = request.getParameter("state");
 		String id = m.getId();
 		Connection conn = DBHelper.getConnection();
 		OrderDao order = new OrderDaoImpl();//订单表
 		DetailOrderDao detailOrder = new DetailOrderDaoImpl();//详细订单表
-	
-		List<Order> orders = order.selectByMemberId(id, conn);						
+	    
+		List<Order> orders = order.selectByMemberId(id ,null, conn);
+        if(state!=null){
+        	orders = order.selectByMemberId(id ,state, conn);
+	    }
 		ArrayList<Object> detailOrderss = new ArrayList<Object>();
 		for (Order object : orders) {		
 			
