@@ -47,7 +47,13 @@
     <action name="type" class="com.shopping.web.action.TypeAction">
         <form>com.shopping.web.form.TypeForm</form>
         <result name="success" direct="false">type.jsp</result>
-        <result name="error">index.jsp</result>
+        <result name="error">type.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+     <action name="introduction" class="com.shopping.web.action.IntroductionAction">
+        <form>com.shopping.web.form.IntroductionForm</form>
+        <result name="success" direct="false">introduction.jsp</result>
         <pagejump>true</pagejump>
     </action>
 </actions>
