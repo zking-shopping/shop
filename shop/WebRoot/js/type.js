@@ -6,15 +6,15 @@
          "pagesize":20,
           },
     success: function(result){
-//    	alert(result.time);
-//    	console.log(result);
 	//渲染
 		for(var i = 0; i < 20; i++) {
 		
 			var str = `
       <div class="col-md-3 goods">
         <div class="thumbnail">
-          <img src=${result.time}/>
+          <a href="introduction.do">
+              <img src=${result.time} />
+          <a/>
           <caption>
             <p class="goods-name">${result.goodsName}</p>
             <p class="goods-desc">${result.introduction}</p>
@@ -58,7 +58,7 @@ $('li').click(function() {
         			var str = `
               <div class="col-md-3 goods">
                 <div class="thumbnail">
-                  <img src=${result.time}/>
+                  <a href="introduction.do"><img src=${result.time} /></a>
                   <caption>
                     <p class="goods-name">${result.goodsName}</p>
                     <p class="goods-desc">${result.introduction}</p>
@@ -78,6 +78,14 @@ $('li').click(function() {
 	$('[class="current"]').removeClass('current');
 	$(this).addClass('current');
 })
+
+//点击每一张图片去详情页
+$('a').click(function(){
+	var src = $(this).attr("src");
+	window.location.href="introduction.do?src="+src;
+})
+
+
 //
 ////点击上一页
 function goPrev() {
@@ -98,7 +106,7 @@ function goPrev() {
     			var str = `
           <div class="col-md-3 goods">
             <div class="thumbnail">
-              <img src=${result.time}/>
+              <a href="introduction.do"><img src=${result.time} /></a>
               <caption>
                 <p class="goods-name">${result.goodsName}</p>
                 <p class="goods-desc">${result.introduction}</p>
@@ -172,7 +180,7 @@ function goNext(){
     			var str = `
 			          <div class="col-md-3 goods">
 			            <div class="thumbnail">
-			              <img src=${result.time}/>
+			              <a href="introduction.do"><img src=${result.time} /></a>
 			              <caption>
 			                <p class="goods-name">${result.goodsName}</p>
 			                <p class="goods-desc">${result.introduction}</p>
@@ -239,7 +247,7 @@ $('[class="ignore1"]').click(function() {
        			var str = `
    			          <div class="col-md-3 goods">
    			            <div class="thumbnail">
-   			              <img src=${result.time}/>
+   			              <a href="introduction.do"><img src=${result.time} /></a>
    			              <caption>
    			                <p class="goods-name">${result.goodsName}</p>
    			                <p class="goods-desc">${result.introduction}</p>
@@ -315,7 +323,7 @@ $('[class="ignore2"]').click(function() {
      			var str = `
  			          <div class="col-md-3 goods">
  			            <div class="thumbnail">
- 			              <img src=${result.time}/>
+ 			              <a href="introduction.do"><img src=${result.time} /></a>
  			              <caption>
  			                <p class="goods-name">${result.goodsName}</p>
  			                <p class="goods-desc">${result.introduction}</p>
@@ -379,7 +387,7 @@ function searchpage(obj){
 		     			var str = `
 		 			          <div class="col-md-3 goods">
 		 			            <div class="thumbnail">
-		 			              <img src=${result.time}/>
+		 			              <a href="introduction.do"><img src=${result.time} /></a>
 		 			              <caption>
 		 			                <p class="goods-name">${result.goodsName}</p>
 		 			                <p class="goods-desc">${result.introduction}</p>
@@ -410,9 +418,6 @@ function searchpage(obj){
 				    $('ul').children("#page").eq(2).text((page).toString());
 				    $('ul').children("#page").eq(3).text((page+1).toString());
 				    $('ul').children("#page").eq(4).text((page+2).toString());
-
-				
-					
 				}
 
 				if(page < 3) {
