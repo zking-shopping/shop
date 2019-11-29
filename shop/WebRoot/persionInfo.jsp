@@ -240,7 +240,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                        </ul>
 	                        <div class="viewDetails_buttom_body_details"></div>
 	                        <div class="odder_info">订单信息<span></span></div>
-	                        <div class="orderInfo">
+	                        <div class="orderInfo" id="orderInfo">
 	                            <p><span>收货人：111</span><span>支付方式：未支付</span><span>实付款：￥0.00</span></p>
 	                            <p><span>联系方式：155****5555</span><span>活动优惠：-￥0.00</span><span>运费：￥0.00</span></p>
 	                            <p><span>收货地址：北京市北京市丰台区大红门街道11111</span><span>优惠券：-￥0.00</span></p>

@@ -14,12 +14,18 @@ import com.shopping.pojo.Order;
 public class OrderDaoImpl extends BaseDao implements OrderDao{
 
 	@Override
-	public List<Order> selectByMemberId(String memberId, Connection conn) {
-		String sql = "select * from t_order where memberId=?";
+	public List<Order> selectByMemberId(String memberId, String state, Connection conn) {
+		String sql = "select * from t_order where memberId = ?";
+		if(state!=null){
+			sql = sql + " and state = ?";
+		}
 		List<Order> list = new ArrayList<Order>();
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, memberId);
+			if(state!=null){
+				ps.setString(2, state);
+			}
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Order order = new Order();
