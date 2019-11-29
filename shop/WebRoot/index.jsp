@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!--导航条右边-->
 					<ul class=" navbar-nav hidden-xs" id="myNav" style="width:72%">
 						<li style="width:14%">
-							<a href="type.jsp">插线板</a>
+							<a id="sort1">插线板</a>
 							<div class="dropdown" style="display: none; left: -180%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li style="width:14%">
-							<a href="type.jsp">音响耳机</a>
+							<a id="sort2">音响耳机</a>
 							<div class="dropdown" style="display: none; left: -280%;" >
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li style="width:14%">
-							<a href="type.jsp">手机配件</a>
+							<a id="sort3">手机配件</a>
 							<div class="dropdown" style="display: none; left: -380%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -69,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li style="width:14%">
-							<a href="type.jsp">电脑办公</a>
+							<a id="sort4">电脑办公</a>
 							<div class="dropdown" style="display: none; left: -480%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li style="width:14%">
-							<a href="type.jsp">电池电源</a>
+							<a id="sort5">电池电源</a>
 							<div class="dropdown" style="display: none; left: -580%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -89,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li style="width:14%">
-							<a href="type.jsp">生活电器</a>
+							<a id="sort6">生活电器</a>
 							<div class="dropdown" style="display: none; left: -680%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -99,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li style="width:14%">
-							<a href="type.jsp">个护健康</a>
+							<a id="sort7">个护健康</a>
 							<div class="dropdown" style="display: none; left: -780%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
