@@ -25,12 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="css/personInfoCss.css"/>
     <link rel="stylesheet" type="text/css" href="css/submitOrder.css"/>
     
-	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
-	<script type="text/javascript" src="js/personInfoJs.js"></script>
-	<script type="text/javascript" src="js/linkage.js" ></script>
-	<script type="text/javascript" src="js/submitOrder.js"></script>
+	
   </head>
   
   <body>
@@ -133,9 +128,91 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 					</div>
 				</span>
+				<span class="badge bg-danger hidden-sm hidden-xs hidden-md" style="background: white;">
+					
+						<!--购物车车标-->
+						<div id="shopsign">
+							<!--数量-->
+							<p class="count">1</p>
+							<!--购物车-->
+							<span class="glyphicon glyphicon-shopping-cart text-left "></span>
+							
+							<!--下拉框-->
+							<div class="dropdown" style="display: none; " id="allgoods">
+								<div id="shop-top" style="display: none;">
+									<ul style=" overflow-x: auto; ">
+										<li><a href="introduction.jsp"><img src="img/chazuo1.jpg" /></a>
+										    <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
+												<p style="display: block;">万能插座</p>
+												<p style="display: block;">价格:￥135.00</p>
+											</div>
+											<span class="glyphicon glyphicon-remove" style="float: right;"></span>
+							            </li>
+							                
+							            <li>
+											<a href="introduction.jsp">
+											    <img src="img/chazuo1.jpg" />
+										    </a>
+										    <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
+												<p style="display: block;">万能插座</p>
+												<p style="display: block;">价格:￥135.00</p>
+											</div>
+												<span class="glyphicon glyphicon-remove" style="float: right;"></span>
+							                </li>
+							             
+							                <li>
+							                
+												<a href="introduction.jsp">
+											       <img src="img/chazuo1.jpg" />
+										        </a>
+										        <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
+													<p style="display: block;">万能插座</p>
+													<p style="display: block;">价格:￥135.00</p>
+												</div>
+												<span class="glyphicon glyphicon-remove" style="float: right;"></span>
+											
+							                </li>
+							                
+							                <li>
+												<a href="introduction.jsp">
+											       <img src="img/chazuo1.jpg" />
+										        </a>
+										        <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
+													<p style="display: block;">万能插座</p>
+													<p style="display: block;">价格:￥135.00</p>
+												</div>
+												<span class="glyphicon glyphicon-remove" style="float: right;"></span>
+							                </li>
+							                <li>
+												<a href="introduction.jsp">
+											       <img src="img/chazuo1.jpg" />
+										        </a>
+										        <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
+													<p style="display: block;">万能插座</p>
+													<p style="display: block;">价格:￥135.00</p>
+												</div>
+												<span class="glyphicon glyphicon-remove" style="float: right;"></span>
+							                </li>
+							            </ul>
+									</div>
+									<div id="shop-down" style="display: none;" >
+										<h1>总价:￥135.00</h1>
+							        			<a href="shoppingCar.jsp"><button >去购物车</button></a>
+									</div>
+									<div id="no-goods" style=" color: gray;height: 50%; " >
+									    <span style="margin: 50% 20%; font-size:18px; font-weight:lighter; letter-spacing:1px" >还没有商品,快去选中商品</span>
+									</div>
+									<div id="goshopping" style="display:none">
+										<a style="margin: 50% 20%;" href="shoppingCar.jsp"><button>去购物车</button></a>
+									</div>
+						    </div>
+						</div>
+				    </span>
 	        </div>
 	    </nav>
 	</div>
+	<!--最小框的登录和注册-->
+	<ul id="min-reg" class="nav navbar-nav navbar-collapse collapse ">
 	
 	<!--中间内容-->
 	<div class="myOrderInfo">
@@ -385,3 +462,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
   </body>
 </html>
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/personInfoJs.js"></script>
+<script type="text/javascript" src="js/linkage.js"></script>
+<script type="text/javascript" src="js/submitOrder.js"></script>
