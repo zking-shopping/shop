@@ -42,12 +42,16 @@ public class TypeAction extends ActionFather{
   			//如果页码不够
   			PrintWriter out = response.getWriter();
   			if(page<=20){
-	  			forward = "success";
-	  			out.print(jo.toString());
+  			
+  				out.print(jo.toString());
+  				out.flush();
+  				out.close();
+//  				forward="success";
   			}else{
-  				forward="error";
+  				forward = "error";
+  				
   			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
