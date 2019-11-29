@@ -41,6 +41,7 @@ img{border: none;vertical-align: bottom;}
 				position: relative;
 				width: 16%;
 				height: 100px;
+			
 			}
 			
 			
@@ -52,6 +53,7 @@ img{border: none;vertical-align: bottom;}
 				font-weight: lighter;
 				text-decoration: none;
 				text-align: center;
+					cursor:pointer;
 			}
 			
 			#myNav>li .dropdown{

@@ -80,18 +80,17 @@ public class ActionServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		//获取客户传过来的uri
         String url = request.getRequestURI();
         
         //获取action名
         String actionName = url.substring(url.lastIndexOf("/")+1,url.lastIndexOf(".do"));
         System.out.println("actionName："+actionName);
-        if(!("shoppingCar".equalsIgnoreCase(actionName)||"login".equalsIgnoreCase(actionName)||"register".equalsIgnoreCase(actionName))){
-        	//判断用户是否登录
-      		Object isLogin = request.getSession().getAttribute("member");
-      		if(isLogin==null){return;};
-        }    
+//        if(!("shoppingCar".equalsIgnoreCase(actionName)||"login".equalsIgnoreCase(actionName)||"register".equalsIgnoreCase(actionName))){
+//        	//判断用户是否登录
+//      		Object isLogin = request.getSession().getAttribute("member");
+//      		if(isLogin==null){return;};
+//        }    
         //通过action名获取action所对应的的类的全路径
         Element element = (Element) doc.selectSingleNode("/actions/action[@name='"+actionName+"']");
         //判断是否是要跳转页面
@@ -100,7 +99,6 @@ public class ActionServlet extends HttpServlet {
         String actoinClassName =  element.attributeValue("class").toString().trim();
         //new出此action类实例
         ActionFather af = null;
-        
         Object obj = actionPool.get(actoinClassName);
         try{
         	//判断action池中有没有此action实例，如果有就拿出来用，没有就new出来放入action池

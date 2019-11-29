@@ -48,10 +48,10 @@
         <pagejump>true</pagejump>
     </action>
     
-    <action name="type" class="com.shopping.web.action.TypeAction">
-        <form>com.shopping.web.form.TypeForm</form>
-        <result name="success" direct="false">type.jsp</result>
-        <result name="error">type.jsp</result>
+    <action name="sort" class="com.shopping.web.action.SortAction">
+        <form>com.shopping.web.form.SortForm</form>
+        <result name="success" direct="false">sort.jsp</result>
+        <result name="error">sort.jsp</result>
         <pagejump>true</pagejump>
     </action>
     

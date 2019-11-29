@@ -242,3 +242,26 @@
 		$('.banner a.next').hide();
 		timer = setInterval(rightBtn, 2000);
 	})
+	
+	//点击每一种分类，发送一个种类的类型，存到request中
+	$('#sort1').click(function(){
+		location.href="sort.jsp?sort=1";
+	})
+	$('#sort2').click(function(){
+		location.href="sort.jsp?sort=2";
+	})
+	$('#sort3').click(function(){
+		location.href="sort.jsp?sort=3";
+	})
+	$('#sort4').click(function(){
+	   location.href="sort.jsp?sort=4";
+	})
+	$('#sort5').click(function(){
+		location.href="sort.jsp?sort=5";
+	})
+	$('#sort6').click(function(){
+		location.href="sort.jsp?sort=6";
+	})
+	$('#sort7').click(function(){
+		location.href="sort.jsp?sort=7";
+	})
