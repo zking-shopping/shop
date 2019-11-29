@@ -173,7 +173,11 @@ public class ActionServlet extends HttpServlet {
               	String id = request.getParameter("id").substring(1);
               	String[] ids = id.split(",");            	
               	af.doAction(request, response, ids);            	
-              }
+             }else if("register".equalsIgnoreCase(actionName)){
+            	 af.doAction(request, response, ff);
+             }else if("imageCode".equalsIgnoreCase(actionName)){            	
+               	 af.doAction(request, response, ff); 
+             }
         	
         }
         

@@ -33,41 +33,16 @@ header{
 	width: 30px;
 	height: 30px;
 	margin-top: 35px;
-	background: url(../img/icon-index.png) no-repeat 0px -43px;
+	background: url(/shop/img/icon-index.png) no-repeat 0px -43px;
 	cursor: pointer;
 }
 .user-header:hover{
-	background: url(../img/icon-index.png);
+	background: url(/shop/img/icon-index.png);
 }
 .user-header a{
 	display: block;
 	width: 30px;
 	height: 30px;
-}
-.dropdown{
-	display: none;
-	width: 70px;
-	height: 60px;
-	position: absolute;
-	top: 65px;
-	right: 0px;
-}
-.dropdown a{
-	display: block;
-	width: 70px;
-	height: 30px;
-	text-align: center;
-}
-.dropdown a button{
-	display: block;
-	width: 70px;
-	height: 30px;
-	margin: 0px;
-	padding: 0px;
-	background: white;
-	color: black;
-	font-size: 14px;
-	border: 1px solid #AAAAAA;
 }
 
 body{

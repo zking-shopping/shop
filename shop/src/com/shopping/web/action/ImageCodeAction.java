@@ -4,12 +4,19 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Map;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.shopping.util.FormulaHelper;
+
+import net.sf.json.JSONArray;
 
 public class ImageCodeAction extends ActionFather{
 	//验证码包含的所有字符
@@ -19,25 +26,18 @@ public class ImageCodeAction extends ActionFather{
 	//随机生成器
 	private Random r = new Random();
 	//初始化验证码图片的宽高
-	private static int WIDTH = 115;
-	private static int HEIGHT = 30;
+	private static int WIDTH = 206;
+	private static int HEIGHT = 46;
 	
 	public Object doAction(HttpServletRequest request,
 			HttpServletResponse response, Object o) {
-		//用来存验证码
-		StringBuffer sb = new StringBuffer();
-		//用来存加了空格的验证码
-		StringBuffer sbs = new StringBuffer();
-		//生成7位验证码
-		for (int i = 0; i < 5; i++) {
-			int index = r.nextInt(str.length);
-			sb.append(str[index]);
-			sbs.append(str[index]+" ");
-		}
-		//获得验证码字符串
-		String code = sb.toString();
-		//将验证码存进session
-		request.getSession().setAttribute("code", code);
+  		response.setCharacterEncoding("UTF-8");
+  		response.setHeader("Content-Type", "application/json;charset=utf-8");
+  		
+		//生成一个算式和结果
+  		String[] result = FormulaHelper.getAddSubMulFormula(3,0,9);
+  		//将结果存进session
+		request.getSession().setAttribute("result", result[1]);
 		
 		//内存中一个缓存的图片对象
 		BufferedImage bi = new BufferedImage(WIDTH, HEIGHT,
@@ -52,7 +52,7 @@ public class ImageCodeAction extends ActionFather{
 		//设置画笔颜色,并填充验证码
 		g.setColor(Color.RED);
 		g.setFont(new Font("宋体", Font.BOLD, 20));
-		g.drawString(sbs.toString(), 10, 22);
+		g.drawString(result[0], 10, 22);
 		//画干扰点
 		g.setColor(Color.black);
 		for (int i = 0; i < 400; i++) {
@@ -69,11 +69,16 @@ public class ImageCodeAction extends ActionFather{
 		}
 		
 		//获得servlet输出流
-		ServletOutputStream sos = response.getOutputStream();
-		//将内存中生产的图片写入输出流中
-		ImageIO.write(bi, "jpg", sos);
-		sos.flush();
-		sos.close();
+		ServletOutputStream sos = null;
+		try {
+			sos = response.getOutputStream();
+			//将内存中生产的图片写入输出流中
+			ImageIO.write(bi, "jpg", sos);
+			sos.flush();
+			sos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

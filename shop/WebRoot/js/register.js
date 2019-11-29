@@ -2,9 +2,6 @@
 var nameIsTrue = 1;
 var passIsTrue = 1;
 var cellIsTrue = 1;
-//定义判断结果是否正确的初始值，默认不正确
-var resultIsTrue = 1;
-var result = 0;
 
 //输入框移出移入事件
 $('section div form div input').mouseover(function(){
@@ -23,7 +20,7 @@ $('section div form div input').mouseout(function(){
 //输入框获焦事件
 $('section div form div input').focus(function(){
 	if(colorRGBtoHex($(this).css('border-color'))!='#ea3d3d'){
-		$(this).css('border-color','#2C82FF');
+		$(this).css('border-color','#2c82ff');
 	};
 });
 //输入框失焦事件
@@ -47,8 +44,7 @@ $('section div form div input').blur(function(){
 			checkPhoneNumber(cont);
 			name2='verify';
 		}else if(name1=='verify'){
-			//调用方法判断结果是否正确
-			checkResult(cont,result);
+			$('section div form div input.verify').css("border-color","#cccccc");
 			name2='tel';
 		};
 	}else{
@@ -128,15 +124,13 @@ $('.next-step').click(function(){
 			'background-size' :'80% 80%',
 			'background-color' : '#2C82FF'
 		});
+		//设置验证码
+		$('section .register-step2>form>div img').attr("src", "imageCode.do");
+		console.log(6666);
 		//第一步隐藏，第二步显示
 		$('section .register-step1').css('display','none');
 		$('section .register-step2').css('display','block');
 	};
-});
-
-//点击换算式的按钮
-$('.get-verify').click(function(){
-	
 });
 
 //点击上一步的按钮
@@ -198,13 +192,13 @@ $('.ensure-reg').click(function(){
 			.children('.content').html('!').css('border-color','#ea3d3d');
 	};
 	if(tel==''&&result!=''){
-		$('.tel-tip').html('请输入密码！');
+		$('.tel-tip').html('请输入手机号码！');
 		$('section .step ul li .line div').eq(1).css('background','#ea3d3d')
 			.parent('.line').css('background','#F2F2F2')
 			.parent('li').css('color','#ea3d3d')
 			.children('.content').html('!').css('border-color','#ea3d3d');
 	};
-	if(cellIsTrue==0&&resultIsTrue==0&&$('.agreebox').is(':checked')){
+	if(cellIsTrue==0&&$('.agreebox').is(':checked')){
 		//验证账号
 		$.ajax({
 			type:"post",
@@ -281,4 +275,10 @@ $('.ensure-reg').click(function(){
 //点击按钮跳转到登录界面
 $('.goto-login').click(function(){
 	window.open('login.jsp');
+});
+
+//换验证码
+$('.get-verify').click(function(){
+	console.log(9999);
+	$('#codeImage').attr("src", "imageCode.do");
 });

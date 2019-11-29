@@ -147,25 +147,6 @@ section .register-step2>form>div>.tel{
 section .register-step2>form>div>.verify{
 	width: 106px;
 }
-/*输入框下面提示框的样式*/
-section .register-step1>form>div>p,
-section .register-step2>form>div>p,
-section .register-step2>form>div .verify-tip>p{
-	font-size: 16px;
-	color: #ea3d3d;
-}
-section .register-step2>form>div .verify-tip{
-	width: 444px;
-}
-section .register-step2>form>div .verify-tip .res-tip{
-	float: left;
-	width: 108px;
-	height: 26px;
-	margin-right: 30px;
-}
-section .register-step2>form>div .verify-tip .symbol-tip{
-	font-weight: bold;
-}
 /*下一步，上一步，注册按钮的样式*/
 section .register-step1 .next-step,
 section .register-step2 .ensure-reg,
@@ -189,7 +170,7 @@ section .register-step2 .button-list{
 section .register-step2 .ensure-reg,
 section .register-step2 .prev{
 	width: 210px;
-	margin: 10px 6px 0px;
+	margin: 0px 6px 0px;
 }
 section .register-step3 .goto-login{
 	margin-top: 10px;
@@ -248,13 +229,16 @@ section .register-step2>form div>.area-code .drop-down{
 }
 section .register-step2>form div>.area-code .drop-down:hover{border-top-color: #999999;}
 /*算式的样式*/
-section .register-step2>form>div .count{
-	width: 206px;
-	height: 46px;
-	background: #EEEEEE;
+section .register-step2>form>div img{
 	position: absolute;
 	top: 0px;
 	left: 118px;
+}
+/*输入框下面提示框的样式*/
+section .register-step1>form>div>p,
+section .register-step2>form>div>p{
+	font-size: 16px;
+	color: #ea3d3d;
 }
 
 /*换算式按钮的样式*/

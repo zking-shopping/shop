@@ -83,22 +83,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div>
 						<input name="verify" class="verify" type="text" placeholder="请输入结果"/>
-						<div class="count">
-							<div class="counts">
-								<div class="num1"></div>
-								<p class="symbol1"></p>
-								<div class="num2"></div>
-								<p class="symbol2"></p>
-								<div class="num3"></div>
-								<p class="symbol3"></p>
-								<div class="num4"></div>
-							</div>
-						</div>
+						<img id="codeImage" src="" onclick="flushCode(this)"/>
 						<button class="get-verify">看不清？换一题</button>
-						<div class="verify-tip">
-							<p class="res-tip"></p>
-							<p class="symbol-tip">注意：请从左至右计算！</p>
-						</div>
 					</div>
 				</form>
 				<div class="button-list">
@@ -109,10 +95,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input type="checkbox" name="agreebox" class="agreebox" />
 					<label>用户勾选即代表同意</label>
 					<a href="#">
-						《网易邮箱服务条款》
+						《XX邮箱服务条款》
 					</a>
 					<p>和</p>
-					<a href="#">《网易隐私政策》</a>
+					<a href="#">《XX隐私政策》</a>
 				</div>
 			</div>
 			<!--注册第三步：成功！！！-->

@@ -110,25 +110,6 @@ function checkPhoneNumber(cont){
 		.siblings('p').html(pTipContent);
 };
 
-//判断输入的算式结果是否正确
-function checkResult(cont,result){
-	//设置手机号默认为不符合要求
-	resultIsTrue = 1;
-	//将元素的一些属性值初始化为匹配失败的属性值
-	var inputBorderColor = '#ea3d3d';//输入框边框为红色
-	var pTipContent = '结果有误！';//错误提示框内容为空
-	cont = parseInt(cont);
-	
-	if(cont==result){
-		inputBorderColor = '#cccccc';
-		pTipContent = '';
-		resultIsTrue = 0;
-	};
-	
-	$('.verify').css('border-color',inputBorderColor);
-	$('.res-tip').html(pTipContent);
-};
-
 //变换步骤框的样式
 function changUpTipStyle(name1){
 	var name2 = '';
@@ -148,7 +129,7 @@ function changUpTipStyle(name1){
 		name1='tel';
 		num = 1;
 	};
-//	$("input[name="+name+"]");
+	
 	//获得输入框的颜色
 	var color1 = $("input[name="+name1+"]").css('border-color');
 	var color2 = $("input[name="+name2+"]").css('border-color');
@@ -163,7 +144,7 @@ function changUpTipStyle(name1){
 	};
 	//都符合要求
 	if((((nameIsTrue==0&&passIsTrue==0))&&(name1=='username'||name1=='password'))
-		||(((cellIsTrue==0&&resultIsTrue==0))&&(name1!='username'&&name1!='password'))){
+		||(cellIsTrue==0&&(name1!='username'&&name1!='password'))){
 		$('section .step ul li .line div').eq(num).css('background','#2C82FF')
 			.parent().css('background','#2C82FF').parent().css('color','#2C82FF')
 			.children('.content').html(num+1+'').css('border-color','#2C82FF');
@@ -177,7 +158,7 @@ function changUpTipStyle(name1){
 	}
 	//其中一项符合要求，另一项为空
 	if((((nameIsTrue==0&&cont2=='')||(passIsTrue==0&&cont1==''))&&(name1=='username'||name1=='password'))
-		||(((cellIsTrue==0&&cont2=='')||(resultIsTrue==0&&cont1==''))&&(name1!='username'&&name1!='password'))){
+		||(((cellIsTrue==0&&cont2=='')||cont1=='')&&(name1!='username'&&name1!='password'))){
 		$('section .step ul li .line div').eq(num).css('background','#2C82FF')
 			.parent().css('background','#F2F2F2').parent().css('color','#2C82FF')
 			.children('.content').html(num+1+'').css('border-color','#2C82FF');
