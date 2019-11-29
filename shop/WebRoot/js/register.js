@@ -276,9 +276,3 @@ $('.ensure-reg').click(function(){
 $('.goto-login').click(function(){
 	window.open('login.jsp');
 });
-
-//换验证码
-$('.get-verify').click(function(){
-	console.log(9999);
-	$('#codeImage').attr("src", "imageCode.do");
-});
