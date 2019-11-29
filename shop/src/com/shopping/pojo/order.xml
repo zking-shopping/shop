@@ -2,7 +2,8 @@
 <class name="com.shopping.pojo.Order" table="t_order">
 	<property name="id">id</property>
 	<property name="memberId">memberId</property>
-	<property name="goodsName">goodsName</property>
+	<property name="addressId">addressId</property>
+	<property name="orderNumber">orderNumber</property>
 	<property name="total">total</property>
 	<property name="time">time</property>
 	<property name="state">state</property>
