@@ -143,12 +143,15 @@ public class ActionServlet extends HttpServlet {
        
         
         //如果是页面跳转==直接跳转
+        response.setContentType("text/html;charset=UTF-8");
+     	PrintWriter out = response.getWriter();
         if("true".equalsIgnoreCase(isPageJump)){
         	String getResult = (String)af.doAction(request, response, ff);
             if(getResult!=null){
             	Element jumpPageEle = (Element)element.selectSingleNode("result[@name='" + getResult + "']");
             	List jumpPageEleAttr = jumpPageEle.attributes();//获得属性值
             	String jumpPage = jumpPageEle.getStringValue().trim();//获得跳转页面
+            	
             	String redirect = "false";//不二次请求页面
             	for (Object attribute : jumpPageEleAttr) {
                     if (attribute.toString().indexOf("direct") != -1){
@@ -160,8 +163,7 @@ public class ActionServlet extends HttpServlet {
             	
             }
         }else if("false".equalsIgnoreCase(isPageJump)){
-        	response.setContentType("text/html;charset=UTF-8");
-         	PrintWriter out = response.getWriter();
+        	
          	Object o = af.doAction(request, response, ff);
          	if(o!=null){
          		if(o instanceof List){
