@@ -7,28 +7,32 @@
         <pagejump>true</pagejump>
     </action>
     
-    <action name="shoppingCar" class="com.shopping.web.servlet.ShoppingCarAction">
-        <form>xy.form.LoginFormTest</form>
+    <action name="shoppingCar" class="com.shopping.web.servlet.ShoppingCarAction">        
         <pagejump>false</pagejump>
     </action>
     
     <action name="shoppingCarCountChange" class="com.shopping.web.action.ShoppingCarCountChangeAction">
-        <form>com.shopping.web.form.ShoppingCarCountChangeForm</form>   
+           
         <pagejump>false</pagejump>
     </action>
     
     <action name="shoppingCarDeleteGoods" class="com.shopping.web.action.ShoppingCarDeleteGoodsAction">
-        <!-- <form>com.shopping.web.form.ShoppingCarDeleteGoodsForm</form>    -->
+        
         <pagejump>false</pagejump>
     </action>
     
     <action name="personInfo" class="com.shopping.web.action.PersonInfoAction">
-        <!-- <form>com.shopping.web.form.ShoppingCarDeleteGoodsForm</form>    -->
+        
+        <pagejump>false</pagejump>
+    </action>
+    
+    <action name="myPersonInfo" class="com.shopping.web.action.MyPersonInfoAction">
+        
         <pagejump>false</pagejump>
     </action>
     
     <action name="personInfoShowDetails" class="com.shopping.web.action.PersonInfoShowDetailsAction">
-        <!-- <form>com.shopping.web.form.ShoppingCarDeleteGoodsForm</form>    -->
+        
         <pagejump>false</pagejump>
     </action>
     

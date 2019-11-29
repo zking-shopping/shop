@@ -157,26 +157,20 @@ $(function(){
 	$('.myPersonInfo').click(function () {
 
 	    $.ajaxSettings.async = false;
-	    $.get('http://www.wjian.top/shop/api_goods.php',{
-	        'pagesize':1,
-	        'page':1,
-	    }, function(result){
+	    $.get('myPersonInfo.do',function(result){
 	        var result = JSON.parse(result);
-	        if(result.code != 0){
-	            console.log('数据请求失败');
-	            return;
-	        };
-	        showMyDetails(result);
-	    });
 	        var myProduct = `
-	            <p><span>用户</span><span>ID169853895</span></p>
-	            <p><span>账号</span><span>282237742@qq.com</span></p>
-	            <p><span>手机号码</span><span>绑定手机号码</span></p>        
-	`;
+            <p><span>用户</span><span>${result.result}</span></p>
+            <p><span>账号</span><span>${result.username}</span></p>
+            <p><span>手机号码</span><span>${result.phoneNumber}</span></p>        
+`;
+            $('#myPersonInfo').html(myProduct);
+	    });
+	        
 	        $('.myOrder').hide();
 	        $('.viewDetails').hide();
 	        $('.main-info').hide();
-	        $('#myPersonInfo').html(myProduct);
+	        
 	        $('#myPersonInfo').show();
 
 	        $('.myPersonInfo').siblings().css("border-left","0px");
