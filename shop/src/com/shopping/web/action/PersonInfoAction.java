@@ -1,3 +1,4 @@
+
 package com.shopping.web.action;
 
 import java.sql.Connection;
@@ -13,6 +14,7 @@ import com.shopping.dao.daoImpl.DetailOrderDaoImpl;
 import com.shopping.dao.daoImpl.OrderDaoImpl;
 import com.shopping.db.DBHelper;
 import com.shopping.pojo.DetailOrder;
+import com.shopping.pojo.Member;
 import com.shopping.pojo.Order;
 
 
@@ -23,7 +25,8 @@ public class PersonInfoAction extends ActionFather{
 			HttpServletResponse response, Object o) {
 		// TODO Auto-generated method stub
 		List<Object> list = new ArrayList<Object>();
-		String id = (String)o;
+		Member m = (Member)request.getSession().getAttribute("member");
+		String id = m.getId();
 		Connection conn = DBHelper.getConnection();
 		OrderDao order = new OrderDaoImpl();//订单表
 		DetailOrderDao detailOrder = new DetailOrderDaoImpl();//详细订单表
@@ -36,11 +39,6 @@ public class PersonInfoAction extends ActionFather{
 			detailOrderss.add(detailOrders);
 		}
 		
-//		ArrayList<DetailOrder> detailOrdersN = new ArrayList<DetailOrder>();		
-//		for (Object object : detailOrders) {
-//			DetailOrder or = (DetailOrder)object;
-//			detailOrdersN.add(or);
-//		}
 		list.add(orders);
 		list.add(detailOrderss);
 		DBHelper.closeConnection(conn);

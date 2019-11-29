@@ -27,6 +27,11 @@
         <pagejump>false</pagejump>
     </action>
     
+    <action name="personInfoShowDetails" class="com.shopping.web.action.PersonInfoShowDetailsAction">
+        <!-- <form>com.shopping.web.form.ShoppingCarDeleteGoodsForm</form>    -->
+        <pagejump>false</pagejump>
+    </action>
+    
     <action name="login" class="com.shopping.web.action.LoginAction">
         <form>com.shopping.web.form.LoginForm</form>
         <result name="success" direct="false">index.jsp</result>
