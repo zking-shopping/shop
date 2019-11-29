@@ -8,18 +8,6 @@ public class Address {
 	private String provinces;
 	private String city;
 	private String area;
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getArea() {
-		return area;
-	}
-	public void setArea(String area) {
-		this.area = area;
-	}
 	private String detailAddress;
 	public int getId() {
 		return id;
@@ -51,10 +39,23 @@ public class Address {
 	public void setProvinces(String provinces) {
 		this.provinces = provinces;
 	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
+	}
 	public String getDetailAddress() {
 		return detailAddress;
 	}
 	public void setDetailAddress(String detailAddress) {
 		this.detailAddress = detailAddress;
 	}
+	
 }
