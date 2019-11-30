@@ -46,7 +46,6 @@ public class SortAction extends ActionFather{
         PicDao pd = new PicDaoImpl();
         List<Goods> sortList = gd.selectBySort("2", conn);
         System.out.println(sort);
-        System.out.println(sortList.size());
         DBHelper.closeConnection(conn);
         //根据查询的所有商品找到所有的相对应的picid
 //        List<Integer> listPic = new ArrayList<Integer>();

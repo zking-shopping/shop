@@ -2,6 +2,8 @@
 var nameIsTrue = 1;
 var passIsTrue = 1;
 var cellIsTrue = 1;
+//定义判断结果是否正确的初始值，默认不正确
+var resultIsTrue = 1;
 
 //输入框移出移入事件
 $('section div form div input').mouseover(function(){
@@ -28,33 +30,25 @@ $('section div form div input').blur(function(){
 	//获得输入框内容
 	var cont = $(this).val();
 	//获得输入框的name属性
-	var name1 = $(this).attr('name');
-	var name2 = null;
+	var name = $(this).attr('name');
 	if(cont!=''){
-		if(name1=='username'){
+		if(name=='username'){
 			//调用方法判断用户名是否符合规范
 			checkUsername(cont);
-			name2='password';
-		}else if(name1=='password'){
+		}else if(name=='password'){
 			//调用方法判断密码是否符合规范
 			checkPassword(cont);
-			name2='username';
-		}else if(name1=='tel'){
+		}else if(name=='tel'){
 			//调用方法判断手机号是否符合规范
 			checkPhoneNumber(cont);
-			name2='verify';
-		}else if(name1=='verify'){
-			$('section div form div input.verify').css("border-color","#cccccc");
-			name2='tel';
 		};
-	}else{
-		//如果输入框边框不是红色
-		if(colorRGBtoHex($(this).css('border-color'))!='#ea3d3d'){
-			$(this).css('border-color','#CCCCCC')
-				.siblings('p').html('');
-		}
 	};
-	changUpTipStyle(name1);
+	//如果输入框边框不是红色
+	if(colorRGBtoHex($(this).css('border-color'))!='#ea3d3d'){
+		$(this).css('border-color','#CCCCCC')
+			.siblings('p').html('');
+	};
+	changUpTipStyle(name);
 });
 //输入框输入事件
 $('section div form div input').keydown(function(event){
@@ -124,7 +118,8 @@ $('.next-step').click(function(){
 			'background-size' :'80% 80%',
 			'background-color' : '#2C82FF'
 		});
-		console.log(6666);
+		//加载验证码
+		replaceImageCode();
 		//第一步隐藏，第二步显示
 		$('section .register-step1').css('display','none');
 		$('section .register-step2').css('display','block');
@@ -197,11 +192,12 @@ $('.ensure-reg').click(function(){
 			.children('.content').html('!').css('border-color','#ea3d3d');
 	};
 	if(cellIsTrue==0&&$('.agreebox').is(':checked')){
+		resultIsTrue = 0;
 		//验证账号
 		$.ajax({
 			type:"post",
 			url:"register.do",
-			data:"username="+usernames+"&password="+passwords+"&phoneNumber="+tel,
+			data:"username="+usernames+"&password="+passwords+"&phoneNumber="+tel+"&imageCode="+result,
 			success:function(result){
 				console.log(typeof result);
 				console.log(result);
@@ -263,6 +259,19 @@ $('.ensure-reg').click(function(){
 					$('section .register-step3').css('display','block');
 				}else if(result==1){
 					alert("注册出错！请刷新页面重新注册！");
+				}else if(result==3){
+					resultIsTrue = 1;
+					//改变顶部样式
+					$('section .step ul li .line div').eq(1).css('background','#ea3d3d')
+					.parent('.line').css('background','#F2F2F2')
+					.parent('li').css('color','#ea3d3d')
+					.children('.content').html('!').css({
+						'border-color' : '#ea3d3d',
+						'background' : 'none'});
+					$('.verify').css('border-color','#ea3d3d')
+						.siblings('p').html("验证码错误，请重新输入！");
+					//换验证码
+					replaceImageCode();
 				};
 			}
 		});
