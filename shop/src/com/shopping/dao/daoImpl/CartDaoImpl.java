@@ -26,7 +26,7 @@ public class CartDaoImpl extends BaseDao implements CartDao{
 				Cart c = new Cart();
 				c.setId(rs.getInt("id"));
 				c.setMemberId(rs.getString("memberId"));
-				c.setMemberId(rs.getString("goodsName"));
+				c.setGoodsName(rs.getString("goodsName"));
 				c.setGoodsId(rs.getInt("goodsId"));
 				c.setNumber(rs.getInt("number"));
 				c.setUrl(rs.getString("url"));

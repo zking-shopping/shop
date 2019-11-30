@@ -11,6 +11,10 @@
         <pagejump>false</pagejump>
     </action>
     
+    <action name="test" class="com.shopping.web.action.TestAction">        
+        <pagejump>false</pagejump>
+    </action>
+    
     <action name="shoppingCarCountChange" class="com.shopping.web.action.ShoppingCarCountChangeAction">
            
         <pagejump>false</pagejump>
@@ -39,6 +43,13 @@
     <action name="login" class="com.shopping.web.action.LoginAction">
         <form>com.shopping.web.form.LoginForm</form>
         <result name="success" direct="false">index.jsp</result>
+        <result name="error">login.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+    <action name="buyAgain" class="com.shopping.web.action.BuyAgainAction">
+        
+        <result name="success" direct="false">shoppingCar.jsp</result>
         <result name="error">login.jsp</result>
         <pagejump>true</pagejump>
     </action>

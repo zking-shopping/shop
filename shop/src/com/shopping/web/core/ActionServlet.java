@@ -3,6 +3,7 @@ package com.shopping.web.core;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -116,6 +117,7 @@ public class ActionServlet extends HttpServlet {
         FormFather ff = null;
         String formInstanceClass = null;
         if(element.selectSingleNode("form")!=null){
+        	
         	formInstanceClass = element.selectSingleNode("form").getStringValue().trim();
         }
         
@@ -168,6 +170,9 @@ public class ActionServlet extends HttpServlet {
          			ArrayList getResult = (ArrayList)o;
                  	JSONArray json  =  JSONArray.fromObject(getResult);
                  	out.write(json.toString());
+         		}else if(o instanceof OutputStream){//为验证码的输出
+         			out = null;
+//         			System.out.println(1111111);
          		}else{
          			JSONObject json = JSONObject.fromObject(o);
          			out.write(json.toString());
