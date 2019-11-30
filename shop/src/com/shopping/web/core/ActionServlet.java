@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -25,6 +26,7 @@ import org.dom4j.io.SAXReader;
 import org.xml.sax.Attributes;
 
 import com.shopping.pojo.Cart;
+import com.shopping.pojo.Member;
 import com.shopping.web.action.ActionFather;
 import com.shopping.web.form.FormFather;
 import com.shopping.web.form.ShoppingCarCountChangeForm;
@@ -84,6 +86,11 @@ public class ActionServlet extends HttpServlet {
         //获取action名
         String actionName = url.substring(url.lastIndexOf("/")+1,url.lastIndexOf(".do"));
         System.out.println("actionName："+actionName);
+//        if(!("shoppingCar".equalsIgnoreCase(actionName)||"login".equalsIgnoreCase(actionName)||"register".equalsIgnoreCase(actionName))){
+//        	//判断用户是否登录
+//      		Object isLogin = request.getSession().getAttribute("member");
+//      		if(isLogin==null){return;};
+//        }    
         //通过action名获取action所对应的的类的全路径
         Element element = (Element) doc.selectSingleNode("/actions/action[@name='"+actionName+"']");
         //判断是否是要跳转页面
@@ -92,7 +99,6 @@ public class ActionServlet extends HttpServlet {
         String actoinClassName =  element.attributeValue("class").toString().trim();
         //new出此action类实例
         ActionFather af = null;
-        
         Object obj = actionPool.get(actoinClassName);
         try{
         	//判断action池中有没有此action实例，如果有就拿出来用，没有就new出来放入action池
@@ -136,12 +142,15 @@ public class ActionServlet extends HttpServlet {
        
         
         //如果是页面跳转==直接跳转
+        response.setContentType("text/html;charset=UTF-8");
+     	PrintWriter out = response.getWriter();
         if("true".equalsIgnoreCase(isPageJump)){
         	String getResult = (String)af.doAction(request, response, ff);
             if(getResult!=null){
             	Element jumpPageEle = (Element)element.selectSingleNode("result[@name='" + getResult + "']");
             	List jumpPageEleAttr = jumpPageEle.attributes();//获得属性值
             	String jumpPage = jumpPageEle.getStringValue().trim();//获得跳转页面
+            	
             	String redirect = "false";//不二次请求页面
             	for (Object attribute : jumpPageEleAttr) {
                     if (attribute.toString().indexOf("direct") != -1){
@@ -155,12 +164,11 @@ public class ActionServlet extends HttpServlet {
         }else if("false".equalsIgnoreCase(isPageJump)){
         	//通过action判断返回值
         	 if("shoppingCar".equalsIgnoreCase(actionName)){
-        		
         		ArrayList getResult = (ArrayList)af.doAction(request, response, ff);        		         		
              	response.setContentType("text/html;charset=UTF-8");
-             	PrintWriter out = response.getWriter();
+//             	PrintWriter out = response.getWriter();
              	JSONArray json  =  JSONArray.fromObject(getResult);
-             	out.write(json.toString());
+             	response.getWriter().write(json.toString());
              }else if("shoppingCarCountChange".equalsIgnoreCase(actionName)){
              	
             	String count = request.getParameter("count");             	
@@ -178,14 +186,18 @@ public class ActionServlet extends HttpServlet {
              }else if("imageCode".equalsIgnoreCase(actionName)){            	
                	 af.doAction(request, response, ff); 
              }
-        	
+         	Object o = af.doAction(request, response, ff);
+         	if(o!=null){
+         		if(o instanceof List){
+         			ArrayList getResult = (ArrayList)o;
+                 	JSONArray json  =  JSONArray.fromObject(getResult);
+                 	out.write(json.toString());
+         		}else{
+         			JSONObject json = JSONObject.fromObject(o);
+         			out.write(json.toString());
+         		}        		
+         	}   
         }
-        
-        
-        
-        
-        
-
 	}
 
 	/**
@@ -195,8 +207,7 @@ public class ActionServlet extends HttpServlet {
 	 */
 	public void init() throws ServletException {
 		String configFileName = this.getServletConfig().getInitParameter("configLocation");
-		System.out.println("configFileName："+configFileName);
-        
+		
 		if (configFileName == null){
             configFileName = "/controller.xml";
             PrintWriter printWriter = null;
@@ -211,7 +222,6 @@ public class ActionServlet extends HttpServlet {
                 }
             }
         }
-        
         SAXReader reader = new SAXReader();
         try {
             doc = reader.read(ActionServlet.class.getResourceAsStream(configFileName));

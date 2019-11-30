@@ -7,24 +7,44 @@
         <pagejump>true</pagejump>
     </action>
     
-    <action name="shoppingCar" class="com.shopping.web.servlet.ShoppingCarAction">
-        <form>xy.form.LoginFormTest</form>
+    <action name="shoppingCar" class="com.shopping.web.servlet.ShoppingCarAction">        
         <pagejump>false</pagejump>
     </action>
     
     <action name="shoppingCarCountChange" class="com.shopping.web.action.ShoppingCarCountChangeAction">
-        <form>com.shopping.web.form.ShoppingCarCountChangeForm</form>   
+           
         <pagejump>false</pagejump>
     </action>
     
     <action name="shoppingCarDeleteGoods" class="com.shopping.web.action.ShoppingCarDeleteGoodsAction">
-        <!-- <form>com.shopping.web.form.ShoppingCarDeleteGoodsForm</form>    -->
+        
+        <pagejump>false</pagejump>
+    </action>
+    
+    <action name="personInfo" class="com.shopping.web.action.PersonInfoAction">
+        
+        <pagejump>false</pagejump>
+    </action>
+    
+    <action name="myPersonInfo" class="com.shopping.web.action.MyPersonInfoAction">
+        
+        <pagejump>false</pagejump>
+    </action>
+    
+    <action name="personInfoShowDetails" class="com.shopping.web.action.PersonInfoShowDetailsAction">
+        
         <pagejump>false</pagejump>
     </action>
     
     <action name="login" class="com.shopping.web.action.LoginAction">
         <form>com.shopping.web.form.LoginForm</form>
         <result name="success" direct="false">index.jsp</result>
+        <result name="error">login.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+    <action name="isLogin" class="com.shopping.web.action.IsLoginAction">        
+        <result name="success" direct="true">submitOrder.jsp</result>
         <result name="error">login.jsp</result>
         <pagejump>true</pagejump>
     </action>
@@ -36,5 +56,18 @@
     
     <action name="imageCode" class="com.shopping.web.action.ImageCodeAction">
         <pagejump>false</pagejump>
+    </action>
+    
+    <action name="sort" class="com.shopping.web.action.SortAction">
+        <form>com.shopping.web.form.SortForm</form>
+        <result name="success" direct="false">sort.jsp</result>
+        <result name="error">sort.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+     <action name="introduction" class="com.shopping.web.action.IntroductionAction">
+        <form>com.shopping.web.form.IntroductionForm</form>
+        <result name="success" direct="false">introduction.jsp</result>
+        <pagejump>true</pagejump>
     </action>
 </actions>

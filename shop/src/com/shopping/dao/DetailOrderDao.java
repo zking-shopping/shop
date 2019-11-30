@@ -3,6 +3,8 @@ package com.shopping.dao;
 import java.sql.Connection;
 import java.util.List;
 
+import com.shopping.pojo.DetailOrder;
+
 public interface DetailOrderDao {
 	public List<Object> selectAll(Object o, Connection conn);
 	public Object selectById(Object o, Connection conn);
@@ -11,4 +13,6 @@ public interface DetailOrderDao {
 	public Boolean updateExId(Object obj, Connection conn);
 	public Object select(String id, Object o, Connection conn);
 	public Boolean update(String id, Object o, Connection conn);
+	
+	public List<DetailOrder> selectByOrderId(String orderId, Connection conn);
 }

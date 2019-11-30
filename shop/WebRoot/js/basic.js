@@ -221,3 +221,15 @@ function inputChangeStyle(color1,color2,cont2,ele){
 		};
 	};
 };
+
+//更换验证码
+function replaceImageCode(){
+	$.ajax({
+		type:"post",
+		url:"register.do",
+		data:"username="+usernames+"&password="+passwords+"&phoneNumber="+tel,
+		success:function(result){
+			
+		}
+	});
+};

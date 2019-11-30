@@ -1,15 +1,32 @@
 function productsList(page, showMyProducts){
     var page = page ? page : 1;
     $.ajaxSettings.async = false;
-    $.get('http://www.wjian.top/shop/api_goods.php',{
-        'pagesize':3,
-        'page':page,
-    }, function(result){
+    $.get('personInfo.do', function(result){
         var result = JSON.parse(result);
-        if(result.code != 0){
-            console.log('数据请求失败');
-            return;
-        };
+        showMyProducts(result);
+    });
+};
+
+function waitPay(){	
+    $.ajaxSettings.async = false;
+    $.get('personInfo.do',{'state':1}, function(result){
+        var result = JSON.parse(result);
+        showMyProducts(result);
+    });
+};
+
+function waitDeliver(){	
+    $.ajaxSettings.async = false;
+    $.get('personInfo.do',{'state':2}, function(result){
+        var result = JSON.parse(result);
+        showMyProducts(result);
+    });
+};
+
+function waitRecieve(){	
+    $.ajaxSettings.async = false;
+    $.get('personInfo.do',{'state':3}, function(result){
+        var result = JSON.parse(result);
         showMyProducts(result);
     });
 };
@@ -19,62 +36,75 @@ function showMyProducts(result){
     $('.myNullOrder').show();
     $('.myrightinfo_body').hide();
     console.log(result);
-    var productsList = result.data;
-    for(var i = 0; i < productsList.length; i++){
+    var orders = result[0];
+    var detailOrderss = result[1];
+    for(var i = 0; i < orders.length; i++){
+    	var myOrders = `
+        <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span></div>
+        `;
+        $('.myProducts').append(myOrders);
+    	for (var j = 0; j < detailOrderss[i].length; j++) {
+    		var myDetailOrders = `          
+            <ul>
+  			<li> 
+                 <a><img src="${detailOrderss[i][j].url}"/></a>
+                 <div>
+                    <a>${detailOrderss[i][j].goodsName}</a>
+                    <p>${detailOrderss[i][j].goodsColor}</p>
+                 </div>
+                 
+  	        </li>
+  			<li>${detailOrderss[i][j].price}</li>
+  			<li>
+  			${detailOrderss[i][j].number}
+  			<li style="font-weight: bold;">${detailOrderss[i][j].price*detailOrderss[i][j].number}</li>
+  			<li>已关闭</li>
+  			<li class="a-hover">
+  			    <input type="text" value="${orders[i].id}" style="display:none"/>
+  				<p><a href="shoppingCar.jsp">重新购买</a></p>
+  				<p class="showDetails"><a>查看详情</a></p>
+  			</li>
+           </ul>
+  `;
+        $('.myProducts').append(myDetailOrders);	
+		}
         $('.myNullOrder').hide();
-        $('.myrightinfo_body').show();
-        var myProduct = `
-          <div class="odder_info">下单时间:<span></span> 订单号:<span></span></div>
-          <ul>
-			<li>
-               <a><img src="${productsList[i].goods_thumb}"/></a>
-               <div>
-                  <a>${productsList[i].goods_name}</a>
-                  <p>${productsList[i].goods_desc}</p>
-               </div>
-               
-	        </li>
-			<li>${productsList[i].price}</li>
-			<li>
-               1
-			<li style="font-weight: bold;">${productsList[i].price}</li>
-			<li>已关闭</li>
-			<li class="a-hover">
-				<p><a href="shoppingCar.html">重新购买</a></p>
-				<p class="showDetails"><a>查看详情</a></p>
-			</li>
-         </ul>
-`;
-        $('.myProducts').append(myProduct);
+        $('.myrightinfo_body').show();                
     };
 };
 
 
 function showMyDetails(result){
-    var myOders = result.data;
+    var myOders = result[0];
+    var myAddressInfo = result[1];
     $('.viewDetails_buttom_body_details').html("");
     for(var i = 0; i < myOders.length; i++){
         var myOrder = `
             <div class="logistics">暂无物流信息</div>
             <ul>
 			<li>
-               <a><img src="${myOders[i].goods_thumb}"/></a>
+               <a><img src="${myOders[i].url}"/></a>
                <div>
-                  <a>${myOders[i].goods_name}</a>
-                  <p>${myOders[i].goods_desc}</p>
-               </div>
-               
+                  <a>${myOders[i].goodsName}</a>
+                  <p>${myOders[i].goodsColor}</p>
+               </div>               
 	        </li>
 			<li>${myOders[i].price}</li>
 			<li>
-               1
-			<li>${myOders[i].price}</li>
+			    ${myOders[i].number}
+			<li>${myOders[i].price*myOders[i].number}</li>
 			</ul> 
 			
 `;
         $('.viewDetails_buttom_body_details').append(myOrder);
-
     };
+    var orderInfo = `
+    <p><span>收货人：${myAddressInfo.cousignee}</span><span>支付方式：未支付</span><span>实付款：￥0.00</span></p>
+    <p><span>联系方式：${myAddressInfo.phoneNumber}</span><span>活动优惠：-￥0.00</span><span>运费：￥0.00</span></p>
+    <p><span>收货地址：${myAddressInfo.provinces}${myAddressInfo.city}${myAddressInfo.area}${myAddressInfo.detailAddress}</span><span>优惠券：-￥0.00</span></p>
+    `;
+    $('#orderInfo').html("");
+    $('#orderInfo').append(orderInfo);
 };
 
 $(function(){
@@ -83,19 +113,16 @@ $(function(){
 	$('.myReceiptAddress').hide();
 	
 	//查看详情--右
-	$(document).on('click','.showDetails',function(){
+	$(document).on('click','.showDetails',function(e){
 	    $('.myOrder').hide();
 	    $('#myPersonInfo').hide();
 	    $.ajaxSettings.async = false;
-	    $.get('http://www.wjian.top/shop/api_goods.php',{
-	        'pagesize':1,
-	        'page':1,
+	    
+	    var id = e.target.parentNode.parentNode.firstElementChild.value;
+	    $.get('personInfoShowDetails.do',{
+	        'id':id
 	    }, function(result){
-	        var result = JSON.parse(result);
-	        if(result.code != 0){
-	            console.log('数据请求失败');
-	            return;
-	        };
+	        var result = JSON.parse(result);	        
 	        showMyDetails(result);
 	    });
 	    $('.viewDetails').show();
@@ -103,7 +130,7 @@ $(function(){
 	
 	//我的订单--左
 	$(".showMyOrder").click(function () {
-		console.log(666);
+		
 	        productsList(1,showMyProducts);
 	        $('.viewDetails').hide();
 	        $('#myPersonInfo').hide();
@@ -121,32 +148,29 @@ $(function(){
 	    $('.showMyOrder').css("border-left","3px solid cornflowerblue");
 	    $('.showMyOrder').css("background","rgba(102, 107, 255, 0.1)");
 	    $('.showMyOrder').children().css("color","dodgerblue");
+	    
+	    $('.allOrder').siblings().css("color","black");
+	    $('.allOrder').css("color","dodgerblue");
 	    });
 
 	//个人信息--左
 	$('.myPersonInfo').click(function () {
 
 	    $.ajaxSettings.async = false;
-	    $.get('http://www.wjian.top/shop/api_goods.php',{
-	        'pagesize':1,
-	        'page':1,
-	    }, function(result){
+	    $.get('myPersonInfo.do',function(result){
 	        var result = JSON.parse(result);
-	        if(result.code != 0){
-	            console.log('数据请求失败');
-	            return;
-	        };
-	        showMyDetails(result);
-	    });
 	        var myProduct = `
-	            <p><span>用户</span><span>ID169853895</span></p>
-	            <p><span>账号</span><span>282237742@qq.com</span></p>
-	            <p><span>手机号码</span><span>绑定手机号码</span></p>        
-	`;
+            <p><span>用户</span><span>${result.result}</span></p>
+            <p><span>账号</span><span>${result.username}</span></p>
+            <p><span>手机号码</span><span>${result.phoneNumber}</span></p>        
+`;
+            $('#myPersonInfo').html(myProduct);
+	    });
+	        
 	        $('.myOrder').hide();
 	        $('.viewDetails').hide();
 	        $('.main-info').hide();
-	        $('#myPersonInfo').html(myProduct);
+	        
 	        $('#myPersonInfo').show();
 
 	        $('.myPersonInfo').siblings().css("border-left","0px");
@@ -183,8 +207,9 @@ $(function(){
 
 	//待付款--右
 	$('.waitPay').click(function () {
-	    $('.myNullOrder').show();
-	    $('.myrightinfo_body').hide();
+		waitPay();
+//	    $('.myNullOrder').show();
+//	    $('.myrightinfo_body').hide();
 	    $('#myPersonInfo').hide();
 	    $('.waitPay').siblings().css("color","black");
 	    $('.waitPay').css("color","dodgerblue");
@@ -192,8 +217,9 @@ $(function(){
 
 	//代发货--右
 	$('.waitDeliver').click(function () {
-	    $('.myNullOrder').show();
-	    $('.myrightinfo_body').hide();
+		waitDeliver();
+//	    $('.myNullOrder').show();
+//	    $('.myrightinfo_body').hide();
 	    $('#myPersonInfo').hide();
 	    $('.waitDeliver').siblings().css("color","black");
 	    $('.waitDeliver').css("color","dodgerblue");
@@ -201,8 +227,9 @@ $(function(){
 
 	//待收货--右
 	$('.waitRecieve').click(function () {
-	    $('.myNullOrder').show();
-	    $('.myrightinfo_body').hide();
+		waitRecieve();
+//	    $('.myNullOrder').show();
+//	    $('.myrightinfo_body').hide();
 	    $('#myPersonInfo').hide();
 	    $('.waitRecieve').siblings().css("color","black");
 	    $('.waitRecieve').css("color","dodgerblue");

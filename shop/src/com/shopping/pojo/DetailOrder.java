@@ -10,12 +10,6 @@ public class DetailOrder {
 	private String number;
 	private int colorId;
 	private String goodsColor;
-	public String getGoodsName() {
-		return goodsName;
-	}
-	public void setGoodsName(String goodsName) {
-		this.goodsName = goodsName;
-	}
 	public int getId() {
 		return id;
 	}
@@ -33,6 +27,12 @@ public class DetailOrder {
 	}
 	public void setGoodsId(int goodsId) {
 		this.goodsId = goodsId;
+	}
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
 	}
 	public String getUrl() {
 		return url;
@@ -63,5 +63,6 @@ public class DetailOrder {
 	}
 	public void setGoodsColor(String goodsColor) {
 		this.goodsColor = goodsColor;
-	}	
+	}
+	
 }

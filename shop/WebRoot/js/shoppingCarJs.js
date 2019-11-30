@@ -8,29 +8,25 @@ function productsList(page, showMyProducts){
     $.get('shoppingCar.do',function(result){
     	console.log(result);
         var result = JSON.parse(result);
-//        if(result.code != 0){
-//            console.log('数据请求失败');
-//            return;
-//        };
        showMyProducts(result);
-//    	var page = page ? page : 1;
-//        $.ajaxSettings.async = false;
-//        $.get('http://www.wjian.top/shop/api_goods.php',{
-//            'pagesize':6,
-//            'page':page,
-//        }, function(result){
-//            var result = JSON.parse(result);
-//            if(result.code != 0){
-//                console.log('数据请求失败');
-//                return;
-//            };
-//            showMyProducts(result);
+// var page = page ? page : 1;
+// $.ajaxSettings.async = false;
+// $.get('http://www.wjian.top/shop/api_goods.php',{
+// 'pagesize':6,
+// 'page':page,
+// }, function(result){
+// var result = JSON.parse(result);
+// if(result.code != 0){
+// console.log('数据请求失败');
+// return;
+// };
+// showMyProducts(result);
         });
 };
 	
-	//做判断，在数据库如果返回有购物车信息，则把.products设为hide(),把数据库的商品内容设置在.myProducts的ul中
+	// 做判断，在数据库如果返回有购物车信息，则把.products设为hide(),把数据库的商品内容设置在.myProducts的ul中
 
-    //----------------------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------
 
 function countChange(id,count){
 	$.ajaxSettings.async = false;
@@ -78,7 +74,7 @@ function showMyProducts(result){
     isHasProduct();
 };
 
-	//底部显示总价
+	// 底部显示总价
 	function showMySumPrice(){
 		var mySumPrice = `
           <ul class="mySumPrice" data-spy="affix" data-offset-top="1">
@@ -93,14 +89,18 @@ function showMyProducts(result){
 		$('.myProducts').append(mySumPrice);
 	}
 	
-	//----------------------------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------
 
-    //ul点击事件
+    // ul点击事件
     var sum = 0;	
     var deleteOneRemenber = null;
+    
 	$("ul").click(function(e){
-
-		//减
+		//event.preventDefault() ：阻止默认行为，可以用 event.isDefaultPrevented() 来确定preventDefault是否被调用过了
+		//event.stopPropagation() ：阻止事件冒泡，事件是可以冒泡的，为防止事件冒泡到DOM树上，不触发任何前辈元素上的事件处理函数，可以用 event.isPropagationStopped() 来确定stopPropagation是否被调用过了 
+		
+		if(!e.isPropagationStopped()){//确定stopPropagation是否被调用过
+		// 减
 		if(e.target.className=='reduce'){
 			var number = e.target.nextElementSibling.value;
 			
@@ -116,7 +116,7 @@ function showMyProducts(result){
 			
 
 		}
-		//加
+		// 加
 		if(e.target.className=='add'){
 			var number = e.target.previousElementSibling.value;
 			number++;
@@ -127,7 +127,7 @@ function showMyProducts(result){
 			calculateSumPrice();
 			countChange(id,number);
 		}
-		//后面删除一条
+		// 后面删除一条
 		if(e.target.className=='deleteOne'){
 			
 			e.target.setAttribute('data-toggle','modal');
@@ -137,7 +137,7 @@ function showMyProducts(result){
 			isHasProduct();
 			deleteGoods(id);
 		}
-		//总价ul中删除
+		// 总价ul中删除
 		if(e.target.className=='deleteChecked'){	
 			var isDel = false;
 			var id = "";
@@ -160,9 +160,10 @@ function showMyProducts(result){
 			deleteGoods(id);
 			isHasProduct();
 		}
-		//全选
+		// 全选
 		if(e.target.className=='checkAll'){
-			//全选中或全不选中
+			
+			// 全选中或全不选中
 			$(e.target).prop('checked',true);
 			var lock = false;
 			$("[type='checkbox']").each(function(){	
@@ -170,39 +171,49 @@ function showMyProducts(result){
 					lock = true;	
 				}
 			});
+			
 			if(lock){
+				
 				$("[type='checkbox']").prop('checked',true);
 			}else{
 				
 				$("[type='checkbox']").prop('checked',false);
 			}
-			//计算总价
+			// 计算总价
 			calculateSumPrice();
 		}
-		//选中前面框框总价显示
+		// 选中前面框框总价显示
 		if(e.target.className=='oneCheckbox'){
 			calculateSumPrice();
+			
 		}
-		//结算
+		// 结算
 		if(e.target.className=='myBalance'){
 			var balanceCount = 0;
+			var balanceGooods = "";
 		    $('.oneCheckbox').each(function(){
 			    if($(this).prop('checked')){
 				    balanceCount++;
+				    var id = $(this).prev().val();
+			    	var number = $(this).parent().parent().children('li').eq(3).children('input').eq(0).val();			    	
+			    	balanceGooods = balanceGooods+"-、、-"+id+"-_~-_~"+number;
+			    	
 			    }
 		    });
 		    if(balanceCount<=0){
 			    e.target.setAttribute('data-toggle','modal');
 			    e.target.setAttribute('data-target','#balanceModal');
-		    }else{
-				balanceCount = 0;
-			    alert('哈哈哈');
+		    }else{		  
+		        	window.location.href = "isLogin.do?balanceGooods="+balanceGooods;	  
 		    }
+		    
 		}
-	});
+    } 
+		 e.stopPropagation();//必须要，不然e.isPropagationStopped()无法判断stopPropagation是否调用过
+});
 
 
-    //滚轮滚动事件
+    // 滚轮滚动事件
 	$(document).scroll(function(){
 		var scrollH = $(document).scrollTop();
 		var myProductsH = 160*$('.oneCheckbox').length;
@@ -216,7 +227,7 @@ function showMyProducts(result){
 
 	});
 
-    //input框失焦事件
+    // input框失焦事件
     $('.myProductCount').blur(function(){
 		    var number = parseInt($(this).val());
 		    number=number>0 ?number : 1;
@@ -228,9 +239,9 @@ function showMyProducts(result){
 			countChange(id,number);
 	});
 	
-   //-----------------------------------------------------------------------------------------------
+   // -----------------------------------------------------------------------------------------------
 
-    //modal按钮点击事件
+    // modal按钮点击事件
 	$('#isDeleteOne').click(function(){
 		deleteOneRemenber.parentNode.parentNode.remove();
 		calculateSumPrice();
@@ -253,7 +264,7 @@ function showMyProducts(result){
 		$('#isBalance').attr('data-dismiss','modal');
 	});
     
-	//计算所有勾选价格
+	// 计算所有勾选价格
 	function calculateSumPrice(){
 		sum = 0;
 		$(".oneCheckbox").each(function(){	
@@ -265,7 +276,7 @@ function showMyProducts(result){
 		$('.mySumPrice').children().eq(2).text("原价：￥"+sum+".00"+"  活动优惠：-￥0.00 |");
 	}
 
-    //判断是否有商品
+    // 判断是否有商品
     function isHasProduct(){
 		if($('.oneCheckbox').length<=0){
 		   $('.myProducts').hide();
@@ -274,5 +285,5 @@ function showMyProducts(result){
 	}
     
 
-    //清空购物车
-    //$('.myProducts').empty(e.target.parentNode.parentNode);
+    // 清空购物车
+    // $('.myProducts').empty(e.target.parentNode.parentNode);
