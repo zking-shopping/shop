@@ -45,7 +45,7 @@
     
     <action name="isLogin" class="com.shopping.web.action.IsLoginAction">        
         <result name="success" direct="true">submitOrder.jsp</result>
-        <result name="error">shoppingCar.jsp</result>
+        <result name="error">login.jsp</result>
         <pagejump>true</pagejump>
     </action>
     
