@@ -79,6 +79,21 @@
      <action name="introduction" class="com.shopping.web.action.IntroductionAction">
         <form>com.shopping.web.form.IntroductionForm</form>
         <result name="success" direct="false">introduction.jsp</result>
+        \ <result name="error">introduction.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+     <action name="mintype" class="com.shopping.web.action.MintypeAction">
+        <form>com.shopping.web.form.MintypeForm</form>
+        <result name="success" direct="false">index.jsp</result>
+         <result name="error">index.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+     <action name="bettergoods" class="com.shopping.web.action.BettergoodsAction">
+        <form>com.shopping.web.form.BettergoodsForm</form>
+        <result name="success" direct="false">index.jsp</result>
+         <result name="error">index.jsp</result>
         <pagejump>true</pagejump>
     </action>
 </actions>

@@ -164,7 +164,6 @@ public class ActionServlet extends HttpServlet {
             	
             }
         }else if("false".equalsIgnoreCase(isPageJump)){
-        	
          	Object o = af.doAction(request, response, ff);
          	if(o!=null){
          		if(o instanceof List){
