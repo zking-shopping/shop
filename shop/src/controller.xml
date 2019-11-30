@@ -43,6 +43,13 @@
         <pagejump>true</pagejump>
     </action>
     
+    <action name="buyAgain" class="com.shopping.web.action.BuyAgainAction">
+        
+        <result name="success" direct="false">shoppingCar.jsp</result>
+        <result name="error">login.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
     <action name="isLogin" class="com.shopping.web.action.IsLoginAction">        
         <result name="success" direct="true">submitOrder.jsp</result>
         <result name="error">login.jsp</result>
