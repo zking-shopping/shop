@@ -67,4 +67,51 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao{
 		}
 		return list;
 	}
+
+	@Override
+	public int selectMax(int pageSize, Connection conn) {
+		String sql = "select count(*) from t_goods";
+		int count = 0;
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count%pageSize == 0 ? count/pageSize : count/pageSize+1;
+	}
+
+	@Override
+	public List<Goods> selectByPage(int pageNumber, int pageSize,
+			Connection conn) {
+		String sql = "select * from t_goods limit ?,?";
+		List<Goods> list = new ArrayList<Goods>();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, (pageNumber-1)*pageSize);
+			ps.setInt(2, pageSize);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Goods goods = new Goods();
+				goods.setId(rs.getInt("id"));
+				goods.setGoodsName(rs.getString("goodsName"));
+				goods.setPrice(rs.getString("price"));
+				goods.setIntroduction(rs.getString("instroduction"));
+				goods.setSort(rs.getString("sort"));
+				goods.setColor(rs.getString("color"));
+				goods.setPicId(rs.getInt("PicId"));
+				goods.setTime(rs.getString("time"));
+				goods.setDel(rs.getString("del"));
+				list.add(goods);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
 }

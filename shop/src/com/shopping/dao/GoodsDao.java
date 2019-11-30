@@ -16,4 +16,7 @@ public interface GoodsDao {
 	
 	public List<Goods> selectBySort(String sort, Connection conn);
 	public List<Goods> selectDeleted(Connection conn);
+	
+	public int selectMax(int pageSize, Connection conn);
+	public List<Goods> selectByPage(int pageNumber, int pageSize, Connection conn);
 }
