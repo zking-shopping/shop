@@ -25,7 +25,7 @@ public class LoginMapListener implements ServletContextListener{
 		Map<String, HttpSession> loginMap = new HashMap<String, HttpSession>();
 	    ServletContext application = arg0.getServletContext();
 	    application.setAttribute("loginMap", loginMap);
-	    System.out.println("loginMap=====进入"+loginMap);
+	    
 	    
 	}
 

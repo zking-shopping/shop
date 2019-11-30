@@ -19,12 +19,11 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 		
 		ServletContext application = arg0.getSession().getServletContext();
 		if(map==null){
-			
-			
+					
 			map = (Map<String, HttpSession>) application.getAttribute("loginMap");
 		}
 
-System.out.println(map+"===map");
+
 		String infoName = arg0.getName();
 
 		if (infoName.equals("member")) { // 如果名字是info
@@ -44,6 +43,7 @@ System.out.println(map+"===map");
 
 		application.setAttribute("loginMap", map);
 		
+		System.out.println(map.size()+"==size");
 
 	}
 
@@ -67,7 +67,7 @@ System.out.println(map+"===map");
 				map.remove(infoName);
 			}
 		}
-		
+		System.out.println(map.size()+"==size");
 	}
 
 	@Override
@@ -94,7 +94,7 @@ System.out.println(map+"===map");
 		}
 		map.put(infoName, arg0.getSession());
 		System.out.println(map);
-
+		System.out.println(map.size()+"==size");
 	}
 	
 }
