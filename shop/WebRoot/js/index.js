@@ -1,80 +1,63 @@
-	 function betterGoods(){
-
-    	$.get({
+	 //查询精选商品
+function betterGoods(){
+    	$.ajax({
     			url:"bettergoods.do",
-//    			dataType:"jsonp",
     			data:{
                  
                   },
           success: function(result){
-        	  for(var i =0;i<8;i++){
-//         		 console.log(goodList[i].goods_thumb);
-         		 str +="<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='height:440px'>"+
+        	  console.log(result);
+        	  var str ;
+        	  $.each(result, function (i, value) {
+        		  var str ="<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='height:440px'>"+
          		          "  <div class='thumbnail' style='height:400px;'>"+
-         		          "<a href='introduction.jsp'>"+
-         		          "<img src=/shop/image/goods/"+result[0].sort+result[0].picId+".jpg alt='' />"+
-         		          "<p>商品名:"+result[0].goodsName+"</p>"+
-         		          "<p class='desc'>商品介绍:"+result[0].introduction+"</p>"+
-         		          "<p>价格:"+result[0].price+"</p>"+
+         		          "<a href='introduction.jsp' value="+result.id+">"+
+         		          "<img src="+value.picture1+"  />"+
+         		          "</a>"+
+         		          "<p>商品名:"+value.goodsname+"</p>"+
+         		          "<p class='desc'>商品介绍:"+value.introduction+"</p>"+
+         		          "<p>价格:"+value.price+"</p>"+
 //         		          "<p>点赞:❤"+result[0].star_number+"</p>"+
          		          "</a>"+"</div>"+"</li>"
-         	 
-         		          $('.bettergoods').append(str);
-         	 }
+         		         $('.bettergoods').append(str);
+         		         
+         	 })
     	   }
     	})
 	 }
-    
-  
-    betterGoods(1,function(result){
-         var res = JSON.parse(result);
-//         console.log(res);
-    	 var goodList = res.data;
-    	 var str = "";
-//    	 console.log(goodList);
-    	 for(var i =0;i<8;i++){
-//    		 console.log(goodList[i].goods_thumb);
-    		 str +="<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='height:440px'>"+
-    		          "  <div class='thumbnail' style='height:400px;'>"+
-    		          "<a href='introduction.jsp'>"+
-    		          "<img src="+goodList[i].goods_thumb+" alt='' />"+
-    		          "<p>商品名:"+goodList[i].goods_name+"</p>"+
-    		          "<p class='desc'>商品介绍:"+goodList[i].goods_desc+"</p>"+
-    		          "<p>价格:"+goodList[i].price+"</p>"+
-    		          "<p>点赞:❤"+goodList[i].star_number+"</p>"+
-    		          "</a>"+"</div>"+"</li>"
-    	 
-    	 }
-//    	 console.log($('.bettergoods'));
-//    	 console.log($('.bettergoods'));
-    	 $('.bettergoods').html(str);
-    	
-    });
-    
-	 function cardList(){
-	    	$.ajax({
-	    		url:"mintype.do",
-	    		data:{
-	    			"sort": 1,
-	    		},
-	    		success:function(result){
-	    			console.log(result);
-	    			 for(var i =0;i<result.length;i++){
-	        	 	    var str = "<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+
-	                              "<a href='introduction.jsp'>"+
-	                                      "<img src="+result.get(i).goods_thumb+" alt='' />"+
-	                                "</a>"+
-	                                      "<p>"+cardList[i].goods_name+"</p>"+
-	                                      "<p>价格:"+cardList[i].price+"</p>"+
-	                           "</li>"
-	                           ;
-	                                      $('.nav-cateCard .card-list').html(str);
-	            	 };
-	        	
-	    		}
-	    	})
 
-	    };
+    //点击商品的图片跳转到详情图片
+    $('.bettergoods a').click(function(){
+    	console.log(1111);
+//    	console.log($(this).value())
+    })
+    
+//	 function cardList(){
+//	    	$.ajax({
+//	    		url:"mintype.do",
+//	    		data:{
+//	    			"sort": 1,
+//	    		},
+//	    		success:function(result){
+//	    			console.log(result);
+//	    			 for(var i =0;i<result.length;i++){
+//	        	 	    var str = "<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+
+//	                              "<a href='introduction.jsp'>"+
+//	                                      "<img src="+result.get(i).goods_thumb+" alt='' />"+
+//	                                "</a>"+
+//	                                      "<p>"+cardList[i].goods_name+"</p>"+
+//	                                      "<p>价格:"+cardList[i].price+"</p>"+
+//	                           "</li>"
+//	                           ;
+//	                                      $('.nav-cateCard .card-list').html(str);
+//	            	 };
+//	        	
+//	    		}
+//	    	})
+//
+//	    };
+	 
+	 betterGoods();
 
 	//轮播图中图片的个数
 	var liL = $('.banner>ul li').length;
@@ -104,14 +87,12 @@
 	//定时器
 	var timer;
 	
-	(function(){
-		
-	});
+	
 	//	商品列表
 	
 	$('#myNav>li>a').mouseover(function() {
 		$(this).parent().children().eq(1).show();
-		cardList();
+//		cardList();
 	})
 	
 	$('#myNav>li').mouseleave(function() {
