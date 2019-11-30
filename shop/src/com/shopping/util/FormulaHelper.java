@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class FormulaHelper {
 	private static Random r = new Random();
-	private static String[] allSymbol = {"+","-","×","÷"};
+	private static String[] allSymbol = {"＋","－","×","÷"};
 	
 	public static String[] getAddSubMulFormula(int numSize, int StartNum, int endNum){
 		ArrayList<String> formula = new ArrayList<String>();
@@ -28,10 +28,12 @@ public class FormulaHelper {
 			//加入生成的数组
 			formula.add(str);
 		}
-		
+
+		String formulas = formula.toString();
+		formulas = formulas.substring(1, formulas.length()-1).replace(",", "").replace(" ", "");
 		//计算结果
 		int result = countMultip(formula);
-		String[] returnResult = {formula.toString(),String.valueOf(result)};
+		String[] returnResult = {formulas,String.valueOf(result)};
 		
 		return returnResult;
 	}
@@ -61,7 +63,7 @@ public class FormulaHelper {
 				//获得要加的数字
 				int afterNum = Integer.parseInt(formula.get((i+1)*2));
 				//判断符号
-				if(formula.get(i*2+1).equals("-")){
+				if(formula.get(i*2+1).equals("－")){
 					result = result - afterNum;
 				}else{
 					result = result + afterNum;

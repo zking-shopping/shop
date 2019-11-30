@@ -124,8 +124,6 @@ $('.next-step').click(function(){
 			'background-size' :'80% 80%',
 			'background-color' : '#2C82FF'
 		});
-		//设置验证码
-		$('section .register-step2>form>div img').attr("src", "imageCode.do");
 		console.log(6666);
 		//第一步隐藏，第二步显示
 		$('section .register-step1').css('display','none');

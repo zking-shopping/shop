@@ -37,7 +37,7 @@ public class ImageCodeAction extends ActionFather{
 		//生成一个算式和结果
   		String[] result = FormulaHelper.getAddSubMulFormula(3,0,9);
   		//将结果存进session
-		request.getSession().setAttribute("result", result[1]);
+		request.getSession().setAttribute("imageCode", result[1]);
 		
 		//内存中一个缓存的图片对象
 		BufferedImage bi = new BufferedImage(WIDTH, HEIGHT,
@@ -51,11 +51,11 @@ public class ImageCodeAction extends ActionFather{
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		//设置画笔颜色,并填充验证码
 		g.setColor(Color.RED);
-		g.setFont(new Font("宋体", Font.BOLD, 20));
-		g.drawString(result[0], 10, 22);
+		g.setFont(new Font("宋体", Font.BOLD, 30));
+		g.drawString(result[0], 20, 34);
 		//画干扰点
 		g.setColor(Color.black);
-		for (int i = 0; i < 400; i++) {
+		for (int i = 0; i < 1200; i++) {
 			int x = r.nextInt(WIDTH);
 			int y = r.nextInt(HEIGHT);
 			g.drawLine(x, y, x, y);
@@ -63,9 +63,9 @@ public class ImageCodeAction extends ActionFather{
 		//画干扰线,随机生成
 		g.setColor(Color.MAGENTA);
 		for (int i = 0; i < 3; i++) {
-			int x1 = r.nextInt(10)+95;
-			int y1 = r.nextInt(30);
-			g.drawLine(10, i*8+10, x1, y1);
+			int x1 = r.nextInt(166)+20;
+			int y1 = r.nextInt(28)+8;
+			g.drawLine(20, i*15+10, x1, y1);
 		}
 		
 		//获得servlet输出流
