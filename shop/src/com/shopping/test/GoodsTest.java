@@ -1,3 +1,4 @@
+
 package com.shopping.test;
 
 import java.sql.Connection;
@@ -19,5 +20,6 @@ public class GoodsTest {
 		System.out.println(list.get(0));
 		Goods g = list.get(1);
 		System.out.println(g.getGoodsName());
+		System.out.println(list.size());
 	}
 }
