@@ -11,7 +11,9 @@ public class IsLoginAction extends ActionFather{
 		Object obj = request.getSession().getAttribute("member");
 		if(obj!=null){
 			String balanceGooods = request.getParameter("balanceGooods");
-//			request.getSession().setAttribute("balanceGooods", balanceGooods);
+			if(balanceGooods!=null){
+				request.getSession().setAttribute("balanceGooods", balanceGooods);				
+			}
 			return "success";
 		}
 		return "error";
