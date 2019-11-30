@@ -110,25 +110,6 @@ function checkPhoneNumber(cont){
 		.siblings('p').html(pTipContent);
 };
 
-//判断输入的算式结果是否正确
-function checkResult(cont,result){
-	//设置手机号默认为不符合要求
-	resultIsTrue = 1;
-	//将元素的一些属性值初始化为匹配失败的属性值
-	var inputBorderColor = '#ea3d3d';//输入框边框为红色
-	var pTipContent = '结果有误！';//错误提示框内容为空
-	cont = parseInt(cont);
-	
-	if(cont==result){
-		inputBorderColor = '#cccccc';
-		pTipContent = '';
-		resultIsTrue = 0;
-	};
-	
-	$('.verify').css('border-color',inputBorderColor);
-	$('.res-tip').html(pTipContent);
-};
-
 //变换步骤框的样式
 function changUpTipStyle(name1){
 	var name2 = '';
@@ -148,7 +129,7 @@ function changUpTipStyle(name1){
 		name1='tel';
 		num = 1;
 	};
-//	$("input[name="+name+"]");
+	
 	//获得输入框的颜色
 	var color1 = $("input[name="+name1+"]").css('border-color');
 	var color2 = $("input[name="+name2+"]").css('border-color');
@@ -163,7 +144,7 @@ function changUpTipStyle(name1){
 	};
 	//都符合要求
 	if((((nameIsTrue==0&&passIsTrue==0))&&(name1=='username'||name1=='password'))
-		||(((cellIsTrue==0&&resultIsTrue==0))&&(name1!='username'&&name1!='password'))){
+		||(cellIsTrue==0&&(name1!='username'&&name1!='password'))){
 		$('section .step ul li .line div').eq(num).css('background','#2C82FF')
 			.parent().css('background','#2C82FF').parent().css('color','#2C82FF')
 			.children('.content').html(num+1+'').css('border-color','#2C82FF');
@@ -177,7 +158,7 @@ function changUpTipStyle(name1){
 	}
 	//其中一项符合要求，另一项为空
 	if((((nameIsTrue==0&&cont2=='')||(passIsTrue==0&&cont1==''))&&(name1=='username'||name1=='password'))
-		||(((cellIsTrue==0&&cont2=='')||(resultIsTrue==0&&cont1==''))&&(name1!='username'&&name1!='password'))){
+		||(((cellIsTrue==0&&cont2=='')||cont1=='')&&(name1!='username'&&name1!='password'))){
 		$('section .step ul li .line div').eq(num).css('background','#2C82FF')
 			.parent().css('background','#F2F2F2').parent().css('color','#2C82FF')
 			.children('.content').html(num+1+'').css('border-color','#2C82FF');
@@ -241,70 +222,14 @@ function inputChangeStyle(color1,color2,cont2,ele){
 	};
 };
 
-//生成算式，并返回结果
-function createFormula(){
-	var num = -1;
-	var symbol =-1;
-	var result = 0;
-	var numStr = '';
-	var symbolStr = '+';
-	//定义一个存放基础运算符号的数组
-	var symbolArrays = ['+','-','×'];
-	//将符号加入页面
-	$('section .register-step2>form>div .count .counts>p').each(function(){
-		symbol = parseInt(Math.random() * 3);
-		//获得元素的序号
-		var num = $(this).attr('class').substring(6);
-		$(this).html(symbolArrays[symbol]);
-		//将获得的符号加入字符串
-		symbolStr = symbolStr+symbolArrays[symbol];
+//更换验证码
+function replaceImageCode(){
+	$.ajax({
+		type:"post",
+		url:"register.do",
+		data:"username="+usernames+"&password="+passwords+"&phoneNumber="+tel,
+		success:function(result){
+			
+		}
 	});
-	//将图片加入页面
-	$('section .register-step2>form>div .count .counts>div').each(function(){
-		//随机生成图片的序号
-		num = parseInt(Math.random() * 10);
-		//获得元素的序号
-		var nums = $(this).attr('class').substring(3);
-		//加图片
-		$(this).css({
-			'background' : 'url(./img/number/'+num+'.png) no-repeat',
-			'background-size' : '100% 100%'
-		});
-		//将获得的数字存入数组
-		numStr = numStr+num;
-	});
-	
-	//计算
-	for(var i=0; i<symbolStr.length;i++){
-		if(symbolStr[i]=='×'){
-			result = result*parseInt(numStr[i]);
-		};
-		if(symbolStr[i]=='+'){
-			result = result+parseInt(numStr[i]);
-		};
-		if(symbolStr[i]=='-'){
-			result = result-parseInt(numStr[i]);
-		};
-	};
-	return result;
-	
-//	countSymbol(numStr,symbolStr);
-	
-};
-
-//计算带乘号的算式
-function countSymbol(numStr,symbolStr){
-	var str1 = '';
-	var str2 = '+';
-	for(var i=0; i<symbolStr.length;i++){
-		if(symbolStr[i]=='×'&&symbolStr[i+1]!=='×'&&symbolStr[i-1]!=='×'){
-			str1 = str1+(numStr[i-1]*numStr[i]);
-		};
-		if(symbolStr[i]!='×'){
-			str1 = str1+numStr[i];
-			str2 = str2+symbolStr[i];
-		};
-	};
-	console.log(str1);
-	console.log(str2);
 };

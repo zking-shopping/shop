@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 *{margin: 0px; padding: 0px;}
 li{list-style: none;}
 a{text-decoration: none;}
@@ -14,6 +16,7 @@ img{border: none;vertical-align: bottom;}
 				margin: 0 auto;
 				z-index: 14;
 				text-align: center;
+				background: white;
 			}
 			
            .navbar-white>.container{

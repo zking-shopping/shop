@@ -96,6 +96,10 @@ function showMyProducts(result){
     var deleteOneRemenber = null;
     
 	$("ul").click(function(e){
+		//event.preventDefault() ：阻止默认行为，可以用 event.isDefaultPrevented() 来确定preventDefault是否被调用过了
+		//event.stopPropagation() ：阻止事件冒泡，事件是可以冒泡的，为防止事件冒泡到DOM树上，不触发任何前辈元素上的事件处理函数，可以用 event.isPropagationStopped() 来确定stopPropagation是否被调用过了 
+		
+		if(!e.isPropagationStopped()){//确定stopPropagation是否被调用过
 		// 减
 		if(e.target.className=='reduce'){
 			var number = e.target.nextElementSibling.value;
@@ -169,10 +173,10 @@ function showMyProducts(result){
 			});
 			
 			if(lock){
-				alert(lock);
+				
 				$("[type='checkbox']").prop('checked',true);
 			}else{
-				alert(lock);
+				
 				$("[type='checkbox']").prop('checked',false);
 			}
 			// 计算总价
@@ -191,8 +195,9 @@ function showMyProducts(result){
 			    if($(this).prop('checked')){
 				    balanceCount++;
 				    var id = $(this).prev().val();
-			    	var number = $(this).parent().parent().children('li').eq(4).children("input").eq(1).value;
+			    	var number = $(this).parent().parent().children('li').eq(3).children('input').eq(0).val();			    	
 			    	balanceGooods = balanceGooods+"-、、-"+id+"-_~-_~"+number;
+			    	
 			    }
 		    });
 		    if(balanceCount<=0){
@@ -203,7 +208,9 @@ function showMyProducts(result){
 		    }
 		    
 		}
-	});
+    } 
+		 e.stopPropagation();//必须要，不然e.isPropagationStopped()无法判断stopPropagation是否调用过
+});
 
 
     // 滚轮滚动事件
