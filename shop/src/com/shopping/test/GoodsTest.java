@@ -22,4 +22,14 @@ public class GoodsTest {
 		System.out.println(g.getGoodsName());
 		System.out.println(list.size());
 	}
+	
+	@Test
+	public void testAllGoods(){
+		Connection conn = DBHe.getConnection();
+		GoodsDao dao = new GoodsDaoImpl();
+		List<Object> list = dao.selectAll(new Goods(), conn);
+		System.out.println(list.size());
+		Goods g = (Goods)list.get(0);
+		System.out.println(g.getGoodsName());
+	}
 }
