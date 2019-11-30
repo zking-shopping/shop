@@ -24,22 +24,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<<<<<<< HEAD
-  </head>
-  
-  <body>
-    	<div class="navbar wholenav">
-			<!--导航条-->
-			<nav class="navbar navbar-white"  >
-                <div class="container">
-					<div class="navbar navbar-header">
-						<!--导航条左边-->
-						<!--logo-->
-						<div class="navbar-brand">
-							<a href="index.jsp" style="text-decoration:none">OurLogo</a>
-						</div>
-					</div>
-					<!--导航条右边-->
+
+<body>
+	<div class="navbar wholenav">
+		<!--导航条-->
+		<nav class="navbar navbar-white">
+		<div class="container">
+			<div class="navbar navbar-header">
+				<!--导航条左边-->
+				<!--logo-->
+				<div class="navbar-brand">
+					<a href="index.jsp" style="text-decoration:none">OurLogo</a>
+				</div>
+			</div>
+				<!--导航条右边-->
 					<ul class=" navbar-nav hidden-xs" id="myNav" style="width:72%">
 						<li style="width:14%">
 							<a id="sort1">插线板</a>
@@ -112,81 +110,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 					</ul>
-=======
-</head>
->>>>>>> branch 'master' of https://github.com/zking-shopping/shop.git
-
-<body>
-	<div class="navbar wholenav">
-		<!--导航条-->
-		<nav class="navbar navbar-white">
-		<div class="container">
-			<div class="navbar navbar-header">
-				<!--导航条左边-->
-				<!--logo-->
-				<div class="navbar-brand">
-					<a href="index.jsp" style="text-decoration:none">OurLogo</a>
-				</div>
-			</div>
-			<!--导航条右边-->
-			<ul class=" navbar-nav hidden-xs" id="myNav" style="width:72%">
-				<li style="width:14%"><a href="type.jsp">插线板</a>
-					<div class="dropdown" style="display: none; left: -180%;">
-						<div class="nav-cateCard">
-							<ul class="card-list">
-
-							</ul>
-						</div>
-					</div></li>
-				<li style="width:14%"><a href="type.jsp">音响耳机</a>
-					<div class="dropdown" style="display: none; left: -280%;">
-						<div class="nav-cateCard">
-							<ul class="card-list">
-
-							</ul>
-						</div>
-					</div></li>
-				<li style="width:14%"><a href="type.jsp">手机配件</a>
-					<div class="dropdown" style="display: none; left: -380%;">
-						<div class="nav-cateCard">
-							<ul class="card-list">
-
-							</ul>
-						</div>
-					</div></li>
-				<li style="width:14%"><a href="type.jsp">电脑办公</a>
-					<div class="dropdown" style="display: none; left: -480%;">
-						<div class="nav-cateCard">
-							<ul class="card-list">
-
-							</ul>
-						</div>
-					</div></li>
-				<li style="width:14%"><a href="type.jsp">电池电源</a>
-					<div class="dropdown" style="display: none; left: -580%;">
-						<div class="nav-cateCard">
-							<ul class="card-list">
-
-							</ul>
-						</div>
-					</div></li>
-				<li style="width:14%"><a href="type.jsp">生活电器</a>
-					<div class="dropdown" style="display: none; left: -680%;">
-						<div class="nav-cateCard">
-							<ul class="card-list">
-
-							</ul>
-						</div>
-					</div></li>
-				<li style="width:14%"><a href="type.jsp">个护健康</a>
-					<div class="dropdown" style="display: none; left: -780%;">
-						<div class="nav-cateCard">
-							<ul class="card-list">
-
-							</ul>
-						</div>
-					</div></li>
-			</ul>
 
 			<!-- 	搜索
 					<div class="navbar-form navbar-left hidden-sm hidden-xs hidden-md text-center" id="search">

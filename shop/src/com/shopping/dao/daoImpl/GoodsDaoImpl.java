@@ -28,7 +28,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao{
 				goods.setId(rs.getInt("id"));
 				goods.setGoodsName(rs.getString("goodsName"));
 				goods.setPrice(rs.getString("price"));
-				goods.setIntroduction(rs.getString("instroduction"));
+				goods.setIntroduction(rs.getString("introduction"));
 				goods.setSort(rs.getString("sort"));
 				goods.setColor(rs.getString("color"));
 				goods.setPicId(rs.getInt("PicId"));
@@ -54,7 +54,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao{
 				goods.setId(rs.getInt("id"));
 				goods.setGoodsName(rs.getString("goodsName"));
 				goods.setPrice(rs.getString("price"));
-				goods.setIntroduction(rs.getString("instroduction"));
+				goods.setIntroduction(rs.getString("introduction"));
 				goods.setSort(rs.getString("sort"));
 				goods.setColor(rs.getString("color"));
 				goods.setPicId(rs.getInt("PicId"));
@@ -99,7 +99,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao{
 				goods.setId(rs.getInt("id"));
 				goods.setGoodsName(rs.getString("goodsName"));
 				goods.setPrice(rs.getString("price"));
-				goods.setIntroduction(rs.getString("instroduction"));
+				goods.setIntroduction(rs.getString("introduction"));
 				goods.setSort(rs.getString("sort"));
 				goods.setColor(rs.getString("color"));
 				goods.setPicId(rs.getInt("PicId"));
