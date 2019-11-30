@@ -40,15 +40,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    <div class="user-header">
 			    	<a href="personInfo.html"></a>
 			    </div>
-			    <!--注册登录-->
-			    <div class="dropdown">
-					<a href="register.html">
-						<button class="register-btn">注册</button>
-					</a>
-					<a href="login.html">
-						<button class="login-btn">登录</button>
-					</a>
-				</div>
 			</div>
 		</header>
 		

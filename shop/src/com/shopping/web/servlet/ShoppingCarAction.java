@@ -14,6 +14,7 @@ import com.shopping.dao.daoImpl.CartDaoImpl;
 import com.shopping.dao.daoImpl.GoodsDaoImpl;
 import com.shopping.db.DBHelper;
 import com.shopping.pojo.Cart;
+import com.shopping.pojo.DetailOrder;
 import com.shopping.pojo.Goods;
 import com.shopping.pojo.Member;
 import com.shopping.web.action.ActionFather;

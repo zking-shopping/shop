@@ -61,7 +61,7 @@ function showMyProducts(result){
   			<li>已关闭</li>
   			<li class="a-hover">
   			    <input type="text" value="${orders[i].id}" style="display:none"/>
-  				<p><a href="shoppingCar.jsp">重新购买</a></p>
+  				<p><a href="buyAgain.do?id=${orders[i].id}">重新购买</a></p>
   				<p class="showDetails"><a>查看详情</a></p>
   			</li>
            </ul>
