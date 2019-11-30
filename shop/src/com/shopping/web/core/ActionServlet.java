@@ -116,7 +116,6 @@ public class ActionServlet extends HttpServlet {
         FormFather ff = null;
         String formInstanceClass = null;
         if(element.selectSingleNode("form")!=null){
-        	
         	formInstanceClass = element.selectSingleNode("form").getStringValue().trim();
         }
         
@@ -163,7 +162,30 @@ public class ActionServlet extends HttpServlet {
             	
             }
         }else if("false".equalsIgnoreCase(isPageJump)){
-        	
+        	//通过action判断返回值
+        	 if("shoppingCar".equalsIgnoreCase(actionName)){
+        		ArrayList getResult = (ArrayList)af.doAction(request, response, ff);        		         		
+             	response.setContentType("text/html;charset=UTF-8");
+//             	PrintWriter out = response.getWriter();
+             	JSONArray json  =  JSONArray.fromObject(getResult);
+             	response.getWriter().write(json.toString());
+             }else if("shoppingCarCountChange".equalsIgnoreCase(actionName)){
+             	
+            	String count = request.getParameter("count");             	
+             	String id = request.getParameter("id");
+             	ShoppingCarCountChangeForm scccf = new ShoppingCarCountChangeForm();
+             	scccf.setCount(count);             	
+             	scccf.setId(id);             	
+             	af.doAction(request, response, scccf);            	
+             }else if("shoppingCarDeleteGoods".equalsIgnoreCase(actionName)){             	
+              	String id = request.getParameter("id").substring(1);
+              	String[] ids = id.split(",");            	
+              	af.doAction(request, response, ids);            	
+             }else if("register".equalsIgnoreCase(actionName)){
+            	 af.doAction(request, response, ff);
+             }else if("imageCode".equalsIgnoreCase(actionName)){            	
+               	 af.doAction(request, response, ff); 
+             }
          	Object o = af.doAction(request, response, ff);
          	if(o!=null){
          		if(o instanceof List){
