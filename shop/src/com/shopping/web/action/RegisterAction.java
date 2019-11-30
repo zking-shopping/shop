@@ -28,52 +28,59 @@ public class RegisterAction extends ActionFather{
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
   		//将ff的类型转换为需要的
 		RegisterForm rf = (RegisterForm) o;
+		
 		//获得连接
         Connection conn = DBHelper.getConnection();
-        //设置会员基础信息
-		Member m = new Member();
-		m.setUsername(rf.getUsername());
-		//密码加密
-		String pass = EncryptionHelper.encryption(rf.getPassword());
-		m.setPassword(pass);
-		m.setPhoneNumber(rf.getPhoneNumber());
-		
 		JSONArray jarr = null;
 		PrintWriter out = null;
-        try {
-            //设置不自动提交
-			conn.setAutoCommit(false);
-    		//查询账号是否存在
-    		MemberDao md = new MemberDaoImpl();
-    		Member ms = (Member) md.select("selectByUsername", m, conn);
-    		conn.commit();
+		try {
 			//获得输出流
 			out = response.getWriter();
-			if(ms.getUsername()==null){
-				String uuid = UUIDHelper.getUUID();
-				String name = "用户"+uuid.substring(0, 8);
-				new String(name.getBytes("ISO8859-1"),"UTF-8");
-				//设置账号初始值
-				m.setName(name);
-				m.setId(uuid);
-				m.setCost("0");
-				m.setTime("0");
-				m.setDate(DateHelper.getSimpleDate());
-				m.setDel("false");
-				boolean b = md.insert(m, conn);
-	    		conn.commit();
-				if(b==true){
-					jarr = JSONArray.fromObject(0);
-				}else{
-					jarr = JSONArray.fromObject(1);
-				}
-			}else{
-				jarr = JSONArray.fromObject(2);
-			}
+			
+    		//获得页面传过来的验证码
+    		String imageCode = (String) request.getSession().getAttribute("imageCode");
+    		//判断验证码是否输入正确
+    		if(!imageCode.equals(rf.getImageCode())){
+    			jarr = JSONArray.fromObject(3);
+    		}else{
+                //设置会员基础信息
+        		Member m = new Member();
+        		m.setUsername(rf.getUsername());
+        		//密码加密
+        		String pass = EncryptionHelper.encryption(rf.getPassword());
+        		m.setPassword(pass);
+        		m.setPhoneNumber(rf.getPhoneNumber());
+                //设置不自动提交
+    			conn.setAutoCommit(false);
+        		//查询账号是否存在
+        		MemberDao md = new MemberDaoImpl();
+        		Member ms = (Member) md.select("selectByUsername", m, conn);
+        		conn.commit();
+    			if(ms.getUsername()==null){
+    				String uuid = UUIDHelper.getUUID();
+    				String name = "用户"+uuid.substring(0, 8);
+    				new String(name.getBytes("ISO8859-1"),"UTF-8");
+    				//设置账号初始值
+    				m.setName(name);
+    				m.setId(uuid);
+    				m.setCost("0");
+    				m.setTime("0");
+    				m.setDate(DateHelper.getSimpleDate());
+    				m.setDel("false");
+    				boolean b = md.insert(m, conn);
+    	    		conn.commit();
+    				if(b==true){
+    					jarr = JSONArray.fromObject(0);
+    				}else{
+    					jarr = JSONArray.fromObject(1);
+    				}
+    			}else{
+    				jarr = JSONArray.fromObject(2);
+    			}
+    		}
 		} catch (SQLException e) {
 			try {
-				//回滚
-	            conn.rollback();
+	            conn .rollback();//回滚
 	        } catch (SQLException e1) {
 	            e1.printStackTrace();
 	        }
