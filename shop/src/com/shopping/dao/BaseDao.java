@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
-import org.w3c.dom.Attr;
 
 import com.shopping.db.DBHelper;
 
