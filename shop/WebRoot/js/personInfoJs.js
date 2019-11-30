@@ -160,7 +160,7 @@ $(function(){
 	    $.get('myPersonInfo.do',function(result){
 	        var result = JSON.parse(result);
 	        var myProduct = `
-            <p><span>用户</span><span>${result.result}</span></p>
+            <p><span>用户</span><span>${result.name}</span></p>
             <p><span>账号</span><span>${result.username}</span></p>
             <p><span>手机号码</span><span>${result.phoneNumber}</span></p>        
 `;

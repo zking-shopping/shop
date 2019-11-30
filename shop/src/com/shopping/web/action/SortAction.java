@@ -44,9 +44,9 @@ public class SortAction extends ActionFather{
         GoodsDao gd = new GoodsDaoImpl();
 //        System.out.println(sort);
         PicDao pd = new PicDaoImpl();
-        List<Goods> list = gd.selectBySort("1", conn);
+        List<Goods> sortList = gd.selectBySort("2", conn);
         System.out.println(sort);
-        System.out.println(list.size());
+        System.out.println(sortList.size());
         DBHelper.closeConnection(conn);
         //根据查询的所有商品找到所有的相对应的picid
 //        List<Integer> listPic = new ArrayList<Integer>();
@@ -69,7 +69,7 @@ public class SortAction extends ActionFather{
   		//因为图片还没有id ,暂时用别的属性顶替存储图片的地址
 //  		goods.setTime("/shop/img/type1/13--.jpg");
  
-  		JSONArray jo = JSONArray.fromObject(list);
+  		JSONArray jo = JSONArray.fromObject(sortList);
   		
   		try {
   			//如果页码不够
