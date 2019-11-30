@@ -11,6 +11,10 @@
         <pagejump>false</pagejump>
     </action>
     
+    <action name="test" class="com.shopping.web.action.TestAction">        
+        <pagejump>false</pagejump>
+    </action>
+    
     <action name="shoppingCarCountChange" class="com.shopping.web.action.ShoppingCarCountChangeAction">
            
         <pagejump>false</pagejump>
