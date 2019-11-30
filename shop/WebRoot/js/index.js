@@ -8,8 +8,8 @@
                   },
           success: function(result){
         	  for(var i =0;i<8;i++){
-//         		 console.log(goodList[i].goods_thumb);
-         		 str +="<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='height:440px'>"+
+//        		  console.log(goodList[i].goods_thumb);
+        		  var str +="<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='height:440px'>"+
          		          "  <div class='thumbnail' style='height:400px;'>"+
          		          "<a href='introduction.jsp'>"+
          		          "<img src=/shop/image/goods/"+result[0].sort+result[0].picId+".jpg alt='' />"+
