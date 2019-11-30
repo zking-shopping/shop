@@ -96,6 +96,10 @@ function showMyProducts(result){
     var deleteOneRemenber = null;
     
 	$("ul").click(function(e){
+		//event.preventDefault() ：阻止默认行为，可以用 event.isDefaultPrevented() 来确定preventDefault是否被调用过了
+		//event.stopPropagation() ：阻止事件冒泡，事件是可以冒泡的，为防止事件冒泡到DOM树上，不触发任何前辈元素上的事件处理函数，可以用 event.isPropagationStopped() 来确定stopPropagation是否被调用过了 
+		
+		if(!e.isPropagationStopped()){//确定stopPropagation是否被调用过
 		// 减
 		if(e.target.className=='reduce'){
 			var number = e.target.nextElementSibling.value;
@@ -203,7 +207,9 @@ function showMyProducts(result){
 		    }
 		    
 		}
-	});
+    } 
+		 e.stopPropagation();//必须要，不然e.isPropagationStopped()无法判断stopPropagation是否调用过
+});
 
 
     // 滚轮滚动事件
