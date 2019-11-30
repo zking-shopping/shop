@@ -63,5 +63,9 @@
   <listener>
        <listener-class>com.shopping.web.listener.SingleLogListener</listener-class>
   </listener>
+  
+  <listener>   
+        <listener-class>com.shopping.web.listener.LoginMapListener</listener-class>   
+    </listener> 
 
 </web-app>
