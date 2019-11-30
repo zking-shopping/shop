@@ -60,4 +60,4 @@
 </html>
 <script src="/shop/js/home-jquery.min.js"></script>
 <script src="/shop/js/home-bootstrap.min.js"></script>
-<script src="js/sort.js"></script>
+<script src="/shop/js/sort.js"></script>

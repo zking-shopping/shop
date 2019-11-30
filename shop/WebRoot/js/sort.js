@@ -9,21 +9,19 @@
          "sort":1
           },
     success: function(result){
-//    	console.log(result.length);
-//    	console.log(111);
 	//渲染
-    	 for(var i=0;i<result.length;i++){
+//    	console.log(result);
+    	  $.each(result, function (i, value) {
 			var str = `
 		      <div class="col-md-3 goods">
 		        <div class="thumbnail">
-		          <a href="introduction.do">
-		              <img src= />
+		          <a  value=${value.id}>
+		              <img src=${value.picture1} />
 		          <a/>
 		          <caption>
-		            <p class="goods-name">obj.goodsName</p>
-		            <p class="goods-desc">obj.introduction</p>
-		            <p>价格:obj.price</p>
-		            <p><span class="glyphicon  glyphicon-star"></span>125</p>
+		            <p class="goods-name">${value.goodsname}</p>
+		            <p class="goods-desc">${value.introduction}</p>
+		            <p>价格:${value.price}</p>
 		            <button class="btn btn-info">加入购物车</button>
 		          </caption>
 		        </div>
@@ -31,7 +29,7 @@
 		      `;	
 			//每遍历一次就要去添加一次
 			$('#goodsList').append(str);
-		}
+		})
    }
 });
 		
@@ -82,12 +80,6 @@ $('li').click(function() {
 	})
 	$('[class="current"]').removeClass('current');
 	$(this).addClass('current');
-})
-
-//点击每一张图片去详情页
-$('a').click(function(){
-	var src = $(this).attr("src");
-	window.location.href="introduction.do?src="+src;
 })
 
 
@@ -309,8 +301,6 @@ $('[class="ignore1"]').click(function() {
 
 //点击第二个省略号
 $('[class="ignore2"]').click(function() {
-
-     
 	page++;
 
 	//记录哪一页
@@ -453,7 +443,10 @@ function searchpage(obj){
 				 $('ul').children("#page").eq(2).addClass('current');
 			}
 		})
-			
-			
-			
 }
+
+//点击每一张图片去详情页
+$('img').click(function(){
+//	console.log(111);
+	alert(111)
+})
