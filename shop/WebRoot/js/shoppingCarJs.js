@@ -173,10 +173,10 @@ function showMyProducts(result){
 			});
 			
 			if(lock){
-				alert(lock);
+				
 				$("[type='checkbox']").prop('checked',true);
 			}else{
-				alert(lock);
+				
 				$("[type='checkbox']").prop('checked',false);
 			}
 			// 计算总价
@@ -195,8 +195,9 @@ function showMyProducts(result){
 			    if($(this).prop('checked')){
 				    balanceCount++;
 				    var id = $(this).prev().val();
-			    	var number = $(this).parent().parent().children('li').eq(4).children("input").eq(1).value;
+			    	var number = $(this).parent().parent().children('li').eq(3).children('input').eq(0).val();			    	
 			    	balanceGooods = balanceGooods+"-、、-"+id+"-_~-_~"+number;
+			    	
 			    }
 		    });
 		    if(balanceCount<=0){
