@@ -39,14 +39,15 @@ public class SortAction extends ActionFather{
   		int pagesize = Integer.parseInt(request.getParameter("pagesize"));
         String sort = request.getParameter("sort");
   		//根据sort查询数据库,找到所有这一类型的图片
-        List<Goods> list = new ArrayList<Goods>();
-        GoodsDao gd = new GoodsDaoImpl();
-        
-        PicDao pd = new PicDaoImpl();
+//        List<Goods> list = new ArrayList<Goods>();
         Connection conn = DBHelper.getConnection();
-        list = gd.selectBySort(sort, conn);
- 		DBHelper.closeConnection(conn);
+        GoodsDao gd = new GoodsDaoImpl();
+//        System.out.println(sort);
+        PicDao pd = new PicDaoImpl();
+        List<Goods> list = gd.selectBySort("1", conn);
+        System.out.println(sort);
         System.out.println(list.size());
+        DBHelper.closeConnection(conn);
         //根据查询的所有商品找到所有的相对应的picid
 //        List<Integer> listPic = new ArrayList<Integer>();
 //       for(int i = 0;i<list.size();i++){

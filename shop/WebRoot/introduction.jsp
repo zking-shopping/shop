@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<!--导航条左边-->
 								<!--logo-->
 								<div class="navbar-brand">
-									<a href="index.jsp">OurLogo</a>
+									 <a href="index.jsp">OurLogo</a>
 								</div>
 							</div>
 							<!--导航条右边-->
