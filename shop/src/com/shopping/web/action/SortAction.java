@@ -46,7 +46,7 @@ public class SortAction extends ActionFather{
         Connection conn = DBHelper.getConnection();
         list = gd.selectBySort(sort, conn);
  		DBHelper.closeConnection(conn);
-//        System.out.println(list);
+        System.out.println(list.size());
         //根据查询的所有商品找到所有的相对应的picid
 //        List<Integer> listPic = new ArrayList<Integer>();
 //       for(int i = 0;i<list.size();i++){
