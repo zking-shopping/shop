@@ -6,19 +6,17 @@ function betterGoods(){
                  
                   },
           success: function(result){
-        	  console.log(result);
         	  var str ;
         	  $.each(result, function (i, value) {
         		  var str ="<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='height:440px'>"+
          		          "  <div class='thumbnail' style='height:400px;'>"+
-         		          "<a href='introduction.jsp' value="+result.id+">"+
+         		          "<a href='introduction.jsp' value="+value.id+">"+
          		          "<img src="+value.picture1+"  />"+
          		          "</a>"+
          		          "<p>商品名:"+value.goodsname+"</p>"+
          		          "<p class='desc'>商品介绍:"+value.introduction+"</p>"+
          		          "<p>价格:"+value.price+"</p>"+
-//         		          "<p>点赞:❤"+result[0].star_number+"</p>"+
-         		          "</a>"+"</div>"+"</li>"
+         		          "</a>"+"</div>"+"</li>";
          		         $('.bettergoods').append(str);
          		         
          	 })
@@ -27,35 +25,35 @@ function betterGoods(){
 	 }
 
     //点击商品的图片跳转到详情图片
-    $('.bettergoods a').click(function(){
-    	console.log(1111);
-//    	console.log($(this).value())
-    })
+//    $('.bettergoods a').click(function(){
+////    	console.log($(this).value())
+//    	console.log(11);
+//    })
     
-//	 function cardList(){
-//	    	$.ajax({
-//	    		url:"mintype.do",
-//	    		data:{
-//	    			"sort": 1,
-//	    		},
-//	    		success:function(result){
-//	    			console.log(result);
-//	    			 for(var i =0;i<result.length;i++){
-//	        	 	    var str = "<li class='col-4-lg col-3-md col-6-sm col-12-xs'>"+
-//	                              "<a href='introduction.jsp'>"+
-//	                                      "<img src="+result.get(i).goods_thumb+" alt='' />"+
-//	                                "</a>"+
-//	                                      "<p>"+cardList[i].goods_name+"</p>"+
-//	                                      "<p>价格:"+cardList[i].price+"</p>"+
-//	                           "</li>"
-//	                           ;
-//	                                      $('.nav-cateCard .card-list').html(str);
-//	            	 };
-//	        	
-//	    		}
-//	    	})
-//
-//	    };
+	 function cardList(){
+	    	$.ajax({
+	    		url:"mintype.do",
+	    		data:{
+	    			"sort": 1,
+	    		},
+	    		success:function(result){
+	    			var str;
+	    			 $.each(result,function(i,value){
+	        	 	    str += "<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='width:180px;height:180px'>"+
+	                              "<a href='introduction.jsp' value="+value.id+">"+
+	                                      "<img src="+value.picture1+" alt='' />"+
+	                                "</a>"+
+	                                      "<p>"+value.goodsname+"</p>"+
+	                                      "<p>价格:"+value.price+"</p>"+
+	                           "</li>"
+	                           ;
+	                                      $('.nav-cateCard .card-list').html(str);
+	            	 })
+	            	 $('.nav-cateCard .card-list').html(str);
+	    		}
+	    	})
+
+	    };
 	 
 	 betterGoods();
 
@@ -92,7 +90,7 @@ function betterGoods(){
 	
 	$('#myNav>li>a').mouseover(function() {
 		$(this).parent().children().eq(1).show();
-//		cardList();
+		cardList();
 	})
 	
 	$('#myNav>li').mouseleave(function() {
