@@ -51,6 +51,7 @@ public class ImageCodeServlet extends HttpServlet {
   		
 		//生成一个算式和结果
   		String[] result = FormulaHelper.getAddSubMulFormula(3,0,9);
+  		System.out.println("result[1]："+result[1]);
   		//将结果存进session
 		request.getSession().setAttribute("imageCode", result[1]);
 		

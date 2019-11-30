@@ -85,6 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input name="verify" class="verify" type="text" placeholder="请输入结果"/>
 						<img id="codeImage" src="" onclick="replaceImageCode()"/>
 						<div class="get-verify" onclick="replaceImageCode()">看不清？换一题</div>
+						<p class="res-tip"></p>
 					</div>
 				</form>
 				<div class="button-list">
