@@ -224,12 +224,6 @@ function inputChangeStyle(color1,color2,cont2,ele){
 
 //更换验证码
 function replaceImageCode(){
-	$.ajax({
-		type:"post",
-		url:"register.do",
-		data:"username="+usernames+"&password="+passwords+"&phoneNumber="+tel,
-		success:function(result){
-			
-		}
-	});
+	//加载验证码
+	$('#codeImage').attr("src","/shop/imgCode?id="+new Date().getTime());
 };

@@ -1,4 +1,4 @@
-package com.shopping.web.action;
+package com.shopping.web.servlet;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -6,19 +6,18 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shopping.util.FormulaHelper;
 
-import net.sf.json.JSONArray;
-
-public class ImageCodeAction extends ActionFather{
+public class ImageCodeServlet extends HttpServlet {
 	//验证码包含的所有字符
 	private String[] str = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
 			"K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
@@ -29,9 +28,25 @@ public class ImageCodeAction extends ActionFather{
 	private static int WIDTH = 206;
 	private static int HEIGHT = 46;
 	
-	public Object doAction(HttpServletRequest request,
-			HttpServletResponse response, Object o) {
-  		response.setCharacterEncoding("UTF-8");
+	public ImageCodeServlet() {
+		super();
+	}
+	
+	public void destroy() {
+		super.destroy();
+	}
+	
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		this.doPost(request, response);
+	}
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if(request.getSession().getAttribute("imageCode")!=null){
+			request.getSession().removeAttribute("imageCode");
+		}
+		response.setCharacterEncoding("UTF-8");
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
   		
 		//生成一个算式和结果
@@ -69,17 +84,15 @@ public class ImageCodeAction extends ActionFather{
 		}
 		
 		//获得servlet输出流
-		ServletOutputStream sos = null;
-		try {
-			sos = response.getOutputStream();
-			//将内存中生产的图片写入输出流中
-			ImageIO.write(bi, "jpg", sos);
-			sos.flush();
-			sos.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
+		ServletOutputStream sos = response.getOutputStream();
+		//将内存中生产的图片写入输出流中
+		ImageIO.write(bi, "jpg", sos);
+		sos.flush();
+		sos.close();
+	}
+	
+	public void init() throws ServletException {
+		
 	}
 
 }

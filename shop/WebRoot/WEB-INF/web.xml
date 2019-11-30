@@ -22,6 +22,16 @@
     <servlet-name>A</servlet-name>
     <servlet-class>xy.A</servlet-class>
   </servlet>
+  
+  <servlet>
+    <servlet-name>ImageCodeServlet</servlet-name>
+    <servlet-class>com.shopping.web.servlet.ImageCodeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImageCodeServlet</servlet-name>
+    <url-pattern>/imgCode</url-pattern>
+  </servlet-mapping>
+
 
 
   <servlet-mapping>

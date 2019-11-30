@@ -2,6 +2,9 @@
 var nameIsTrue = 1;
 var passIsTrue = 1;
 var cellIsTrue = 1;
+//定义判断结果是否正确的初始值，默认不正确
+var resultIsTrue = 1;
+var result = 0;
 
 //输入框移出移入事件
 $('section div form div input').mouseover(function(){
@@ -20,7 +23,7 @@ $('section div form div input').mouseout(function(){
 //输入框获焦事件
 $('section div form div input').focus(function(){
 	if(colorRGBtoHex($(this).css('border-color'))!='#ea3d3d'){
-		$(this).css('border-color','#2c82ff');
+		$(this).css('border-color','#2C82FF');
 	};
 });
 //输入框失焦事件
@@ -44,7 +47,8 @@ $('section div form div input').blur(function(){
 			checkPhoneNumber(cont);
 			name2='verify';
 		}else if(name1=='verify'){
-			$('section div form div input.verify').css("border-color","#cccccc");
+			//调用方法判断结果是否正确
+			checkResult(cont,result);
 			name2='tel';
 		};
 	}else{
@@ -124,7 +128,8 @@ $('.next-step').click(function(){
 			'background-size' :'80% 80%',
 			'background-color' : '#2C82FF'
 		});
-		console.log(6666);
+		//加载验证码
+		replaceImageCode();
 		//第一步隐藏，第二步显示
 		$('section .register-step1').css('display','none');
 		$('section .register-step2').css('display','block');
@@ -190,87 +195,84 @@ $('.ensure-reg').click(function(){
 			.children('.content').html('!').css('border-color','#ea3d3d');
 	};
 	if(tel==''&&result!=''){
-		$('.tel-tip').html('请输入手机号码！');
+		$('.tel-tip').html('请输入密码！');
 		$('section .step ul li .line div').eq(1).css('background','#ea3d3d')
 			.parent('.line').css('background','#F2F2F2')
 			.parent('li').css('color','#ea3d3d')
 			.children('.content').html('!').css('border-color','#ea3d3d');
 	};
-	if(cellIsTrue==0&&$('.agreebox').is(':checked')){
+	if(cellIsTrue==0&&resultIsTrue==0&&$('.agreebox').is(':checked')){
 		//验证账号
-		$.ajax({
-			type:"post",
-			url:"register.do",
-			data:"username="+usernames+"&password="+passwords+"&phoneNumber="+tel,
-			success:function(result){
-				console.log(typeof result);
-				console.log(result);
-				if(result==2){
-					//第二步隐藏，第一步显示
-					$('section .register-step1').css('display','block');
-					$('section .register-step2').css('display','none');
-					//提示用户
-					$('.username').css('border-color','#ea3d3d')
-						.siblings('p').html("用户名已存在！");
-					//将当前顶部步骤样式退回
-					$('section .step ul li .line div').eq(1).css('background','none')
-						.parent('.line').css('background','#F2F2F2')
-						.parent('li').css({
-							'color' : '#D8D8D8',
-							'font-weight' : 'normal'})
-						.children('.content').html('2').css({
-							'border-color' : '#D8D8D8',
-							'border-width' : 1});
-					$('section .step ul li .line div').eq(0).css('background','#ea3d3d')
-						.parent('.line').css('background','#F2F2F2')
-						.parent('li').css('color','#ea3d3d')
-						.children('.content').html('!').css({
-							'border-color' : '#ea3d3d',
-							'background' : 'none'});
-					//清除全部样式和内容
-					$('.tel').val('').css('border-color','#CCCCCC');
-					$('.tel-tip').html('');
-					$('.verify').val('').css('border-color','#CCCCCC');
-					$('.res-tip').html('');
-					$('.agreebox').prop("checked",false);
-				}else if(result==0){
-					//改变顶部步骤的样式
-					$('section .step ul li .line div').eq(1).css('background','none')
-						.parent('.line').css('background','#2C82FF')
-						.parent('li').css({
-							'color' : '#2C82FF',
-							'font-weight' : 'bold'})
-						.children('.content').html('').css({
-							'border-color' : '#2C82FF',
-							'border-width' : 2});
-					$('section .step ul li').eq(2).css({
-							'color' : '#2C82FF',
-							'font-weight' : 'bold'})
-						.children('.content').html('').css({
-							'border-color' : '#2C82FF',
-							'border-width' : 2});
-					//更换背景图片
-					$('section .step>ul>li>.content').css({
-						'background' : 'url(./img/true.png) 3px 5px no-repeat',
-						'background-size' :'80% 80%',
-						'background-color' : '#2C82FF'
-					});
-					//获得账号
-					var account = $('.username').val();
-					$('.register-result>p>span').html(account);
-					//第二步隐藏，第三步显示
-					$('section .register-step2').css('display','none');
-					$('section .register-step3').css('display','block');
-				}else if(result==1){
-					alert("注册出错！请刷新页面重新注册！");
-				};
-			}
+		$.post('http://www.wjian.top/shop/api_user.php',{
+			status : 'register',
+			username : usernames,
+			password : passwords,
+		}, function(re){
+			console.log(JSON.parse(re));
+			var code = JSON.parse(re).code;
+			var tip = JSON.parse(re).message;
+			if(code==2001){
+				//第二步隐藏，第一步显示
+				$('section .register-step1').css('display','block');
+				$('section .register-step2').css('display','none');
+				//提示用户
+				$('.username').css('border-color','#ea3d3d')
+					.siblings('p').html(tip);
+				//将当前顶部步骤样式退回
+				$('section .step ul li .line div').eq(1).css('background','none')
+					.parent('.line').css('background','#F2F2F2')
+					.parent('li').css({
+						'color' : '#D8D8D8',
+						'font-weight' : 'normal'})
+					.children('.content').html('2').css({
+						'border-color' : '#D8D8D8',
+						'border-width' : 1});
+				$('section .step ul li .line div').eq(0).css('background','#ea3d3d')
+					.parent('.line').css('background','#F2F2F2')
+					.parent('li').css('color','#ea3d3d')
+					.children('.content').html('!').css({
+						'border-color' : '#ea3d3d',
+						'background' : 'none'});
+				//清除全部样式和内容
+				$('.tel').val('').css('border-color','#CCCCCC');
+				$('.tel-tip').html('');
+				$('.verify').val('').css('border-color','#CCCCCC');
+				$('.res-tip').html('');
+				$('.agreebox').prop("checked",false);
+			}else{
+				//改变顶部步骤的样式
+				$('section .step ul li .line div').eq(1).css('background','none')
+					.parent('.line').css('background','#2C82FF')
+					.parent('li').css({
+						'color' : '#2C82FF',
+						'font-weight' : 'bold'})
+					.children('.content').html('').css({
+						'border-color' : '#2C82FF',
+						'border-width' : 2});
+				$('section .step ul li').eq(2).css({
+						'color' : '#2C82FF',
+						'font-weight' : 'bold'})
+					.children('.content').html('').css({
+						'border-color' : '#2C82FF',
+						'border-width' : 2});
+				//更换背景图片
+				$('section .step>ul>li>.content').css({
+					'background' : 'url(./img/true.png) 3px 5px no-repeat',
+					'background-size' :'80% 80%',
+					'background-color' : '#2C82FF'
+				});
+				//获得账号
+				var account = $('.username').val();
+				$('.register-result>p>span').html(account);
+				//第二步隐藏，第三步显示
+				$('section .register-step2').css('display','none');
+				$('section .register-step3').css('display','block');
+			};
 		});
-		
 	};
 });
 
 //点击按钮跳转到登录界面
 $('.goto-login').click(function(){
-	window.open('login.jsp');
+	window.open('login.html');
 });
