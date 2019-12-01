@@ -4,6 +4,8 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
+
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -225,16 +227,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="content">
 			<div class="introduce">
 				<div class="ins">
-					<h1>悬浮式机械键盘</h1>
-					<a class="ains" href="#">概要</a>
+					<h1>${bd.goodsname }</h1>
+					<a class="ains" href="#">${bd.introduction }</a>
 					<a href="details.html"><button>立即购买</button></a>
 				</div>
 			</div>
-			<img src="img/introduction/introduction0.jpg" />
-			<img src="img/introduction/introduction1.jpg" />
+			<img src="${bd.picture1 }" />
+			<img src="${bd.picture2 }" />
 		</div>
 		
-		//footer
+	
 		<div class="footer">
 				<div class="footer-top text-center">
 					<ul>

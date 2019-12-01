@@ -1,6 +1,6 @@
 //var sort = $("sort");
 //console.log($('.c').val());
-(function() {
+(function(){
 	$.ajax({
 		url:"sort.do",
 		data:{
@@ -11,11 +11,12 @@
     success: function(result){
 	//渲染
 //    	console.log(result);
+    	var str = ``;
     	  $.each(result, function (i, value) {
-			var str = `
+			 str += `
 		      <div class="col-md-3 goods">
 		        <div class="thumbnail">
-		          <a  value=${value.id}>
+		          <a value=${value.id} id='id'>
 		              <img src=${value.picture1} />
 		          <a/>
 		          <caption>
@@ -28,12 +29,22 @@
 		      </div>
 		      `;	
 			//每遍历一次就要去添加一次
-			$('#goodsList').append(str);
+			
 		})
+		$('#goodsList').html(str);
+    	  for(var i=0;i<20;i++){
+		    $("[id=id]").eq(i).click(function(){
+		    	var picid = $(this).attr("value");
+		    	location.href = "introduction.do?picid="+picid;
+		    })
+    	  }
    }
 });
-		
+	 
 })();
+
+
+  
 
 var page = 1;
 $('li.current').attr('background', 'oranged');
@@ -437,7 +448,6 @@ function searchpage(obj){
 
 					})
 					$('ul').children("#page").eq(2).addClass('current');
-				
 				}
 				$('[class="current"]').removeClass('current');
 				 $('ul').children("#page").eq(2).addClass('current');
@@ -446,7 +456,8 @@ function searchpage(obj){
 }
 
 //点击每一张图片去详情页
-$('img').click(function(){
-//	console.log(111);
-	alert(111)
-})
+	 
+   
+
+
+

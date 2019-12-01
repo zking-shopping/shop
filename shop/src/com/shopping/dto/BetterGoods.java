@@ -3,11 +3,25 @@ package com.shopping.dto;
 import java.io.Serializable;
 
 public class BetterGoods implements Serializable{
-	private int id;
+	 private int id;
      private String price;
      private String picture1;
      private String introduction;
      private String goodsname;
+     private String picture2;
+     private String picture3;
+	public String getPicture2() {
+		return picture2;
+	}
+	public void setPicture2(String picture2) {
+		this.picture2 = picture2;
+	}
+	public String getPicture3() {
+		return picture3;
+	}
+	public void setPicture3(String picture3) {
+		this.picture3 = picture3;
+	}
 	public String getPrice() {
 		return price;
 	}
