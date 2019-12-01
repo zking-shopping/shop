@@ -37,11 +37,11 @@ function betterGoods(){
 //    	console.log(11);
 //    })
     
-	 function cardList(){
+	 function cardList(sort){
 	    	$.ajax({
 	    		url:"mintype.do",
 	    		data:{
-	    			"sort": 1,
+	    			"sort": sort,
 	    		},
 	    		success:function(result){
 	    			var str;
@@ -98,7 +98,8 @@ function betterGoods(){
 	
 	$('#myNav>li>a').mouseover(function() {
 		$(this).parent().children().eq(1).show();
-		cardList();
+			    	var sort = $(this).attr("value");
+			    	cardList(sort);
 	})
 	
 	$('#myNav>li').mouseleave(function() {
@@ -142,7 +143,6 @@ function betterGoods(){
 		 $('#allgoods #shop-down').show();
 	})
 	
-	//判断一次操作有没有完成
 	
 	//下一张
 	$('.next').click(rightBtn);
