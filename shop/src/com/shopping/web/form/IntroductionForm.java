@@ -1,13 +1,15 @@
 package com.shopping.web.form;
 
 public class IntroductionForm extends FormFather{
-       String src;
+       String picid;
 
-	public String getSrc() {
-		return src;
+	public String getPicid() {
+		return picid;
 	}
 
-	public void setSrc(String src) {
-		this.src = src;
+	public void setPicid(String picid) {
+		this.picid = picid;
 	}
+
+
 }

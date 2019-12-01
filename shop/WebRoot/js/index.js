@@ -10,7 +10,7 @@ function betterGoods(){
         	  $.each(result, function (i, value) {
         		  var str ="<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='height:440px'>"+
          		          "  <div class='thumbnail' style='height:400px;'>"+
-         		          "<a href='introduction.jsp' value="+value.id+">"+
+         		          "<a  value="+value.id+" id='id'>"+
          		          "<img src="+value.picture1+"  />"+
          		          "</a>"+
          		          "<p>商品名:"+value.goodsname+"</p>"+
@@ -20,6 +20,13 @@ function betterGoods(){
          		         $('.bettergoods').append(str);
          		         
          	 })
+         	  for(var i=0;i<8;i++){
+				    $("[id=id]").eq(i).click(function(){
+				    	var picid = $(this).attr("value");
+				    	console.log(picid)
+				    	location.href = "introduction.do?picid="+picid;
+				    })
+		    	  }
     	   }
     	})
 	 }
@@ -40,7 +47,7 @@ function betterGoods(){
 	    			var str;
 	    			 $.each(result,function(i,value){
 	        	 	    str += "<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='width:180px;height:180px'>"+
-	                              "<a href='introduction.jsp' value="+value.id+">"+
+	                              "<a href='introduction.jsp' value="+value.id+" id='id' >"+
 	                                      "<img src="+value.picture1+" alt='' />"+
 	                                "</a>"+
 	                                      "<p>"+value.goodsname+"</p>"+
@@ -50,6 +57,7 @@ function betterGoods(){
 	                                      $('.nav-cateCard .card-list').html(str);
 	            	 })
 	            	 $('.nav-cateCard .card-list').html(str);
+	    			
 	    		}
 	    	})
 
