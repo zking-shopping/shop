@@ -19,4 +19,14 @@ public class DateHelper {
 		int month = date.getMonth() + 1;
 		return String.valueOf(year + "-" + month);
 	}
+	public static String getSimpleYear(){
+		Date date = new Date();
+		int year = date.getYear() + 1900;
+		return String.valueOf(year);
+	}
+	public static String getSimpleMonth(){
+		Date date = new Date();
+		int month = date.getMonth() + 1;
+		return String.valueOf(month);
+	}
 }
