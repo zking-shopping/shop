@@ -40,6 +40,11 @@
         <pagejump>false</pagejump>
     </action>
     
+    <action name="showAddress" class="com.shopping.web.action.ShowAddressAction">
+        
+        <pagejump>false</pagejump>
+    </action>
+    
     <action name="login" class="com.shopping.web.action.LoginAction">
         <form>com.shopping.web.form.LoginForm</form>
         <result name="success" direct="false">index.jsp</result>

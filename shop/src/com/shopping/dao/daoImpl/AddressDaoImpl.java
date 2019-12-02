@@ -32,6 +32,7 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
 				addr.setCity(rs.getString("city"));
 				addr.setArea(rs.getString("area"));
 				addr.setDetailAddress(rs.getString("detailAddress"));
+				addr.setDefaultAddress(rs.getString("defaultAddress"));
 				list.add(addr);
 			}
 		} catch (SQLException e) {
