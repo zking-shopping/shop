@@ -16,15 +16,14 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 
 	@Override
 	public void attributeAdded(HttpSessionBindingEvent arg0) {
-		System.out.println("enterAttr");
+		System.out.println("进入了单态登录");
 		ServletContext application = arg0.getSession().getServletContext();
 		if(map==null){
-					
 			map = (Map<String, HttpSession>) application.getAttribute("loginMap");
 		}
 
 
-		String infoName = arg0.getName();
+		String infoName = arg0.getName();    //登录新账户的账号
 
 		if (infoName.equals("member")) { // 如果名字是info
 
@@ -32,7 +31,7 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			Member newInfo = (Member) arg0.getValue();
 			// 拿到新的对象的名字
 			if (map.get(infoName) != null) { // 如果新对象的账号对应的session值不为空，说明已经有人登录过了
-				HttpSession session = map.get(infoName);
+				HttpSession session = arg0.getSession();
 				Member oldInfo = (Member) session.getAttribute(infoName);
 				session.removeAttribute("member");
 				System.out.println(newInfo.getUsername() + "已经在线了");
@@ -43,7 +42,7 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 
 		application.setAttribute("loginMap", map);
 		
-		System.out.println(map.size()+"==size");
+		System.out.println(map.size()+"==Map里面的用户数");
 
 	}
 
