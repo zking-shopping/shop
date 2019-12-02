@@ -1,12 +1,14 @@
 (function(){
-		$('.buy>.content>.buy_img>.img_box>img').attr('src', goods.goods_thumb);
-		$('.buy>.content>.buy_img>ul>li:first>img').attr('src', goods.goods_thumb);
+	var img = $('.buy_img').attr("value");
+//	alert(img);
+		$('.buy>.content>.buy_img>.img_box>img').attr('src', img);
+		$('.buy>.content>.buy_img>ul>li:first>img').attr('src', img);
 		$('.buy>.content>.big').css({
-			'background' : 'url(' + goods.goods_thumb + ')' ,
+			'background' : 'url(' + img + ')' ,
 			'background-size' : '1160px 840px','background-repeat' : 'no-repeat',
 		});
 		func();
-	})
+	})()
 	function func(){
 		// 定义滑块与图片大小比例
 		var proportion = 2;
@@ -57,3 +59,19 @@
 		})
 	
 }
+
+//点击立即购买
+    $(".buy_now").click(function(){
+    	  var id = $(this).attr("value");
+    	  location.href = "buy_now.do?id="+id;
+    })
+
+
+
+
+
+
+//点击加入购物车
+     $(".buy_intocar").click(function(){
+   	       var id = $(this).attr("value");
+    })

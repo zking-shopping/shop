@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="css/animate.css" />
 		<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/base.css" type="text/css" />
-		<link rel="stylesheet" href="css/detail.css" type="text/css" />
+		<link rel="stylesheet" href="css/details.css" type="text/css" />
 		<link rel="stylesheet" href="css/index.css" />
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
@@ -220,7 +220,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="buy">
 			<div class="content">
 				<!-- 左图片 -->
-				<div class="buy_img">
+				<div class="buy_img" value="${bd.picture1 }">
 					<!-- 滑块与图片 -->
 					<div class="img_box animated rotateIn wow">
 						<div class="slide"></div>
@@ -252,8 +252,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>您选择了以下产品</p>
 					<p class="setMeal">套餐一</p>
 					<p class="price">￥ ${bd.price}</p>
-					<a class="buy_now" href="shoppingCar.html">立即购买</a>
-					<a class="buy_intocar" href="shoppingCar.html">加入购物车</a>
+					<a class="buy_now"  value="${bd.id }">立即购买</a>
+					<a class="buy_intocar"  value="${bd.id }">加入购物车</a>
 				</div>
 				</div>
 			</div>
@@ -308,7 +308,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="js/wow.min.js"></script>
-<script src="js/detail.js"></script>
+<script src="js/details.js"></script>
 <script src="js/index.js"></script>
 <script>
 	new WOW().init();
