@@ -19,4 +19,8 @@ public interface GoodsDao {
 	
 	public int selectMax(int pageSize, Connection conn);
 	public List<Goods> selectByPage(int pageNumber, int pageSize, Connection conn);
+	
+	public List<Goods> selectAllNoDel(Connection conn);
+	public int selectSortCount(int sort, int pageSize, Connection conn);
+	public List<Goods> selectSortPage(int sort, int pageNumber, int pageSize, Connection conn);
 }

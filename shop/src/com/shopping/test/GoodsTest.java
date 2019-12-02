@@ -32,4 +32,14 @@ public class GoodsTest {
 		Goods g = (Goods)list.get(0);
 		System.out.println(g.getGoodsName());
 	}
+	
+	@Test
+	public void testSelectAllGoods(){
+		Connection conn = DBHe.getConnection();
+		GoodsDao dao = new GoodsDaoImpl();
+		List<Goods> list = dao.selectAllNoDel(conn);
+		System.out.println(list.size());
+		Goods g = (Goods)list.get(0);
+		System.out.println(g.getGoodsName());
+	}
 }

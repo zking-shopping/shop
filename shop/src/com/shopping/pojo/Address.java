@@ -10,13 +10,6 @@ public class Address {
 	private String area;
 	private String detailAddress;
 	private String defaultAddress;
-	
-	public String getDefaultAddress() {
-		return defaultAddress;
-	}
-	public void setDefaultAddress(String defaultAddress) {
-		this.defaultAddress = defaultAddress;
-	}
 	public int getId() {
 		return id;
 	}
@@ -65,5 +58,10 @@ public class Address {
 	public void setDetailAddress(String detailAddress) {
 		this.detailAddress = detailAddress;
 	}
-	
+	public String getDefaultAddress() {
+		return defaultAddress;
+	}
+	public void setDefaultAddress(String defaultAddress) {
+		this.defaultAddress = defaultAddress;
+	}
 }
