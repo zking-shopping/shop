@@ -23,6 +23,26 @@ function autoSize(){
 	});
 };
 
+//隐藏和显示设为默认按钮的方法
+function defaultDisplayOver(obj){
+	var displays = $(obj).children("td").children("#default-address").css("display");
+	if(displays!="inline-block"){
+		$(obj).children("td").children("#set-default-address").css("display","inline-block");
+	};
+};
+function defaultDisplayOut(obj){
+	var displays = $(obj).children("td").children("#default-address").css("display");
+	if(displays!="inline-block"){
+		$(obj).children("td").children("#set-default-address").css("display","none");
+	};
+};
+//设置默认按钮的点击方法  
+function setDefaultAddress(obj){
+	$(obj).css("display","none");
+	$(obj).siblings("#default-address").css("display","inline-block");
+	$(obj).parents("tr").siblings("tr").children("td").children("#default-address").css("display","none");
+};
+
 
 $(function(){
 	autoSize();
@@ -133,6 +153,22 @@ $(function(){
 	$(".no-delete").click(exitDelete);
 	$(".close-ask").click(exitDelete);
 
+	/**
+	 * 个人信息页面
+	 */
+	//地址列表移入移出事件
+	$(".address-list tbody tr").each(function(e){
+		$(this).eq(e).mouseover(function(){
+			console.log(666);
+			var displays = $("#default-address").css("display");
+			console.log(typeof displays);
+			console.log(displays);
+			if(displays!="inline-block"){
+				$("#set-default-address").css("dispaly","inline-block");
+			};
+		});
+	});
+	
 	//点击删除方法
 	$(".enter-delete").click(function(){
 		
