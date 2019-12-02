@@ -13,12 +13,10 @@ function betterGoods(){
          		          "<a  value="+value.id+" id='id'>"+
          		          "<img src="+value.picture1+"  />"+
          		          "</a>"+
-         		          "<p>商品名:"+value.goodsname+"</p>"+
-         		          "<p class='desc'>商品介绍:"+value.introduction+"</p>"+
-         		          "<p>价格:"+value.price+"</p>"+
+         		          "<p >"+value.goodsname+"</p>"+
+         		          "<p class='desc' style='color:#d6d6d6; font-size:14px'>商品介绍:"+value.introduction+"</p>"+
+         		          "<p style='color:#1989e9;'>价格:"+value.price+"</p>"+
          		          "</a>"+"</div>"+"</li>";
-         		       
-         		         
          	 })
          	   $('.bettergoods').html(str);
          	  for(var i=0;i<8;i++){

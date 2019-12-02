@@ -11,6 +11,8 @@ public class BetterGoods implements Serializable{
      private String picture2;
      private String picture3;
      private String color;
+     private String color2;
+     private String color3;
 	public String getPicture2() {
 		return picture2;
 	}
@@ -58,6 +60,18 @@ public class BetterGoods implements Serializable{
 	}
 	public void setColor(String color) {
 		this.color = color;
+	}
+	public String getColor2() {
+		return color2;
+	}
+	public void setColor2(String color2) {
+		this.color2 = color2;
+	}
+	public String getColor3() {
+		return color3;
+	}
+	public void setColor3(String color3) {
+		this.color3 = color3;
 	}
 	
 }

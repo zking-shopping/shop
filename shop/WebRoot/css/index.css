@@ -142,10 +142,13 @@
 			}
 			
 			 .bettergoods li p {
+			    font-size: 18px; 
 			 	color: #122B40;
 			 	width: 80%;
-				margin: 0 auto;
+				 margin:0 20px  10px;
 			}
+			
+			
 			
 			.bettergoods li a .desc:hover {
 				cursor: pointer;
