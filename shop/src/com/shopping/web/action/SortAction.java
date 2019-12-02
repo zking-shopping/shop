@@ -31,40 +31,69 @@ public class SortAction extends ActionFather{
 	@Override
 	public Object doAction(HttpServletRequest request,
 			HttpServletResponse response, Object o) {
-       
+		
 		String forward = null;
   		response.setCharacterEncoding("UTF-8");
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
   		//根据传过来的页面和数量查询数据库
-  		int page = Integer.parseInt( request.getParameter("page"));
-  		int pagesize = Integer.parseInt(request.getParameter("pagesize"));
-        String sort = request.getParameter("sort");
-  		//根据sort查询数据库,找到所有这一类型的图片
-//        List<Goods> list = new ArrayList<Goods>();
+//  		int pageNumber = Integer.parseInt( request.getParameter("pageNumber"));
+//  		int pagesize = Integer.parseInt(request.getParameter("pagesize"));
+//        String sort = request.getParameter("sort");
+//  		//根据sort查询数据库,找到所有这一类型的图片
+////        List<Goods> list = new ArrayList<Goods>();
+  		
+  		int pageNumber = (Integer) request.getAttribute("pageNumber");
+  		int pageSize =  (Integer) request.getAttribute("pageSize");
+  		String sort = request.getParameter("sort");
+  		int number = pageNumber;
+  		int size = pageSize;
         Connection conn = DBHelper.getConnection();
-        BaseDao bd = new GoodsDaoImpl();
-        PicDao pd = new PicDaoImpl();
-       List<Object> list = new ArrayList<Object>();
-    		  list =  bd.selectAll(new Goods(),conn);
-    		  list = list.subList(0, pagesize);
-       List<String> picture = new ArrayList<String>();
-       List<Object> list1 = new ArrayList<Object>();
-		  list1 =  bd.selectAll(new Pic(),conn);
-		  list1 = list1.subList(0, pagesize);
-		  List<BetterGoods> list2 = new ArrayList<BetterGoods>();
-		  for(int i = 0;i<pagesize;i++){
-			  BetterGoods bds = new BetterGoods();
-			  Goods goods = (Goods)list.get(i);
-			  Pic pic = (Pic)list1.get(i);
-			  bds.setGoodsname(goods.getGoodsName());
-			  bds.setIntroduction(goods.getIntroduction());
-			  String pics = pic.getPicture1();
-			  pics = pics.substring(22);
-			  bds.setPicture1(pics);
-			  bds.setPrice(goods.getPrice());
-			  bds.setId(goods.getId());
-			  list2.add(bds);
-		  }
+        GoodsDao dao = new GoodsDaoImpl();
+        PicDao picDao = new PicDaoImpl();
+        int count = dao.selectSortCount(Integer.valueOf(sort), conn);
+        int page = count%size == 0 ? count/size : count/size+1;
+        if(number > page){
+        	number = page;
+        }
+        List<BetterGoods> list2 = new ArrayList<BetterGoods>();
+        List<Goods> list = dao.selectSortPage(Integer.valueOf(sort), number, size, conn);
+        for (int i = 0; i < list.size(); i++) {
+        	BetterGoods b = new BetterGoods();
+			Goods goods = list.get(i);
+			Pic pic = new Pic();
+			pic.setId(goods.getPicId());
+			Pic p = (Pic) picDao.selectById(pic, conn);
+			b.setGoodsname(goods.getGoodsName());
+			b.setIntroduction(goods.getIntroduction());
+			b.setPicture1(p.getPicture1().substring(22));
+			b.setPrice(goods.getPrice());
+			b.setId(goods.getId());
+			list2.add(b);
+		}
+        
+//        BaseDao bd = new GoodsDaoImpl();
+//        PicDao pd = new PicDaoImpl();
+//       List<Object> list = new ArrayList<Object>();
+//    		  list =  bd.selectAll(new Goods(),conn);
+//    		  list = list.subList(0, pagesize);
+//       List<String> picture = new ArrayList<String>();
+//       List<Object> list1 = new ArrayList<Object>();
+//		  list1 =  bd.selectAll(new Pic(),conn);
+//		  list1 = list1.subList(0, pagesize);
+//		  List<BetterGoods> list2 = new ArrayList<BetterGoods>();
+//		  for(int i = 0;i<pagesize;i++){
+//			  BetterGoods bds = new BetterGoods();
+//			  Goods goods = (Goods)list.get(i);
+//			  Pic pic = (Pic)list1.get(i);
+//			  bds.setGoodsname(goods.getGoodsName());
+//			  bds.setIntroduction(goods.getIntroduction());
+//			  String pics = pic.getPicture1();
+//			  pics = pics.substring(22);
+//			  bds.setPicture1(pics);
+//			  bds.setPrice(goods.getPrice());
+//			  bds.setId(goods.getId());
+//			  list2.add(bds);
+//		  }
         DBHelper.closeConnection(conn);
         //根据查询的所有商品找到所有的相对应的picid
 //        List<Integer> listPic = new ArrayList<Integer>();
@@ -80,16 +109,11 @@ public class SortAction extends ActionFather{
 //       }
   		JSONArray jo = JSONArray.fromObject(list2);
   		try {
-  			//如果页码不够
   			PrintWriter out = response.getWriter();
-  			
-//  				System.out.println(list.size());
-  				out.print(jo.toString());
-  				out.flush();
-  				out.close();
-  			
+  			out.print(jo.toString());
+  			out.flush();
+  			out.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
   		return forward;

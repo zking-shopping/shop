@@ -17,7 +17,7 @@
 		      <div class="col-md-3 goods">
 		        <div class="thumbnail">
 		          <a value=${value.id} id='id'>
-		              <img src=${value.picture1} />
+		              <img src="${value.picture1}" />
 		          <a/>
 		          <caption>
 		            <p class="goods-name">${value.goodsname}</p>

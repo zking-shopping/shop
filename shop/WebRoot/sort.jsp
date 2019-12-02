@@ -15,7 +15,6 @@
 			<div class="row" id="goodsList" style="margin: 20px auto;">
 
 			</div>
-
 		</div>
 		<div class="c" value="$(type)">
 			<div class="footer">
