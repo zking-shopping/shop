@@ -374,40 +374,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						<!--已有地址列表-->
 						<div class="haved-address">
-							<h3 class="address-title">已有地址</h3>
-							<table class="address-list">
-								<thead>
-									<tr>
-										<td>收货人</td>
-										<td>地址</td>
-										<td>联系方式</td>
-										<td>操作</td>
-										<td></td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>尹厚粤</td>
-										<td>湖南省衡阳市常宁市荫田镇红星村十一组12号</td>
-										<td>151****3633</td>
-										<td>
-											<span id="modify">修改</span>
-											<span id="delete">删除</span>
-										</td>
-										<td><span id="default-address">设为默认</span></td>
-									</tr>
-									<tr>
-										<td>尹厚粤</td>
-										<td>湖南省衡阳市常宁市荫田镇红星村十一组12号</td>
-										<td>151****3633</td>
-										<td>
-											<span id="modify">修改</span>
-											<span id="delete">删除</span>
-										</td>
-										<td><span id="default-address">设为默认</span></td>
-									</tr>
-								</tbody>
-							</table>
+							
 						</div>
 					</div>
 	                <!--尹厚粤代码整合end-->

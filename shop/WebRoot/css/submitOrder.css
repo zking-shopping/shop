@@ -538,6 +538,8 @@ h3.address-title{
 	text-align: center;
 	height: 40px;
 	border-bottom: 1px solid #D6D6D6;
+	font-weight: lighter;
+	font-size: 14px;
 }
 .address-list thead td{
 	width: 200px;
@@ -545,7 +547,7 @@ h3.address-title{
 	background: #FAFAFA;
 }
 .address-list thead td:last-child{
-	width: 140px;
+	width: 100px;
 }
 .address-list tbody tr:hover{
     background: #FAFAFA;
@@ -553,6 +555,7 @@ h3.address-title{
 .address-list tbody td{
 	padding: 40px 0px;
 	line-height: 20px;
+	font-weight: lighter;
 }
 .address-list tbody td:last-child{
 	padding: 0px;
@@ -560,12 +563,13 @@ h3.address-title{
 }
 .address-list span{
 	color: #1989E9;
+	font-size: 14px;
 }
 .address-list span:hover{
 	text-decoration: underline;
 }
 #default-address{
-	display: inline-block;
+	display: none;
 	width: 66px;
 	height: 30px;
 	line-height: 30px;
@@ -575,7 +579,11 @@ h3.address-title{
 	text-align: center;
 	color: #FF6700;
 	text-decoration: none;
+}
+#set-default-address{
+	display: none;
 	cursor: pointer;
+	text-decoration: none;
 }
 
 /*底部样式*/

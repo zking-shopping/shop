@@ -73,7 +73,6 @@ function showMyProducts(result){
     };
 };
 
-
 function showMyDetails(result){
     var myOders = result[0];
     var myAddressInfo = result[1];
@@ -188,7 +187,6 @@ $(function(){
 
 	//收货地址--左
 	$('.receiptAddress').click(function () {
-		console.log(666);
 	    $('.main-info').siblings().hide();
 	    $('.main-info').show();
 
@@ -203,6 +201,78 @@ $(function(){
 	    $('.receiptAddress').css("border-left","3px solid cornflowerblue");
 	    $('.receiptAddress').css("background","rgba(102, 107, 255, 0.1)");
 	    $('.receiptAddress').children().css("color","dodgerblue");
+	    
+
+	    //加载数据
+	    $.ajax({
+			url:"showAddress.do",
+			data:"",
+			success:function(result){
+				console.log(result);
+				if(result.length!=0){
+					//添加基础表格和标题
+					var len = $('.address-title').length;
+					if(len==0){
+						var myAddressTable = `
+							<h3 class="address-title">已有地址</h3>
+							<table class="address-list">
+								<thead>
+									<tr>
+										<td>收货人</td>
+										<td>地址</td>
+										<td>联系方式</td>
+										<td>操作</td>
+										<td></td>
+									</tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						`;
+						$('.haved-address').append(myAddressTable);
+					};
+					
+					//移除原本已有的地址数据
+					var lens = $('.address-list tbody tr').length;
+					if(lens!=0){
+						$('.address-list tbody').empty();
+					};
+					
+					//添加表格数据
+					var str ;
+					$.each(result, function (i, value) {
+						var allAddress = value.provinces+value.city+value.area+value.detailAddress;
+						var myAddress = `
+							<tr data-cousignee=${value.cousignee} data-phoneNumber=${value.phoneNumber}
+							 data-provinces=${value.provinces} data-city=${value.city}
+							 data-area=${value.area} data-detailAddress=${value.detailAddress}
+							 onmouseover="defaultDisplayOver(this)" onmouseout="defaultDisplayOut(this)" >
+								<td>${value.cousignee}</td>
+								<td>${allAddress}</td>
+								<td>${value.phoneNumber}</td>
+								<td>
+									<span id="modify">修改</span>
+									<span id="delete">删除</span>
+								</td>
+								<td>
+									<span id="set-default-address" onclick="setDefaultAddress(this)">设为默认</span>
+									<span id="default-address">默认地址</span>
+								</td>
+							</tr>
+						`;
+						$('.address-list tbody').append(myAddress);
+						
+						//设置默认地址的显示状况
+						var defaultAddress = value.defaultAddress;
+						if(defaultAddress=="true"){
+							console.log(defaultAddress);
+							$('#default-address').css("display","inline-block");
+						};
+					})
+				};
+			}
+		});
 	});
 
 	//待付款--右
