@@ -229,7 +229,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="ins">
 					<h1>${bd.goodsname }</h1>
 					<a class="ains" href="#">概要</a>
-					<a href="details.html"><button>立即购买</button></a>
+					<a ><button id="buy" value="${bd.id }">立即购买</button></a>
 				</div>
 			</div>
 			<img src="${bd.picture2 }" />

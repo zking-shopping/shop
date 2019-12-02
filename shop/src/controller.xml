@@ -96,4 +96,10 @@
          <result name="error">index.jsp</result>
         <pagejump>true</pagejump>
     </action>
+    
+     <action name="details" class="com.shopping.web.action.DetailsAction">
+        <form>com.shopping.web.form.DetailsForm</form>
+        <result name="success" direct="false">details.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
 </actions>

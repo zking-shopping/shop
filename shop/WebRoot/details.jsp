@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="css/animate.css" />
 		<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/base.css" type="text/css" />
-		<link rel="stylesheet" href="css/details.css" type="text/css" />
+		<link rel="stylesheet" href="css/detail.css" type="text/css" />
 		<link rel="stylesheet" href="css/index.css" />
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
@@ -203,12 +203,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!--最小框的登录和注册-->
 				<ul id="min-reg" class="nav navbar-nav navbar-collapse collapse ">
 					<li class="visible-xs">
-						<a href="register.html">
+						<a href="register.jsp">
 							<button class="btn btn-primary btn-xs">注册</button>
 						</a>
 					</li>
 					<li class="visible-xs">
-						<a href="login.html">
+						<a href="login.jsp">
 							<button class="btn btn-success btn-xs">登录</button>
 						</a>
 					</li>
@@ -224,24 +224,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!-- 滑块与图片 -->
 					<div class="img_box animated rotateIn wow">
 						<div class="slide"></div>
-						<img src="img/details/details1.jpg" />
+						<img src="${bd.picture1 }" />
 					</div>
 					<!-- 图片列表 -->
 					<ul>
-						<li class="selected"><img src="img/details/details2.jpg" /></li>
-						<li><img src="img/details/details2.jpg" /></li>
-						<li><img src="img/details/details3.jpg" /></li>
+						<li class="selected"><img src="${bd.picture1 }" /></li>
+						<li><img src="${bd.picture2 }" /></li>
+						<li><img src="${bd.picture3 }" /></li>
 					</ul>
 				</div>
 				<!-- 放大图 -->
 				<div class="big"></div>
 				<!-- 右信息 -->
 				<div class="buy_standard">
-					<!-- JS添加 -->
+						<h1>${bd.goodsname}</h1>
+				<div class="desc">
+					<p>${bd.introduction}</p>
+					<a href="introduction.html">深入了解产品></a>
+				</div>
+				<h2>1.规格</h2>
+				<div class="types">
+					<div class="type type_selected">套餐一</div>
+					<div class="type">套餐二</div>
+					<div class="type">套餐三</div>
+				</div>
+				<div class="buy_module">
+					<p>您选择了以下产品</p>
+					<p class="setMeal">套餐一</p>
+					<p class="price">￥ ${bd.price}</p>
+					<a class="buy_now" href="shoppingCar.html">立即购买</a>
+					<a class="buy_intocar" href="shoppingCar.html">加入购物车</a>
+				</div>
 				</div>
 			</div>
 			<div class="pic">
-				<img src="img/details/pic1.jpg" class="animated zoomIn wow" data-wow-offset="200" />
+				<img src="${bd.picture3 }" class="animated zoomIn wow" data-wow-offset="200" />
 			</div>
 		</div>
 		
@@ -291,7 +308,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="js/wow.min.js"></script>
-<script src="js/details.js"></script>
+<script src="js/detail.js"></script>
 <script src="js/index.js"></script>
 <script>
 	new WOW().init();

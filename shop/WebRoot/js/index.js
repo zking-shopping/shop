@@ -23,7 +23,6 @@ function betterGoods(){
          	  for(var i=0;i<8;i++){
 				    $("[id=id]").eq(i).click(function(){
 				    	var picid = $(this).attr("value");
-				    	console.log(picid)
 				    	location.href = "introduction.do?picid="+picid;
 				    })
 		    	  }
@@ -31,11 +30,7 @@ function betterGoods(){
     	})
 	 }
 
-    //点击商品的图片跳转到详情图片
-//    $('.bettergoods a').click(function(){
-////    	console.log($(this).value())
-//    	console.log(11);
-//    })
+  
     
 	 function cardList(sort){
 	    	$.ajax({
@@ -44,10 +39,11 @@ function betterGoods(){
 	    			"sort": sort,
 	    		},
 	    		success:function(result){
+	    			var len = result.length;
 	    			var str;
 	    			 $.each(result,function(i,value){
 	        	 	    str += "<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='width:180px;height:180px'>"+
-	                              "<a href='introduction.jsp' value="+value.id+" id='id' >"+
+	                              "<a  value="+value.id+" id='id' >"+
 	                                      "<img src="+value.picture1+" alt='' />"+
 	                                "</a>"+
 	                                      "<p>"+value.goodsname+"</p>"+
@@ -57,13 +53,22 @@ function betterGoods(){
 	                                      $('.nav-cateCard .card-list').html(str);
 	            	 })
 	            	 $('.nav-cateCard .card-list').html(str);
-	    			
+	    			 for(var i=0;i<len;i++){
+	    				    $("[id=id]").eq(i).click(function(){
+	    				    	var picid = $(this).attr("value");
+//	    				    	console.log(picid);
+	    				    	location.href = "introduction.do?picid="+picid;
+	    				    })
+	    		    	  }
 	    		}
 	    	})
 
 	    };
 	 
 	 betterGoods();
+	 
+	 //点击每一张图片去详情页
+	 
 
 	//轮播图中图片的个数
 	var liL = $('.banner>ul li').length;
