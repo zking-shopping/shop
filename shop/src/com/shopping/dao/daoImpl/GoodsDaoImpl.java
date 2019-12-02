@@ -144,7 +144,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao{
 	}
 
 	@Override
-	public int selectSorCount(int sort, int pageSize, Connection conn) {
+	public int selectSortCount(int sort, int pageSize, Connection conn) {
 		String sql = "select count(*) from t_goods where sort=? and del=false";
 		int count = 0;
 		try {
