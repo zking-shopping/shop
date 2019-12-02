@@ -11,3 +11,8 @@
 	});
 })();
 
+$('#buy').click(function(){
+	var id = $(this).attr("value");
+	location.href = "details.do?id="+id;
+})
+
