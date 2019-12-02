@@ -22,11 +22,9 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			map = (Map<String, HttpSession>) application.getAttribute("loginMap");
 		}
 
-
 		String infoName = arg0.getName();    //登录新账户的账号
 
 		if (infoName.equals("member")) { // 如果名字是info
-
 			// 拿到对应的pojo对象
 			Member newInfo = (Member) arg0.getValue();
 			// 拿到新的对象的名字
@@ -49,8 +47,9 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 	@Override
 	public void attributeRemoved(HttpSessionBindingEvent arg0) {
 		// TODO Auto-generated method stub
+		System.out.println("map移除了一个session");
 		if (map == null) {
-
+              
 			ServletContext application = arg0.getSession().getServletContext();
 
 			map = (Map<String, HttpSession>) application.getAttribute("loginMap");
@@ -71,15 +70,14 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 
 	@Override
 	public void attributeReplaced(HttpSessionBindingEvent arg0) {
-
+         System.out.println("map替换了一个session");
 		if (map == null) {
-
 			ServletContext application = arg0.getSession().getServletContext();
 
 			map = (Map<String, HttpSession>) application.getAttribute("loginMap");
 		}
 		String username = ((Member)arg0.getSession().getAttribute("member")).getUsername();
-		String infoName = arg0.getName();
+		String infoName = arg0.getName();  //新的用户账号
 		if (infoName.equals("member")) {
 			// 移除旧的账号
 			Member oldInfo = (Member) arg0.getValue();
@@ -92,7 +90,6 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			System.out.println("替换的用户" +username+ "已经在线了");
 		}
 		map.put(infoName, arg0.getSession());
-		
 	}
 	
 }

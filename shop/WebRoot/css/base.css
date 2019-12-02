@@ -5,6 +5,8 @@ li{list-style: none;}
 a{text-decoration: none;}
 img{border: none;vertical-align: bottom;}
 
+
+
 /* nav */
 .wholenav{
 				height: 100px;
@@ -17,6 +19,7 @@ img{border: none;vertical-align: bottom;}
 				z-index: 14;
 				text-align: center;
 				background: white;
+				
 			}
 			
            .navbar-white>.container{
@@ -62,7 +65,7 @@ img{border: none;vertical-align: bottom;}
 			#myNav>li .dropdown{
 				position: absolute;
 				left: 10%;
-				width: 1340%; 
+				width: 1150%; 
 				background: white;
 			}
 			

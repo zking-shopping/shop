@@ -38,14 +38,20 @@ public class MintypeAction extends ActionFather{
        List<Goods> list = new ArrayList<Goods>();
     		  list = gd.selectBySort(sort, conn);
     	
-       List<Object> list1 = new ArrayList<Object>();
-		  list1 =  bd.selectAll(new Pic(),conn);
+       List<Pic> list1 = new ArrayList<Pic>();
+       
+		 for(int i = 0;i<list.size();i++){
+			    Pic pic = new Pic();
+			    pic.setId(list.get(i).getId());
+			   Pic pic1 = (Pic) pd.selectById(pic, conn);
+			    list1.add(pic1);
+		 }
 
 		  List<BetterGoods> list2 = new ArrayList<BetterGoods>();
 		  for(int i = 0;i<list.size();i++){
 			  BetterGoods bds = new BetterGoods();
 			  Goods goods = (Goods)list.get(i);
-			  Pic pic = (Pic)list1.get(i);
+			  Pic pic = list1.get(i);
 			  bds.setGoodsname(goods.getGoodsName());
 			  bds.setIntroduction(goods.getIntroduction());
 			  String pics = pic.getPicture1();
@@ -57,7 +63,6 @@ public class MintypeAction extends ActionFather{
 		  }
         DBHelper.closeConnection(conn);
         JSONArray jo = JSONArray.fromObject(list2);
-  		
   		try {
   			//如果页码不够
   			PrintWriter out = response.getWriter();
