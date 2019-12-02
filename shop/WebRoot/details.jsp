@@ -240,13 +240,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<h1>${bd.goodsname}</h1>
 				<div class="desc">
 					<p>${bd.introduction}</p>
-					<a href="introduction.html">深入了解产品></a>
+					<a id="introduce" value="${bd.id}" style="cursor:pointer">深入了解产品></a>
 				</div>
 				<h2>1.规格</h2>
 				<div class="types">
-					<div class="type type_selected">套餐一</div>
-					<div class="type">套餐二</div>
-					<div class="type">套餐三</div>
+					<div class="type type_selected">${bd.color}</div>
+					<div class="type">${bd.color}</div>
+					<div class="type">${bd.color}</div>
 				</div>
 				<div class="buy_module">
 					<p>您选择了以下产品</p>

@@ -6,20 +6,19 @@ function betterGoods(){
                  
                   },
           success: function(result){
-        	  var str ;
+        	  var str = "";
         	  $.each(result, function (i, value) {
-        		  var str ="<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='height:440px'>"+
-         		          "  <div class='thumbnail' style='height:400px;'>"+
+        		str +="<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='height:380px'>"+
+         		          "  <div class='thumbnail' style='height:360px;'>"+
          		          "<a  value="+value.id+" id='id'>"+
          		          "<img src="+value.picture1+"  />"+
          		          "</a>"+
-         		          "<p>商品名:"+value.goodsname+"</p>"+
-         		          "<p class='desc'>商品介绍:"+value.introduction+"</p>"+
-         		          "<p>价格:"+value.price+"</p>"+
+         		          "<p >"+value.goodsname+"</p>"+
+         		          "<p class='desc' style='color:#d6d6d6; font-size:14px'>商品介绍:"+value.introduction+"</p>"+
+         		          "<p style='color:#1989e9;'>价格:"+value.price+"</p>"+
          		          "</a>"+"</div>"+"</li>";
-         		         $('.bettergoods').append(str);
-         		         
          	 })
+         	   $('.bettergoods').html(str);
          	  for(var i=0;i<8;i++){
 				    $("[id=id]").eq(i).click(function(){
 				    	var picid = $(this).attr("value");
@@ -40,7 +39,8 @@ function betterGoods(){
 	    		},
 	    		success:function(result){
 	    			var len = result.length;
-	    			var str;
+	    			var str = "";
+	    			$('.nav-cateCard .card-list').eq(parseInt(sort)-1).empty()
 	    			 $.each(result,function(i,value){
 	        	 	    str += "<li class='col-4-lg col-3-md col-6-sm col-12-xs' style='width:180px;height:180px'>"+
 	                              "<a  value="+value.id+" id='id' >"+
@@ -50,16 +50,14 @@ function betterGoods(){
 	                                      "<p>价格:"+value.price+"</p>"+
 	                           "</li>"
 	                           ;
-	                                      $('.nav-cateCard .card-list').html(str);
 	            	 })
-	            	 $('.nav-cateCard .card-list').html(str);
+	            	 $('.nav-cateCard .card-list').eq(parseInt(sort)-1).html(str);
 	    			 for(var i=0;i<len;i++){
 	    				    $("[id=id]").eq(i).click(function(){
 	    				    	var picid = $(this).attr("value");
-//	    				    	console.log(picid);
 	    				    	location.href = "introduction.do?picid="+picid;
 	    				    })
-	    		    	  }
+	    		      }
 	    		}
 	    	})
 
@@ -108,7 +106,8 @@ function betterGoods(){
 	})
 	
 	$('#myNav>li').mouseleave(function() {
-		$(this).children().eq(1).hide();
+		     $('.nav-cateCard .card-list').empty();
+		 
 	})
 	
 	//	登录注册

@@ -5,6 +5,7 @@
 				margin: 0px auto;
 				overflow: hidden;
 				position: relative;
+				top:-16px
 			}
 			
 			.banner ul {
@@ -81,22 +82,27 @@
 			}
 			
            .chosed {
-				width: 1348px;
+				width: 100%;
 			
 				margin: 0 auto;
 				text-align: center;
-				
+						background:#F4F4F4;
+						position:relative;
+						top:-24px;
 			}
 			
 			.bettergoods {
 				width: 86%;
 				margin: 0 auto;
+			
 				text-align: center;
 			}
 			
 			.bettergoods li {
 				height: 40%;
-				width: 25%;
+				width: 20%;
+				margin-left:4%;
+				
 				float: left;
 				text-align: center;
 				border: none;
@@ -136,10 +142,13 @@
 			}
 			
 			 .bettergoods li p {
+			    font-size: 18px; 
 			 	color: #122B40;
 			 	width: 80%;
-				margin: 0 auto;
+				 margin:0 20px  10px;
 			}
+			
+			
 			
 			.bettergoods li a .desc:hover {
 				cursor: pointer;

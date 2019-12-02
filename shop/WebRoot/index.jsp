@@ -28,9 +28,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 	<div class="navbar wholenav">
 		<!--导航条-->
-		<nav class="navbar navbar-white">
+		<nav class="navbar navbar-white" style="border-bottom-color:#d6d6d6">
 		<div class="container">
 			<div class="navbar navbar-header">
+			
 				<!--导航条左边-->
 				<!--logo-->
 				<div class="navbar-brand">
@@ -41,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<ul class=" navbar-nav hidden-xs" id="myNav" style="width:72%">
 						<li style="width:14%">
 							<a id="sort1" value="1">插线板</a>
-							<div class="dropdown" style="display: none; left: -180%;">
+							<div class="dropdown" style="display: none; left: -190%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
 										
@@ -51,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>
 						<li style="width:14%">
 							<a id="sort2" value="2">音响耳机</a>
-							<div class="dropdown" style="display: none; left: -280%;" >
+							<div class="dropdown" style="display: none; left: -290%;" >
 								<div class="nav-cateCard">
 									<ul class="card-list">
 										
@@ -61,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>
 						<li style="width:14%">
 							<a id="sort3" value="3">手机配件</a>
-							<div class="dropdown" style="display: none; left: -380%;">
+							<div class="dropdown" style="display: none; left: -390%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
 										
@@ -71,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>
 						<li style="width:14%">
 							<a id="sort4" value="4">电脑办公</a>
-							<div class="dropdown" style="display: none; left: -480%;">
+							<div class="dropdown" style="display: none; left: -490%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
 										
@@ -81,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>
 						<li style="width:14%">
 							<a id="sort5" value="5">电池电源</a>
-							<div class="dropdown" style="display: none; left: -580%;">
+							<div class="dropdown" style="display: none; left: -590%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
 										
@@ -91,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>
 						<li style="width:14%">
 							<a id="sort6" value="6">生活电器</a>
-							<div class="dropdown" style="display: none; left: -680%;">
+							<div class="dropdown" style="display: none; left: -690%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
 									
@@ -101,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>
 						<li style="width:14%">
 							<a id="sort7" value="7">个护健康</a>
-							<div class="dropdown" style="display: none; left: -780%;">
+							<div class="dropdown" style="display: none; left: -790%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
 									

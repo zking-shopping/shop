@@ -75,3 +75,9 @@
      $(".buy_intocar").click(function(){
    	       var id = $(this).attr("value");
     })
+    
+ //点击深入了解
+    $("[id=introduce]").click(function(){
+    	 var id = $(this).attr("value");
+    	 location.href  = "introduction.do?picid="+id;
+    })
