@@ -55,7 +55,7 @@ function showMyProducts(result){
             <input type="checkbox" class="oneCheckbox"/>
             </li>
 			<li>
-               <a><img src="${productsList[i].url}"/></a>
+               <a><img src="${productsList[i].url.substring(28)}"/></a>
                <div>
                   <a>${productsList[i].goodsName}</a>
                   <p>${productsList[i].goodsColor}</p>

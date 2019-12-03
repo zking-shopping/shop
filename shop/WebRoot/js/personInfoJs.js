@@ -55,12 +55,12 @@ function showMyProducts(result){
         }else{state = "已关闭"}
         $('.myProducts').append(myOrders);
     	for (var j = 0; j < detailOrderss[i].length; j++) {
-    		var imgsrc = '"'+detailOrderss[i][j].url.subString(21)+'"';
-    		alert(imgsrc)
+//    		var imgsrc = '"'+detailOrderss[i][j].url.substring(28)+'"';
+//    		alert(imgsrc)
     		var myDetailOrders = `          
             <ul>
   			<li> 
-                 <a><img src=${imgsrc}/></a>
+                 <a><img src="${detailOrderss[i][j].url.substring(28)}"/></a>
                  <div>
                     <a>${detailOrderss[i][j].goodsName}</a>
                     <p>${detailOrderss[i][j].goodsColor}</p>
