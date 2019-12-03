@@ -62,8 +62,9 @@
 
 //点击立即购买
     $(".buy_now").click(function(){
-    	  var id = $(this).attr("value");
-    	  location.href = "buy_now.do?id="+id;
+    	var id = $(this).attr("value");
+  	  var type_selected = $(".type_selected").html();
+  	  location.href = "buy_now.do?id="+id+"&type_selected="+type_selected;
     })
 
 
@@ -73,7 +74,9 @@
 
 //点击加入购物车
      $(".buy_intocar").click(function(){
-   	       var id = $(this).attr("value");
+    	 var id = $(this).attr("value");
+    	    var type_selected = $(".type_selected").html();
+    	    $.get('addToShoppingCar.do',{'id':id,'type_selected':type_selected});
     })
     
  //点击深入了解

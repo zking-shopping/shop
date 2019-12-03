@@ -7,6 +7,16 @@
         <pagejump>true</pagejump>
     </action>
     
+    <action name="buy_now" class="com.shopping.web.action.Buy_nowAction">        
+        <result name="success" direct="true">shoppingCar.jsp</result>
+        <result name="error">login.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+    <action name="addToShoppingCar" class="com.shopping.web.action.AddToShoppingCarAction">                
+        <pagejump>false</pagejump>
+    </action>
+    
     <action name="shoppingCar" class="com.shopping.web.servlet.ShoppingCarAction">        
         <pagejump>false</pagejump>
     </action>
@@ -29,13 +39,11 @@
         <pagejump>false</pagejump>
     </action>
     
-    <action name="myPersonInfo" class="com.shopping.web.action.MyPersonInfoAction">
-        
+    <action name="myPersonInfo" class="com.shopping.web.action.MyPersonInfoAction">       
         <pagejump>false</pagejump>
     </action>
     
-    <action name="personInfoShowDetails" class="com.shopping.web.action.PersonInfoShowDetailsAction">
-        
+    <action name="personInfoShowDetails" class="com.shopping.web.action.PersonInfoShowDetailsAction">       
         <pagejump>false</pagejump>
     </action>
     
@@ -83,7 +91,7 @@
      <action name="introduction" class="com.shopping.web.action.IntroductionAction">
         <form>com.shopping.web.form.IntroductionForm</form>
         <result name="success" direct="false">introduction.jsp</result>
-        \ <result name="error">introduction.jsp</result>
+        <result name="error">introduction.jsp</result>
         <pagejump>true</pagejump>
     </action>
     
