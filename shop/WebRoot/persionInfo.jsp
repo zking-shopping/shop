@@ -386,6 +386,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <img src="img/contact.jpg" />
 	        </div>
 	    </div>
+	    
+	<!--删除界面-->
+	<section class="transparent"></section>
+	<div class="center-delete">
+		<div class="ask-delete">确认删除？</div>
+		<input type="button" value="确认" class="enter-delete"/>
+		<input type="button" value="取消" class="no-delete"/>
+		<div class="close-ask"></div>
+	</div>
 	
 	    <div class="footer-bottom text-center">
 	        <span>公司版权所有 © 1997-2019 ICP证：浙B2-20160106 浙ICP备15041168号 （粤）网械平台备字（2019）第00004号</span>
