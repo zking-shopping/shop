@@ -38,9 +38,11 @@ function showMyProducts(result){
     console.log(result);
     var orders = result[0];
     var detailOrderss = result[1];
+    
     for(var i = 0; i < orders.length; i++){
+    	var paiedMoney = 0;
     	var myOrders = `
-        <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span></div>
+        <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span> 支付金额：<span class="paiedMoney${orders[i].id}"></span></div>
         `;
         var stateid = orders[i].state;
         var state = "";
@@ -55,8 +57,7 @@ function showMyProducts(result){
         }else{state = "已关闭"}
         $('.myProducts').append(myOrders);
     	for (var j = 0; j < detailOrderss[i].length; j++) {
-//    		var imgsrc = '"'+detailOrderss[i][j].url.substring(28)+'"';
-//    		alert(imgsrc)
+    		paiedMoney = parseInt(paiedMoney) + parseInt(detailOrderss[i][j].price*detailOrderss[i][j].number);
     		var myDetailOrders = `          
             <ul>
   			<li> 
@@ -71,7 +72,7 @@ function showMyProducts(result){
   			<li>
   			${detailOrderss[i][j].number}
   			<li style="font-weight: bold;">${detailOrderss[i][j].price*detailOrderss[i][j].number}</li>
-  			<li>${state}</li>
+  			<li stateid="${stateid}">${state}</li>
   			<li class="a-hover">
   			    <input type="text" value="${orders[i].id}" style="display:none"/> 			    
   				<p><a href="buyAgain.do?id=${orders[i].id}">重新购买</a></p>
@@ -79,45 +80,89 @@ function showMyProducts(result){
   			</li>
            </ul>
   `;
-        $('.myProducts').append(myDetailOrders);	
+        $('.myProducts').append(myDetailOrders);  
+        
 		}
         $('.myNullOrder').hide();
-        $('.myrightinfo_body').show();                
+        $('.myrightinfo_body').show();
+        var paiedMoneypage = "'.paiedMoney"+orders[i].id+"'";
+//        alert(paiedMoneypage);
+        $(paiedMoneypage).append(paiedMoney);
     };
+    
 };
 
-function showMyDetails(state,result){
+function showMyDetails(paiedMoney,state,result){
 	
     var myOders = result[0];
     var myAddressInfo = result[1];
     $('.viewDetails_buttom_body_details').html("");
-    
-    $('.viewDetails_buttom_orderInfo').html("");   
+//    alert(state);
+    $('.viewDetails_buttom_orderInfo').html(""); 
+    var stateImageOne = "img/list4.png";
+    var stateImageTwo = "img/list5.png";
+    var stateImageThere = "img/list7.png";
+    var stateFontOne = "提交申请";
+    var stateFontTwo = "取消处理";
+    var stateFontThere = "取消成功";
+    if(state==1){
+    	stateImageOne = "img/list88.png";
+    	stateImageTwo = "img/list99.png";
+    	stateImageThere = "img/list77.png";
+    	var stateFontOne = "待发货";
+        var stateFontTwo = "待收货";
+        var stateFontThere = "交易成功";
+    	state="待付款";
+    }else if(state==2){
+    	stateImageOne = "img/list88.png";
+    	stateImageTwo = "img/list99.png";
+    	stateImageThere = "img/list77.png";
+    	var stateFontOne = "待发货";
+        var stateFontTwo = "待收货";
+        var stateFontThere = "交易成功";
+    	state="待发货";
+    }else if(state==3){
+    	stateImageOne = "img/list88.png";
+    	stateImageTwo = "img/list99.png";
+    	stateImageThere = "img/list77.png";
+    	var stateFontOne = "待发货";
+        var stateFontTwo = "待收货";
+        var stateFontThere = "交易成功";
+    	state="待收货";
+    }else if(state==4){
+    	stateImageOne = "img/list88.png";
+    	stateImageTwo = "img/list99.png";
+    	stateImageThere = "img/list77.png";
+    	var stateFontOne = "待发货";
+        var stateFontTwo = "待收货";
+        var stateFontThere = "交易成功";
+    	state="已关闭";
+    }
     var viewDetails_buttom_orderInfo = `
 	<div class="viewDetails_left">
 	    <h3>订单${state}</h3>
-	    <h3>实付款￥0.00</h3>
+	    <h3>实付款￥${paiedMoney}.00</h3>
 	    <h4>实退款￥0.00</h4>
 	</div>
 	<div class="viewDetails_right">
 	    <ul>
 	        <li>
-	            <img src="img/list4.png"/>
+	            <img src="${stateImageOne}"/>
 	            <span class="wool_right"></span>
-	            <p>提交申请</p>
+	            <p>${stateFontOne}</p>
 	            <p>时间</p>
 	        </li>
 	        <li>
 	            <span class="wool_left"></span>
-	            <img src="img/list5.png"/>
+	            <img src="${stateImageTwo}"/>
 	            <span class="wool_right"></span>
-	            <p>取消处理</p>
+	            <p>${stateFontTwo}</p>
 	            <p>时间</p>
 	        </li>
 	        <li>
 	            <span class="wool_left"></span>
-	            <img src="img/list7.png"/>
-	            <p>取消成功</p>
+	            <img src="${stateImageThere}"/>
+	            <p>${stateFontThere}</p>
 	            <p>时间</p>
 	        </li>
 	       
@@ -132,7 +177,7 @@ function showMyDetails(state,result){
             <div class="logistics">暂无物流信息</div>
             <ul>
 			<li>
-               <a><img src="${myOders[i].url}"/></a>
+               <a><img src="${myOders[i].url.substring(28)}"/></a>
                <div>
                   <a>${myOders[i].goodsName}</a>
                   <p>${myOders[i].goodsColor}</p>
@@ -148,7 +193,7 @@ function showMyDetails(state,result){
         $('.viewDetails_buttom_body_details').append(myOrder);
     };
     var orderInfo = `
-    <p><span>收货人：${myAddressInfo.cousignee}</span><span>支付方式：未支付</span><span>实付款：￥0.00</span></p>
+    <p><span>收货人：${myAddressInfo.cousignee}</span><span>支付方式：未支付</span><span>实付款：￥${paiedMoney}.00</span></p>
     <p><span>联系方式：${myAddressInfo.phoneNumber}</span><span>活动优惠：-￥0.00</span><span>运费：￥0.00</span></p>
     <p><span>收货地址：${myAddressInfo.provinces}${myAddressInfo.city}${myAddressInfo.area}${myAddressInfo.detailAddress}</span><span>优惠券：-￥0.00</span></p>
     `;
@@ -169,13 +214,14 @@ $(function(){
 	    
 	    var firstidInputFather = e.target.parentNode.parentNode;
 	    var id = firstidInputFather.firstElementChild.value;
-	    var state = firstidInputFather.previousElementSibling.innerHTML;
+	    var state = firstidInputFather.previousElementSibling.getAttribute("stateid");
+	    var paiedMoney = $('.paiedMoney').html();
 	   
 	    $.get('personInfoShowDetails.do',{
 	        'id':id
 	    }, function(result){
 	        var result = JSON.parse(result);	        
-	        showMyDetails(state,result);
+	        showMyDetails(paiedMoney,state,result);
 	    });
 	    $('.viewDetails').show();
 	});
