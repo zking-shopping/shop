@@ -237,6 +237,7 @@ function betterGoods(){
 	
 	//点击每一种分类，发送一个种类的类型，存到request中
 	$('#sort1').click(function(){
+		
 		location.href="sort.jsp?sort=1";
 	})
 	$('#sort2').click(function(){

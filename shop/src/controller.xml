@@ -16,7 +16,6 @@
     </action>
     
     <action name="shoppingCarCountChange" class="com.shopping.web.action.ShoppingCarCountChangeAction">
-           
         <pagejump>false</pagejump>
     </action>
     
