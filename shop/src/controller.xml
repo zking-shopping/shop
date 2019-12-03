@@ -40,13 +40,11 @@
         <pagejump>false</pagejump>
     </action>
     
-    <action name="myPersonInfo" class="com.shopping.web.action.MyPersonInfoAction">
-        
+    <action name="myPersonInfo" class="com.shopping.web.action.MyPersonInfoAction">       
         <pagejump>false</pagejump>
     </action>
     
-    <action name="personInfoShowDetails" class="com.shopping.web.action.PersonInfoShowDetailsAction">
-        
+    <action name="personInfoShowDetails" class="com.shopping.web.action.PersonInfoShowDetailsAction">       
         <pagejump>false</pagejump>
     </action>
     
