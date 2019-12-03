@@ -278,35 +278,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <!--订单状态-->
 	                <div class="viewDetails">
 	                    <div class="odder_info">下单时间<span></span></div>
-	                    <div class="viewDetails_buttom">
-	                        <div class="viewDetails_left">
-	                            <h3>订单已取消</h3>
-	                            <h3>实付款￥0.00</h3>
-	                            <h4>实退款￥0.00</h4>
-	                        </div>
-	                        <div class="viewDetails_right">
-	                            <ul>
-	                                <li>
-	                                    <img src="img/list4.png"/>
-	                                    <span class="wool_right"></span>
-	                                    <p>提交申请</p>
-	                                    <p>时间</p>
-	                                </li>
-	                                <li>
-	                                    <span class="wool_left"></span>
-	                                    <img src="img/list5.png"/>
-	                                    <span class="wool_right"></span>
-	                                    <p>取消处理</p>
-	                                    <p>时间</p>
-	                                </li>
-	                                <li>
-	                                    <span class="wool_left"></span>
-	                                    <img src="img/list7.png"/>
-	                                    <p>取消成功</p>
-	                                    <p>时间</p>
-	                                </li>
-	                            </ul>
-	                        </div>
+	                    <div class="viewDetails_buttom_orderInfo">
+	                        
 	                    </div>
 	                    <div class="viewDetails_buttom">
 	                        <ul class="viewDetails_buttom_body">

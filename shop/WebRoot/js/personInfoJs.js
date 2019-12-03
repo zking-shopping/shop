@@ -42,12 +42,25 @@ function showMyProducts(result){
     	var myOrders = `
         <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span></div>
         `;
+        var stateid = orders[i].state;
+        var state = "";
+        if(stateid==1){
+        	state = "待付款";
+        }else if(stateid==2){
+        	state = "待发货";
+        }else if(stateid==3){
+        	state = "待收货";
+        }else if(stateid==4){
+        	state = "已完成";
+        }else{state = "已关闭"}
         $('.myProducts').append(myOrders);
     	for (var j = 0; j < detailOrderss[i].length; j++) {
+    		var imgsrc = '"'+detailOrderss[i][j].url.subString(21)+'"';
+    		alert(imgsrc)
     		var myDetailOrders = `          
             <ul>
   			<li> 
-                 <a><img src="${detailOrderss[i][j].url}"/></a>
+                 <a><img src=${imgsrc}/></a>
                  <div>
                     <a>${detailOrderss[i][j].goodsName}</a>
                     <p>${detailOrderss[i][j].goodsColor}</p>
@@ -58,9 +71,9 @@ function showMyProducts(result){
   			<li>
   			${detailOrderss[i][j].number}
   			<li style="font-weight: bold;">${detailOrderss[i][j].price*detailOrderss[i][j].number}</li>
-  			<li>已关闭</li>
+  			<li>${state}</li>
   			<li class="a-hover">
-  			    <input type="text" value="${orders[i].id}" style="display:none"/>
+  			    <input type="text" value="${orders[i].id}" style="display:none"/> 			    
   				<p><a href="buyAgain.do?id=${orders[i].id}">重新购买</a></p>
   				<p class="showDetails"><a>查看详情</a></p>
   			</li>
@@ -73,11 +86,48 @@ function showMyProducts(result){
     };
 };
 
-function showMyDetails(result){
+function showMyDetails(state,result){
+	
     var myOders = result[0];
     var myAddressInfo = result[1];
     $('.viewDetails_buttom_body_details').html("");
+    
+    $('.viewDetails_buttom_orderInfo').html("");   
+    var viewDetails_buttom_orderInfo = `
+	<div class="viewDetails_left">
+	    <h3>订单${state}</h3>
+	    <h3>实付款￥0.00</h3>
+	    <h4>实退款￥0.00</h4>
+	</div>
+	<div class="viewDetails_right">
+	    <ul>
+	        <li>
+	            <img src="img/list4.png"/>
+	            <span class="wool_right"></span>
+	            <p>提交申请</p>
+	            <p>时间</p>
+	        </li>
+	        <li>
+	            <span class="wool_left"></span>
+	            <img src="img/list5.png"/>
+	            <span class="wool_right"></span>
+	            <p>取消处理</p>
+	            <p>时间</p>
+	        </li>
+	        <li>
+	            <span class="wool_left"></span>
+	            <img src="img/list7.png"/>
+	            <p>取消成功</p>
+	            <p>时间</p>
+	        </li>
+	       
+	    </ul>
+	</div>
+	`;
+    $('.viewDetails_buttom_orderInfo').append(viewDetails_buttom_orderInfo);
+    
     for(var i = 0; i < myOders.length; i++){
+    	
         var myOrder = `
             <div class="logistics">暂无物流信息</div>
             <ul>
@@ -117,12 +167,15 @@ $(function(){
 	    $('#myPersonInfo').hide();
 	    $.ajaxSettings.async = false;
 	    
-	    var id = e.target.parentNode.parentNode.firstElementChild.value;
+	    var firstidInputFather = e.target.parentNode.parentNode;
+	    var id = firstidInputFather.firstElementChild.value;
+	    var state = firstidInputFather.previousElementSibling.innerHTML;
+	   
 	    $.get('personInfoShowDetails.do',{
 	        'id':id
 	    }, function(result){
 	        var result = JSON.parse(result);	        
-	        showMyDetails(result);
+	        showMyDetails(state,result);
 	    });
 	    $('.viewDetails').show();
 	});
