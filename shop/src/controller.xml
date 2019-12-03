@@ -49,7 +49,15 @@
     </action>
     
     <action name="showAddress" class="com.shopping.web.action.ShowAddressAction">
-        
+        <pagejump>false</pagejump>
+    </action>
+    
+    <action name="setDefaultAddress" class="com.shopping.web.action.SetDefaultAddressAction">
+        <pagejump>false</pagejump>
+    </action>
+    
+    <action name="savaAddress" class="com.shopping.web.action.SavaAddressAction">
+        <form>com.shopping.web.form.SavaAddressForm</form>
         <pagejump>false</pagejump>
     </action>
     

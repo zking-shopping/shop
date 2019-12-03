@@ -208,7 +208,6 @@ $(function(){
 			url:"showAddress.do",
 			data:"",
 			success:function(result){
-				console.log(result);
 				if(result.length!=0){
 					//添加基础表格和标题
 					var len = $('.address-title').length;
@@ -233,6 +232,17 @@ $(function(){
 						$('.haved-address').append(myAddressTable);
 					};
 					
+					//显示可添加地址的数量
+					if($(".number-title").length!=0){
+						$('.number-title').remove();
+					};
+					var havedAddress = `
+						<h3 class="number-title">
+							新增收货地址（您目前已有${result.length}个地址，最多还可增加${10-result.length}个）
+						</h3>
+					`;
+					$('.main-info').prepend(havedAddress);
+					
 					//移除原本已有的地址数据
 					var lens = $('.address-list tbody tr').length;
 					if(lens!=0){
@@ -247,6 +257,7 @@ $(function(){
 							<tr data-cousignee=${value.cousignee} data-phoneNumber=${value.phoneNumber}
 							 data-provinces=${value.provinces} data-city=${value.city}
 							 data-area=${value.area} data-detailAddress=${value.detailAddress}
+							 data-id=${value.id}
 							 onmouseover="defaultDisplayOver(this)" onmouseout="defaultDisplayOut(this)" >
 								<td>${value.cousignee}</td>
 								<td>${allAddress}</td>
@@ -266,7 +277,6 @@ $(function(){
 						//设置默认地址的显示状况
 						var defaultAddress = value.defaultAddress;
 						if(defaultAddress=="true"){
-							console.log(defaultAddress);
 							$('#default-address').css("display","inline-block");
 						};
 					})
