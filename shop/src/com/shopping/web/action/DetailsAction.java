@@ -1,6 +1,7 @@
 package com.shopping.web.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,15 +38,12 @@ public class DetailsAction extends ActionFather{
 		 pic.setId(id);
 		 Pic pic1 = (Pic) pd.selectById(pic, conn);
 		 
-		 
-	
-		 Color color = new Color();
-		 color.setId(id);
-         Color color1 = (Color) cd.selectById(color, conn);
+		 String goodsid = Integer.toString(id);
+         List<Color> color = (List<Color>) cd.selectByGoodsId(goodsid, conn);
 		 DBHelper.closeConnection(conn);
 		 bd.setGoodsname(goods1.getGoodsName());
 		 bd.setIntroduction(goods1.getIntroduction());
-		 bd.setColor(color1.getGoodsColor());
+		 bd.setColor(color.get(0).getGoodsColor());
 		 bd.setPrice(goods1.getPrice());
 		 bd.setId(id);
 		 bd.setPicture1(pic1.getPicture1().substring(22));
