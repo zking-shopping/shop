@@ -25,24 +25,47 @@ function autoSize(){
 
 //隐藏和显示设为默认按钮的方法
 function defaultDisplayOver(obj){
-	var displays = $(obj).children("td").children("#default-address").css("display");
+	var displays = $(obj).find("#default-address").css("display");
 	if(displays!="inline-block"){
-		$(obj).children("td").children("#set-default-address").css("display","inline-block");
+		$(obj).find("#set-default-address").css("display","inline-block");
 	};
 };
 function defaultDisplayOut(obj){
-	var displays = $(obj).children("td").children("#default-address").css("display");
+	var displays = $(obj).find("#default-address").css("display");
 	if(displays!="inline-block"){
-		$(obj).children("td").children("#set-default-address").css("display","none");
+		$(obj).find("#set-default-address").css("display","none");
 	};
 };
-//设置默认按钮的点击方法  
+//更改默认地址
 function setDefaultAddress(obj){
-	$(obj).css("display","none");
-	$(obj).siblings("#default-address").css("display","inline-block");
-	$(obj).parents("tr").siblings("tr").children("td").children("#default-address").css("display","none");
+	//获得所有已有id
+	var idStr = "id0="+$(obj).parents("tr").attr("data-id");
+	
+	$(obj).parents("tr").siblings().each(function(e){var lens = $(this).find("span").length;
+		var lens = $(this).find("span").length;
+		//获得元素对应的id
+		if(lens!=0){
+			idStr += "&id"+(e+1)+"="+$(this).attr("data-id");
+		};
+	});
+	
+	var id = $(obj).parents("tr").attr("data-id");
+	//更改数据库数据
+	$.ajax({
+		type: "post",
+		url: "setDefaultAddress.do",
+		data: idStr,
+		success:function(result){
+			$(obj).css("display","none");
+			//判断当前表格是否有显示默认
+			var len = $(obj).siblings("#default-address").length;
+			if(len>0){
+				$(obj).siblings("#default-address").css("display","inline-block");
+				$(obj).parents("tr").siblings("tr").find("#default-address").css("display","none");
+			};
+		}
+	});
 };
-
 
 $(function(){
 	autoSize();
@@ -156,17 +179,90 @@ $(function(){
 	/**
 	 * 个人信息页面
 	 */
-	//地址列表移入移出事件
-	$(".address-list tbody tr").each(function(e){
-		$(this).eq(e).mouseover(function(){
-			console.log(666);
-			var displays = $("#default-address").css("display");
-			console.log(typeof displays);
-			console.log(displays);
-			if(displays!="inline-block"){
-				$("#set-default-address").css("dispaly","inline-block");
+	//新增地址
+	$("#save").click(function(){
+		//获得输入的值
+		var cousignee = $("#consignee").val();
+		var phoneNumbers = $("#phone-number").val();
+		var provinces = $("#provinces").val();
+		var city = $("#city").val();
+		var area = $("#area").val();
+		var detailAddress = $("#detail-address").val();
+		var defaultAddress = $("#default").prop("checked");
+		
+		//提示信息
+		var tip = "";
+		//需要的元素
+		var object = null;
+		//是否能够保存
+		var canSave = false;
+		if(cousignee==""){
+			tip = "输入不可为空！";
+			object = "#consignee";
+		}else{
+			if(phoneNumbers==""){
+				tip = "输入不可为空！";
+				object = "#phone-number";
+			}else if(!(/^1[3456789]\d{9}$/.test(phoneNumbers))){
+				//判断手机号码是否符合规范
+				tip = "手机号码格式不正确！";
+				object = "#phone-number";
+			}else{
+				if(provinces==""){
+					tip = "请选择省份！";
+					object = "#provinces";
+				}else{
+					if(city==""){
+						tip = "请选择城市！";
+						object = "#city";
+					}else{
+						if(area==""){
+							tip = "请选择地区！";
+							object = "#area";
+						}else{
+							if(detailAddress==""){
+								tip = "请填写详细地址！";
+								object = "#detail-address";
+							}else{
+								canSave = true;
+							};
+						};
+					};
+				};
 			};
-		});
+		};
+		
+		if(canSave==false&&$(".error-tip").length==0){
+			var ele = `
+				<p class="error-tip">
+					<img src="/shop/img/error.png">
+					<span class="error-text">${tip}</span>
+				</p>
+			`;
+			//添加提示
+			$(object).parent().append(ele);
+			$(object).css("border-color","#FF6700");
+		}else{
+			//传值
+			$.ajax({
+				type:"post",
+				url:"savaAddress.do",
+				data:"cousignee="+cousignee+"&phoneNumber="+phoneNumbers+"&provinces="+provinces+"&city="+city+
+					"&area="+area+"&detailAddress="+detailAddress+"&defaultAddress="+defaultAddress,
+				success:function(result){
+					console.log(6666);
+				}
+			});
+		};
+	});
+	
+	//输入事件
+	$("#consignee,#phone-number,#detail-address").keydown(function(event){
+		var borderColor = colorRGBtoHex($(this).css("border"));
+		if(borderColor = "#ff6700" && event.keyCode!=8){
+			$(this).css("border-color","#d6d6d6")
+			$(this).parent().find(".error-tip").remove();
+		};
 	});
 	
 	//点击删除方法

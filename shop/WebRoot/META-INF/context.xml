@@ -5,5 +5,5 @@
 	factory="org.apache.naming.factory.BeanFactory"
 	initialPoolSize="10" maxPoolSize="200" checkoutTimeout="5000"
 	user="root" password="root" driverClass="com.mysql.jdbc.Driver"
-	jdbcUrl="jdbc:mysql://localhost:3306/db_shoppingcenter"/>
+	jdbcUrl="jdbc:mysql://localhost:3306/db_shoppingcenter?characterEncoding=utf8"/>
 </Context>
