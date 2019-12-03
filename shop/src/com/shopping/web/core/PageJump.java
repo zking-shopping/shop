@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 public class PageJump {
 	
 	public void forword(HttpServletRequest request, HttpServletResponse response,String forwordPage,String jumptype) throws IOException, ServletException{
-		
+						
 		if("true".equalsIgnoreCase(jumptype)){
 			
 			response.sendRedirect(forwordPage);

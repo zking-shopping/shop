@@ -87,11 +87,11 @@ public class ActionServlet extends HttpServlet {
         //获取action名
         String actionName = url.substring(url.lastIndexOf("/")+1,url.lastIndexOf(".do"));
         System.out.println("actionName："+actionName);
-//        if(!("shoppingCar".equalsIgnoreCase(actionName)||"login".equalsIgnoreCase(actionName)||"register".equalsIgnoreCase(actionName))){
-//        	//判断用户是否登录
-//      		Object isLogin = request.getSession().getAttribute("member");
-//      		if(isLogin==null){return;};
-//        }    
+        if("myPersonInfo".equalsIgnoreCase(actionName)){
+        	//判断用户是否登录
+      		Object isLogin = request.getSession().getAttribute("member");
+      		if(isLogin==null){return;};
+        }    
         //通过action名获取action所对应的的类的全路径
         Element element = (Element) doc.selectSingleNode("/actions/action[@name='"+actionName+"']");
         //判断是否是要跳转页面
@@ -160,6 +160,7 @@ public class ActionServlet extends HttpServlet {
                     }
                 }
             	PageJump pf = new PageJump();
+            	System.out.println(redirect+"redirect");
             	pf.forword(request,response,jumpPage,redirect);
             	
             }
