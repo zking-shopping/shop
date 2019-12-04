@@ -6,6 +6,18 @@
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
   <display-name></display-name>
   
+  <resource-ref>
+  	<res-ref-name>
+  		mysql
+  	</res-ref-name>
+  	<res-type>
+    	javax.sql.DataSource
+  	</res-type>
+  	<res-auth>
+   		 Container
+  	</res-auth>
+  </resource-ref>
+  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
@@ -13,6 +25,11 @@
   <error-page>
   	<error-code>404</error-code>
   	<location>/404.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/500.jsp</location>
   </error-page>
   
   <servlet>
@@ -31,7 +48,6 @@
     <servlet-name>A</servlet-name>
     <servlet-class>xy.A</servlet-class>
   </servlet>
-  
   <servlet>
     <servlet-name>ImageCodeServlet</servlet-name>
     <servlet-class>com.shopping.web.servlet.ImageCodeServlet</servlet-class>
@@ -47,31 +63,16 @@
     <servlet-name>ImageCodeServlet</servlet-name>
     <url-pattern>/imgCode</url-pattern>
   </servlet-mapping>
-
-
-
   <servlet-mapping>
     <servlet-name>ActionServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>A</servlet-name>
     <url-pattern>/servlet/A</url-pattern>
   </servlet-mapping>
 
   
-  <resource-ref>
-  	<res-ref-name>
-  		mysql
-  	</res-ref-name>
-  	<res-type>
-    	javax.sql.DataSource
-  	</res-type>
-  	<res-auth>
-   		 Container
-  	</res-auth>
-  </resource-ref>
   
 	<filter>
 		<filter-name>jurFilter</filter-name>
@@ -93,11 +94,20 @@
 	
 	
 	<filter>
-		<filter-name>adminLogin</filter-name>
+		<filter-name>judgeAdminLogin</filter-name>
+		<filter-class>com.shopping.web.filter.AdminFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>judgeAdminLogin</filter-name>
+		<url-pattern>/admin/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>AdminLogin</filter-name>
 		<filter-class>com.shopping.web.filter.AdminLoginFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>adminLogin</filter-name>
+		<filter-name>AdminLogin</filter-name>
 		<url-pattern>/adminLogin.jsp</url-pattern>
 	</filter-mapping>
 	

@@ -11,4 +11,10 @@ public interface MemberStatisticsDao {
 	public Boolean updateExId(Object obj, Connection conn);
 	public Object select(String id, Object o, Connection conn);
 	public Boolean update(String id, Object o, Connection conn);
+	
+	public int selectCount(String date, Connection conn);
+	public int selectAvgCost(String date, Connection conn);
+	public int selectAvgTime(String date, Connection conn);
+	public int selectCoreMember(String date, int coreTime, int coreCost, Connection conn);
+	public int selectEdgeMember(String date, int edgeTime, int edgeCost, Connection conn);
 }

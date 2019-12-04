@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.shopping.dao.BaseDao;
 import com.shopping.dao.GoodsDao;
+import com.shopping.dto.GoodsDto;
 import com.shopping.pojo.Goods;
 import com.shopping.pojo.Member;
 
@@ -183,6 +184,59 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao{
 				goods.setColor(rs.getString("color"));
 				goods.setPicId(rs.getInt("PicId"));
 				goods.setTime(rs.getString("time"));
+				goods.setDel(rs.getString("del"));
+				list.add(goods);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List<Goods> selectByPages(int pageNumber, int pageSize, Connection conn) {
+		String sql = "select * from t_goods limit ?,?";
+		List<Goods> list = new ArrayList<Goods>();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, (pageNumber-1)*pageSize);
+			ps.setInt(2, pageSize);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Goods goods = new Goods();
+				goods.setId(rs.getInt("id"));
+				goods.setGoodsName(rs.getString("goodsName"));
+				goods.setPrice(rs.getString("price"));
+				goods.setIntroduction(rs.getString("introduction"));
+				goods.setSort(rs.getString("sort"));
+				goods.setColor(rs.getString("color"));
+				goods.setPicId(rs.getInt("picId"));
+				goods.setTime(rs.getString("time"));
+				goods.setDel(rs.getString("del"));
+				list.add(goods);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<GoodsDto> selectGoodsDto(int pageNumber, int pageSize, Connection conn) {
+		String sql = "select * from t_goods,t_type where t_goods.sort=t_type.id limit ?,?";
+		List<GoodsDto> list = new ArrayList<GoodsDto>();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, (pageNumber-1)*pageSize);
+			ps.setInt(2, pageSize);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				GoodsDto goods = new GoodsDto();
+				goods.setId(rs.getInt("id"));
+				goods.setGoodsName(rs.getString("goodsName"));
+				goods.setPrice(rs.getString("price"));
+				goods.setIntroduction(rs.getString("introduction"));
+				goods.setSort(rs.getString("name"));
+				goods.setColor(rs.getString("color"));
 				goods.setDel(rs.getString("del"));
 				list.add(goods);
 			}

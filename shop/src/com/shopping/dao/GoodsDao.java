@@ -3,6 +3,7 @@ package com.shopping.dao;
 import java.sql.Connection;
 import java.util.List;
 
+import com.shopping.dto.GoodsDto;
 import com.shopping.pojo.Goods;
 
 public interface GoodsDao {
@@ -23,4 +24,7 @@ public interface GoodsDao {
 	public List<Goods> selectAllNoDel(Connection conn);
 	public int selectSortCount(int sort, Connection conn);
 	public List<Goods> selectSortPage(int sort, int pageNumber, int pageSize, Connection conn);
+	
+	public List<Goods> selectByPages(int pageNumber, int pageSize, Connection conn);
+	public List<GoodsDto> selectGoodsDto(int pageNumber, int pageSize, Connection conn);
 }

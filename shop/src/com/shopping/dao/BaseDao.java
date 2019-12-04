@@ -361,4 +361,18 @@ public abstract class BaseDao {
 		}
 		return false;
 	}
+	public int selectMaxId(Connection conn){
+		String sql = "select last_insert_id()";
+		int res = 0;
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				res = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 }
