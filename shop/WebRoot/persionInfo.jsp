@@ -301,7 +301,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <div id="myPersonInfo"></div>
 	
 	                <!--尹厚粤代码整合start-->
-	                <div class="main-info" style="display: none;">
+	                <div class="main-info">
 						<!--收货人-->
 						<div class="receiver">
 							<label>收货人</label>

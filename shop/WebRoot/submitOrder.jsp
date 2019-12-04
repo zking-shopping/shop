@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    </div>
 			    <!--跳转个人信息页面-->
 			    <div class="user-header">
-			    	<a href="personInfo.html"></a>
+			    	<a href="/shop/persionInfo.jsp"></a>
 			    </div>
 			</div>
 		</header>
