@@ -1,3 +1,4 @@
+
 function productsList(showMyProducts){
     $.ajaxSettings.async = false;
     $.get('personInfo.do', function(result){
@@ -35,8 +36,7 @@ function waitRecieve(){
     });
 };
 
-function showMyProducts(result){
-	
+function showMyProducts(result){	
     $('.myProducts').html("");
     $('.myNullOrder').show();
     $('.myrightinfo_body').hide();
@@ -74,8 +74,7 @@ function showMyProducts(result){
                  <div>
                     <a>${detailOrderss[i][j].goodsName}</a>
                     <p>${detailOrderss[i][j].goodsColor}</p>
-                 </div>
-                 
+                 </div>                 
   	        </li>
   			<li>${detailOrderss[i][j].price}</li>
   			<li>
@@ -89,18 +88,14 @@ function showMyProducts(result){
   			</li>
            </ul>
   `;
-        $('.myProducts').append(myDetailOrders);  
-        
+        $('.myProducts').append(myDetailOrders);          
 		}
         $('.myNullOrder').hide();
-        $('.myrightinfo_body').show();
-        
-    };
-    
+        $('.myrightinfo_body').show();       
+    };    
 };
 
-function showMyDetails(paiedMoney,state,result){
-	
+function showMyDetails(paiedMoney,state,result){	
     var myOders = result[0];
     var myAddressInfo = result[1];
     console.log(result);
@@ -218,7 +213,7 @@ function showMyDetails(paiedMoney,state,result){
 };
 
 $(function(){
-	productsList(1,showMyProducts);
+	productsList(showMyProducts);
 	$('.viewDetails').hide();
 	$('.myReceiptAddress').hide();
 	
@@ -245,7 +240,7 @@ $(function(){
 	//我的订单--左
 	$(".showMyOrder").click(function () {
 		
-	        productsList(1,showMyProducts);
+	        productsList(showMyProducts);
 	        $('.viewDetails').hide();
 	        $('#myPersonInfo').hide();
 	        $('.myOrder').show();
@@ -381,7 +376,7 @@ $(function(){
 
 	//全部订单--右
 	$('.allOrder').click(function () {
-	    productsList(1,showMyProducts);
+	    productsList(showMyProducts);
 	    $('.viewDetails').hide();
 	    $('#myPersonInfo').hide();
 	    $('.myOrder').show();
