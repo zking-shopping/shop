@@ -36,6 +36,13 @@
     <servlet-name>ImageCodeServlet</servlet-name>
     <servlet-class>com.shopping.web.servlet.ImageCodeServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>/adminLogin</servlet-name>
+    <servlet-class>com.shopping.web.servlet.adminLoginServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>ImageCodeServlet</servlet-name>
     <url-pattern>/imgCode</url-pattern>
@@ -47,6 +54,7 @@
     <servlet-name>ActionServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>A</servlet-name>
     <url-pattern>/servlet/A</url-pattern>
@@ -82,5 +90,24 @@
   <listener>   
         <listener-class>com.shopping.web.listener.LoginMapListener</listener-class>   
   </listener> 
-
+	
+	
+	<filter>
+		<filter-name>adminLogin</filter-name>
+		<filter-class>com.shopping.web.filter.AdminLoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>adminLogin</filter-name>
+		<url-pattern>/adminLogin.jsp</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>adminLogin</servlet-name>
+		<servlet-class>com.shopping.web.servlet.adminLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>adminLogin</servlet-name>
+		<url-pattern>/adminLogin.do</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
