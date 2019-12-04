@@ -34,9 +34,9 @@ public class ShoppingCarAction extends ActionFather{
 		//如果有，就去数据库查询用户，没有，就在cookie中取值
 		Member m = (Member)request.getSession().getAttribute("member");
 		Connection conn = DBHelper.getConnection();
-		System.out.println(m+"-----");
+		
 		if(m!=null){	
-			System.out.println("enter sca");
+			
 			CartDao cd = new CartDaoImpl();
 			System.out.println(m.getId()+"getId");
 			ArrayList<Cart> list = (ArrayList<Cart>)cd.selectByMemberId(m.getId(), conn);
