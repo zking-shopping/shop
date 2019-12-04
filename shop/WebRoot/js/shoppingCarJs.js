@@ -36,9 +36,10 @@ function countChange(id,count){
 }
 
 function deleteGoods(id){
+	
 	$.ajaxSettings.async = false;
     $.get('shoppingCarDeleteGoods.do',{'id':id});
-    window.location.reload();
+//    window.location.reload();
 }
 
 
@@ -51,13 +52,13 @@ function showMyProducts(result){
         var myProduct = `
           <ul>
             <li>
-            <input type="text" class="goodsId" style="display:none" value="${productsList[i].id}"/>
+            <input type="text" class="goodsId" style="display:none" value="${productsList[i].id}"/><!--产品在购物车中的id-->
             <input type="checkbox" class="oneCheckbox"/>
             </li>
 			<li>
                <a><img src="${productsList[i].url.substring(28)}"/></a>
                <div>
-                  <a>${productsList[i].goodsName}</a>
+                  <a href="introduction.do?picid=${productsList[i].goodsId}">${productsList[i].goodsName}</a>
                   <p>${productsList[i].goodsColor}</p>
                </div>
                
@@ -100,7 +101,7 @@ function showMyProducts(result){
 		//event.preventDefault() ：阻止默认行为，可以用 event.isDefaultPrevented() 来确定preventDefault是否被调用过了
 		//event.stopPropagation() ：阻止事件冒泡，事件是可以冒泡的，为防止事件冒泡到DOM树上，不触发任何前辈元素上的事件处理函数，可以用 event.isPropagationStopped() 来确定stopPropagation是否被调用过了 
 		
-		if(!e.isPropagationStopped()){//确定stopPropagation是否被调用过
+//		if(!e.isPropagationStopped()){//确定stopPropagation是否被调用过
 		// 减
 		if(e.target.className=='reduce'){
 			var number = e.target.nextElementSibling.value;
@@ -114,7 +115,7 @@ function showMyProducts(result){
 			calculateSumPrice();
 			
 			countChange(id,number);
-			
+			e.stopPropagation();
 
 		}
 		// 加
@@ -127,17 +128,18 @@ function showMyProducts(result){
 			e.target.parentNode.nextElementSibling.innerHTML = price*number+".00";
 			calculateSumPrice();
 			countChange(id,number);
+			e.stopPropagation();
 		}
 		// 后面删除一条
 		if(e.target.className=='deleteOne'){
 			
+			deleteOneRemenber=e.target;
+			$("#delOneProductModal").attr("deleteId","");
+			var id = e.target.parentNode.parentNode.firstElementChild.firstElementChild.value;
+			$("#delOneProductModal").attr("deleteId",id);
 			e.target.setAttribute('data-toggle','modal');
 			e.target.setAttribute('data-target','#delOneProductModal');
-			deleteOneRemenber=e.target;
-			var id = e.target.parentNode.parentNode.firstElementChild.firstElementChild.value;
-			isHasProduct();			
-			deleteGoods(id);
-			
+					
 		}
 		// 总价ul中删除
 		if(e.target.className=='deleteChecked'){	
@@ -153,15 +155,17 @@ function showMyProducts(result){
 				}	
 			});
 			if(isDel){
+				
+				$("#delProductModal").attr("deleteId",id);
 				e.target.setAttribute('data-toggle','modal');
 				e.target.setAttribute('data-target','#delProductModal');
 			}else{
 				e.target.setAttribute('data-toggle','modal');
 				e.target.setAttribute('data-target','#noProductModal');
 			}
-			deleteGoods(id);
-			isHasProduct();
 			
+			isHasProduct();
+			deleteGoods(id);
 		}
 		// 全选
 		if(e.target.className=='checkAll'){
@@ -184,11 +188,12 @@ function showMyProducts(result){
 			}
 			// 计算总价
 			calculateSumPrice();
+			e.stopPropagation();
 		}
 		// 选中前面框框总价显示
 		if(e.target.className=='oneCheckbox'){
 			calculateSumPrice();
-			
+			e.stopPropagation();
 		}
 		// 结算
 		if(e.target.className=='myBalance'){
@@ -211,8 +216,8 @@ function showMyProducts(result){
 		    }
 		    
 		}
-    } 
-		 e.stopPropagation();//必须要，不然e.isPropagationStopped()无法判断stopPropagation是否调用过
+//    } 
+//		 e.stopPropagation();//必须要，不然e.isPropagationStopped()无法判断stopPropagation是否调用过
 });
 
 
@@ -248,10 +253,14 @@ function showMyProducts(result){
 	$('#isDeleteOne').click(function(){
 		deleteOneRemenber.parentNode.parentNode.remove();
 		calculateSumPrice();
-
-		isHasProduct();
 		$('#isDeleteOne').attr('data-dismiss','modal');
+		var deleteId = $("#delOneProductModal").attr("deleteId");
+		isHasProduct();
+		deleteGoods(deleteId);
+		$("#delOneProductModal").attr("deleteId","");
+		
 		 });
+	
 	$('#isDelete').click(function(){
 		$('.oneCheckbox').each(function(){
 			if($(this).prop('checked')){
@@ -259,10 +268,14 @@ function showMyProducts(result){
 			}
 		});
 		calculateSumPrice();
-
+		
+		var deleteId = $("#delProductModal").attr("deleteId");	
 		isHasProduct();
+		deleteGoods(deleteId);
+		$("#delProductModal").attr("deleteId","");
 		$('#isDelete').attr('data-dismiss','modal');
 	});
+	
     $('#isBalance').click(function(){
 		$('#isBalance').attr('data-dismiss','modal');
 	});
