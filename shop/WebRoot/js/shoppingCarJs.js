@@ -1,8 +1,8 @@
 // JavaScript Document
 
-productsList(1,showMyProducts);
+productsList(showMyProducts);
 
-function productsList(page, showMyProducts){
+function productsList(showMyProducts){
 	
     $.ajaxSettings.async = false;
     $.get('shoppingCar.do',function(result){
@@ -38,6 +38,7 @@ function countChange(id,count){
 function deleteGoods(id){
 	$.ajaxSettings.async = false;
     $.get('shoppingCarDeleteGoods.do',{'id':id});
+    window.location.reload();
 }
 
 
@@ -54,7 +55,7 @@ function showMyProducts(result){
             <input type="checkbox" class="oneCheckbox"/>
             </li>
 			<li>
-               <a><img src="${productsList[i].url}"/></a>
+               <a><img src="${productsList[i].url.substring(28)}"/></a>
                <div>
                   <a>${productsList[i].goodsName}</a>
                   <p>${productsList[i].goodsColor}</p>
@@ -134,8 +135,9 @@ function showMyProducts(result){
 			e.target.setAttribute('data-target','#delOneProductModal');
 			deleteOneRemenber=e.target;
 			var id = e.target.parentNode.parentNode.firstElementChild.firstElementChild.value;
-			isHasProduct();
+			isHasProduct();			
 			deleteGoods(id);
+			
 		}
 		// 总价ul中删除
 		if(e.target.className=='deleteChecked'){	
@@ -159,6 +161,7 @@ function showMyProducts(result){
 			}
 			deleteGoods(id);
 			isHasProduct();
+			
 		}
 		// 全选
 		if(e.target.className=='checkAll'){

@@ -278,35 +278,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <!--订单状态-->
 	                <div class="viewDetails">
 	                    <div class="odder_info">下单时间<span></span></div>
-	                    <div class="viewDetails_buttom">
-	                        <div class="viewDetails_left">
-	                            <h3>订单已取消</h3>
-	                            <h3>实付款￥0.00</h3>
-	                            <h4>实退款￥0.00</h4>
-	                        </div>
-	                        <div class="viewDetails_right">
-	                            <ul>
-	                                <li>
-	                                    <img src="img/list4.png"/>
-	                                    <span class="wool_right"></span>
-	                                    <p>提交申请</p>
-	                                    <p>时间</p>
-	                                </li>
-	                                <li>
-	                                    <span class="wool_left"></span>
-	                                    <img src="img/list5.png"/>
-	                                    <span class="wool_right"></span>
-	                                    <p>取消处理</p>
-	                                    <p>时间</p>
-	                                </li>
-	                                <li>
-	                                    <span class="wool_left"></span>
-	                                    <img src="img/list7.png"/>
-	                                    <p>取消成功</p>
-	                                    <p>时间</p>
-	                                </li>
-	                            </ul>
-	                        </div>
+	                    <div class="viewDetails_buttom_orderInfo">
+	                        
 	                    </div>
 	                    <div class="viewDetails_buttom">
 	                        <ul class="viewDetails_buttom_body">
@@ -413,6 +386,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <img src="img/contact.jpg" />
 	        </div>
 	    </div>
+	    
+	<!--删除界面-->
+	<section class="transparent"></section>
+	<div class="center-delete">
+		<div class="ask-delete">确认删除？</div>
+		<input type="button" value="确认" class="enter-delete"/>
+		<input type="button" value="取消" class="no-delete"/>
+		<div class="close-ask"></div>
+	</div>
 	
 	    <div class="footer-bottom text-center">
 	        <span>公司版权所有 © 1997-2019 ICP证：浙B2-20160106 浙ICP备15041168号 （粤）网械平台备字（2019）第00004号</span>
@@ -431,6 +413,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </html>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/basic.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" src="js/personInfoJs.js"></script>
 <script type="text/javascript" src="js/linkage.js"></script>

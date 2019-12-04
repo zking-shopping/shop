@@ -427,6 +427,8 @@ window.onload = function allProvince(){
 function changeCity(){
 	// 将city 列表中的值清空,放置再选择省份后,出现城市乱增加的情况
 	$("#city").empty().append($("<option>市</option>"));
+	// 将area 列表中的值清空,放置再选择市份后,出现区或县乱增加的情况
+	$("#area").empty().append($("<option>区&县</option>"));
 	
 	// 遍历
 	for (var i in provinceList){

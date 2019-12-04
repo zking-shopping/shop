@@ -38,16 +38,30 @@ function showMyProducts(result){
     console.log(result);
     var orders = result[0];
     var detailOrderss = result[1];
+    
     for(var i = 0; i < orders.length; i++){
+    	var paiedMoney = 0;
     	var myOrders = `
-        <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span></div>
+        <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span> 支付金额：<span class="paiedMoney${orders[i].id}"></span></div>
         `;
+        var stateid = orders[i].state;
+        var state = "";
+        if(stateid==1){
+        	state = "待付款";
+        }else if(stateid==2){
+        	state = "待发货";
+        }else if(stateid==3){
+        	state = "待收货";
+        }else if(stateid==4){
+        	state = "已完成";
+        }else{state = "已关闭"}
         $('.myProducts').append(myOrders);
     	for (var j = 0; j < detailOrderss[i].length; j++) {
+    		paiedMoney = parseInt(paiedMoney) + parseInt(detailOrderss[i][j].price*detailOrderss[i][j].number);
     		var myDetailOrders = `          
             <ul>
   			<li> 
-                 <a><img src="${detailOrderss[i][j].url}"/></a>
+                 <a><img src="${detailOrderss[i][j].url.substring(28)}"/></a>
                  <div>
                     <a>${detailOrderss[i][j].goodsName}</a>
                     <p>${detailOrderss[i][j].goodsColor}</p>
@@ -58,31 +72,112 @@ function showMyProducts(result){
   			<li>
   			${detailOrderss[i][j].number}
   			<li style="font-weight: bold;">${detailOrderss[i][j].price*detailOrderss[i][j].number}</li>
-  			<li>已关闭</li>
+  			<li stateid="${stateid}">${state}</li>
   			<li class="a-hover">
-  			    <input type="text" value="${orders[i].id}" style="display:none"/>
+  			    <input type="text" value="${orders[i].id}" style="display:none"/> 			    
   				<p><a href="buyAgain.do?id=${orders[i].id}">重新购买</a></p>
   				<p class="showDetails"><a>查看详情</a></p>
   			</li>
            </ul>
   `;
-        $('.myProducts').append(myDetailOrders);	
+        $('.myProducts').append(myDetailOrders);  
+        
 		}
         $('.myNullOrder').hide();
-        $('.myrightinfo_body').show();                
+        $('.myrightinfo_body').show();
+        var paiedMoneypage = "'.paiedMoney"+orders[i].id+"'";
+//        alert(paiedMoneypage);
+        $(paiedMoneypage).append(paiedMoney);
     };
+    
 };
 
-function showMyDetails(result){
+function showMyDetails(paiedMoney,state,result){
+	
     var myOders = result[0];
     var myAddressInfo = result[1];
     $('.viewDetails_buttom_body_details').html("");
+//    alert(state);
+    $('.viewDetails_buttom_orderInfo').html(""); 
+    var stateImageOne = "img/list4.png";
+    var stateImageTwo = "img/list5.png";
+    var stateImageThere = "img/list7.png";
+    var stateFontOne = "提交申请";
+    var stateFontTwo = "取消处理";
+    var stateFontThere = "取消成功";
+    if(state==1){
+    	stateImageOne = "img/list88.png";
+    	stateImageTwo = "img/list99.png";
+    	stateImageThere = "img/list77.png";
+    	var stateFontOne = "待发货";
+        var stateFontTwo = "待收货";
+        var stateFontThere = "交易成功";
+    	state="待付款";
+    }else if(state==2){
+    	stateImageOne = "img/list88.png";
+    	stateImageTwo = "img/list99.png";
+    	stateImageThere = "img/list77.png";
+    	var stateFontOne = "待发货";
+        var stateFontTwo = "待收货";
+        var stateFontThere = "交易成功";
+    	state="待发货";
+    }else if(state==3){
+    	stateImageOne = "img/list88.png";
+    	stateImageTwo = "img/list99.png";
+    	stateImageThere = "img/list77.png";
+    	var stateFontOne = "待发货";
+        var stateFontTwo = "待收货";
+        var stateFontThere = "交易成功";
+    	state="待收货";
+    }else if(state==4){
+    	stateImageOne = "img/list88.png";
+    	stateImageTwo = "img/list99.png";
+    	stateImageThere = "img/list77.png";
+    	var stateFontOne = "待发货";
+        var stateFontTwo = "待收货";
+        var stateFontThere = "交易成功";
+    	state="已关闭";
+    }
+    var viewDetails_buttom_orderInfo = `
+	<div class="viewDetails_left">
+	    <h3>订单${state}</h3>
+	    <h3>实付款￥${paiedMoney}.00</h3>
+	    <h4>实退款￥0.00</h4>
+	</div>
+	<div class="viewDetails_right">
+	    <ul>
+	        <li>
+	            <img src="${stateImageOne}"/>
+	            <span class="wool_right"></span>
+	            <p>${stateFontOne}</p>
+	            <p>时间</p>
+	        </li>
+	        <li>
+	            <span class="wool_left"></span>
+	            <img src="${stateImageTwo}"/>
+	            <span class="wool_right"></span>
+	            <p>${stateFontTwo}</p>
+	            <p>时间</p>
+	        </li>
+	        <li>
+	            <span class="wool_left"></span>
+	            <img src="${stateImageThere}"/>
+	            <p>${stateFontThere}</p>
+	            <p>时间</p>
+	        </li>
+	       
+	    </ul>
+	</div>
+	`;
+    $('.viewDetails_buttom_orderInfo').append(viewDetails_buttom_orderInfo);
+    
     for(var i = 0; i < myOders.length; i++){
+    	
         var myOrder = `
             <div class="logistics">暂无物流信息</div>
             <ul>
 			<li>
-               <a><img src="${myOders[i].url}"/></a>
+               <a><img src="${myOders[i].url.substring(28)}"/></a>
                <div>
                   <a>${myOders[i].goodsName}</a>
                   <p>${myOders[i].goodsColor}</p>
@@ -98,7 +193,7 @@ function showMyDetails(result){
         $('.viewDetails_buttom_body_details').append(myOrder);
     };
     var orderInfo = `
-    <p><span>收货人：${myAddressInfo.cousignee}</span><span>支付方式：未支付</span><span>实付款：￥0.00</span></p>
+    <p><span>收货人：${myAddressInfo.cousignee}</span><span>支付方式：未支付</span><span>实付款：￥${paiedMoney}.00</span></p>
     <p><span>联系方式：${myAddressInfo.phoneNumber}</span><span>活动优惠：-￥0.00</span><span>运费：￥0.00</span></p>
     <p><span>收货地址：${myAddressInfo.provinces}${myAddressInfo.city}${myAddressInfo.area}${myAddressInfo.detailAddress}</span><span>优惠券：-￥0.00</span></p>
     `;
@@ -117,12 +212,16 @@ $(function(){
 	    $('#myPersonInfo').hide();
 	    $.ajaxSettings.async = false;
 	    
-	    var id = e.target.parentNode.parentNode.firstElementChild.value;
+	    var firstidInputFather = e.target.parentNode.parentNode;
+	    var id = firstidInputFather.firstElementChild.value;
+	    var state = firstidInputFather.previousElementSibling.getAttribute("stateid");
+	    var paiedMoney = $('.paiedMoney').html();
+	   
 	    $.get('personInfoShowDetails.do',{
 	        'id':id
 	    }, function(result){
 	        var result = JSON.parse(result);	        
-	        showMyDetails(result);
+	        showMyDetails(paiedMoney,state,result);
 	    });
 	    $('.viewDetails').show();
 	});
@@ -202,36 +301,24 @@ $(function(){
 	    $('.receiptAddress').css("background","rgba(102, 107, 255, 0.1)");
 	    $('.receiptAddress').children().css("color","dodgerblue");
 	    
+	    cleanAllInput();
 
 	    //加载数据
 	    $.ajax({
 			url:"showAddress.do",
 			data:"",
 			success:function(result){
-				console.log(result);
 				if(result.length!=0){
-					//添加基础表格和标题
-					var len = $('.address-title').length;
-					if(len==0){
-						var myAddressTable = `
-							<h3 class="address-title">已有地址</h3>
-							<table class="address-list">
-								<thead>
-									<tr>
-										<td>收货人</td>
-										<td>地址</td>
-										<td>联系方式</td>
-										<td>操作</td>
-										<td></td>
-									</tr>
-								</thead>
-								<tbody>
-									
-								</tbody>
-							</table>
-						`;
-						$('.haved-address').append(myAddressTable);
+					//显示可添加地址的数量
+					if($(".number-title").length!=0){
+						$('.number-title').remove();
 					};
+					var havedAddress = `
+						<h3 class="number-title">
+							新增收货地址（您目前已有${result.length}个地址，最多还可增加${10-result.length}个）
+						</h3>
+					`;
+					$('.main-info').prepend(havedAddress);
 					
 					//移除原本已有的地址数据
 					var lens = $('.address-list tbody tr').length;
@@ -239,37 +326,8 @@ $(function(){
 						$('.address-list tbody').empty();
 					};
 					
-					//添加表格数据
-					var str ;
-					$.each(result, function (i, value) {
-						var allAddress = value.provinces+value.city+value.area+value.detailAddress;
-						var myAddress = `
-							<tr data-cousignee=${value.cousignee} data-phoneNumber=${value.phoneNumber}
-							 data-provinces=${value.provinces} data-city=${value.city}
-							 data-area=${value.area} data-detailAddress=${value.detailAddress}
-							 onmouseover="defaultDisplayOver(this)" onmouseout="defaultDisplayOut(this)" >
-								<td>${value.cousignee}</td>
-								<td>${allAddress}</td>
-								<td>${value.phoneNumber}</td>
-								<td>
-									<span id="modify">修改</span>
-									<span id="delete">删除</span>
-								</td>
-								<td>
-									<span id="set-default-address" onclick="setDefaultAddress(this)">设为默认</span>
-									<span id="default-address">默认地址</span>
-								</td>
-							</tr>
-						`;
-						$('.address-list tbody').append(myAddress);
-						
-						//设置默认地址的显示状况
-						var defaultAddress = value.defaultAddress;
-						if(defaultAddress=="true"){
-							console.log(defaultAddress);
-							$('#default-address').css("display","inline-block");
-						};
-					})
+					//更新表格
+					updateAddressList(result);
 				};
 			}
 		});

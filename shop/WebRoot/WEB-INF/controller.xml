@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action name="login" class="xy.action.LoginAction">
+        <!--<form>xy.form.LoginForm</form>-->
+        <result name="success" direct="false">success.jsp</result>
+        <result name="error">error.jsp</result>
+    </action>
+</actions>

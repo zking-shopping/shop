@@ -90,7 +90,6 @@ h2,h3,label{
 }
 /*具体信息样式*/
 .receiver,.tel,.address,.main-address{
-	height: 34px;
 	font-size: 0px;
 	margin-top: 21px;
 	
@@ -103,7 +102,6 @@ h2,h3,label{
 p.no-delivery,
 p.no-deliverys{
 	color: #DD0000;
-	margin-top: 10px;
 	font-size: 16px;
 	height: 30px;
 	line-height: 30px;
@@ -115,6 +113,7 @@ p.no-delivery{
 /*添加地址信息*/
 .main-info{
 	display: block;
+	font-size: 0px;
 }
 .main-info span{
 	margin-left: 10px;
@@ -137,11 +136,14 @@ p.no-delivery{
 input,textarea{
 	display: inline-block;
 	width: 452px;
+	height: 35px;
+	line-height: 35px;
 	outline: none;
 	border: 1px solid #D6D6D6;
 	padding: 7px 10px;
-	font-size: 16px;
+	font-size: 14px;
 	font-family: "微软雅黑";
+	font-weight: normal;
 }
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder{
@@ -150,9 +152,10 @@ textarea::-webkit-input-placeholder{
 	font-family: "微软雅黑";
 }
 textarea{
-	height: 78px;
+	height: 100px;
 	resize:none;
 	padding: 10px;
+	line-height: 20px;
 }
 /*选择框样式*/
 select{
@@ -164,8 +167,9 @@ select{
 	padding: 7px;
 	color: #999999;
 	font-family: "微软雅黑";
-	font-size: 16px;
+	font-size: 12px;
 	outline: none;
+	font-weight: lighter;
 }
 #provinces{
 	margin: 0px;
@@ -174,7 +178,6 @@ select{
 /*复选框样式*/
 .set-default{
 	height: 20px;
-	margin-top: 10px;
 	font-size: 0px;
 	position: relative;
 }
@@ -182,7 +185,7 @@ select{
 #agree-bule{
 	width: 20px;
 	height: 20px;
-	margin-left: 92px;
+	margin: 0px 0px 0px 92px;
 	background: white;
 	cursor: pointer;
 }
@@ -470,8 +473,7 @@ section.transparent{
 .center-delete{
 	display: none;
 	width: 600px;
-	height: 130px;
-	padding: 35px 0px;
+	height: 200px;
 	background: #FFFFFF;
     text-align: center;
     z-index: 1000;
@@ -479,7 +481,7 @@ section.transparent{
 }
 .ask-delete{
 	height: 30px;
-	padding-top: 30px;
+	margin-top: 65px;
 	line-height: 30px;
 	font-size: 24px;
 	color: #333333;
@@ -626,4 +628,17 @@ footer{
 }
 .footer-bottoms span,.footer-bottoms p,.footer-bottoms a{
 	display: inline-block;
+}
+
+.error-tip{
+	margin: 5px 0px 5px 96px;
+}
+.error-tip img{
+	width: 20px;
+	height: 20px;
+}
+.error-tip span{
+	line-height: 20px;
+	font-size: 14px;
+	margin-left: 5px;
 }

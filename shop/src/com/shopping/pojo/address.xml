@@ -9,4 +9,9 @@
 	<property name="area">area</property>
 	<property name="detailAddress">detailAddress</property>
 	<property name="defaultAddress">defaultAddress</property>
+	
+	<update id="updateDefaultAddress">
+		update t_address set defaultAddress=#{defaultAddress} where id=#{id};
+	</update>
+	
 </class>
