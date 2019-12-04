@@ -10,8 +10,11 @@
 	<property name="colorId">colorId</property>
 	<property name="goodsColor">goodsColor</property>
 	
-	<select id="selectCart" target="com.gyh.Cart">
+	<select id="selectCart" target="com.shopping.pojo.Cart">
 		select * from t_cart where memberId=#{memberId} and goodsId=#{goodsId};
+	</select>
+	<select id="selectCarts" target="com.shopping.pojo.Cart">
+		select * from t_cart where memberId=#{memberId} and id=#{id};
 	</select>
 	<update id="add">
 		update t_cart set number=number+1 where memberId=#{memberId} and goodsId=#{goodsId};

@@ -204,7 +204,7 @@ function showMyProducts(result){
 				    balanceCount++;
 				    var id = $(this).prev().val();
 			    	var number = $(this).parent().parent().children('li').eq(3).children('input').eq(0).val();			    	
-			    	balanceGooods = balanceGooods+"-、、-"+id+"-_~-_~"+number;
+			    	balanceGooods = balanceGooods+"-__-"+id+"-_~-_~"+number;
 			    	
 			    }
 		    });

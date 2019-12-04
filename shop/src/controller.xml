@@ -80,8 +80,11 @@
         <pagejump>true</pagejump>
     </action>
     
+    <action name="showSettlementList" class="com.shopping.web.action.ShowSettlementListAction">
+        <pagejump>false</pagejump>
+    </action>
+    
     <action name="buyAgain" class="com.shopping.web.action.BuyAgainAction">
-        
         <result name="success" direct="true">shoppingCar.jsp</result>
         <result name="error">login.jsp</result>
         <pagejump>true</pagejump>

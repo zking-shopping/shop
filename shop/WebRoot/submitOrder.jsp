@@ -24,6 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
 	<script type="text/javascript" src="js/basic.js" ></script>
 	<script type="text/javascript" src="js/linkage.js" ></script>
+	<script type="text/javascript" src="js/address.js" ></script>
 	<script type="text/javascript" src="js/submitOrder.js"></script>
 	<script type="text/javascript" src="js/personInfoJs.js"></script>
 	
@@ -38,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    </div>
 			    <!--跳转个人信息页面-->
 			    <div class="user-header">
-			    	<a href="personInfo.html"></a>
+			    	<a href="/shop/persionInfo.jsp"></a>
 			    </div>
 			</div>
 		</header>
@@ -97,45 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="select-address" style="display: block;">
 					<table class="address-list">
 						<tbody>
-							<tr>
-								<td id="consignees"><p>尹厚粤</p></td>
-								<td id="phone-numbers"><p>151****3633</p></td>
-								<td id="address"><p>湖南省衡阳市常宁市荫田镇红星村十一组12号</p></td>
-								<td id="operation">
-									<span id="modify">修改</span>
-									<span id="separator">|</span>
-									<span id="delete" onclick="deleteAddress(this)">删除</span>
-								</td>
-								<td id="set-defaults">设为默认</td>
-							</tr>
-							<tr>
-								<td id="consignees"><p>尹厚粤</p></td>
-								<td id="phone-numbers"><p>151****3633</p></td>
-								<td id="address"><p>湖南省衡阳市常宁市荫田镇红星村十一组12号</p></td>
-								<td id="operation">
-									<span id="modify">修改</span>
-									<span id="separator">|</span>
-									<span id="delete">删除</span>
-								</td>
-								<td id="set-defaults">设为默认</td>
-							</tr>
-							<tr>
-								<td id="consignees"><p>尹厚粤</p></td>
-								<td id="phone-numbers"><p>151****3633</p></td>
-								<td id="address"><p>湖南省衡阳市常宁市荫田镇红星村十一组12号</p></td>
-								<td id="operation">
-									<span id="modify">修改</span>
-									<span id="separator">|</span>
-									<span id="delete">删除</span>
-								</td>
-								<td id="set-defaults">设为默认</td>
-							</tr>
-							<tr id="add-address">
-								<td id="add-address">
-									<img src="img/add.png" />
-									<p>添加新的地址</p>
-								</td>
-							</tr>
+						
 						</tbody>
 					</table>
 					
@@ -157,22 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							<a href="#n">
-								<img src="" />
-							</a>
-							<a href="#666"><h2>减压按摩仪</h2></a>
-							<p>典雅黑</p>
-						</td>
-						<td>
-							<span id="unit-price">￥</span>50
-						</td>
-						<td>1</td>
-						<td>
-							<span id="subtotal">￥</span>50
-						</td>
-					</tr>
+					
 				</tbody>
 			</table>
 		</section>
@@ -209,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</p>
 				</li>
 				<li class="agree-clause">
-					<input type="checkbox" name="agree-bule" id="agree-bule"/>
+					<input type="checkbox" name="agree-bule" id="agree-bule" checked="checked"/>
 					<label>
 						我已同意
 						<a href="#n">[XXX服务协议]</a>
