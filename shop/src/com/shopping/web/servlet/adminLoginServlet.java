@@ -3,8 +3,10 @@ package com.shopping.web.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.shopping.dao.AdminDao;
+import com.shopping.dao.MemberDao;
 import com.shopping.dao.daoImpl.AdminDaoImpl;
+import com.shopping.dao.daoImpl.MemberDaoImpl;
 import com.shopping.db.DBHelper;
 import com.shopping.pojo.Admin;
 import com.shopping.web.filter.AdminLoginFilter;
@@ -75,6 +79,12 @@ public class adminLoginServlet extends HttpServlet {
 			if(ad.getId() != null){
 				HttpSession session = request.getSession();
 				session.setAttribute("Admin", ad);
+				ServletContext application = request.getServletContext();
+				Map<String, HttpSession> map = (Map<String, HttpSession>) application.getAttribute("loginMap");
+				session.setAttribute("online", map.size());
+				MemberDao mDao = new MemberDaoImpl();
+				int allMember = mDao.selectMax(1, conn);
+				session.setAttribute("allMember", allMember);
 				request.getRequestDispatcher("/admin/index.jsp").forward(request, response);
 				return ;
 			}else{

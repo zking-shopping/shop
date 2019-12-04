@@ -87,8 +87,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="right">
 					<p>欢迎您，管理员</p>
-					<p>已注册账号用户：00人</p>
-					<p>在线人数：00人</p>
+					<p>已注册账号用户：${allMember }人</p>
+					<p>在线人数：${online }人</p>
 				</div>
 			</container>
 		</div>

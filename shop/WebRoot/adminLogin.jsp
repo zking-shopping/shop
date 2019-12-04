@@ -80,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul>
 				<li>账号：<input type="text" name="username"></li>
 				<li>密码：<input type="password" name="password" autocomplete="off" oncopy="returnfalse" oncut="return false" onpaste="return false"></li>
-				<input type="text" id="code" name="code" value="${AdminCode }">
+				<input type="hidden" id="code" name="code" value="${AdminCode }">
 				<li><input type="submit" value="登录" id="submit" class="submit"></li>
 			</ul>
 		</form>
