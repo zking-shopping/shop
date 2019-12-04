@@ -57,7 +57,14 @@
     </action>
     
     <action name="savaAddress" class="com.shopping.web.action.SavaAddressAction">
-        <form>com.shopping.web.form.SavaAddressForm</form>
+        <pagejump>false</pagejump>
+    </action>
+    
+    <action name="modifyAddress" class="com.shopping.web.action.ModifyAddressAction">
+        <pagejump>false</pagejump>
+    </action>
+    
+    <action name="deleteAddress" class="com.shopping.web.action.DeleteAddressAction">
         <pagejump>false</pagejump>
     </action>
     

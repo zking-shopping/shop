@@ -40,4 +40,23 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
 		}
 		return list;
 	}
+
+	@Override
+	public String selectDefaultAddressId(Connection conn) {
+		String sql = "select id from t_address where defaultAddress=true";
+		PreparedStatement ps;
+		String id = "-1";
+		try {
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if(rs!=null&&rs.next()==false){
+				id = String.valueOf(rs.getInt("id"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return id;
+	}
 }

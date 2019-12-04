@@ -15,5 +15,6 @@ public interface AddressDao {
 	public Boolean update(String id, Object o, Connection conn);
 	
 	public List<Address> selectByMemberId(String memberId, Connection conn);
+	public String selectDefaultAddressId(Connection conn);
 	
 }

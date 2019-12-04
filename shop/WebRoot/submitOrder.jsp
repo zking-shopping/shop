@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<!--选择地址-->
 				<div class="select-address" style="display: block;">
-					<table>
+					<table class="address-list">
 						<tbody>
 							<tr>
 								<td id="consignees"><p>尹厚粤</p></td>
@@ -104,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td id="operation">
 									<span id="modify">修改</span>
 									<span id="separator">|</span>
-									<span id="delete">删除</span>
+									<span id="delete" onclick="deleteAddress(this)">删除</span>
 								</td>
 								<td id="set-defaults">设为默认</td>
 							</tr>
@@ -130,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</td>
 								<td id="set-defaults">设为默认</td>
 							</tr>
-							<tr>
+							<tr id="add-address">
 								<td id="add-address">
 									<img src="img/add.png" />
 									<p>添加新的地址</p>

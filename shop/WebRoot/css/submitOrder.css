@@ -473,8 +473,7 @@ section.transparent{
 .center-delete{
 	display: none;
 	width: 600px;
-	height: 130px;
-	padding: 35px 0px;
+	height: 200px;
 	background: #FFFFFF;
     text-align: center;
     z-index: 1000;
@@ -482,7 +481,7 @@ section.transparent{
 }
 .ask-delete{
 	height: 30px;
-	padding-top: 30px;
+	margin-top: 65px;
 	line-height: 30px;
 	font-size: 24px;
 	color: #333333;

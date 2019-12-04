@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import com.shopping.dao.AddressDao;
 import com.shopping.dao.daoImpl.AddressDaoImpl;
@@ -24,31 +23,40 @@ public class SetDefaultAddressAction extends ActionFather{
 
 		Connection conn = DBHelper.getConnection();
   		try {
-			
+			conn.setAutoCommit(false);
 			AddressDao ad = new AddressDaoImpl();
-	  		//获得会员Id
-	  		for (int i = 0; i < 10; i++) {
-	  	  		String id = request.getParameter("id"+i);
-	  	  		if(id!=null){
-	  	  	  		Address add = new Address();
-	  	  	  		add.setId(Integer.parseInt(id));
-	  	  	  		if(i==0){
-	  	  	  			System.out.println(id);
-	  	  	  	  		add.setDefaultAddress("true");
-	  	  	  		}else{
-	  	  	  	  		add.setDefaultAddress("false");
-	  	  	  		}
-	  	  	  		//更改数据
-		  	  		ad.update("updateDefaultAddress", add, conn);
-	  	  		}else{
-	  	  	  		//中断操作
-	  	  			break;
-	  	  		}
+	  		
+			//获得两个id
+			String id = request.getParameter("id0");
+			System.out.println(id);
+			if(id!=null && !id.equals("null") && !id.equals("")){
+				int hadDefaultId = Integer.parseInt(id);
+				Address add1 = new Address();
+				add1.setId(hadDefaultId);
+				add1.setDefaultAddress("false");
+				ad.update("updateDefaultAddress", add1, conn);
 			}
+			int willDefaultId = Integer.parseInt(request.getParameter("id1"));
+			Address add2 = new Address();
+			add2.setId(willDefaultId);
+			add2.setDefaultAddress("true");
+			
+			ad.update("updateDefaultAddress", add2, conn);
+	  		conn.commit();
 	  		JSONArray jarr = JSONArray.fromObject(1);
 	  		PrintWriter out = response.getWriter();
 	  		out.print(jarr.toString());
 		}  catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			try {
+				if(conn!=null){
+					conn.rollback();
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}finally{
 			DBHelper.closeConnection(conn);

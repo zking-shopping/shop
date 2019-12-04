@@ -17,16 +17,15 @@ import com.shopping.dao.AddressDao;
 import com.shopping.dao.daoImpl.AddressDaoImpl;
 import com.shopping.db.DBHelper;
 import com.shopping.pojo.Address;
-import com.shopping.pojo.Member;
 
-public class SavaAddressAction extends ActionFather{
-	
+public class ModifyAddressAction extends ActionFather{
+
+	@Override
 	public Object doAction(HttpServletRequest request,
 			HttpServletResponse response, Object o) {
   		response.setCharacterEncoding("UTF-8");
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
-  		
-		//获得会员id
+
 //		Member m = (Member)request.getSession().getAttribute("member");
 //		String memberId = m.getId();
 		String memberId = "125a2177-a2be-4ee4-8223-8ecfe0eefef4";
@@ -40,37 +39,26 @@ public class SavaAddressAction extends ActionFather{
 		add.setDetailAddress(request.getParameter("detailAddress"));
 		String defaults = request.getParameter("defaultAddress");
 		add.setDefaultAddress(defaults);
-
-		Connection conn = DBHelper.getConnection();
+  		String id = request.getParameter("saveId");
+  		AddressDao ad = new AddressDaoImpl();
+  		Connection conn = DBHelper.getConnection();
+		List<Address> list = new ArrayList<Address>();
 		try {
 			conn.setAutoCommit(false);
-			AddressDao ad = new AddressDaoImpl();
-			//查询地址列表
-			List<Address> list = new ArrayList<Address>();
-			list = ad.selectByMemberId(memberId, conn);
-			//判断有没有设置默认
-			if(defaults.equals("true")){
-				Address add1 = new Address();
-				add1.setId(Integer.parseInt(request.getParameter("saveId")));
-				add1.setDefaultAddress("false");
-				ad.update("updateDefaultAddress", add1, conn);
-			}
-			//自动默认
-			if(list.size()==0){
-				add.setDefaultAddress("true");
-			}
-			//插入
-			ad.insert(add, conn);
-			//查询
-			list = ad.selectByMemberId(memberId, conn);
-			Iterator<Address> iterator = list.iterator();
-			//手机号码加密
-			while (iterator.hasNext()) {
-				Address add5 = iterator.next();
-				String number = add.getPhoneNumber();
-				number = number.substring(0, 3)+"****"+number.substring(7);
-				add5.setPhoneNumber(number);
-			}
+	  		if(id!=null && !id.equals("null") && !id.equals("")){
+				int saveId = Integer.parseInt(id);
+				add.setId(saveId);
+				ad.updateExId(add, conn);
+				list = ad.selectByMemberId(memberId, conn);
+				Iterator<Address> iterator = list.iterator();
+				//手机号码加密
+				while (iterator.hasNext()) {
+					Address add5 = iterator.next();
+					String number = add.getPhoneNumber();
+					number = number.substring(0, 3)+"****"+number.substring(7);
+					add5.setPhoneNumber(number);
+				}
+	  		}
 			conn.commit();
 	  		PrintWriter out = response.getWriter();
 	  		JSONArray jarr = JSONArray.fromObject(list);
