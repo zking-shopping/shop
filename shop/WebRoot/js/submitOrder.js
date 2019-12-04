@@ -55,10 +55,11 @@ $(function(){
 		url:"showSettlementList.do",
 		data:"",
 		success:function(result){
+			console.log(result);
 			var addPrice = 0;
 			$.each(result, function (i, value) {
 				var addStr = `
-					<tr>
+					<tr data-goodsId=${value.goodsId} data-number=${value.number}>
 						<td>
 							<a href="#n">
 								<img src=${value.url.substring(28)} />
@@ -92,5 +93,23 @@ $(function(){
 	$("#exit-add").click(function(){
 		$(".select-address").css("display","block");
 		$(".main-info").css("display","none");
+	});
+	
+	//设置付款按钮是否可用
+	$("#agree-bule").click(function(){
+		$(".to-pay").prop("disabled",!$(this).prop("checked"));
+	});
+	
+	//点击去付款
+	$(".to-pay").click(function(){
+		//获得需要传的数值
+		var addressId = "";
+		$(".address-list tr").each(function(){
+			var selected = $(this).attr("data-selected");
+			if(selected=="true"){
+				addressId = $(this).attr("data-id")
+			};
+		});
+		console.log(addressId);
 	});
 });

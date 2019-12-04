@@ -11,6 +11,9 @@
 	<property name="goodsColor">goodsColor</property>
 	
 	<select id="selectCart" target="com.shopping.pojo.Cart">
+		select * from t_cart where memberId=#{memberId} and goodsId=#{goodsId};
+	</select>
+	<select id="selectCarts" target="com.shopping.pojo.Cart">
 		select * from t_cart where memberId=#{memberId} and id=#{id};
 	</select>
 	<update id="add">

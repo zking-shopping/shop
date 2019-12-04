@@ -184,6 +184,7 @@ function updateAddressList(result){
 			$('.address-list #default-address').eq(i).css("display","inline-block");
 			if($("#exit-add").length!=0){
 				$('.address-list #set-defaults').eq(i).css("display","none");
+				changeState($('.address-list #set-defaults').eq(i).parents("tr"));
 			};
 		};
 	})
@@ -203,7 +204,6 @@ function saveAddress(){
 	//获得默认的id
 	var id = null;
 	$(".address-list tbody tr").each(function(){
-		console.log(666);
 		var defaults = $(this).attr("data-defaultAddress");
 		if(defaults=="true"){
 			id = $(this).attr("data-id");
@@ -394,7 +394,7 @@ $(function(){
 							$('.haved-address').empty();
 						};
 						//判断地址列表是否为空，空就显示新增地址界面
-						if($("tr#add-address").length==1){
+						if($(".address-list tr#add-address").length==1 && $(".address-list tr").length==1){
 							$(".select-address").css("display","none");
 							$(".main-info").css("display","block");
 							$("#exit-add").css("display","none");

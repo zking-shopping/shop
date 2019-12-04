@@ -157,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</p>
 				</li>
 				<li class="agree-clause">
-					<input type="checkbox" name="agree-bule" id="agree-bule"/>
+					<input type="checkbox" name="agree-bule" id="agree-bule" checked="checked"/>
 					<label>
 						我已同意
 						<a href="#n">[XXX服务协议]</a>

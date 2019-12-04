@@ -40,7 +40,6 @@ function showMyProducts(result){
     $('.myProducts').html("");
     $('.myNullOrder').show();
     $('.myrightinfo_body').hide();
-    console.log(result);
     var orders = result[0];
     var detailOrderss = result[1];
     
