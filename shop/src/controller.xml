@@ -114,4 +114,5 @@
         <result name="success" direct="false">details.jsp</result>
         <pagejump>true</pagejump>
     </action>
+    
 </actions>
