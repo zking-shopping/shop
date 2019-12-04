@@ -32,7 +32,11 @@ body{
     line-height: 40px;
     background: #f4f4f4;
     padding-left: 20px;
-    margin: 20px 0px;
+    margin: 20px 0px;   
+}
+
+.odder_info>span{
+	margin-right:20px;
 }
 
 .headfont{

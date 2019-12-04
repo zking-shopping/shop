@@ -41,9 +41,13 @@ function showMyProducts(result){
     
     for(var i = 0; i < orders.length; i++){
     	var paiedMoney = 0;
+    	for (var j = 0; j < detailOrderss[i].length; j++) {
+    		paiedMoney = parseInt(paiedMoney) + parseInt(detailOrderss[i][j].price*detailOrderss[i][j].number);
+    	}   	
     	var myOrders = `
-        <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span> 支付金额：<span class="paiedMoney${orders[i].id}"></span></div>
+        <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span> 支付金额：<span class="paiedMoney">${paiedMoney}</span></div>
         `;
+        $('.myProducts').append(myOrders);
         var stateid = orders[i].state;
         var state = "";
         if(stateid==1){
@@ -55,9 +59,9 @@ function showMyProducts(result){
         }else if(stateid==4){
         	state = "已完成";
         }else{state = "已关闭"}
-        $('.myProducts').append(myOrders);
+        
     	for (var j = 0; j < detailOrderss[i].length; j++) {
-    		paiedMoney = parseInt(paiedMoney) + parseInt(detailOrderss[i][j].price*detailOrderss[i][j].number);
+    		
     		var myDetailOrders = `          
             <ul>
   			<li> 
@@ -72,10 +76,10 @@ function showMyProducts(result){
   			<li>
   			${detailOrderss[i][j].number}
   			<li style="font-weight: bold;">${detailOrderss[i][j].price*detailOrderss[i][j].number}</li>
-  			<li stateid="${stateid}">${state}</li>
+  			<li stateid="${stateid}" paiedMoney="${paiedMoney}"></li><!--存了状态跟订单总价-->
   			<li class="a-hover">
-  			    <input type="text" value="${orders[i].id}" style="display:none"/> 			    
-  				<p><a href="buyAgain.do?id=${orders[i].id}">重新购买</a></p>
+  			    <input type="text" value="${orders[i].id}" style="display:none"/>
+  			    <p><a href="buyAgain.do?id=${orders[i].id}">重新购买</a></p>
   				<p class="showDetails"><a>查看详情</a></p>
   			</li>
            </ul>
@@ -85,9 +89,7 @@ function showMyProducts(result){
 		}
         $('.myNullOrder').hide();
         $('.myrightinfo_body').show();
-        var paiedMoneypage = "'.paiedMoney"+orders[i].id+"'";
-//        alert(paiedMoneypage);
-        $(paiedMoneypage).append(paiedMoney);
+        
     };
     
 };
@@ -215,7 +217,7 @@ $(function(){
 	    var firstidInputFather = e.target.parentNode.parentNode;
 	    var id = firstidInputFather.firstElementChild.value;
 	    var state = firstidInputFather.previousElementSibling.getAttribute("stateid");
-	    var paiedMoney = $('.paiedMoney').html();
+	    var paiedMoney = firstidInputFather.previousElementSibling.getAttribute("paiedMoney");
 	   
 	    $.get('personInfoShowDetails.do',{
 	        'id':id
