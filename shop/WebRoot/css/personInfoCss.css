@@ -287,3 +287,45 @@ body{
 .footer{
     margin-top: 50px;
 }
+
+.address-list{
+	width: 100%;
+	border: 1px solid #d6d6d6;
+	border-bottom: none;
+	border-collapse:collapse;
+}
+.address-list td{
+	text-align: center;
+	height: 40px;
+	border-bottom: 1px solid #D6D6D6;
+	font-weight: lighter;
+	font-size: 14px;
+}
+.address-list thead td{
+	width: 200px;
+	line-height: 40px;
+	background: #FAFAFA;
+}
+.address-list thead td:last-child{
+	width: 100px;
+}
+.address-list tbody tr:hover{
+    background: #FAFAFA;
+}
+.address-list tbody td{
+	padding: 40px 0px;
+	line-height: 20px;
+	font-weight: lighter;
+}
+.address-list tbody td:last-child{
+	padding: 0px;
+	text-align: left;
+}
+#set-default-address,#modify,#delete{
+	color: #1989E9;
+	font-size: 14px;
+}
+.address-list span:hover{
+	text-decoration: underline;
+}
+

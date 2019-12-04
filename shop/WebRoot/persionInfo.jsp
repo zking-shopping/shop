@@ -342,7 +342,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!--保存-->
 						<div class="keep">
 							<button id="save">保存</button>
-							<button id="exit-add">取消</button>
 						</div>
 						
 						<!--已有地址列表-->
@@ -415,6 +414,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/basic.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/address.js" ></script>
 <script type="text/javascript" src="js/personInfoJs.js"></script>
 <script type="text/javascript" src="js/linkage.js"></script>
 <script type="text/javascript" src="js/submitOrder.js"></script>
