@@ -76,7 +76,7 @@ function showMyProducts(result){
   			<li>
   			${detailOrderss[i][j].number}
   			<li style="font-weight: bold;">${detailOrderss[i][j].price*detailOrderss[i][j].number}</li>
-  			<li stateid="${stateid}" paiedMoney="${paiedMoney}"></li><!--存了状态跟订单总价-->
+  			<li stateid="${stateid}" paiedMoney="${paiedMoney}">${state}</li><!--存了状态跟订单总价-->
   			<li class="a-hover">
   			    <input type="text" value="${orders[i].id}" style="display:none"/>
   			    <p><a href="buyAgain.do?id=${orders[i].id}">重新购买</a></p>
