@@ -77,7 +77,7 @@
     
     <action name="buyAgain" class="com.shopping.web.action.BuyAgainAction">
         
-        <result name="success" direct="false">shoppingCar.jsp</result>
+        <result name="success" direct="true">shoppingCar.jsp</result>
         <result name="error">login.jsp</result>
         <pagejump>true</pagejump>
     </action>

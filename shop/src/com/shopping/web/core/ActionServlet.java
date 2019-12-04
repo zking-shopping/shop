@@ -87,9 +87,9 @@ public class ActionServlet extends HttpServlet {
         //获取action名
         String actionName = url.substring(url.lastIndexOf("/")+1,url.lastIndexOf(".do"));
         System.out.println("actionName："+actionName);
-        if("myPersonInfo".equalsIgnoreCase(actionName)){
-        	//判断用户是否登录
-      		Object isLogin = request.getSession().getAttribute("member");
+        if("personInfo".equalsIgnoreCase(actionName)){
+        	//判断用户是否登录       	
+      		Object isLogin = request.getSession().getAttribute("member");     		
       		if(isLogin==null){return;};
         }    
         //通过action名获取action所对应的的类的全路径

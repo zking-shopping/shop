@@ -1,7 +1,11 @@
-function productsList(page, showMyProducts){
-    var page = page ? page : 1;
+function productsList(showMyProducts){
     $.ajaxSettings.async = false;
     $.get('personInfo.do', function(result){
+    	if(result==""){
+    		alert("请先登录！");
+    		window.location.href = "login.jsp";
+    		return;
+    	}
         var result = JSON.parse(result);
         showMyProducts(result);
     });
@@ -32,6 +36,7 @@ function waitRecieve(){
 };
 
 function showMyProducts(result){
+	
     $('.myProducts').html("");
     $('.myNullOrder').show();
     $('.myrightinfo_body').hide();
@@ -45,7 +50,7 @@ function showMyProducts(result){
     		paiedMoney = parseInt(paiedMoney) + parseInt(detailOrderss[i][j].price*detailOrderss[i][j].number);
     	}   	
     	var myOrders = `
-        <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span> 支付金额：<span class="paiedMoney">${paiedMoney}</span></div>
+        <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span> 订单总额：<span class="paiedMoney">${paiedMoney}</span></div>
         `;
         $('.myProducts').append(myOrders);
         var stateid = orders[i].state;
@@ -98,6 +103,7 @@ function showMyDetails(paiedMoney,state,result){
 	
     var myOders = result[0];
     var myAddressInfo = result[1];
+    console.log(result);
     $('.viewDetails_buttom_body_details').html("");
 //    alert(state);
     $('.viewDetails_buttom_orderInfo').html(""); 
@@ -138,6 +144,14 @@ function showMyDetails(paiedMoney,state,result){
     	var stateFontOne = "待发货";
         var stateFontTwo = "待收货";
         var stateFontThere = "交易成功";
+    	state="已完成";
+    }else{
+    	var stateImageOne = "img/list4.png";
+        var stateImageTwo = "img/list5.png";
+        var stateImageThere = "img/list7.png";
+        var stateFontOne = "提交申请";
+        var stateFontTwo = "取消处理";
+        var stateFontThere = "取消成功";
     	state="已关闭";
     }
     var viewDetails_buttom_orderInfo = `
