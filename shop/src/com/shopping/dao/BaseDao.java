@@ -16,6 +16,7 @@ import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
 
+import com.shopping.dao.daoImpl.CartDaoImpl;
 import com.shopping.db.DBHelper;
 
 public abstract class BaseDao {

@@ -247,6 +247,8 @@ button#exit-add{
 }
 .select-address table tr td{
 	float: left;
+	font-size: 14px;
+	font-weight: lighter;
 }
 #consignees,#phone-numbers,#address,#operation,#set-defaults{
 	width: 119px;
@@ -254,7 +256,7 @@ button#exit-add{
 	line-height: 20px;
 	padding: 0px;
 	padding-bottom: 15px;
-	font-size: 16px;
+	font-size: 14px;
 	color: #333333;
 }
 #phone-numbers,#set-defaults{
@@ -270,7 +272,7 @@ button#exit-add{
 #operation,#set-defaults{
 	color: #1989E9;
 	padding-bottom: 0px;
-	padding-top: 30px;
+	padding-top: 40px;
 	font-size: 14px;
 }
 #operation span{
@@ -286,7 +288,7 @@ button#exit-add{
 /*添加地址样式*/
 #add-address{
 	width: 238px;
-	height: 120px;
+	height: 129px;
 	padding-bottom: 29px;
 }
 #add-address img{
@@ -315,7 +317,7 @@ section.goodsSection{
 	line-height: 20px;
 }
 /*商品信息列表*/
-.goodsSection table,.address-list{
+.goodsSection table{
 	width: 100%;
 	border: 1px solid #d6d6d6;
 	border-bottom: none;
@@ -357,7 +359,9 @@ section.goodsSection{
 	height: 100px;
 }
 .goodsSection table tbody tr td img{
-	
+	display: inline-block;
+	width: 100px;
+	height: 100px;
 }
 .goodsSection table tbody tr td h2,
 .goodsSection table tbody tr td p{
@@ -535,40 +539,6 @@ h3.address-title{
     font-size: 18px;
     margin: 0px;
     padding: 20px;
-}
-.address-list td{
-	text-align: center;
-	height: 40px;
-	border-bottom: 1px solid #D6D6D6;
-	font-weight: lighter;
-	font-size: 14px;
-}
-.address-list thead td{
-	width: 200px;
-	line-height: 40px;
-	background: #FAFAFA;
-}
-.address-list thead td:last-child{
-	width: 100px;
-}
-.address-list tbody tr:hover{
-    background: #FAFAFA;
-}
-.address-list tbody td{
-	padding: 40px 0px;
-	line-height: 20px;
-	font-weight: lighter;
-}
-.address-list tbody td:last-child{
-	padding: 0px;
-	text-align: left;
-}
-.address-list span{
-	color: #1989E9;
-	font-size: 14px;
-}
-.address-list span:hover{
-	text-decoration: underline;
 }
 #default-address{
 	display: none;
