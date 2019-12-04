@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.shopping.pojo.Member;
+import com.shopping.web.form.ChangeMyPersonInfoForm;
 
 public interface MemberDao{
 	public List<Object> selectAll(Object o, Connection conn);
@@ -15,4 +16,5 @@ public interface MemberDao{
 	public Boolean update(String id, Object o, Connection conn);
 	public int selectMax(int pageSize, Connection conn);
 	public List<Member> selectByPages(int pageNumber, int pageSize, Connection conn);
+	public Boolean updatePersonInfo(ChangeMyPersonInfoForm cmpif,Connection conn);
 }

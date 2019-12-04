@@ -48,6 +48,11 @@
         <pagejump>false</pagejump>
     </action>
     
+    <action name="changeMyPersonInfo" class="com.shopping.web.action.ChangeMyPersonInfoAction">       
+        <form>com.shopping.web.form.ChangeMyPersonInfoForm</form>
+        <pagejump>false</pagejump>
+    </action>
+    
     <action name="showAddress" class="com.shopping.web.action.ShowAddressAction">
         <pagejump>false</pagejump>
     </action>

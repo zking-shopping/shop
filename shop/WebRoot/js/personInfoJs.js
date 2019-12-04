@@ -269,9 +269,34 @@ $(function(){
 	    $.get('myPersonInfo.do',function(result){
 	        var result = JSON.parse(result);
 	        var myProduct = `
-            <p><span>用户</span><span>${result.name}</span></p>
-            <p><span>账号</span><span>${result.username}</span></p>
-            <p><span>手机号码</span><span>${result.phoneNumber}</span></p>        
+	        <form class="myPersonInfoForm">
+	        <div class = "myPersonInfoHead">我的个人信息</div>
+	        <input type="text" value="${result.id}" style="display:none" name="personId"/>
+	        <table class="myPersonInfoTable">	        
+				<tr>
+					<td>账号</td>
+					<td><span>${result.username}</span><input type="text" readonly ="readonly" value="${result.username}" style="display:none" name="username"/></td>
+				</tr>
+				<tr>
+					<td>密码</td>
+					<td><span>不能给你看哦</span><input type="text" placeholder="请输入你的新密码" style="display:none" name="password"/></td>
+			    </tr>
+				<tr>
+					<td>用户名</td>
+					<td><span>${result.name}</span><input type="text" value="${result.name}" style="display:none" name="name"/></td>
+				</tr>
+				<tr>
+					<td>手机号码</td>
+					<td><span>${result.phoneNumber}</span><input type="text" value="${result.phoneNumber}" style="display:none" name="phoneNumber"/></td>
+				</tr>
+				<tr>
+					<td>
+						<button class="changeMyPersonInfo">修改信息</button>
+						<button class="sureChangeMyPersonInfo" style="display:none">确认修改</button>
+					</td>
+				</tr>
+		    </table>  
+		    </form>
 `;
             $('#myPersonInfo').html(myProduct);
 	    });
@@ -343,7 +368,30 @@ $(function(){
 			}
 		});
 	});
-
+	
+	//个人信息--修改信息
+	$(document).on('click','.changeMyPersonInfo',function(e){		
+		$('.myPersonInfoTable').children().children().children().children("span").css("display","none");
+		$('.myPersonInfoTable').children().children().children().children("input").css("display","block");
+		$('.sureChangeMyPersonInfo').css("display","block");
+		$('.changeMyPersonInfo').css("display","none");
+	});
+	
+	//个人信息--修改信息--确认修改
+	$(document).on('click','.sureChangeMyPersonInfo',function(e){
+		
+		$.ajax({
+			type: "POST",
+			url:  "changeMyPersonInfo.do",
+			data: $('.myPersonInfoForm').serialize(),
+			async: false,
+			success: function(result) {
+				alert(result);
+			}
+		});
+		
+	});
+	
 	//待付款--右
 	$('.waitPay').click(function () {
 		waitPay();
