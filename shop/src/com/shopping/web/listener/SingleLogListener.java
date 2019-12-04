@@ -22,20 +22,19 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			map = (Map<String, HttpSession>) application.getAttribute("loginMap");
 		}
 
-		String infoName = arg0.getName();    //登录新账户的账号
-
-		if (infoName.equals("member")) { // 如果名字是info
+		String infoName = arg0.getName();    //session存储的键
+		if (infoName.equals("member")) {     //如果名字是member
 			// 拿到对应的pojo对象
-			Member newInfo = (Member) arg0.getValue();
+			Member newInfo = (Member) arg0.getValue();   //新账户对应的member对象
 			// 拿到新的对象的名字
 			if (map.get(infoName) != null) { // 如果新对象的账号对应的session值不为空，说明已经有人登录过了
-				HttpSession session = arg0.getSession();
-				Member oldInfo = (Member) session.getAttribute(infoName);
-				session.removeAttribute("member");
-				System.out.println(newInfo.getUsername() + "已经在线了");
+				HttpSession session = arg0.getSession();    //新账户对应的session
+				session.removeAttribute("member");          //新账户的session移除member对象
+				System.out.println(newInfo.getUsername() + "已经在线了");    //member对象的账户名
+				session.setAttribute("msg", "您的帐号已经在其他机器上登录，您被迫下线。");
 			}
 		}
-
+        
 		map.put(infoName, arg0.getSession());
 
 		application.setAttribute("loginMap", map);
@@ -56,14 +55,12 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 		}
 
 		// 拿到新对象的名字
-		String infoName = arg0.getName();
-		if (infoName.equals("member")) { // 如果名字是info
-			// 拿到对应的pojo对象
+		String infoName = arg0.getName();    //session存储的键
+		if (infoName.equals("member")) {    // 如果名字是member
+			//新账户对应的对象
 			Member newInfo = (Member) arg0.getValue();
 			// 拿到新的对象的名字
-			if (map.get(infoName) != null) { // 如果新对象的账号对应的session值不为空，说明已经有人登录过了
-				map.remove(infoName);
-			}
+				map.remove(newInfo.getUsername());        //
 		}
 		System.out.println(map.size()+"==size");
 	}
@@ -71,24 +68,29 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 	@Override
 	public void attributeReplaced(HttpSessionBindingEvent arg0) {
          System.out.println("map替换了一个session");
+         
 		if (map == null) {
 			ServletContext application = arg0.getSession().getServletContext();
 
 			map = (Map<String, HttpSession>) application.getAttribute("loginMap");
 		}
-		String username = ((Member)arg0.getSession().getAttribute("member")).getUsername();
-		String infoName = arg0.getName();  //新的用户账号
+		
+		String infoName = arg0.getName();  //session对应的键是member
 		if (infoName.equals("member")) {
 			// 移除旧的账号
 			Member oldInfo = (Member) arg0.getValue();
 			map.remove(oldInfo.getUsername());
+			//新的登录信息
+			Member newInfo = (Member) arg0.getSession().getAttribute("member");
+			
+			if (map.get(newInfo.getUsername()) != null) { // 如果新对象的账号对应的session值不为空，说明已经有人登录过了
+				HttpSession session = map.get(newInfo.getUsername());
+                session.removeAttribute("member");
+                session.setAttribute("msg", "您的帐号已经在其他机器上登录，您被迫下线");
+			}
 		}
 
-		if (map.get(infoName) != null) { // 如果新对象的账号对应的session值不为空，说明已经有人登录过了
-			HttpSession session = map.get(infoName);
-			Member oldInfo = (Member) session.getAttribute(infoName);
-			System.out.println("替换的用户" +username+ "已经在线了");
-		}
+		
 		map.put(infoName, arg0.getSession());
 	}
 	

@@ -1,4 +1,7 @@
-	 //查询精选商品
+
+
+//查询精选商品
+
 function betterGoods(){
     	$.ajax({
     			url:"bettergoods.do",
@@ -27,6 +30,7 @@ function betterGoods(){
 		    	  }
     	   }
     	})
+    	
 	 }
 
   
@@ -79,20 +83,7 @@ function betterGoods(){
 	var x = 0;
 	var flag = true;
 	
-	//购物车商标添加货物
-//	var str = `
-//		                   <li>
-//												    	<a href="introduction.html">
-//												       <img src="img/chazuo1.jpg" />
-//											        </a>
-//											      <div style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
-//													  	<p style="display: block;">万能插座</p>
-//													  	<p style="display: block;">价格:￥135.00</p>
-//													  </div>
-//													<span class="glyphicon glyphicon-remove" style="float: right;"></span>
-//								        </li>
-//							`
-//	
+
 	//定时器
 	var timer;
 	
@@ -111,22 +102,145 @@ function betterGoods(){
 	})
 	
 	//	登录注册
+
+	$('#user').mouseover(function() {
+		var str="";
+	            if($(this).attr("value")==""){
+					 str+=
+							"<div class='dropdown' >"+
+								"<a href='register.jsp'>"+
+									"<button class='btn btn-default navbar-btn navbar-right'>注册</button>"
+								+"</a> <a href='login.jsp'>"
+									+"<button class='btn btn-default navbar-btn navbar-right'>登录</button>"
+								+"</a>"+
+						    "</div>"
+					       ;
+					 $('#user').html(str);
+				}else{
+					str+= 
+							"<div class='dropdown1' >"+
+								"<a href='register.jsp'>"+
+									"<button class='btn btn-default navbar-btn navbar-right'>我的订单</button>"+
+								"</a> <a id='quit'>"+
+									"<button class='btn btn-default navbar-btn navbar-right'>退出登录</button>"+
+								"</a>"+
+						     "</div>"
+					       ;
+					  $('#user').html(str);
+				}
+
+				
+			
+		})
 	
-	$('.glyphicon-user').mouseover(function() {
-		$('.glyphicon-user .dropdown').show();
-	})
 	
-	$('.glyphicon-user').mouseleave(function() {
-		$('.glyphicon-user .dropdown').hide();
+	$('#user').mouseleave(function(){
+		$('#user .dropdown').hide();
+		$('#user .dropdown1').hide();
 	})
 	
 	//	购物车
-	$('#shopsign').mouseover(function() {
-		$('#allgoods').show();
+	$('#carsign').mouseover(function() {
+		//如果没有登录
+		if($('#user').attr("value")==""){
+			$.ajax({
+				url:"checkLogin2.do",
+				success:function(result){
+					console.log(result);
+					var str ="";
+					var priceAll = 0;
+					var num = 0;
+					if(result!=null){
+						 $.each(result,function(i, value){
+							 str+="<li>"+
+										  "<a>"+
+										     "<img src="+value.url+" />"+
+										  "</a>"+
+											"<div style='width:20%; height:20%; display:inline-block; float:left;  margin-left: 20%;' >"+
+												"<p style='display: block;'>"+value.goodsName+"</p>"+
+												"<p style='display: block;'>价格:￥"+ value.price+"</p>"+
+												"<p style='display: block; float:left;'>×"+value.number+
+											"</div>"+
+											"<span class='glyphicon glyphicon-remove' style='float: right;'></span>"+
+										"</li>"
+							       ;
+							 priceAll+=Number(value.price)*Number(value.number);
+						})
+						var qian = "<h1>总价:￥"+priceAll+".00</h1>"+
+						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去付款</button></a>"
+						$('#shop-down').html(qian)
+						$('.dropdown').show();
+					    $('#carts').html(str);
+						 $('#shop-top').show();
+						 $('#shop-down').show();
+				   }else{
+					     str+="<div id='nogoods' style=' color: gray; height: 50%; display: none;'>"+
+								"<span style='margin: 50% 20%; font-size:18px; font-weight:lighter; letter-spacing:1px'>还没有商品,快去选中商品</span>"+
+							   "</div>"
+							 ;
+							 $('.dropdown').html(str); 
+							 $('#nogoods').show();
+					}
+	               $('.glyphicon-remove').click(function(){
+	            	   console.log(111)
+	               })
+					
+				}
+			})
+		
+		}else{
+			$.ajax({
+				url:"checkLogin.do",
+				success:function(result){
+					var str ="";
+					var priceAll = 0;
+					var num = 0;
+					if(result!=null){
+						 $.each(result,function(i, value){
+							 str+="<li>"+
+										  "<a>"+
+										     "<img src="+value.url+" />"+
+										  "</a>"+
+											"<div style='width:20%; height:20%; display:inline-block; float:left;  margin-left: 20%;' >"+
+												"<p style='display: block;'>"+value.goodsName+"</p>"+
+												"<p style='display: block;'>价格:￥"+ value.price+"</p>"+
+												"<p style='display: block; float:left;'>×"+value.number+
+											"</div>"+
+											"<span class='glyphicon glyphicon-remove' style='float: right;'></span>"+
+										"</li>"
+							       ;
+							 priceAll+=Number(value.price)*Number(value.number);
+						})
+						var qian = "<h1>总价:￥"+priceAll+".00</h1>"+
+						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去付款</button></a>"
+						$('#shop-down').html(qian)
+						$('.dropdown').show();
+					    $('#carts').html(str);
+						 $('#shop-top').show();
+						 $('#shop-down').show();
+				   }else{
+					     str+="<div id='nogoods' style=' color: gray; height: 50%; display: none;'>"+
+								"<span style='margin: 50% 20%; font-size:18px; font-weight:lighter; letter-spacing:1px'>还没有商品,快去选中商品</span>"+
+							   "</div>"
+							 ;
+							 $('.dropdown').html(str); 
+							 $('#nogoods').show();
+					}
+	               $('.glyphicon-remove').click(function(){
+	            	   console.log(111)
+	               })
+					
+				}
+			})
+		}
 	})
 	
-	$('#shopsign').mouseleave(function() {
+	$('#carsign').mouseleave(function() {
 		$('#allgoods').hide();
+		$('#nogoods').hide();
+		$('#goshopping').hide();
+		$('#shoptop').hide();
+		$('#shopdown').hide();
 	})
 	
 	$('#shop-top li .glyphicon-remove').click(function() {
@@ -143,7 +257,6 @@ function betterGoods(){
 	$('#goshopping').click(function(){
 		 $('#no-goods').remove();
 		 $('#goshopping').remove();
-		 $('#allgoods').append(str);
 		 $('#allgoods #shop-down').show();
 	})
 	
@@ -237,8 +350,6 @@ function betterGoods(){
 	
 	//点击每一种分类，发送一个种类的类型，存到request中
 	$('#sort1').click(function(){
-		
-		location.href="sort.jsp?sort=1";
 	})
 	$('#sort2').click(function(){
 		location.href="sort.jsp?sort=2";
@@ -258,3 +369,6 @@ function betterGoods(){
 	$('#sort7').click(function(){
 		location.href="sort.jsp?sort=7";
 	})
+	
+
+	

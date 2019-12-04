@@ -5,3 +5,9 @@ function getUrlVal(property){
   if(result == null){return null};
   return result[2];
 };
+
+function checkLogin(){
+	location.href = "checkLogin.do";
+}
+
+checkLogin();

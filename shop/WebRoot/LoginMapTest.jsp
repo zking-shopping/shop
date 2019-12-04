@@ -23,11 +23,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    
-    <%  Map<String, HttpSession> loginMap = (Map<String, HttpSession>)application.getAttribute("loginMap"); 
+    <% Map<String, HttpSession> loginMap = (Map<String, HttpSession>)application.getAttribute("loginMap"); 
   int conut = 0;
   for(String key:loginMap.keySet()){
-  conut++;
+       conut++;
   }
   %>
   <%=conut %>
