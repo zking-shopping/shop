@@ -104,7 +104,7 @@ function betterGoods(){
 	//	登录注册
 
 	$('#user').mouseover(function() {
-		var str="";
+		console.log($(this).attr("value"));
 	            if($(this).attr("value")==""){
 	            	$('#user .dropdown').show();
 				}else{
@@ -119,7 +119,7 @@ function betterGoods(){
 	})
 	
 	//	购物车
-	$('#carsign').mouseover(function() {
+	$('.glyphicon-shopping-cart').mouseover(function() {
 		//如果没有登录
 		if($('#user').attr("value")==""){
 			$.ajax({
@@ -139,7 +139,7 @@ function betterGoods(){
 												"<p style='display: block;'>价格:￥"+ value.price+"</p>"+
 												"<p style='display: block; float:left;'>×"+value.number+
 											"</div>"+
-											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;'></span>"+
+											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;' value="+value.goodsId+"></span>"+
 										"</li>"
 							       ;
 							 priceAll+=Number(value.price)*Number(value.number);
@@ -148,8 +148,9 @@ function betterGoods(){
 						var qian = "<h1>总价:￥"+priceAll+".00</h1>"+
 						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去付款</button></a>"
 						$('#shop-down').html(qian)
-						$('.dropdown').show();
+						$('.dropdown2').show();
 					    $('#carts').html(str);
+					  
 						 $('#shop-top').show();
 						 $('#shop-down').show();
 						 
@@ -158,14 +159,18 @@ function betterGoods(){
 								"<span style='margin: 50% 20%; font-size:18px; font-weight:lighter; letter-spacing:1px'>还没有商品,快去选中商品</span>"+
 							   "</div>"
 							 ;
-							 $('.dropdown').html(str); 
+							 $('.dropdown2').html(str); 
 							 $('#nogoods').show();
 					}
+					  $(document).on('click','#remove',function(e){
+						  var goodsId = e.target.getAttribute("value");
+						  e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+						  location.href = "deleteCart1.do?goodsId="+goodsId;
+					    })
 				}
 			})
 		
 		}else{
-			//登录之后
 			$.ajax({
 				url:"checkLogin.do",
 				success:function(result){
@@ -174,7 +179,6 @@ function betterGoods(){
 					var num = 0;
 					if(result!=null){
 						 $.each(result,function(i, value){
-				
 							 str+="<li>"+
 										  "<a>"+
 										     "<img src="+value.url+" />"+
@@ -184,7 +188,7 @@ function betterGoods(){
 												"<p style='display: block;'>价格:￥"+ value.price+"</p>"+
 												"<p style='display: block; float:left;'>×"+value.number+
 											"</div>"+
-											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;' ></span>"+
+											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;' value="+value.goodsId+"></span>"+
 										"</li>"
 							       ;
 							 priceAll+=Number(value.price)*Number(value.number);
@@ -193,10 +197,9 @@ function betterGoods(){
 						var qian = "<h1>总价:￥"+priceAll+".00</h1>"+
 						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去付款</button></a>"
 						$('#shop-down').html(qian);
-						
-						$('.dropdown').show();
+						$('.dropdown2').show();
 					    $('#carts').html(str);
-					    
+					 
 						 $('#shop-top').show();
 						 $('#shop-down').show();
 						
@@ -206,27 +209,29 @@ function betterGoods(){
 								"<span style='margin: 50% 20%; font-size:18px; font-weight:lighter; letter-spacing:1px'>还没有商品,快去选中商品</span>"+
 							   "</div>"
 							 ;
-							 $('.dropdown').html(str); 
+							 $('.dropdown2').html(str); 
 							 $('#nogoods').show();
 					}
-	              
+					  $(document).on('click','#remove',function(e){
+						  var goodsId = e.target.getAttribute("value");
+						  e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+						  location.href = "deleteCart2.do?goodsId="+goodsId;
+					  })
 					
 				}
 			})
 		}
 	})
 	
-	$(document).on('click','#remove',function(){
-					    	alert(111);
-					    });
 	$('#carsign').mouseleave(function() {
 		$('#allgoods').hide();
 		$('#nogoods').hide();
 		$('#goshopping').hide();
 		$('#shoptop').hide();
 		$('#shopdown').hide();
-	});
+	})
 	
+
 	
 	//点击去购物车
 	$('#goshopping').click(function(){

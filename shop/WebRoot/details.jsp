@@ -245,8 +245,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<h2>1.规格</h2>
 				<div class="types">
 					<div class="type type_selected">${bd.color}</div>
-					<div class="type">${bd.color}</div>
-					<div class="type">${bd.color}</div>
 				</div>
 				<div class="buy_module">
 					<p>您选择了以下产品</p>

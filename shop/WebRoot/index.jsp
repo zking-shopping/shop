@@ -128,9 +128,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    </div>
 						    
 						     <div class="dropdown1" style="display:none;" >
-								<a href='register.jsp'>
+								<a href="shoppingCar.jsp">
 									<button class="btn btn-default navbar-btn navbar-right">我的订单</button>
-								</a> <a href="login.jsp">
+								</a> <a href="quitLogin.do">
 									<button class="btn btn-default navbar-btn navbar-right">退出登录</button>
 								</a>
 						    </div>
@@ -144,9 +144,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="glyphicon glyphicon-shopping-cart text-left "></span>
 
 					<!--下拉框-->
-					<div class="dropdown" style="display: none; width:900%" id="allgoods">
+					<div class="dropdown2" style="display: none; width:900%" id="allgoods">
 						<div id="shop-top" style="display: none;">
-							<ul style=" overflow-x: auto; " id="carts">
+							<ul  id="carts">
 						       
 							</ul>
 						</div>
