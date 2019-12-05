@@ -146,6 +146,7 @@ function betterGoods(){
 							 priceAll+=Number(value.price)*Number(value.number);
 						})
 						
+						
 						var qian = "<h1>总价:￥"+priceAll+".00</h1>"+
 						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去付款</button></a>"
 						$('#shop-down').html(qian)
