@@ -162,6 +162,7 @@ public class coreMemberServlet extends HttpServlet {
 		session.setAttribute("edgeCost", edgeCostNum);
 		session.setAttribute("avgCost", avgCost);
 		session.setAttribute("avgTime", avgTime);
+		DBHelper.closeConnection(conn);
 		response.sendRedirect("/shop/admin/coreMember.jsp");
 	}
 	
