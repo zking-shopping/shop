@@ -128,8 +128,9 @@ function betterGoods(){
 					var str ="";
 					var priceAll = 0;
 					var num = 0;
-					if(result!=null){
+					if(result.length!=0){
 						 $.each(result,function(i, value){
+							 console.log(value.id);
 							 str+="<li>"+
 										  "<a>"+
 										     "<img src="+value.url+" />"+
@@ -139,7 +140,7 @@ function betterGoods(){
 												"<p style='display: block;'>价格:￥"+ value.price+"</p>"+
 												"<p style='display: block; float:left;'>×"+value.number+
 											"</div>"+
-											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;' value="+value.goodsId+"></span>"+
+											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;' value="+value.id+"></span>"+
 										"</li>"
 							       ;
 							 priceAll+=Number(value.price)*Number(value.number);
@@ -160,12 +161,14 @@ function betterGoods(){
 							   "</div>"
 							 ;
 							 $('.dropdown2').html(str); 
+							 $('.dropdown2').show();
 							 $('#nogoods').show();
 					}
 					  $(document).on('click','#remove',function(e){
-						  var goodsId = e.target.getAttribute("value");
-						  e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-						  location.href = "deleteCart1.do?goodsId="+goodsId;
+							  var id = e.target.getAttribute("value");
+							   console.log(id)
+							  e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+							  location.href = "deleteCart1.do?id="+id;
 					    })
 				}
 			})
@@ -188,14 +191,14 @@ function betterGoods(){
 												"<p style='display: block;'>价格:￥"+ value.price+"</p>"+
 												"<p style='display: block; float:left;'>×"+value.number+
 											"</div>"+
-											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;' value="+value.goodsId+"></span>"+
+											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;' value="+value.id+"></span>"+
 										"</li>"
 							       ;
 							 priceAll+=Number(value.price)*Number(value.number);
 						})
 						
 						var qian = "<h1>总价:￥"+priceAll+".00</h1>"+
-						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去付款</button></a>"
+						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去购物车</button></a>"
 						$('#shop-down').html(qian);
 						$('.dropdown2').show();
 					    $('#carts').html(str);
@@ -213,9 +216,9 @@ function betterGoods(){
 							 $('#nogoods').show();
 					}
 					  $(document).on('click','#remove',function(e){
-						  var goodsId = e.target.getAttribute("value");
+						  var id = e.target.getAttribute("value");
 						  e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-						  location.href = "deleteCart2.do?goodsId="+goodsId;
+						  location.href = "deleteCart2.do?id="+id;
 					  })
 					
 				}

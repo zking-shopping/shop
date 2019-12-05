@@ -17,12 +17,13 @@ public class DeleteCart2Action extends ActionFather{
 	public Object doAction(HttpServletRequest request,
 			HttpServletResponse response, Object o) {
 		        String forward = null;
-		        int goodsId = Integer.parseInt(request.getParameter("goodsId"));
+		        int id = Integer.parseInt(request.getParameter("id"));
 		        //根据goodsId删除对应的用户的购物车商品
 		       CartDao cd = new CartDaoImpl();
 		       Connection conn = DBHelper.getConnection();
 		        Cart cart = new Cart();
-		        cart.setGoodsId(goodsId);
+		        cart.setId(id);
+		        System.out.println(id+"=========商品id");
 		        cd.deleteById(cart, conn);
 		        DBHelper.closeConnection(conn);
 		        forward = "success";

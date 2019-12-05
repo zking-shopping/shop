@@ -39,7 +39,6 @@ public class ShoppingCarDeleteGoodsAction extends ActionFather{
       			for (Cookie cookie : cookies) {
       				if(cookie.getName().length()>10){
       					if(ids[i].equalsIgnoreCase(cookie.getName().substring(10))){
-        					
         					cookie.setMaxAge(0);
         					response.addCookie(cookie);
         				}

@@ -151,8 +151,21 @@
         <pagejump>true</pagejump>
     </action>
     
-     <action name="quitLogin" class="com.shopping.web.action.quitLoginAction">
-        <form>com.shopping.web.form.quitLoginForm</form>
+     <action name="quitLogin" class="com.shopping.web.action.QuitLoginAction">
+        <form>com.shopping.web.form.QuitLoginForm</form>
+             <result name="success" direct="false">index.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+      <action name="deleteCart1" class="com.shopping.web.action.DeleteCart1Action">
+        <form>com.shopping.web.form.DeleteCartForm</form>
+             <result name="success" direct="false">index.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+     <action name="deleteCart2" class="com.shopping.web.action.DeleteCart2Action">
+        <form>com.shopping.web.form.DeleteCartForm</form>
+             <result name="success" direct="false">index.jsp</result>
         <pagejump>true</pagejump>
     </action>
 </actions>
