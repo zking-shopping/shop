@@ -15,6 +15,7 @@ public class PageJump {
 			response.sendRedirect(forwordPage);
 		}
 		else{
+			
 			request.getRequestDispatcher(forwordPage).forward(request, response);
 		}
 		

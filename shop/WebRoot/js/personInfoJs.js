@@ -325,7 +325,7 @@ $(function(){
 				</tr>
 				<tr>
 					<td>密码</td>
-					<td><span>不能给你看哦</span><input type="text" placeholder="如果要修改密码请输入你的新密码" style="display:none" name="password" class="passwordInput"/></td>
+					<td><span>不能给你看哦</span><input type="password" placeholder="如果要修改密码请输入你的新密码" style="display:none" name="password" class="passwordInput"/></td>
 					<td><p class="pwdPrompt"></p></td>
 			    </tr>
 				<tr>

@@ -124,15 +124,26 @@ public class MemberDaoImpl extends BaseDao implements MemberDao{
 	@Override
 	public Boolean updatePersonInfo(ChangeMyPersonInfoForm cmpif,
 			Connection conn) {
+		System.out.println(cmpif.getPassword()+"---");
 		String sql = "update t_member set username = ?,password = ?,name = ?,phoneNumber = ? where id = ?";
+		if("".equals(cmpif.getPassword())||cmpif.getPassword()==null){
+			sql = "update t_member set username = ?,name = ?,phoneNumber = ? where id = ?";
+		}
 		Boolean flag = false;
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, cmpif.getUsername());
-			ps.setString(2, cmpif.getPassword());
-			ps.setString(3, cmpif.getName());
-			ps.setString(4, cmpif.getPhoneNumber());
-			ps.setString(5, cmpif.getPersonId());
+			if("".equals(cmpif.getPassword())||cmpif.getPassword()==null){
+				ps.setString(1, cmpif.getUsername());		
+				ps.setString(2, cmpif.getName());
+				ps.setString(3, cmpif.getPhoneNumber());
+				ps.setString(4, cmpif.getPersonId());
+			}else{
+				ps.setString(1, cmpif.getUsername());
+				ps.setString(2, cmpif.getPassword());
+				ps.setString(3, cmpif.getName());
+				ps.setString(4, cmpif.getPhoneNumber());
+				ps.setString(5, cmpif.getPersonId());
+			}
 			int i = ps.executeUpdate();
 			if(i>0){
 				flag = true;
