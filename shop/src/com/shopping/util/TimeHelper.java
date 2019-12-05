@@ -9,10 +9,10 @@ public class TimeHelper {
 		return l;
 	}
 	
-	public static String duration(long start, long end){
+	public static int duration(long start, long end){
 		long time = end - start;
 		time = time / 1000;
-		String t = String.valueOf(time);
+		int t = (int) time;
 		return t;
 	}
 }
