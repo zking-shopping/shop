@@ -11,7 +11,7 @@ public class TimeHelper {
 	
 	public static int duration(long start, long end){
 		long time = end - start;
-		time = time / 1000;
+		time = time / 1000/ 60;
 		int t = (int) time;
 		return t;
 	}

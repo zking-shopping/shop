@@ -36,10 +36,9 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			Member newInfo = (Member) arg0.getValue();   //新账户对应的member对象
 			// 拿到新的对象的名字
 			if (map.get(infoName) != null) { // 如果新对象的账号对应的session值不为空，说明已经有人登录过了
-				HttpSession session = map.get(newInfo.getUsername());    //新账户对应的session
-				statictis(session);
+				HttpSession session = map.get(newInfo.getUsername());
 				session.setAttribute("msg", "您的帐号已经在其他机器上登录，您被迫下线。");
-				session.removeAttribute("member");          //新账户的session移除member对象
+				session.removeAttribute("member");
 			}
 			map.put(infoName, arg0.getSession());
 		}
@@ -55,8 +54,14 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 		// 拿到新对象的名字
 		String infoName = arg0.getName();    //session存储的键
 		if (infoName.equals("member")) {    // 如果名字是member
-			Member newInfo = (Member) arg0.getValue();
-			map.remove(newInfo.getUsername()); 
+			Member a = (Member) arg0.getValue();
+			if(a.getId() != null){
+				long startTime = (Long) arg0.getSession().getAttribute("startTime");
+				if(startTime > 0){
+					statictis(a, startTime);
+				}
+			}
+			map.remove(a.getUsername()); 
 		}
 		application.setAttribute("loginMap", map);
 	}
@@ -77,7 +82,13 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			if(map.get(newMember.getUsername()) != null){
 				HttpSession session = map.get(newMember.getUsername());
 				session.setAttribute("msg", "您的帐号已经在其他机器上登录，您被迫下线。");
-				statictis(session);
+				Member a = (Member) session.getAttribute("member");
+				if(a.getId() != null){
+					long startTime = (Long) session.getAttribute("startTime");
+					if(startTime > 0){
+						statictis(a, startTime);
+					}
+				}
 				session.removeAttribute("member");
 			}
 			map.put(newMember.getUsername(), arg0.getSession());
@@ -85,21 +96,19 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 		application.setAttribute("loginMap", map);
 	}
 	
-	public void statictis(HttpSession session){
+	public void statictis(Member a, long startTime){
 		Connection conn = DBHelper.getConnection();
-		long startTime = (Long) session.getAttribute("startTime");
-		long endTime = TimeHelper.getTime();
 		MemberDao dao = new MemberDaoImpl();
-		Member a = (Member) session.getAttribute("member");
+		long endTime = TimeHelper.getTime();
 		int time = TimeHelper.duration(startTime, endTime);
 		String nowDate = DateHelper.getSimpleDate();
 		int oldTime = Integer.valueOf(a.getTime());
 		int newTime = oldTime+time;
 		try{
 			conn.setAutoCommit(false);
-			if(nowDate.equals(a.getDate())){
+			if(nowDate.equalsIgnoreCase(a.getDate())){
 				a.setTime(String.valueOf(newTime));
-				dao.update("updateTime", a, conn);
+				Boolean res = dao.update("updateMemberTime", a, conn);
 			}else{
 				String oldCost = a.getCost();
 				MemberStatisticsDao statisticsDao = new MemberStatisticsDaoImpl();
@@ -111,7 +120,7 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 				a.setDate(DateHelper.getSimpleDate());
 				a.setCost("0");
 				a.setTime(String.valueOf(time));
-				dao.update("updateStatistics", a, conn);
+				Boolean res = dao.update("updateStatistics", a, conn);
 			}
 			conn.commit();
 		}catch(Exception e){
@@ -120,7 +129,8 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+		}finally{
+			DBHelper.closeConnection(conn);
 		}
-		
 	}
 }
