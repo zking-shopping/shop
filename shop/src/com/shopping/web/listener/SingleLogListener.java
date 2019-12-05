@@ -1,5 +1,7 @@
 package com.shopping.web.listener;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +10,15 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 
+import com.shopping.dao.MemberDao;
+import com.shopping.dao.MemberStatisticsDao;
+import com.shopping.dao.daoImpl.MemberDaoImpl;
+import com.shopping.dao.daoImpl.MemberStatisticsDaoImpl;
+import com.shopping.db.DBHelper;
 import com.shopping.pojo.Member;
+import com.shopping.pojo.MemberStatistics;
+import com.shopping.util.DateHelper;
+import com.shopping.util.TimeHelper;
 
 public class SingleLogListener implements HttpSessionAttributeListener {
 
@@ -27,8 +37,9 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			// 拿到新的对象的名字
 			if (map.get(infoName) != null) { // 如果新对象的账号对应的session值不为空，说明已经有人登录过了
 				HttpSession session = map.get(newInfo.getUsername());    //新账户对应的session
-				session.removeAttribute("member");          //新账户的session移除member对象
+				statictis(session);
 				session.setAttribute("msg", "您的帐号已经在其他机器上登录，您被迫下线。");
+				session.removeAttribute("member");          //新账户的session移除member对象
 			}
 			map.put(infoName, arg0.getSession());
 		}
@@ -44,9 +55,7 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 		// 拿到新对象的名字
 		String infoName = arg0.getName();    //session存储的键
 		if (infoName.equals("member")) {    // 如果名字是member
-			//新账户对应的对象
 			Member newInfo = (Member) arg0.getValue();
-			// 拿到新的对象的名字
 			map.remove(newInfo.getUsername()); 
 		}
 		application.setAttribute("loginMap", map);
@@ -68,6 +77,7 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			if(map.get(newMember.getUsername()) != null){
 				HttpSession session = map.get(newMember.getUsername());
 				session.setAttribute("msg", "您的帐号已经在其他机器上登录，您被迫下线。");
+				statictis(session);
 				session.removeAttribute("member");
 			}
 			map.put(newMember.getUsername(), arg0.getSession());
@@ -75,4 +85,42 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 		application.setAttribute("loginMap", map);
 	}
 	
+	public void statictis(HttpSession session){
+		Connection conn = DBHelper.getConnection();
+		long startTime = (Long) session.getAttribute("startTime");
+		long endTime = TimeHelper.getTime();
+		MemberDao dao = new MemberDaoImpl();
+		Member a = (Member) session.getAttribute("member");
+		int time = TimeHelper.duration(startTime, endTime);
+		String nowDate = DateHelper.getSimpleDate();
+		int oldTime = Integer.valueOf(a.getTime());
+		int newTime = oldTime+time;
+		try{
+			conn.setAutoCommit(false);
+			if(nowDate.equals(a.getDate())){
+				a.setTime(String.valueOf(newTime));
+				dao.update("updateTime", a, conn);
+			}else{
+				String oldCost = a.getCost();
+				MemberStatisticsDao statisticsDao = new MemberStatisticsDaoImpl();
+				MemberStatistics ms = new MemberStatistics();
+				ms.setMembeId(a.getId());
+				ms.setTime(a.getTime());
+				ms.setCost(a.getCost());
+				statisticsDao.insert(ms, conn);
+				a.setDate(DateHelper.getSimpleDate());
+				a.setCost("0");
+				a.setTime(String.valueOf(time));
+				dao.update("updateStatistics", a, conn);
+			}
+			conn.commit();
+		}catch(Exception e){
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+	}
 }

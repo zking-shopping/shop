@@ -7,12 +7,12 @@
 	<property name="buyNumber">buyNumber</property>
 	
 	<update id="updateBuyNumber">
-		update t_goods set buyNumber=#{buyNumber} where goodsId=#{goodsId} and time=#{time};
+		update t_goodsstatistics set buyNumber=#{buyNumber} where goodsId=#{goodsId} and time=#{time};
 	</update>
 	<update id="updateClickNumber">
-		update t_goods set clickNumber=#{clickNumber} where id=#{id};
+		update t_goodsstatistics set clickNumber=#{clickNumber} where goodsId=#{goodsId} and time=#{time};
 	</update>
 	<update id="addClickNumber">
-		update t_goods set clickNumber=clickNumber+1 where id=#{id};
+		update t_goodsstatistics set clickNumber=clickNumber+1 where goodsId=#{goodsId} and time=#{time};
 	</update>
 </class>
