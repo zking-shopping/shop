@@ -8,15 +8,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.shopping.dao.ColorDao;
 import com.shopping.dao.GoodsDao;
+import com.shopping.dao.GoodsStatisticsDao;
 import com.shopping.dao.PicDao;
 import com.shopping.dao.daoImpl.ColorDaoImpl;
 import com.shopping.dao.daoImpl.GoodsDaoImpl;
+import com.shopping.dao.daoImpl.GoodsStatisticsImpl;
 import com.shopping.dao.daoImpl.PicDaoImpl;
 import com.shopping.db.DBHelper;
 import com.shopping.dto.BetterGoods;
 import com.shopping.pojo.Color;
 import com.shopping.pojo.Goods;
+import com.shopping.pojo.GoodsStatistics;
 import com.shopping.pojo.Pic;
+import com.shopping.util.DateHelper;
 
 public class DetailsAction extends ActionFather{
 
@@ -40,17 +44,30 @@ public class DetailsAction extends ActionFather{
 		 
 		 String goodsid = Integer.toString(id);
          List<Color> color = (List<Color>) cd.selectByGoodsId(goodsid, conn);
-		 DBHelper.closeConnection(conn);
 		 bd.setGoodsname(goods1.getGoodsName());
 		 bd.setIntroduction(goods1.getIntroduction());
 		 bd.setColor(color.get(0).getGoodsColor());
+//		 bd.setColor2(color.get(1).getGoodsColor());
+//		 bd.setColor3(color.get(2).getGoodsColor());
 		 bd.setPrice(goods1.getPrice());
 		 bd.setId(id);
 		 bd.setPicture1(pic1.getPicture1().substring(22));
 		 bd.setPicture2(pic1.getPicture2().substring(22));
 		 bd.setPicture3(pic1.getPicture3().substring(22));
 		 request.setAttribute("bd", bd);
-		 forward="success";
+		 
+		 
+		
+		GoodsStatisticsDao goodsStatisticsDao = new GoodsStatisticsImpl();
+		GoodsStatistics statistics = new GoodsStatistics();
+		statistics.setGoodsId(0);
+		statistics.setTime(DateHelper.getSimpleDate());
+		goodsStatisticsDao.update("addClickNumber", statistics, conn);
+		System.out.println("end");
+		
+		DBHelper.closeConnection(conn);
+		
+		forward="success";
 		return forward;
 	}
 

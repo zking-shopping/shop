@@ -1,14 +1,16 @@
 package com.shopping.web.form;
 
 public class DeleteCartForm extends FormFather{
-     String goodsId;
+     String id;
 
-	public String getGoodsId() {
-		return goodsId;
+	public String getId() {
+		return id;
 	}
 
-	public void setGoodsId(String goodsId) {
-		this.goodsId = goodsId;
+	public void setId(String id) {
+		this.id = id;
 	}
+
+
      
 }
