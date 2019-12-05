@@ -7,7 +7,7 @@
 	<property name="buyNumber">buyNumber</property>
 	
 	<update id="updateBuyNumber">
-		update t_goods set buyNumber=#{buyNumber} where id=#{id};
+		update t_goods set buyNumber=#{buyNumber} where goodsId=#{goodsId} and time=#{time};
 	</update>
 	<update id="updateClickNumber">
 		update t_goods set clickNumber=#{clickNumber} where id=#{id};

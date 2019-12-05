@@ -37,7 +37,7 @@ public class UtilTest {
 		}
 		long end = TimeHelper.getTime();
 		System.out.println(end);
-		String time = TimeHelper.duration(start, end);
+		int time = TimeHelper.duration(start, end);
 		System.out.println(time);
 	}
 	
