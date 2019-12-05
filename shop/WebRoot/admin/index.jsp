@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<link rel="stylesheet" type="text/css" href="/shoppingcenter/admin/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/shop/admin/css/base.css">
 	
   </head>
   
@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<nav>
 			<container>
 				<div class="myNav">
-					<div class="logo"><a href="/shoppingcenter/admin/index.jsp">Admin</a></div>
+					<div class="logo"><a href="/shop/admin/index.jsp">Admin</a></div>
 					<div class="strip">
 						<ul>
 							<li class="normal">正常字体</li>
@@ -45,8 +45,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li>
 							<h3>系统管理</h3>
 							<div class="title">
-								<p><a href="/shoppingcenter/admin/system.jsp">系统说明</a></p>
-								<p><a href="/shoppingcenter/admin/operation.jsp">权限管理</a></p>
+								<p><a href="/shop/admin/system.jsp">系统说明</a></p>
+								<p><a href="/shop/admin/operation.jsp">权限管理</a></p>
 							</div>
 						</li>
 						<li>
@@ -80,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li>
 							<h3>下载中心</h3>
 							<div class="title">
-								<p><a href="/shoppingcenter/admin/upload.jsp">商品数据下载</a></p>
+								<p><a href="/shop/admin/upload.jsp">商品数据下载</a></p>
 							</div>
 						</li>
 					</ul>
@@ -94,8 +94,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</body>
 </html>
-<script src="/shoppingcenter/admin/js/jquery-3.4.1.min.js"></script>
-<script src="/shoppingcenter/admin/js/base.js"></script>
+<script src="/shop/admin/js/jquery-3.4.1.min.js"></script>
+<script src="/shop/admin/js/base.js"></script>
 <script>
 
 var f = function(){

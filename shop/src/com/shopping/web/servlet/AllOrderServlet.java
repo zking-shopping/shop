@@ -66,6 +66,9 @@ public class AllOrderServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String state = request.getParameter("state");
+		if(state == null){
+			state = "2";
+		}
 		Connection conn = DBHelper.getConnection();
 		OrderDao dao = new OrderDaoImpl();
 		AddressDao addressDao = new AddressDaoImpl();
