@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.shopping.dao.CartDao;
 import com.shopping.dao.GoodsDao;
@@ -24,6 +25,7 @@ import com.shopping.pojo.Goods;
 import com.shopping.pojo.Member;
 import com.shopping.pojo.Pic;
 import com.shopping.util.EncryptionHelper;
+import com.shopping.util.TimeHelper;
 import com.shopping.web.form.FormFather;
 
 public class LoginAction extends ActionFather{
@@ -39,6 +41,7 @@ public class LoginAction extends ActionFather{
   		CartDao cd = new CartDaoImpl();
   		Goods g = null;
   		Member m = new Member();
+  		HttpSession session = request.getSession();
   		
   		response.setCharacterEncoding("UTF-8");
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
@@ -56,7 +59,6 @@ public class LoginAction extends ActionFather{
 	  			Cookie[] cookies = request.getCookies();
 	  			//登录成功查看cookie里面有没有商品，有就加入购物车
 	  			 for(Cookie cookie : cookies){
-	  				
 				        if(cookie.getName().startsWith("goodsToCar")){
 				        	g = new Goods();
 				        	//
@@ -87,8 +89,11 @@ public class LoginAction extends ActionFather{
 				            g = null;
 				            cookie.setMaxAge(0);
 				        }
-				     } 
+				     }
 	  			
+	  			long startTime = TimeHelper.getTime();
+	  			session.setAttribute("startTime", startTime);
+	  			 
 	  			forward = "success";
 	  		}else{
 	  			forward = "error";
