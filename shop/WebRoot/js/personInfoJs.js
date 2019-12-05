@@ -1,4 +1,5 @@
 var downOrderTime = "";//下单时间
+var downOrderMoney = "";//下单总额
 
 function productsList(showMyProducts){
     $.ajaxSettings.async = false;
@@ -90,7 +91,7 @@ function showMyProducts(result){
     $('.myrightinfo_body').hide();
     var orders = result[0];
     var detailOrderss = result[1];
-    
+   
     for(var i = 0; i < orders.length; i++){
     	var paiedMoney = 0;
     	for (var j = 0; j < detailOrderss[i].length; j++) {
@@ -115,7 +116,7 @@ function showMyProducts(result){
     	for (var j = 0; j < detailOrderss[i].length; j++) {
     		var waitToPay = '<a href="buyAgain.do?id=${orders[i].id}">重新购买</a>';
     		if(stateid==1){
-    			waitToPay = '<a href="">去付款</a>';
+    			waitToPay = '<a href="toPay.do?id='+detailOrderss[i][j].orderId+'&total='+paiedMoney+'&addressId=1&receiveInfo=1">去付款</a>';
     		}
     		var myDetailOrders = `          
             <ul>
@@ -146,11 +147,11 @@ function showMyProducts(result){
 };
 
 function showMyDetails(paiedMoney,state,result){	
+	downOrderMoney = paiedMoney;
     var myOders = result[0];
     var myAddressInfo = result[1];
     console.log(result);
     $('.viewDetails_buttom_body_details').html("");
-//    alert(state);
     $('.viewDetails_buttom_orderInfo').html(""); 
     var stateImageOne = "img/list4.png";
     var stateImageTwo = "img/list5.png";
@@ -168,11 +169,9 @@ function showMyDetails(paiedMoney,state,result){
     	state="待付款";
     	var viewDetails_buttom_orderInfo_waitToPay = `
     		    <h3>订单${state}</h3>
-    		    <h3><button>待付款￥${paiedMoney}.00</button></h3>
-    		    <h4 class="waitToPayTime">时间</h4>
+    		    <h3><button class="waitToPayButton">待付款￥${paiedMoney}.00</button></h3>   		    
+    		    <h4 class="waitToPayTime" style="height:20px"></h4>    
          `;
-    	    
-    	
     }else if(state==2){
     	stateImageOne = "img/list89.png";
     	stateImageTwo = "img/list99.png";
@@ -231,6 +230,7 @@ function showMyDetails(paiedMoney,state,result){
 	    </ul>
 	</div>
 	`;
+	$('.odder_infoInsert').append(downOrderTime);
     $('.viewDetails_buttom_orderInfo').append(viewDetails_buttom_orderInfo);
     if(state=="待付款"){
     	$('.viewDetails_left').html(viewDetails_buttom_orderInfo_waitToPay);
@@ -239,7 +239,7 @@ function showMyDetails(paiedMoney,state,result){
     for(var i = 0; i < myOders.length; i++){
     	
         var myOrder = `
-            <div class="logistics">暂无物流信息</div>
+            <div class="logistics" orderId="${myOders[i].orderId}">暂无物流信息</div>
             <ul>
 			<li>
                <a><img src="${myOders[i].url.substring(28)}"/></a>
@@ -266,6 +266,11 @@ function showMyDetails(paiedMoney,state,result){
     $('#orderInfo').append(orderInfo);
 };
 
+
+$(document).on('click','.waitToPayButton',function(){
+	var orderId = $('.logistics').attr("orderId");
+	window.location.href = "toPay.do?id="+orderId+"&total="+downOrderMoney+"&addressId=1&receiveInfo=1";
+});
 
 $(function(){
 	productsList(showMyProducts);

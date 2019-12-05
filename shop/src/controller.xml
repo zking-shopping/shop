@@ -88,7 +88,7 @@
     
     <action name="login" class="com.shopping.web.action.LoginAction">
         <form>com.shopping.web.form.LoginForm</form>
-        <result name="success" direct="false">index.jsp</result>
+        <result name="success" direct="true">index.jsp</result>
         <result name="error">login.jsp</result>
         <pagejump>true</pagejump>
     </action>
@@ -167,7 +167,7 @@
     
      <action name="quitLogin" class="com.shopping.web.action.QuitLoginAction">
         <form>com.shopping.web.form.QuitLoginForm</form>
-             <result name="success" direct="false">index.jsp</result>
+             <result name="success" direct="true">index.jsp</result>
         <pagejump>true</pagejump>
     </action>
     
