@@ -44,6 +44,8 @@ public class DetailsAction extends ActionFather{
 		 bd.setGoodsname(goods1.getGoodsName());
 		 bd.setIntroduction(goods1.getIntroduction());
 		 bd.setColor(color.get(0).getGoodsColor());
+//		 bd.setColor2(color.get(1).getGoodsColor());
+//		 bd.setColor3(color.get(2).getGoodsColor());
 		 bd.setPrice(goods1.getPrice());
 		 bd.setId(id);
 		 bd.setPicture1(pic1.getPicture1().substring(22));
