@@ -74,9 +74,12 @@
         <pagejump>true</pagejump>
     </action>
     
+    <action name="showSettlementList" class="com.shopping.web.action.ShowSettlementListAction">
+        <pagejump>false</pagejump>
+    </action>
+    
     <action name="buyAgain" class="com.shopping.web.action.BuyAgainAction">
-        
-        <result name="success" direct="false">shoppingCar.jsp</result>
+        <result name="success" direct="true">shoppingCar.jsp</result>
         <result name="error">login.jsp</result>
         <pagejump>true</pagejump>
     </action>
@@ -140,6 +143,11 @@
     <action name="checkLogin2" class="com.shopping.web.action.CheckLogin2Action">
         <form>com.shopping.web.form.CheckLogin2Form</form>
         <result name="success" direct="false">index.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+     <action name="quitLogin" class="com.shopping.web.action.quitLoginAction">
+        <form>com.shopping.web.form.quitLoginForm</form>
         <pagejump>true</pagejump>
     </action>
 </actions>

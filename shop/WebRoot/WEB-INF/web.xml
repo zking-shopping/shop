@@ -6,6 +6,32 @@
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
   <display-name></display-name>
   
+  <resource-ref>
+  	<res-ref-name>
+  		mysql
+  	</res-ref-name>
+  	<res-type>
+    	javax.sql.DataSource
+  	</res-type>
+  	<res-auth>
+   		 Container
+  	</res-auth>
+  </resource-ref>
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/404.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/500.jsp</location>
+  </error-page>
+  
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -22,18 +48,21 @@
     <servlet-name>A</servlet-name>
     <servlet-class>xy.A</servlet-class>
   </servlet>
-  
   <servlet>
     <servlet-name>ImageCodeServlet</servlet-name>
     <servlet-class>com.shopping.web.servlet.ImageCodeServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>/adminLogin</servlet-name>
+    <servlet-class>com.shopping.web.servlet.adminLoginServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>ImageCodeServlet</servlet-name>
     <url-pattern>/imgCode</url-pattern>
   </servlet-mapping>
-
-
-
   <servlet-mapping>
     <servlet-name>ActionServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
@@ -43,21 +72,7 @@
     <url-pattern>/servlet/A</url-pattern>
   </servlet-mapping>
 
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
   
-  <resource-ref>
-  	<res-ref-name>
-  		mysql
-  	</res-ref-name>
-  	<res-type>
-    	javax.sql.DataSource
-  	</res-type>
-  	<res-auth>
-   		 Container
-  	</res-auth>
-  </resource-ref>
   
 	<filter>
 		<filter-name>jurFilter</filter-name>
@@ -76,5 +91,184 @@
   <listener>   
         <listener-class>com.shopping.web.listener.LoginMapListener</listener-class>   
   </listener> 
+	
+	
+	<filter>
+		<filter-name>judgeAdminLogin</filter-name>
+		<filter-class>com.shopping.web.filter.AdminFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>judgeAdminLogin</filter-name>
+		<url-pattern>/admin/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>AdminLogin</filter-name>
+		<filter-class>com.shopping.web.filter.AdminLoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AdminLogin</filter-name>
+		<url-pattern>/adminLogin.jsp</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>adminLogin</servlet-name>
+		<servlet-class>com.shopping.web.servlet.adminLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>adminLogin</servlet-name>
+		<url-pattern>/adminLogin.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	
+	
+	
+	<servlet>
+  	<servlet-name>allMember</servlet-name>
+  	<servlet-class>com.shopping.web.servlet.AllMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>allMember</servlet-name>
+  	<url-pattern>/admin/allMember.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>del</servlet-name>
+  	<servlet-class>com.shopping.web.servlet.DelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>del</servlet-name>
+  	<url-pattern>/admin/del.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>acc</servlet-name>
+  	<servlet-class>com.shopping.web.servlet.AccServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>acc</servlet-name>
+  	<url-pattern>/admin/acc.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>memberAcc</servlet-name>
+    <servlet-class>com.shopping.web.servlet.MemberAccServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>memberAcc</servlet-name>
+    <url-pattern>/admin/memberAcc.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>allGoods</servlet-name>
+    <servlet-class>com.shopping.web.servlet.AllGoodsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>allGoods</servlet-name>
+    <url-pattern>/admin/allGoods.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>goodsDel</servlet-name>
+    <servlet-class>com.shopping.web.servlet.GoodsDelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>goodsDel</servlet-name>
+    <url-pattern>/admin/goodsDel.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>goodsAdd</servlet-name>
+    <servlet-class>com.shopping.web.servlet.GoodsAddServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>goodsAdd</servlet-name>
+    <url-pattern>/admin/goodsAdd.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>inputGoods</servlet-name>
+    <servlet-class>com.shopping.web.servlet.InputGoodsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>inputGoods</servlet-name>
+    <url-pattern>/admin/insertGoods.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>addGoods</servlet-name>
+    <servlet-class>com.shopping.web.servlet.AddGoodsServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>imgServlet</servlet-name>
+    <servlet-class>com.shopping.web.servlet.ImgServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>coreMember</servlet-name>
+    <servlet-class>com.shopping.web.servlet.coreMemberServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>rank</servlet-name>
+    <servlet-class>com.shopping.web.servlet.RankServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>allOrder</servlet-name>
+    <servlet-class>com.shopping.web.servlet.AllOrderServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>orderChangeState</servlet-name>
+    <servlet-class>com.shopping.web.servlet.OrderChangeStateServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>analysis</servlet-name>
+    <servlet-class>com.shopping.web.servlet.AnalysisServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>dataGraph</servlet-name>
+    <servlet-class>com.shopping.web.servlet.DataGraphServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>upload</servlet-name>
+    <servlet-class>com.shopping.web.servlet.UploadServlet</servlet-class>
+  </servlet>
 
+  <servlet-mapping>
+    <servlet-name>addGoods</servlet-name>
+    <url-pattern>/admin/addGoods.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>imgServlet</servlet-name>
+    <url-pattern>/img.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>coreMember</servlet-name>
+    <url-pattern>/admin/coreMember.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>rank</servlet-name>
+    <url-pattern>/admin/rank.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>allOrder</servlet-name>
+    <url-pattern>/admin/allOrder.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>orderChangeState</servlet-name>
+    <url-pattern>/admin/orderChangeState.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>analysis</servlet-name>
+    <url-pattern>/admin/analysis.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>dataGraph</servlet-name>
+    <url-pattern>/admin/dataGraph.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>upload</servlet-name>
+    <url-pattern>/admin/upload.do</url-pattern>
+  </servlet-mapping>
+	
 </web-app>

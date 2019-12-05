@@ -16,6 +16,7 @@ import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
 
+import com.shopping.dao.daoImpl.CartDaoImpl;
 import com.shopping.db.DBHelper;
 
 public abstract class BaseDao {
@@ -359,5 +360,19 @@ public abstract class BaseDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	public int selectMaxId(Connection conn){
+		String sql = "select last_insert_id()";
+		int res = 0;
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				res = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
 	}
 }

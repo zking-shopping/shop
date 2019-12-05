@@ -1,7 +1,12 @@
-function productsList(page, showMyProducts){
-    var page = page ? page : 1;
+
+function productsList(showMyProducts){
     $.ajaxSettings.async = false;
     $.get('personInfo.do', function(result){
+    	if(result==""){
+    		alert("请先登录！");
+    		window.location.href = "login.jsp";
+    		return;
+    	}
         var result = JSON.parse(result);
         showMyProducts(result);
     });
@@ -31,19 +36,22 @@ function waitRecieve(){
     });
 };
 
-function showMyProducts(result){
+function showMyProducts(result){	
     $('.myProducts').html("");
     $('.myNullOrder').show();
     $('.myrightinfo_body').hide();
-    console.log(result);
     var orders = result[0];
     var detailOrderss = result[1];
     
     for(var i = 0; i < orders.length; i++){
     	var paiedMoney = 0;
+    	for (var j = 0; j < detailOrderss[i].length; j++) {
+    		paiedMoney = parseInt(paiedMoney) + parseInt(detailOrderss[i][j].price*detailOrderss[i][j].number);
+    	}   	
     	var myOrders = `
-        <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span> 支付金额：<span class="paiedMoney${orders[i].id}"></span></div>
+        <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span> 订单总额：<span class="paiedMoney">${paiedMoney}</span></div>
         `;
+        $('.myProducts').append(myOrders);
         var stateid = orders[i].state;
         var state = "";
         if(stateid==1){
@@ -55,9 +63,9 @@ function showMyProducts(result){
         }else if(stateid==4){
         	state = "已完成";
         }else{state = "已关闭"}
-        $('.myProducts').append(myOrders);
+        
     	for (var j = 0; j < detailOrderss[i].length; j++) {
-    		paiedMoney = parseInt(paiedMoney) + parseInt(detailOrderss[i][j].price*detailOrderss[i][j].number);
+    		
     		var myDetailOrders = `          
             <ul>
   			<li> 
@@ -65,37 +73,31 @@ function showMyProducts(result){
                  <div>
                     <a>${detailOrderss[i][j].goodsName}</a>
                     <p>${detailOrderss[i][j].goodsColor}</p>
-                 </div>
-                 
+                 </div>                 
   	        </li>
   			<li>${detailOrderss[i][j].price}</li>
   			<li>
   			${detailOrderss[i][j].number}
   			<li style="font-weight: bold;">${detailOrderss[i][j].price*detailOrderss[i][j].number}</li>
-  			<li stateid="${stateid}">${state}</li>
+  			<li stateid="${stateid}" paiedMoney="${paiedMoney}">${state}</li><!--存了状态跟订单总价-->
   			<li class="a-hover">
-  			    <input type="text" value="${orders[i].id}" style="display:none"/> 			    
-  				<p><a href="buyAgain.do?id=${orders[i].id}">重新购买</a></p>
+  			    <input type="text" value="${orders[i].id}" style="display:none"/>
+  			    <p><a href="buyAgain.do?id=${orders[i].id}">重新购买</a></p>
   				<p class="showDetails"><a>查看详情</a></p>
   			</li>
            </ul>
   `;
-        $('.myProducts').append(myDetailOrders);  
-        
+        $('.myProducts').append(myDetailOrders);          
 		}
         $('.myNullOrder').hide();
-        $('.myrightinfo_body').show();
-        var paiedMoneypage = "'.paiedMoney"+orders[i].id+"'";
-//        alert(paiedMoneypage);
-        $(paiedMoneypage).append(paiedMoney);
-    };
-    
+        $('.myrightinfo_body').show();       
+    };    
 };
 
-function showMyDetails(paiedMoney,state,result){
-	
+function showMyDetails(paiedMoney,state,result){	
     var myOders = result[0];
     var myAddressInfo = result[1];
+    console.log(result);
     $('.viewDetails_buttom_body_details').html("");
 //    alert(state);
     $('.viewDetails_buttom_orderInfo').html(""); 
@@ -136,6 +138,14 @@ function showMyDetails(paiedMoney,state,result){
     	var stateFontOne = "待发货";
         var stateFontTwo = "待收货";
         var stateFontThere = "交易成功";
+    	state="已完成";
+    }else{
+    	var stateImageOne = "img/list4.png";
+        var stateImageTwo = "img/list5.png";
+        var stateImageThere = "img/list7.png";
+        var stateFontOne = "提交申请";
+        var stateFontTwo = "取消处理";
+        var stateFontThere = "取消成功";
     	state="已关闭";
     }
     var viewDetails_buttom_orderInfo = `
@@ -202,7 +212,7 @@ function showMyDetails(paiedMoney,state,result){
 };
 
 $(function(){
-	productsList(1,showMyProducts);
+	productsList(showMyProducts);
 	$('.viewDetails').hide();
 	$('.myReceiptAddress').hide();
 	
@@ -215,7 +225,7 @@ $(function(){
 	    var firstidInputFather = e.target.parentNode.parentNode;
 	    var id = firstidInputFather.firstElementChild.value;
 	    var state = firstidInputFather.previousElementSibling.getAttribute("stateid");
-	    var paiedMoney = $('.paiedMoney').html();
+	    var paiedMoney = firstidInputFather.previousElementSibling.getAttribute("paiedMoney");
 	   
 	    $.get('personInfoShowDetails.do',{
 	        'id':id
@@ -229,7 +239,7 @@ $(function(){
 	//我的订单--左
 	$(".showMyOrder").click(function () {
 		
-	        productsList(1,showMyProducts);
+	        productsList(showMyProducts);
 	        $('.viewDetails').hide();
 	        $('#myPersonInfo').hide();
 	        $('.myOrder').show();
@@ -365,7 +375,7 @@ $(function(){
 
 	//全部订单--右
 	$('.allOrder').click(function () {
-	    productsList(1,showMyProducts);
+	    productsList(showMyProducts);
 	    $('.viewDetails').hide();
 	    $('#myPersonInfo').hide();
 	    $('.myOrder').show();

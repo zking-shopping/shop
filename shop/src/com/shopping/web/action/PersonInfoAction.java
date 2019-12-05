@@ -25,6 +25,9 @@ public class PersonInfoAction extends ActionFather{
 		// TODO Auto-generated method stub
 		List<Object> list = new ArrayList<Object>();
 		Member m = (Member)request.getSession().getAttribute("member");
+		if(m==null){
+			return "";
+		}
 		String state = request.getParameter("state");
 		String id = m.getId();
 		Connection conn = DBHelper.getConnection();

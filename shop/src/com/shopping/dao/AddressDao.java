@@ -17,4 +17,5 @@ public interface AddressDao {
 	public List<Address> selectByMemberId(String memberId, Connection conn);
 	public String selectDefaultAddressId(Connection conn);
 	
+	public int selectMaxId(Connection conn);
 }

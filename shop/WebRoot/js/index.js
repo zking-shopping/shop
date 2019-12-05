@@ -119,18 +119,15 @@ function betterGoods(){
 				}else{
 					str+= 
 							"<div class='dropdown1' >"+
-								"<a href='register.jsp'>"+
+								"<a href='order.jsp'>"+
 									"<button class='btn btn-default navbar-btn navbar-right'>我的订单</button>"+
-								"</a> <a id='quit'>"+
+								"</a> <a href='quitLogin.do' >"+
 									"<button class='btn btn-default navbar-btn navbar-right'>退出登录</button>"+
 								"</a>"+
 						     "</div>"
 					       ;
 					  $('#user').html(str);
 				}
-
-				
-			
 		})
 	
 	
@@ -146,7 +143,6 @@ function betterGoods(){
 			$.ajax({
 				url:"checkLogin2.do",
 				success:function(result){
-					console.log(result);
 					var str ="";
 					var priceAll = 0;
 					var num = 0;
@@ -161,11 +157,12 @@ function betterGoods(){
 												"<p style='display: block;'>价格:￥"+ value.price+"</p>"+
 												"<p style='display: block; float:left;'>×"+value.number+
 											"</div>"+
-											"<span class='glyphicon glyphicon-remove' style='float: right;'></span>"+
+											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;'></span>"+
 										"</li>"
 							       ;
 							 priceAll+=Number(value.price)*Number(value.number);
 						})
+						
 						var qian = "<h1>总价:￥"+priceAll+".00</h1>"+
 						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去付款</button></a>"
 						$('#shop-down').html(qian)
@@ -173,6 +170,7 @@ function betterGoods(){
 					    $('#carts').html(str);
 						 $('#shop-top').show();
 						 $('#shop-down').show();
+						 
 				   }else{
 					     str+="<div id='nogoods' style=' color: gray; height: 50%; display: none;'>"+
 								"<span style='margin: 50% 20%; font-size:18px; font-weight:lighter; letter-spacing:1px'>还没有商品,快去选中商品</span>"+
@@ -181,10 +179,6 @@ function betterGoods(){
 							 $('.dropdown').html(str); 
 							 $('#nogoods').show();
 					}
-	               $('.glyphicon-remove').click(function(){
-	            	   console.log(111)
-	               })
-					
 				}
 			})
 		
@@ -206,11 +200,12 @@ function betterGoods(){
 												"<p style='display: block;'>价格:￥"+ value.price+"</p>"+
 												"<p style='display: block; float:left;'>×"+value.number+
 											"</div>"+
-											"<span class='glyphicon glyphicon-remove' style='float: right;'></span>"+
+											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;'></span>"+
 										"</li>"
 							       ;
 							 priceAll+=Number(value.price)*Number(value.number);
 						})
+						
 						var qian = "<h1>总价:￥"+priceAll+".00</h1>"+
 						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去付款</button></a>"
 						$('#shop-down').html(qian)
@@ -218,6 +213,8 @@ function betterGoods(){
 					    $('#carts').html(str);
 						 $('#shop-top').show();
 						 $('#shop-down').show();
+						
+						
 				   }else{
 					     str+="<div id='nogoods' style=' color: gray; height: 50%; display: none;'>"+
 								"<span style='margin: 50% 20%; font-size:18px; font-weight:lighter; letter-spacing:1px'>还没有商品,快去选中商品</span>"+
@@ -226,9 +223,7 @@ function betterGoods(){
 							 $('.dropdown').html(str); 
 							 $('#nogoods').show();
 					}
-	               $('.glyphicon-remove').click(function(){
-	            	   console.log(111)
-	               })
+	              
 					
 				}
 			})
@@ -243,15 +238,9 @@ function betterGoods(){
 		$('#shopdown').hide();
 	})
 	
-	$('#shop-top li .glyphicon-remove').click(function() {
-		if($('#shop-top>ul>li').length != 0) {
-			$(this).parent().remove();
-		}
-	
-		if($('#shop-top>ul>li').length == 0) {
-			$('#shop-down').remove();
-		}
-	})
+	$(document).on("click","#remove",function(){
+								console.log(111);
+							});
 	
 	//点击去购物车
 	$('#goshopping').click(function(){
