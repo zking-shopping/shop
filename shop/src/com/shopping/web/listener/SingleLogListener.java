@@ -20,7 +20,6 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 		if(map==null){
 			map = (Map<String, HttpSession>) application.getAttribute("loginMap");
 		}
-
 		String infoName = arg0.getName();    //session存储的键
 		if (infoName.equals("member")) {     //如果名字是member
 			// 拿到对应的pojo对象
@@ -48,7 +47,7 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			//新账户对应的对象
 			Member newInfo = (Member) arg0.getValue();
 			// 拿到新的对象的名字
-			map.remove(newInfo.getUsername());
+			map.remove(newInfo.getUsername()); 
 		}
 		application.setAttribute("loginMap", map);
 	}
@@ -60,21 +59,16 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 		if (map == null) {
 			map = (Map<String, HttpSession>) application.getAttribute("loginMap");
 		}
-		
 		String infoName = arg0.getName();  //session对应的键是member
 		if (infoName.equals("member")) {
 			// 移除旧的账号
-			Member oldInfo = (Member) arg0.getValue();
-			String info = arg0.getName();
+			Member oldMember = (Member) arg0.getValue();
+			map.remove(oldMember.getUsername());
 			Member newMember = (Member) arg0.getSession().getAttribute("member");
-			if(map.get(info) != null){
-				Member oldMember = (Member) arg0.getValue();
-				map.remove(oldMember.getUsername());
-				if(map.get(newMember.getUsername()) != null){
-					HttpSession session = map.get(newMember.getUsername());
-					session.setAttribute("msg", "您的帐号已经在其他机器上登录，您被迫下线。");
-					session.removeAttribute("member");
-				}
+			if(map.get(newMember.getUsername()) != null){
+				HttpSession session = map.get(newMember.getUsername());
+				session.setAttribute("msg", "您的帐号已经在其他机器上登录，您被迫下线。");
+				session.removeAttribute("member");
 			}
 			map.put(newMember.getUsername(), arg0.getSession());
 		}
