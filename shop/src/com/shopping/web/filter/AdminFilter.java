@@ -35,8 +35,8 @@ public class AdminFilter implements Filter{
 		HttpServletResponse response = (HttpServletResponse) arg1;
 		HttpSession session = request.getSession();
 		Admin a = (Admin) session.getAttribute("Admin");
-		if(a.getId() == null){
-			response.sendRedirect("/adminLogin.jsp");
+		if(a == null){
+			response.sendRedirect("/shop/adminLogin.jsp");
 			return ;
 		}
 		arg2.doFilter(request, response);

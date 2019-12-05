@@ -28,13 +28,10 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			if (map.get(infoName) != null) { // 如果新对象的账号对应的session值不为空，说明已经有人登录过了
 				HttpSession session = map.get(infoName);
 				session.removeAttribute("member");
-				System.out.println(newInfo.getUsername() + "已经在线了");
 			}
 			map.put(infoName, arg0.getSession());
 		}
 		application.setAttribute("loginMap", map);
-		System.out.println(map.size()+"==Map里面的用户数");
-
 	}
 
 	@Override
@@ -51,7 +48,6 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			map.remove(infoName);
 		}
 		application.setAttribute("loginMap", map);
-		System.out.println(map.size()+"==size");
 	}
 
 	@Override
@@ -62,7 +58,6 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 		}
 		String infoName = arg0.getName();
 		if (infoName.equals("member")) {
-			System.out.println("map替换了一个session");
 			// 移除旧的账号
 			Member oldInfo = (Member) arg0.getValue();
 			Member newInfo = (Member) arg0.getSession().getAttribute("member");
@@ -71,7 +66,6 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			if (map.get(m.getUsername()) != null) {
 				HttpSession session = map.get(m.getUsername());
 				Member old = (Member) session.getAttribute("member");
-				System.out.println("替换的用户" +old.getUsername()+ "已经在线了");
 			}
 			map.put(newInfo.getUsername(), arg0.getSession());
 		}

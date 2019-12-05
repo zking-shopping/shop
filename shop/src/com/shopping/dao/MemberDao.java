@@ -16,5 +16,17 @@ public interface MemberDao{
 	public Boolean update(String id, Object o, Connection conn);
 	public int selectMax(int pageSize, Connection conn);
 	public List<Member> selectByPages(int pageNumber, int pageSize, Connection conn);
+
 	public Boolean updatePersonInfo(ChangeMyPersonInfoForm cmpif,Connection conn);
+
+	
+	public int selectDelMax(int pageSize, Connection conn);
+	public List<Member> selectDelByPages(int pageNumber, int pageSize, Connection conn);
+	
+	public int selectCount(Connection conn);
+	public int selectAvgCost(Connection conn);
+	public int selectAvgTime(Connection conn);
+	public int selectCoreMember(int coreTime, int coreCost, Connection conn);
+	public int selectEdgeMember(int edgeTime, int edgeCost, Connection conn);
+
 }

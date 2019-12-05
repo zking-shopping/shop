@@ -80,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li>
 							<h3>下载中心</h3>
 							<div class="title">
-								<p><a href="#">商品数据下载</a></p>
+								<p><a href="/shoppingcenter/admin/upload.jsp">商品数据下载</a></p>
 							</div>
 						</li>
 					</ul>
