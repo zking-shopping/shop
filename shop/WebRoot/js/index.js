@@ -166,10 +166,8 @@ function betterGoods(){
 					  $(document).on('click','#remove',function(e){
 							  var id = e.target.getAttribute("value");
 							  e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+							  location.method = "post";
 							  location.href = "deleteCart1.do?id="+id;
-//							  if(e.target.parentNode.parentNode.ChildrenNodes.length==0){
-//								  $('#nogoods').show();
-//							  }
 					    })
 				}
 			})
@@ -215,6 +213,7 @@ function betterGoods(){
 					  $(document).on('click','#remove',function(e){
 						  var id = e.target.getAttribute("value");
 						  e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+						  location.method = "post";
 						  location.href = "deleteCart2.do?id="+id;
 					  })
 					

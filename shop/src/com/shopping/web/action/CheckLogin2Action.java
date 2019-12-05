@@ -65,9 +65,21 @@ public class CheckLogin2Action extends ActionFather{
 						c.setUrl(pic.getPicture1().substring(22));
 			           
 			            cart1.add(c);
+			        
 			            g = null;
 			        }
 			     } 
+			 System.out.println(cart1.size());
+			 if(cart1.size()>1){
+			    for(int i =0;i<cart1.size()-1;i++){
+					for(int j = i;j<cart1.size();j++){
+						if(cart1.get(i).getGoodsId()==cart1.get(i).getGoodsId()){
+							cart1.get(i).setNumber(cart1.get(i).getNumber()+1);
+							cart1.remove(j);
+						}
+					}
+				}
+			 }
 			  PrintWriter pw = response.getWriter();
 		    	 DBHelper.closeConnection(conn);
 			    JSONArray ja = JSONArray.fromObject(cart1);

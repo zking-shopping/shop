@@ -45,6 +45,17 @@ public class CheckLoginAction extends ActionFather{
 				CartDao cd = new CartDaoImpl();
 				System.out.println(m.getId()+"getId");
 				ArrayList<Cart> cart = (ArrayList<Cart>)cd.selectByMemberId(m.getId(), conn);
+				//判断是否有两个商品的goodsid和memberid都相同，如果有
+				if(cart.size()>1){
+					for(int i =0;i<cart.size()-1;i++){
+							for(int j = i;j<cart.size();j++){
+								if(cart.get(i).getMemberId().equals(cart.get(j).getMemberId())&&(cart.get(i).getGoodsId()==cart.get(i).getGoodsId())){
+									cart.get(i).setNumber(cart.get(i).getNumber()+1);
+									cart.remove(j);
+								}
+							}
+					}
+				}
 				for(int i=0;i<cart.size();i++){
 					 cart.get(i).setUrl(cart.get(i).getUrl().substring(22));
 				}
