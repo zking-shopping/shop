@@ -124,7 +124,7 @@ public class MemberDaoImpl extends BaseDao implements MemberDao{
 	@Override
 	public Boolean updatePersonInfo(ChangeMyPersonInfoForm cmpif,
 			Connection conn) {
-		System.out.println(cmpif.getPassword()+"---");
+		
 		String sql = "update t_member set username = ?,password = ?,name = ?,phoneNumber = ? where id = ?";
 		if("".equals(cmpif.getPassword())||cmpif.getPassword()==null){
 			sql = "update t_member set username = ?,name = ?,phoneNumber = ? where id = ?";
