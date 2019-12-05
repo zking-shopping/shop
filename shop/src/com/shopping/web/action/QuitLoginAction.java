@@ -16,6 +16,7 @@ public class QuitLoginAction extends ActionFather{
 		Member member = (Member) session.getAttribute("member");
 		System.out.println(member.getUsername());
 		session.removeAttribute("member");
+		forward = "success";
 		return forward;
 	}
 }
