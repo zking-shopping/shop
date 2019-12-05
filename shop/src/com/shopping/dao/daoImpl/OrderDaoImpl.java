@@ -70,4 +70,23 @@ public class OrderDaoImpl extends BaseDao implements OrderDao{
 		}
 		return list;
 	}
+	
+	//通过会员id和订单号查询订单id
+	public int selectIdByMemberAndOrderNumber(Object object, Connection conn){
+		String sql = "select id from t_order where memberId=? and orderNumber=?";
+		Order order = (Order) object;
+		int id = -1;
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, order.getMemberId());
+			ps.setString(2, order.getOrderNumber());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				id = rs.getInt("id");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
 }

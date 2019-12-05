@@ -17,4 +17,5 @@ public interface OrderDao {
 	public List<Order> selectByMemberId(String MemberId, String state, Connection conn);
 	
 	public List<Order> selectAllByState(String state, Connection conn);
+	public int selectIdByMemberAndOrderNumber(Object object, Connection conn);
 }

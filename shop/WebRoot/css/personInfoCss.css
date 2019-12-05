@@ -164,6 +164,9 @@ body{
     border-right: 1px solid #f4f4f4;
 
 }
+.viewDetails_left button{
+	margin-left:0px;
+}
 .viewDetails_right{
     margin-top: 0px;
     width: 70%;

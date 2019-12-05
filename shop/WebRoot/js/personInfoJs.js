@@ -1,3 +1,4 @@
+var downOrderTime = "";//下单时间
 
 function productsList(showMyProducts){
     $.ajaxSettings.async = false;
@@ -96,13 +97,13 @@ function showMyProducts(result){
     		paiedMoney = parseInt(paiedMoney) + parseInt(detailOrderss[i][j].price*detailOrderss[i][j].number);
     	}   	
     	var myOrders = `
-        <div class="odder_info">下单时间:<span>${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span> 订单总额：<span class="paiedMoney">${paiedMoney}</span></div>
+        <div class="odder_info">下单时间:<span class="downOrderTimeSpan">${orders[i].time}</span> 订单号:<span>${orders[i].orderNumber}</span> 订单总额：<span class="paiedMoney">${paiedMoney}</span></div>
         `;
         $('.myProducts').append(myOrders);
         var stateid = orders[i].state;
         var state = "";
         if(stateid==1){
-        	state = "待付款";
+        	state = "待付款";       	
         }else if(stateid==2){
         	state = "待发货";
         }else if(stateid==3){
@@ -112,7 +113,10 @@ function showMyProducts(result){
         }else{state = "已关闭"}
         
     	for (var j = 0; j < detailOrderss[i].length; j++) {
-    		
+    		var waitToPay = '<a href="buyAgain.do?id=${orders[i].id}">重新购买</a>';
+    		if(stateid==1){
+    			waitToPay = '<a href="">去付款</a>';
+    		}
     		var myDetailOrders = `          
             <ul>
   			<li> 
@@ -129,7 +133,7 @@ function showMyProducts(result){
   			<li stateid="${stateid}" paiedMoney="${paiedMoney}">${state}</li><!--存了状态跟订单总价-->
   			<li class="a-hover">
   			    <input type="text" value="${orders[i].id}" style="display:none"/>
-  			    <p><a href="buyAgain.do?id=${orders[i].id}">重新购买</a></p>
+  			    <p>${waitToPay}</p>
   				<p class="showDetails"><a>查看详情</a></p>
   			</li>
            </ul>
@@ -162,8 +166,15 @@ function showMyDetails(paiedMoney,state,result){
         var stateFontTwo = "待收货";
         var stateFontThere = "交易成功";
     	state="待付款";
+    	var viewDetails_buttom_orderInfo_waitToPay = `
+    		    <h3>订单${state}</h3>
+    		    <h3><button>待付款￥${paiedMoney}.00</button></h3>
+    		    <h4 class="waitToPayTime">时间</h4>
+         `;
+    	    
+    	
     }else if(state==2){
-    	stateImageOne = "img/list88.png";
+    	stateImageOne = "img/list89.png";
     	stateImageTwo = "img/list99.png";
     	stateImageThere = "img/list77.png";
     	var stateFontOne = "待发货";
@@ -171,28 +182,22 @@ function showMyDetails(paiedMoney,state,result){
         var stateFontThere = "交易成功";
     	state="待发货";
     }else if(state==3){
-    	stateImageOne = "img/list88.png";
-    	stateImageTwo = "img/list99.png";
+    	stateImageOne = "img/list89.png";
+    	stateImageTwo = "img/list100.png";
     	stateImageThere = "img/list77.png";
     	var stateFontOne = "待发货";
         var stateFontTwo = "待收货";
         var stateFontThere = "交易成功";
     	state="待收货";
     }else if(state==4){
-    	stateImageOne = "img/list88.png";
-    	stateImageTwo = "img/list99.png";
-    	stateImageThere = "img/list77.png";
+    	stateImageOne = "img/list89.png";
+    	stateImageTwo = "img/list100.png";
+    	stateImageThere = "img/list78.png";
     	var stateFontOne = "待发货";
         var stateFontTwo = "待收货";
         var stateFontThere = "交易成功";
     	state="已完成";
     }else{
-    	var stateImageOne = "img/list4.png";
-        var stateImageTwo = "img/list5.png";
-        var stateImageThere = "img/list7.png";
-        var stateFontOne = "提交申请";
-        var stateFontTwo = "取消处理";
-        var stateFontThere = "取消成功";
     	state="已关闭";
     }
     var viewDetails_buttom_orderInfo = `
@@ -227,6 +232,9 @@ function showMyDetails(paiedMoney,state,result){
 	</div>
 	`;
     $('.viewDetails_buttom_orderInfo').append(viewDetails_buttom_orderInfo);
+    if(state=="待付款"){
+    	$('.viewDetails_left').html(viewDetails_buttom_orderInfo_waitToPay);
+    }
     
     for(var i = 0; i < myOders.length; i++){
     	
@@ -258,10 +266,12 @@ function showMyDetails(paiedMoney,state,result){
     $('#orderInfo').append(orderInfo);
 };
 
+
 $(function(){
 	productsList(showMyProducts);
 	$('.viewDetails').hide();
 	$('.myReceiptAddress').hide();
+	
 	
 	//查看详情--右
 	$(document).on('click','.showDetails',function(e){
@@ -273,7 +283,8 @@ $(function(){
 	    var id = firstidInputFather.firstElementChild.value;
 	    var state = firstidInputFather.previousElementSibling.getAttribute("stateid");
 	    var paiedMoney = firstidInputFather.previousElementSibling.getAttribute("paiedMoney");
-	   
+	    downOrderTime = firstidInputFather.parentNode.previousElementSibling.firstElementChild.innerHTML;
+	    
 	    $.get('personInfoShowDetails.do',{
 	        'id':id
 	    }, function(result){

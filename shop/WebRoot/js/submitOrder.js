@@ -59,7 +59,7 @@ $(function(){
 			var addPrice = 0;
 			$.each(result, function (i, value) {
 				var addStr = `
-					<tr data-goodsId=${value.goodsId} data-number=${value.number}>
+					<tr data-goodsId=${value.goodsId} data-number=${value.number} data-id=${value.id}>
 						<td>
 							<a href="#n">
 								<img src=${value.url.substring(28)} />
@@ -102,14 +102,55 @@ $(function(){
 	
 	//点击去付款
 	$(".to-pay").click(function(){
+		var allGoodsInfo = "";
+		var receiveInfo = "";
 		//获得需要传的数值
-		var addressId = "";
 		$(".address-list tr").each(function(){
 			var selected = $(this).attr("data-selected");
 			if(selected=="true"){
-				addressId = $(this).attr("data-id")
+				allGoodsInfo += "addressId="+$(this).attr("data-id");
+				var phoneNumbers = $(this).attr("data-phonenumber");
+				var provinces = $(this).attr("data-provinces");
+				var city = $(this).attr("data-city");
+				var area = $(this).attr("data-area");
+				var detailAddress = $(this).attr("data-detailaddress");
+				receiveInfo += provinces+city+area+detailAddress+"  "+phoneNumbers;
 			};
 		});
-		console.log(addressId);
+		//拼接订单的所有的商品id和数量
+		var goodsNum = 0;
+		$(".goodsSection tbody tr").each(function(e){
+			var goodsId = $(this).attr("data-goodsId");
+			var number = $(this).attr("data-number");
+			var id = $(this).attr("data-id");
+			var cart = new Object();
+			cart.id = id;
+			cart.goodsId = goodsId;
+			cart.num = number;
+			var json = JSON.stringify(cart);
+			allGoodsInfo += "&goods"+ e + "=" + json;
+			goodsNum++;
+		});
+		allGoodsInfo += "&goodsNum="+goodsNum;
+		//获得总价
+		var total = $(".payable #count").html();
+		allGoodsInfo += "&total="+total;
+		console.log(allGoodsInfo);
+		
+		//将数据传给后台
+		$.ajax({
+			type:"post",
+			url:"settlement.do",
+			data:allGoodsInfo,
+			success:function(result){
+				console.log(result.addressId);
+				console.log(result.total);
+				console.log(receiveInfo);
+//				window.open('settlement.jsp');
+				window.location.href = "toPay.do?addressId="+result.addressId+"&id="+result.id
+										+"&total="+result.total+"&receiveInfo="+receiveInfo;
+//				Response.Redirect("/shop/settlement.jsp?addressId="+result.addressId,true);
+			}
+		});
 	});
 });
