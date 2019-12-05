@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+*{
+	margin: 0px;
+	padding: 0px auto;
+}
+img{border: none;}
+li{list-style: none;}
+a{text-decoration: none;}
+
+/*头部*/
+header{
+	width: 100%;
+	height: 100px;
+	background: white;
+}
+.header-nav{
+	width: 900px;
+	margin: 0px auto;
+	line-height: 100px;
+	position: relative;
+}
+.left-logo{
+	float: left;
+}
+.left-logo a{
+	font-size: 30px;
+    color: red;
+    font-weight: normal;
+}
+.user-header{
+	float: right;
+	width: 30px;
+	height: 30px;
+	margin-top: 35px;
+	background: url(../img/icon-index.png) no-repeat 0px -43px;
+	cursor: pointer;
+}
+.user-header:hover{
+	background: url(../img/icon-index.png);
+}
+.user-header a{
+	display: block;
+	width: 30px;
+	height: 30px;
+}
+.dropdown{
+	display: none;
+	width: 70px;
+	height: 60px;
+	position: absolute;
+	top: 65px;
+	right: 0px;
+}
+.dropdown a{
+	display: block;
+	width: 70px;
+	height: 30px;
+	text-align: center;
+}
+.dropdown a button{
+	display: block;
+	width: 70px;
+	height: 30px;
+	margin: 0px;
+	padding: 0px;
+	background: white;
+	color: black;
+	font-size: 14px;
+	border: 1px solid #AAAAAA;
+}
+
+body{
+	background: #F4F4F4;
+	font-weight: lighter;
+}
+h2,h3,label,body,.content,h1,span{
+	font-weight: lighter;
+}
+
+/*内容*/
+section.content{
+	width: 1000px;
+	margin: 0px auto;
+	background: white;
+}
+section>h1{
+	padding: 28px 0 20px;
+    font-size: 24px;
+    color: #333;
+    line-height: 24px;
+    background: #F4F4F4;
+}
+section>h1 #buy-tips{
+	font-size: 13px;
+    color: #999;
+    line-height: 12px;
+}
+
+.pay-info{
+	background: white;
+}
+.order-info{
+	position: relative;
+    width: 100%;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #e9e9e9;
+    font-size: 14px;
+    color: #666;
+}
+.order-info p{
+	height: 30px;
+	font-size: 14px;
+	color: #666666;
+}
+.order-info p span{
+	margin-left: 20px;
+}

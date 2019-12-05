@@ -81,6 +81,7 @@ public abstract class BaseDao {
 			ps.setObject(1, method.invoke(o, null));
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
+				System.out.println("fields.length："+fields.length);
 				obj = c.newInstance();
 				for (int i = 0; i < fields.length; i++) {
 					String methodName = "set" + fields[i].getName().substring(0,1).toUpperCase() + fields[i].getName().substring(1);

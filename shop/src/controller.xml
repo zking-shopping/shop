@@ -72,6 +72,20 @@
         <pagejump>false</pagejump>
     </action>
     
+    <action name="settlement" class="com.shopping.web.action.SettlementAction">
+        <pagejump>false</pagejump>
+    </action>
+    
+    <action name="toPay" class="com.shopping.web.action.ToPayAction">
+        <result name="success" direct="false">payment.jsp</result>
+        <result name="error">shoppingCar.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+    <action name="immediatePayment" class="com.shopping.web.action.ImmediatePaymentAction">
+        <pagejump>false</pagejump>
+    </action>
+    
     <action name="login" class="com.shopping.web.action.LoginAction">
         <form>com.shopping.web.form.LoginForm</form>
         <result name="success" direct="false">index.jsp</result>
