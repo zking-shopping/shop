@@ -112,7 +112,14 @@ img{border: none;vertical-align: bottom;}
 			}
 			
 			.glyphicon-user .dropdown button {
-				margin: auto 0;
+				margin: 0 auto;
+				width: 70px;
+				height: 30px;
+				text-align: center;
+			}
+			
+			.glyphicon-user .dropdown1 button {
+				margin: 0 auto;
 				width: 70px;
 				height: 30px;
 				text-align: center;

@@ -119,6 +119,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<!--用户 包含登录注册-->
 			<span class="glyphicon glyphicon-user text-center hidden-sm hidden-xs hidden-md " id="user" value="${sessionScope.member}">
+			              <div class="dropdown" style="display:none;" >
+								<a href='register.jsp'>
+									<button class="btn btn-default navbar-btn navbar-right">注册</button>
+								</a> <a href="login.jsp">
+									<button class="btn btn-default navbar-btn navbar-right">登录</button>
+								</a>
+						    </div>
+						    
+						     <div class="dropdown1" style="display:none;" >
+								<a href='register.jsp'>
+									<button class="btn btn-default navbar-btn navbar-right">我的订单</button>
+								</a> <a href="login.jsp">
+									<button class="btn btn-default navbar-btn navbar-right">退出登录</button>
+								</a>
+						    </div>
 			</span> 
 			<span class="badge bg-danger hidden-sm hidden-xs hidden-md" id="carsign" value="${cart}"
 				style="background: white;"> <!--购物车车标-->
