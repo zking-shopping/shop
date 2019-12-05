@@ -282,13 +282,24 @@ body{
 }
 
 #myPersonInfo table td{
-	width:120px;
+	width:150px;
 	height:50px
+}
+
+#myPersonInfo table td input{
+	width:250px;	
 }
 
 #myPersonInfo table button{
 	margin:0px;
 	width:130px;
+}
+
+#myPersonInfo table p{
+	font-size:12px;
+	padding-top:10px;
+	padding-left:5px;
+	color:grey;
 }
 
 .showMyOrder{

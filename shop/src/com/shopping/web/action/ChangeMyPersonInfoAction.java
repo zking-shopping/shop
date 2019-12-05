@@ -20,7 +20,11 @@ public class ChangeMyPersonInfoAction extends ActionFather{
 		MemberDao md = new MemberDaoImpl();
 		Connection conn = DBHelper.getConnection();
 		Boolean flag = md.updatePersonInfo(cmpif, conn);
-		return flag;
+		String s = "flag";
+		if(flag){
+			s = "true";
+		}
+		return s;
 	}
 
 }
