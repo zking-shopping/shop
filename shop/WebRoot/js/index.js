@@ -3,7 +3,7 @@
 //查询精选商品
 
 function betterGoods(){
-    	$.ajax({
+    	$.post({
     			url:"bettergoods.do",
     			data:{
                  
@@ -36,7 +36,7 @@ function betterGoods(){
   
     
 	 function cardList(sort){
-	    	$.ajax({
+	    	$.post({
 	    		url:"mintype.do",
 	    		data:{
 	    			"sort": sort,
@@ -122,18 +122,19 @@ function betterGoods(){
 	$('.glyphicon-shopping-cart').mouseover(function() {
 		//如果没有登录
 		if($('#user').attr("value")==""){
-			$.ajax({
+			$.post({
 				url:"checkLogin2.do",
 				success:function(result){
 					var str ="";
 					var priceAll = 0;
 					var num = 0;
+					console.log(result.length)
 					if(result.length!=0){
 						 $.each(result,function(i, value){
 							 console.log(value.id);
 							 str+="<li>"+
 										  "<a>"+
-										     "<img src="+value.url+" />"+
+										     "<img src="+value.url+" style='width:16%;height:40px;'/>"+
 										  "</a>"+
 											"<div style='width:20%; height:20%; display:inline-block; float:left;  margin-left: 20%;' >"+
 												"<p style='display: block;'>"+value.goodsName+"</p>"+
@@ -148,7 +149,7 @@ function betterGoods(){
 						
 						
 						var qian = "<h1>总价:￥"+priceAll+".00</h1>"+
-						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去付款</button></a>"
+						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去购物车</button></a>"
 						$('#shop-down').html(qian)
 						$('.dropdown2').show();
 					    $('#carts').html(str);
@@ -157,35 +158,34 @@ function betterGoods(){
 						 $('#shop-down').show();
 						 
 				   }else{
-					     str+="<div id='nogoods' style=' color: gray; height: 50%; display: none;'>"+
-								"<span style='margin: 50% 20%; font-size:18px; font-weight:lighter; letter-spacing:1px'>还没有商品,快去选中商品</span>"+
-							   "</div>"
-							 ;
-							 $('.dropdown2').html(str); 
-							 $('.dropdown2').show();
-							 $('#nogoods').show();
+					   $('#shop-top').hide();
+						 $('#shop-down').hide();
+						 $('.dropdown2').show();
+						 $('#nogoods').show();
 					}
 					  $(document).on('click','#remove',function(e){
 							  var id = e.target.getAttribute("value");
-							   console.log(id)
 							  e.target.parentNode.parentNode.removeChild(e.target.parentNode);
 							  location.href = "deleteCart1.do?id="+id;
+//							  if(e.target.parentNode.parentNode.ChildrenNodes.length==0){
+//								  $('#nogoods').show();
+//							  }
 					    })
 				}
 			})
 		
 		}else{
-			$.ajax({
+			$.post({
 				url:"checkLogin.do",
 				success:function(result){
 					var str ="";
 					var priceAll = 0;
 					var num = 0;
-					if(result!=null){
+					if(result.length!=0){
 						 $.each(result,function(i, value){
 							 str+="<li>"+
 										  "<a>"+
-										     "<img src="+value.url+" />"+
+										     "<img src="+value.url+" style='width:16%;height:40px;'/>"+
 										  "</a>"+
 											"<div style='width:20%; height:20%; display:inline-block; float:left;  margin-left: 20%;' >"+
 												"<p style='display: block;'>"+value.goodsName+"</p>"+
@@ -197,7 +197,6 @@ function betterGoods(){
 							       ;
 							 priceAll+=Number(value.price)*Number(value.number);
 						})
-						
 						var qian = "<h1>总价:￥"+priceAll+".00</h1>"+
 						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去购物车</button></a>"
 						$('#shop-down').html(qian);
@@ -206,15 +205,12 @@ function betterGoods(){
 					 
 						 $('#shop-top').show();
 						 $('#shop-down').show();
-						
-						
 				   }else{
-					     str+="<div id='nogoods' style=' color: gray; height: 50%; display: none;'>"+
-								"<span style='margin: 50% 20%; font-size:18px; font-weight:lighter; letter-spacing:1px'>还没有商品,快去选中商品</span>"+
-							   "</div>"
-							 ;
-							 $('.dropdown2').html(str); 
-							 $('#nogoods').show();
+					   	 $('#shop-top').hide();
+						 $('#shop-down').hide();
+						 $('.dropdown2').show();
+						 $('#nogoods').show();
+//						 $('#goshopping').show();
 					}
 					  $(document).on('click','#remove',function(e){
 						  var id = e.target.getAttribute("value");

@@ -62,7 +62,7 @@ public class CheckLogin2Action extends ActionFather{
 						Pic p = new Pic();
 						p.setId(picId);
 						Pic pic = (Pic)pd.selectById(p, conn);
-						c.setUrl(pic.getPicture1());
+						c.setUrl(pic.getPicture1().substring(22));
 			           
 			            cart1.add(c);
 			            g = null;
