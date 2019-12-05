@@ -29,4 +29,7 @@
 	<update id="updateMemberCost">
 		update t_member set cost=#{cost} where id=#{id};
 	</update>
+	<update id="updateDate">
+		update t_member set date=#{date} where id=#{id};
+	</update>
 </class>
