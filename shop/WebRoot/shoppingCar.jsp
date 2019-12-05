@@ -136,9 +136,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<div class="products">
 				<p>购物车里空空如也，赶紧去逛逛吧！</p>
-				<p>或者你也可以先登录看看</p>
-				<button class="btn btn-info">立即登录</button>
-				<button class="btn btn-success">立即去购物</button>
+			
+				<button class="btn btn-info shoppingRightNow">立即去购物</button>
 			</div>
 			<div class="myProducts"></div>
 		</div>
