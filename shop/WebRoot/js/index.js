@@ -165,6 +165,7 @@ function betterGoods(){
 			})
 		
 		}else{
+			//登录之后
 			$.ajax({
 				url:"checkLogin.do",
 				success:function(result){
@@ -173,6 +174,7 @@ function betterGoods(){
 					var num = 0;
 					if(result!=null){
 						 $.each(result,function(i, value){
+				
 							 str+="<li>"+
 										  "<a>"+
 										     "<img src="+value.url+" />"+
@@ -191,11 +193,10 @@ function betterGoods(){
 						var qian = "<h1>总价:￥"+priceAll+".00</h1>"+
 						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去付款</button></a>"
 						$('#shop-down').html(qian);
+						
 						$('.dropdown').show();
 					    $('#carts').html(str);
-					    $(document).on('click','#remove',function(){
-					    	console.log(111)
-					    })
+					    
 						 $('#shop-top').show();
 						 $('#shop-down').show();
 						
@@ -215,13 +216,16 @@ function betterGoods(){
 		}
 	})
 	
+	$(document).on('click','#remove',function(){
+					    	alert(111);
+					    });
 	$('#carsign').mouseleave(function() {
 		$('#allgoods').hide();
 		$('#nogoods').hide();
 		$('#goshopping').hide();
 		$('#shoptop').hide();
 		$('#shopdown').hide();
-	})
+	});
 	
 	
 	//点击去购物车
