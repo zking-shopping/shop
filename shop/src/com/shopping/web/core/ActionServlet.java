@@ -174,6 +174,9 @@ public class ActionServlet extends HttpServlet {
          		}else if(o instanceof OutputStream){//为验证码的输出
          			out = null;
 //         			System.out.println(1111111);
+         		}else if(o instanceof String){
+         			String s = (String)o;
+         			out.write(s);
          		}else{
          			JSONObject json = JSONObject.fromObject(o);
          			out.write(json.toString());

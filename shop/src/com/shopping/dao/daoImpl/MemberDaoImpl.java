@@ -17,6 +17,7 @@ import com.shopping.dao.BaseDao;
 import com.shopping.dao.MemberDao;
 import com.shopping.db.DBHelper;
 import com.shopping.pojo.Member;
+import com.shopping.web.form.ChangeMyPersonInfoForm;
 
 public class MemberDaoImpl extends BaseDao implements MemberDao{
 	public Boolean insert(Object obj, Connection conn){
@@ -118,6 +119,41 @@ public class MemberDaoImpl extends BaseDao implements MemberDao{
 		}
 		return list;
 	}
+
+
+	@Override
+	public Boolean updatePersonInfo(ChangeMyPersonInfoForm cmpif,
+			Connection conn) {
+		
+		String sql = "update t_member set username = ?,password = ?,name = ?,phoneNumber = ? where id = ?";
+		if("".equals(cmpif.getPassword())||cmpif.getPassword()==null){
+			sql = "update t_member set username = ?,name = ?,phoneNumber = ? where id = ?";
+		}
+		Boolean flag = false;
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			if("".equals(cmpif.getPassword())||cmpif.getPassword()==null){
+				ps.setString(1, cmpif.getUsername());		
+				ps.setString(2, cmpif.getName());
+				ps.setString(3, cmpif.getPhoneNumber());
+				ps.setString(4, cmpif.getPersonId());
+			}else{
+				ps.setString(1, cmpif.getUsername());
+				ps.setString(2, cmpif.getPassword());
+				ps.setString(3, cmpif.getName());
+				ps.setString(4, cmpif.getPhoneNumber());
+				ps.setString(5, cmpif.getPersonId());
+			}
+			int i = ps.executeUpdate();
+			if(i>0){
+				flag = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
 	
 	public List<Member> selectDelByPages(int pageNumber, int pageSize, Connection conn) {
 		String sql = "select * from t_member where del='true' limit ?,? ";
@@ -244,5 +280,6 @@ public class MemberDaoImpl extends BaseDao implements MemberDao{
 			e.printStackTrace();
 		}
 		return count%pageSize == 0 ? count/pageSize : count/pageSize+1;
+
 	}
 }

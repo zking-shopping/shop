@@ -36,6 +36,53 @@ function waitRecieve(){
     });
 };
 
+var isMyPersonInfoChange = 1;
+//判断输入的密码是否符合要求
+function checkPassword(cont){
+	isMyPersonInfoChange = 1;
+	//将元素的一些属性值初始化为匹配失败的属性值
+	var pTipContent = '';//错误提示框内容为空
+	
+	//获得内容长度
+	var len = cont.length;
+	var re1 = new RegExp("[0-9]{"+len+"}");
+	var re2 = new RegExp("[a-z]{"+len+"}");
+	var re3 = new RegExp("[A-Z]{"+len+"}");
+	//判断密码长度是否足够
+	if(len<8||len>18){
+		pTipContent = '密码的位数在8-18位之间！';
+		
+	}else{
+		pTipContent = '密码必须包含数字、字母以及符号两种或以上！';
+		
+		if(/[^a-zA-Z0-9_]/g.test(cont)){
+			pTipContent = '密码不能有下划线之外的符号！';
+		}else if(!(re1.test(cont))&&!(re2.test(cont))&&!(re3.test(cont))){				
+			pTipContent = '';
+			isMyPersonInfoChange = 0;
+		};
+	};
+	$('.pwdPrompt').html(pTipContent);
+};
+
+//判断输入的手机号是否符合要求
+function checkPhoneNumber(cont){
+	isMyPersonInfoChange = 1;
+	//将元素的一些属性值初始化为匹配失败的属性值
+	var pTipContent = '输入的手机号码格式有误！';//错误提示框内容为空
+	
+	//获得内容长度
+	var len = cont.length;
+	//判断是否是手机号码的正则表达式
+	var re = /^1[3456789]\d{9}$/;
+	if(re.test(cont)){			
+		pTipContent = '';
+		isMyPersonInfoChange = 0;
+	};
+	$('.phoneNumberPrompt').html(pTipContent);
+	
+};
+
 function showMyProducts(result){	
     $('.myProducts').html("");
     $('.myNullOrder').show();
@@ -268,9 +315,36 @@ $(function(){
 	    $.get('myPersonInfo.do',function(result){
 	        var result = JSON.parse(result);
 	        var myProduct = `
-            <p><span>用户</span><span>${result.name}</span></p>
-            <p><span>账号</span><span>${result.username}</span></p>
-            <p><span>手机号码</span><span>${result.phoneNumber}</span></p>        
+	        <form class="myPersonInfoForm">
+	        <div class = "myPersonInfoHead">我的个人信息</div>
+	        <input type="text" value="${result.id}" style="display:none" name="personId"/>
+	        <table class="myPersonInfoTable">	        
+				<tr>
+					<td>账号</td>
+					<td><span>${result.username}</span><input type="text" readonly ="readonly" value="${result.username}" style="display:none" name="username"/></td>
+				</tr>
+				<tr>
+					<td>密码</td>
+					<td><span>不能给你看哦</span><input type="password" placeholder="如果要修改密码请输入你的新密码" style="display:none" name="password" class="passwordInput"/></td>
+					<td><p class="pwdPrompt"></p></td>
+			    </tr>
+				<tr>
+					<td>用户名</td>
+					<td><span>${result.name}</span><input type="text" value="${result.name}" style="display:none" name="name"/></td>
+				</tr>
+				<tr>
+					<td>手机号码</td>
+					<td><span>${result.phoneNumber}</span><input type="text" value="${result.phoneNumber}" style="display:none" name="phoneNumber" class="phoneNumberInput"/></td>
+					<td><p class="phoneNumberPrompt"></p></td>
+				</tr>
+				<tr>
+					<td>				
+						<button class="changeMyPersonInfo" type="button">修改信息</button>
+						<button class="sureChangeMyPersonInfo" style="display:none" type="button">确认修改</button>
+					</td>
+				</tr>
+		    </table>  
+		    </form>
 `;
             $('#myPersonInfo').html(myProduct);
 	    });
@@ -342,7 +416,72 @@ $(function(){
 			}
 		});
 	});
-
+	
+	//个人信息--修改信息
+	$(document).on('click','.changeMyPersonInfo',function(e){		
+		$('.myPersonInfoTable').children().children().children().children("span").css("display","none");
+		$('.myPersonInfoTable').children().children().children().children("input").css("display","block");
+		$('.sureChangeMyPersonInfo').css("display","block");
+		$('.changeMyPersonInfo').css("display","none");
+	});
+	
+	
+	
+	//输入框失焦事件
+	$(document).on('blur','.myPersonInfoTable input',function(){
+		
+		//获得输入框内容
+		var cont = $(this).val();
+		//获得输入框的name属性
+		var name = $(this).attr('name');
+		if(cont!=''){
+			if(name=='password'){
+				//调用方法判断密码是否符合规范
+				checkPassword(cont);
+			}else if(name=='phoneNumber'){
+				//调用方法判断手机号是否符合规范
+				checkPhoneNumber(cont);
+			};
+		};	
+	});
+	
+	
+	//个人信息--修改信息--确认修改
+	$(document).on('click','.sureChangeMyPersonInfo',function(e){
+		var cont = $('.passwordInput').val();
+		if(cont==""){
+			isMyPersonInfoChange = 0;
+		}else{
+			
+			checkPassword(cont);
+		}
+		if(isMyPersonInfoChange == 0 ){
+			isMyPersonInfoChange = 1;
+			cont = $('.phoneNumberInput').val();
+			checkPhoneNumber(cont);
+			if(isMyPersonInfoChange == 0){
+				$.ajax({
+					type: "POST",
+					url:  "changeMyPersonInfo.do",
+					data: $('.myPersonInfoForm').serialize(),
+					async: false,
+					success: function(result) {
+						if(result){
+							alert('修改成功');
+							window.location.reload();
+							
+						}else{
+							alert('修改失败');
+						}
+					}
+				});
+			}
+			
+		}
+		
+		
+	});
+	
 	//待付款--右
 	$('.waitPay').click(function () {
 		waitPay();
