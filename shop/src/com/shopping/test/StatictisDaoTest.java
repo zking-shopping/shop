@@ -12,7 +12,6 @@ import com.shopping.dao.daoImpl.GoodsDaoImpl;
 import com.shopping.dao.daoImpl.GoodsStatisticsImpl;
 import com.shopping.dao.daoImpl.MemberDaoImpl;
 import com.shopping.dao.daoImpl.MemberStatisticsDaoImpl;
-import com.shopping.db.DBHe;
 import com.shopping.db.DBHelper;
 import com.shopping.pojo.Admin;
 import com.shopping.pojo.Goods;
@@ -57,17 +56,14 @@ public class StatictisDaoTest {
 //			dao.update("updateStatistics", a, conn);
 //		}
 //	}
-	
-	@Test
-	public void testGoodsClick(){
-		Connection conn = DBHe.getConnection();
-		GoodsStatisticsDao goodsStatisticsDao = new GoodsStatisticsImpl();
-		GoodsStatistics g = new GoodsStatistics();
-		g.setGoodsId(0);
-		g.setTime(DateHelper.getSimpleDate());
-		Boolean res = goodsStatisticsDao.update("addClickNumber", g, conn);
-		System.out.println(res);
-	}
+//	
+//	public void testGoodsClick(){
+//		Connection conn = DBHelper.getConnection();
+//		GoodsStatisticsDao goodsStatisticsDao = new GoodsStatisticsImpl();
+//		Goods goods = new Goods();
+//		goods.setId(id);
+//		goodsStatisticsDao.update("addClickNumber", goods, conn);
+//	}
 //	
 //	public void testGoodsBuy(){
 //		//int total;	总价

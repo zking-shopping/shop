@@ -55,6 +55,7 @@ public class LoginAction extends ActionFather{
   		try {
 			PrintWriter out = response.getWriter();
 			if(member.getPassword()!=null){
+				System.out.println("session中存储了member,然后登陆了");
 	  			request.getSession().setAttribute("member", member);
 	  			Cookie[] cookies = request.getCookies();
 	  			//登录成功查看cookie里面有没有商品，有就加入购物车
@@ -89,6 +90,7 @@ public class LoginAction extends ActionFather{
 				            g = null;
 				            cookie.setMaxAge(0);
 				        }
+
 				     }
 	  			
 	  			long startTime = TimeHelper.getTime();
