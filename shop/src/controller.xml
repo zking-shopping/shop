@@ -26,7 +26,6 @@
     </action>
     
     <action name="shoppingCarCountChange" class="com.shopping.web.action.ShoppingCarCountChangeAction">
-           
         <pagejump>false</pagejump>
     </action>
     
@@ -136,6 +135,24 @@
      <action name="details" class="com.shopping.web.action.DetailsAction">
         <form>com.shopping.web.form.DetailsForm</form>
         <result name="success" direct="false">details.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+     <action name="checkLogin" class="com.shopping.web.action.CheckLoginAction">
+        <form>com.shopping.web.form.CheckLoginForm</form>
+        <result name="success" direct="false">index.jsp</result>
+         <result name="error">index.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+    <action name="checkLogin2" class="com.shopping.web.action.CheckLogin2Action">
+        <form>com.shopping.web.form.CheckLogin2Form</form>
+        <result name="success" direct="false">index.jsp</result>
+        <pagejump>true</pagejump>
+    </action>
+    
+     <action name="quitLogin" class="com.shopping.web.action.quitLoginAction">
+        <form>com.shopping.web.form.quitLoginForm</form>
         <pagejump>true</pagejump>
     </action>
 </actions>

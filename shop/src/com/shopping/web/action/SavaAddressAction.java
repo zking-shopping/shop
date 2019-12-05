@@ -1,6 +1,8 @@
+
 package com.shopping.web.action;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -27,9 +29,9 @@ public class SavaAddressAction extends ActionFather{
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
   		
 		//获得会员id
-		Member m = (Member)request.getSession().getAttribute("member");
-		String memberId = m.getId();
-//		String memberId = "125a2177-a2be-4ee4-8223-8ecfe0eefef4";
+//		Member m = (Member)request.getSession().getAttribute("member");
+//		String memberId = m.getId();
+		String memberId = "125a2177-a2be-4ee4-8223-8ecfe0eefef4";
 		Address add = new Address();
 		add.setMemberId(memberId);
 		add.setCousignee(request.getParameter("cousignee"));
@@ -48,15 +50,12 @@ public class SavaAddressAction extends ActionFather{
 			//查询地址列表
 			List<Address> list = new ArrayList<Address>();
 			list = ad.selectByMemberId(memberId, conn);
-			String saveId = request.getParameter("saveId");
-			if(saveId!=null && !saveId.equals("") && !saveId.equals("null")){
-				//判断有没有设置默认
-				if(defaults.equals("true")){
-					Address add1 = new Address();
-					add1.setId(Integer.parseInt(saveId));
-					add1.setDefaultAddress("false");
-					ad.update("updateDefaultAddress", add1, conn);
-				}
+			//判断有没有设置默认
+			if(defaults.equals("true")){
+				Address add1 = new Address();
+				add1.setId(Integer.parseInt(request.getParameter("saveId")));
+				add1.setDefaultAddress("false");
+				ad.update("updateDefaultAddress", add1, conn);
 			}
 			//自动默认
 			if(list.size()==0){

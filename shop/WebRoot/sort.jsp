@@ -16,7 +16,7 @@
 
 			</div>
 		</div>
-		<div class="c" value="$(type)">
+		<div class="c" value="<%=request.getParameter("sort") %>" id="id">
 			<div class="footer">
 					 <input type="button" id="prev" style="width:50px;  height: 42px; background:gray;" value="上一页" onclick="goPrev()"></input>
 				<ul style="margin: 0 auto;">

@@ -1,6 +1,7 @@
 package com.shopping.web.servlet;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.Date;
@@ -162,7 +163,6 @@ public class coreMemberServlet extends HttpServlet {
 		session.setAttribute("edgeCost", edgeCostNum);
 		session.setAttribute("avgCost", avgCost);
 		session.setAttribute("avgTime", avgTime);
-		DBHelper.closeConnection(conn);
 		response.sendRedirect("/shop/admin/coreMember.jsp");
 	}
 	

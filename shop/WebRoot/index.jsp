@@ -1,8 +1,11 @@
+<%@page import="com.shopping.pojo.Member"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+ 
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -25,8 +28,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 
-<body>
-	<div class="navbar wholenav">
+<body >
+    
+	<div class="navbar wholenav" >
 		<!--导航条-->
 		<nav class="navbar navbar-white" style="border-bottom-color:#d6d6d6">
 		<div class="container">
@@ -112,99 +116,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>
 					</ul>
 
-			<!-- 	搜索
-					<div class="navbar-form navbar-left hidden-sm hidden-xs hidden-md text-center" id="search">
-						<div class="input-group">
-							<input type="text" class="form-control" />
-							<span class="input-group-btn" >
-								<button class="btn btn-primary " >
-									<span class="glyphicon glyphicon-search"></span>
-							   	</button>
-							</span>
-						</div>
-					</div> -->
 
 			<!--用户 包含登录注册-->
-			<span class="glyphicon glyphicon-user text-center hidden-sm hidden-xs hidden-md ">
-				<div class="dropdown" style="display: none;">
-					<a href="register.jsp">
-						<button class="btn btn-default navbar-btn navbar-right">注册</button>
-					</a> <a href="login.jsp">
-						<button class="btn btn-default navbar-btn navbar-right">登录</button>
-					</a>
-				</div>
+			<span class="glyphicon glyphicon-user text-center hidden-sm hidden-xs hidden-md " id="user" value="${sessionScope.member}">
 			</span> 
-			<span class="badge bg-danger hidden-sm hidden-xs hidden-md"
+			<span class="badge bg-danger hidden-sm hidden-xs hidden-md" id="carsign" value="${cart}"
 				style="background: white;"> <!--购物车车标-->
 				<div id="shopsign">
 					<!--数量-->
-					<p class="count">1</p>
+					<p class="count">8</p>
 					<!--购物车-->
 					<span class="glyphicon glyphicon-shopping-cart text-left "></span>
 
 					<!--下拉框-->
-					<div class="dropdown" style="display: none; " id="allgoods">
+					<div class="dropdown" style="display: none; width:900%" id="allgoods">
 						<div id="shop-top" style="display: none;">
-							<ul style=" overflow-x: auto; ">
-								<li><a href="introduction.jsp"><img
-										src="img/chazuo1.jpg" /></a>
-									<div
-										style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
-										<p style="display: block;">万能插座</p>
-										<p style="display: block;">价格:￥135.00</p>
-									</div> <span class="glyphicon glyphicon-remove" style="float: right;"></span>
-								</li>
-
-								<li><a href="introduction.jsp"> <img
-										src="img/chazuo1.jpg" />
-								</a>
-									<div
-										style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
-										<p style="display: block;">万能插座</p>
-										<p style="display: block;">价格:￥135.00</p>
-									</div> <span class="glyphicon glyphicon-remove" style="float: right;"></span>
-								</li>
-
-								<li><a href="introduction.jsp"> <img
-										src="img/chazuo1.jpg" />
-								</a>
-									<div
-										style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
-										<p style="display: block;">万能插座</p>
-										<p style="display: block;">价格:￥135.00</p>
-									</div> <span class="glyphicon glyphicon-remove" style="float: right;"></span>
-
-								</li>
-
-								<li><a href="introduction.jsp"> <img
-										src="img/chazuo1.jpg" />
-								</a>
-									<div
-										style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
-										<p style="display: block;">万能插座</p>
-										<p style="display: block;">价格:￥135.00</p>
-									</div> <span class="glyphicon glyphicon-remove" style="float: right;"></span>
-								</li>
-								<li><a href="introduction.jsp"> <img
-										src="img/chazuo1.jpg" />
-								</a>
-									<div
-										style="width: 20%; height: 20%; display: inline-block; float: left;  margin-left: 20%;">
-										<p style="display: block;">万能插座</p>
-										<p style="display: block;">价格:￥135.00</p>
-									</div> <span class="glyphicon glyphicon-remove" style="float: right;"></span>
-								</li>
+							<ul style=" overflow-x: auto; " id="carts">
+						       
 							</ul>
 						</div>
 						<div id="shop-down" style="display: none;">
-							<h1>总价:￥135.00</h1>
-							<a href="shoppingCar.jsp"><button>去购物车</button></a>
+							
 						</div>
-						<div id="no-goods" style=" color: gray;height: 50%; ">
-							<span
-								style="margin: 50% 20%; font-size:18px; font-weight:lighter; letter-spacing:1px">还没有商品,快去选中商品</span>
-						</div>
-						<div id="goshopping" style="display:none">
+						
+						<div id="goshopping" style="display: none;">
 							<a style="margin: 50% 20%;" href="shoppingCar.jsp"><button>去购物车</button></a>
 						</div>
 					</div>

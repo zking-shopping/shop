@@ -1,6 +1,8 @@
+
 package com.shopping.web.action;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -17,7 +19,6 @@ import com.shopping.dao.AddressDao;
 import com.shopping.dao.daoImpl.AddressDaoImpl;
 import com.shopping.db.DBHelper;
 import com.shopping.pojo.Address;
-import com.shopping.pojo.Member;
 
 public class ModifyAddressAction extends ActionFather{
 
@@ -27,9 +28,9 @@ public class ModifyAddressAction extends ActionFather{
   		response.setCharacterEncoding("UTF-8");
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
 
-		Member m = (Member)request.getSession().getAttribute("member");
-		String memberId = m.getId();
-//		String memberId = "125a2177-a2be-4ee4-8223-8ecfe0eefef4";
+//		Member m = (Member)request.getSession().getAttribute("member");
+//		String memberId = m.getId();
+		String memberId = "125a2177-a2be-4ee4-8223-8ecfe0eefef4";
 		Address add = new Address();
 		add.setMemberId(memberId);
 		add.setCousignee(request.getParameter("cousignee"));

@@ -26,24 +26,24 @@ public class JurFilter implements Filter{
 			FilterChain arg2) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) arg0;
 		HttpServletResponse response = (HttpServletResponse) arg1;
-		String pageNumber = (String) request.getParameter("pageNumber");
-		String pageSize = (String) request.getParameter("pageSize");
-		if(pageNumber == null || pageNumber.length() == 0){
-			pageNumber = "1";
+		String pages = (String) request.getParameter("page");
+		String pageSizes = (String) request.getParameter("pageSize");
+		if(pages == null || pages.length() == 0){
+			pages = "1";
 		}
-		if(pageSize == null || pageSize.length() == 0){
-			pageSize = "20";
+		if(pageSizes == null || pageSizes.length() == 0){
+			pageSizes = "20";
 		}
-		int number = Integer.valueOf(pageNumber);
-		int size = Integer.valueOf(pageSize);
-		if(number < 1){
-			number = 1;
+		int page = Integer.valueOf(pages);
+		int pageSize = Integer.valueOf(pageSizes);
+		if(page < 1){
+			page = 1;
 		}
-		if(size < 1){
-			size = 20;
+		if(pageSize < 1){
+			pageSize = 20;
 		}
-		request.setAttribute("pageNumber", number);
-		request.setAttribute("pageSize", size);
+		request.setAttribute("page", page);
+		request.setAttribute("pageSize", pageSize);
 		arg2.doFilter(request, response);
 	}
 
