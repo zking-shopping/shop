@@ -19,10 +19,69 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+<style>
 
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .box {
+            width: 98%;
+            height: 600px;
+            background: url("/shop/img/500.png") no-repeat;
+            margin: 0px auto;
+            position: relative;
+        }
+
+        .box .back {
+            width: 400px;
+            height: 40px;
+            position: absolute;
+            left: 50%;
+            bottom: 60px;
+            margin-left: -200px;
+        }
+
+        .box .back a {
+            display: block;
+            width: 400px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            text-decoration: none;
+            color: #7456f8;
+            font-size:20px;
+        }
+
+    </style>
   </head>
   
   <body>
-    <h6>500</h6>
+    <body>
+    <div class="box">
+        <div class="back">
+            <a href="/shop/index.jsp" id="a">屏幕前的小可爱，我将在5秒后带你回去~</a>
+        </div>
+    </div>
+  </body>
   </body>
 </html>
+<script>
+
+        window.onload = function() {
+            //1. 获取id
+            var a = document.getElementById('a');
+            var count = 5;
+            setTimeout(function(){
+                count --;
+                a.innerHTML = '屏幕前的小可爱，我将在' + count + '秒后带你回去~';
+                if (count > 0) {
+                    setTimeout(arguments.callee, 1000);
+                } else {
+                    window.location.href = "/shop/index.jsp";
+                }
+            }, 1000);
+        }
+
+    </script>

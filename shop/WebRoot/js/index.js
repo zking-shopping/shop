@@ -106,27 +106,9 @@ function betterGoods(){
 	$('#user').mouseover(function() {
 		var str="";
 	            if($(this).attr("value")==""){
-					 str+=
-							"<div class='dropdown' >"+
-								"<a href='register.jsp'>"+
-									"<button class='btn btn-default navbar-btn navbar-right'>注册</button>"
-								+"</a> <a href='login.jsp'>"
-									+"<button class='btn btn-default navbar-btn navbar-right'>登录</button>"
-								+"</a>"+
-						    "</div>"
-					       ;
-					 $('#user').html(str);
+	            	$('#user .dropdown').show();
 				}else{
-					str+= 
-							"<div class='dropdown1' >"+
-								"<a href='order.jsp'>"+
-									"<button class='btn btn-default navbar-btn navbar-right'>我的订单</button>"+
-								"</a> <a href='quitLogin.do' >"+
-									"<button class='btn btn-default navbar-btn navbar-right'>退出登录</button>"+
-								"</a>"+
-						     "</div>"
-					       ;
-					  $('#user').html(str);
+					$('#user .dropdown1').show();
 				}
 		})
 	
@@ -200,7 +182,7 @@ function betterGoods(){
 												"<p style='display: block;'>价格:￥"+ value.price+"</p>"+
 												"<p style='display: block; float:left;'>×"+value.number+
 											"</div>"+
-											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;'></span>"+
+											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;' ></span>"+
 										"</li>"
 							       ;
 							 priceAll+=Number(value.price)*Number(value.number);
@@ -208,9 +190,12 @@ function betterGoods(){
 						
 						var qian = "<h1>总价:￥"+priceAll+".00</h1>"+
 						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去付款</button></a>"
-						$('#shop-down').html(qian)
+						$('#shop-down').html(qian);
 						$('.dropdown').show();
 					    $('#carts').html(str);
+					    $(document).on('click','#remove',function(){
+					    	console.log(111)
+					    })
 						 $('#shop-top').show();
 						 $('#shop-down').show();
 						
@@ -238,9 +223,6 @@ function betterGoods(){
 		$('#shopdown').hide();
 	})
 	
-	$(document).on("click","#remove",function(){
-								console.log(111);
-							});
 	
 	//点击去购物车
 	$('#goshopping').click(function(){

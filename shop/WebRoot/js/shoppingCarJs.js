@@ -234,6 +234,11 @@ function showMyProducts(result){
 		}
 
 	});
+	
+	//立即去购物按钮
+	$('.shoppingRightNow').click(function(){
+		window.location.href = "index.jsp";
+	});
 
     // input框失焦事件
     $('.myProductCount').blur(function(){
