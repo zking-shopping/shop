@@ -277,7 +277,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                
 	                <!--订单状态-->
 	                <div class="viewDetails">
-	                    <div class="odder_info">下单时间<span></span></div>
+	                    <div class="odder_info odder_infoInsert">下单时间<span></span></div>
 	                    <div class="viewDetails_buttom_orderInfo">
 	                        
 	                    </div>
