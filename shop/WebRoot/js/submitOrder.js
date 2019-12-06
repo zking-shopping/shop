@@ -22,9 +22,6 @@ function changeState(obj){
 };
 
 $(function(){
-	autoSize();
-	$(window).resize(autoSize);
-	
 	//加载地址列表
 	$.ajax({
 		type:"post",
