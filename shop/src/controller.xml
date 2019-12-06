@@ -181,5 +181,7 @@
         <form>com.shopping.web.form.DeleteCartForm</form>
              <result name="success" direct="false">index.jsp</result>
         <pagejump>true</pagejump>
+        
     </action>
+    
 </actions>

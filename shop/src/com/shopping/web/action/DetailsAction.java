@@ -55,6 +55,9 @@ public class DetailsAction extends ActionFather{
 		 bd.setPicture1(pic1.getPicture1().substring(22));
 		 bd.setPicture2(pic1.getPicture2().substring(22));
 		 bd.setPicture3(pic1.getPicture3().substring(22));
+		 System.out.println(pic1.getPicture1().substring(22));
+		 System.out.println(pic1.getPicture2().substring(22));
+		 System.out.println(pic1.getPicture3().substring(22));
 		 request.setAttribute("bd", bd);
 		 
 		 

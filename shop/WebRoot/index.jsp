@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li style="width:14%">
-							<a id="sort2" value="2">音响耳机</a>
+							<a id="sort2" value="2">手机配件</a>
 							<div class="dropdown" style="display: none; left: -290%;" >
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 						<li style="width:14%">
-							<a id="sort3" value="3">手机配件</a>
+							<a id="sort3" value="3">音箱耳机</a>
 							<div class="dropdown" style="display: none; left: -390%;">
 								<div class="nav-cateCard">
 									<ul class="card-list">
@@ -128,7 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    </div>
 						    
 						     <div class="dropdown1" style="display:none;" >
-								<a href="shoppingCar.jsp">
+								<a href="persionInfo.jsp">
 									<button class="btn btn-default navbar-btn navbar-right">我的订单</button>
 								</a> <a href="quitLogin.do">
 									<button class="btn btn-default navbar-btn navbar-right">退出登录</button>
