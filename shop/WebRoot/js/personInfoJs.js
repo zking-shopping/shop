@@ -134,6 +134,7 @@ function showMyProducts(result){
   			<li stateid="${stateid}" paiedMoney="${paiedMoney}">${state}</li><!--存了状态跟订单总价-->
   			<li class="a-hover">
   			    <input type="text" value="${orders[i].id}" style="display:none"/>
+  			    <input type="text" value="${orders[i].addressId}" style="display:none"/>
   			    <p>${waitToPay}</p>
   				<p class="showDetails"><a>查看详情</a></p>
   			</li>
@@ -288,10 +289,12 @@ $(function(){
 	    var id = firstidInputFather.firstElementChild.value;
 	    var state = firstidInputFather.previousElementSibling.getAttribute("stateid");
 	    var paiedMoney = firstidInputFather.previousElementSibling.getAttribute("paiedMoney");
+	    var addressId = firstidInputFather.firstElementChild.nextElementSibling.value;	 
 	    downOrderTime = firstidInputFather.parentNode.previousElementSibling.firstElementChild.innerHTML;
 	    
 	    $.get('personInfoShowDetails.do',{
-	        'id':id
+	        'id':id,
+	        'addressId':addressId
 	    }, function(result){
 	        var result = JSON.parse(result);	        
 	        showMyDetails(paiedMoney,state,result);
