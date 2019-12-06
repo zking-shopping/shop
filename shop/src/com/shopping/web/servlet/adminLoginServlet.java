@@ -68,7 +68,7 @@ public class adminLoginServlet extends HttpServlet {
 		Connection conn = DBHelper.getConnection();
 		String code = request.getParameter("code");
 		if(AdminLoginFilter.code.equals(code)){
-			AdminLoginFilter.code = null;
+			AdminLoginFilter.code = "aaaa";
 			AdminDao dao = new AdminDaoImpl();
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
