@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,13 +34,22 @@ public class BettergoodsAction extends ActionFather{
         Connection conn = DBHelper.getConnection();
         BaseDao bd = new GoodsDaoImpl();
         PicDao pd = new PicDaoImpl();
-       List<Object> list = new ArrayList<Object>();
-    		  list =  bd.selectAll(new Goods(),conn);
-    		  list = list.subList(0, 8);
-       List<String> picture = new ArrayList<String>();
+       List<Object> goodslist = new ArrayList<Object>();
+    		  goodslist =  bd.selectAll(new Goods(),conn);
+    		  List<Object> list = new ArrayList<Object>();
+    		  int num = 0;
+    		  
+    		  for(int i = 0;i<8;i++){
+    			  num= (int)(Math.random() * 10);
+    			  list.add(goodslist.get(num));
+    		  }
        List<Object> list1 = new ArrayList<Object>();
-		  list1 =  bd.selectAll(new Pic(),conn);
-		  list1 = list1.subList(0, 8);
+		  for(int i =0;i<list.size();i++){
+			  Pic p = new Pic();
+			  p.setId(((Goods)list.get(i)).getId());
+			  list1.add(pd.selectById(p, conn));
+			  p = null;
+		  }
 		  List<BetterGoods> list2 = new ArrayList<BetterGoods>();
 		  for(int i = 0;i<8;i++){
 			  BetterGoods bds = new BetterGoods();
