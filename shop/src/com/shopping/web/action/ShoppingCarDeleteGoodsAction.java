@@ -51,13 +51,12 @@ public class ShoppingCarDeleteGoodsAction extends ActionFather{
 		
       	
 		CartDao cd = new CartDaoImpl();
-		Cart c = new Cart();
-		
+			
 		Connection conn = DBHelper.getConnection();
 		for (int i = 0; i < ids.length; i++) {
-			if(ids[i]!=""){
+			if(ids[i]!=""&&ids[i]!=null){
+				Cart c = new Cart();				
 				c.setId(Integer.parseInt(ids[i]));
-				System.out.println(ids[i]+"---");
 				cd.deleteById(c, conn);
 				c = null;
 			}
