@@ -117,7 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</tr>
 							<tr>
 								<td>商品名称：</td>
-								<td><input type="text" name="goodsName" id="goodsName"></td>
+								<td><input type="text" name="goodsName" id="goodsName" onblur="goodsNameBlur()"></td>
 							</tr>
 							<tr>
 								<td>商品图片：</td>
@@ -133,11 +133,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</tr>
 							<tr>
 								<td>商品价格：</td>
-								<td>￥<input type="text" name="price" id="price"></td>
+								<td>￥<input type="text" name="price" id="price" onblur="priceBlur()"></td>
 							</tr>
 							<tr>
 								<td>商品描述：</td>
-								<td><input type="text" name="introduction" id="introduction"></td>
+								<td><input type="text" name="introduction" id="introduction" onblur="introductionBlur()"></td>
 							</tr>
 							<tr>
 								<td>商品类型：</td>
@@ -158,8 +158,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td>存货</td>
 							</tr>
 							<tr>
-								<td><input type="text" name="color" id="color"></td>
-								<td><input type="text" name="colorContent" id="colorContent"></td>
+								<td><input type="text" name="color" id="color" onblur="colorBlur()"></td>
+								<td><input type="text" name="colorContent" id="colorContent" onblur="colorContentBlur()"></td>
 							</tr>
 							<tr>
 								<td colspan="2"><input class="submit" type="submit" value="提交"></td>
@@ -173,78 +173,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </html>
 <script src="/shop/admin/js/jquery-3.4.1.min.js"></script>
 <script src="/shop/admin/js/base.js"></script>
-<script>
+<script type="text/javascript">
 
+function goodsNameBlur(){
+	var reg = /^[\u4e00-\u9fa5]|[a-zA-z0-9]*$/;
+	if(!reg.test($('#goodsName').val())){
+		alert("商品名请输入中文、英文或数字");
+	}
+}
+
+function priceBlur(){
+	var numberreg = /^[0-9]*$/;
+	if(!numberreg.test($('#price').val())){
+		alert("价格请输入数字");
+		$('#price').val(200);
+	}
+}
+
+function introductionBlur(){
+	var reg = /^[\u4e00-\u9fa5]|[a-zA-z0-9]*$/;
+	if(!reg.test($('#introduction').val())){
+		alert("描述请输入中文、英文或数字");
+		$('#introduction').val("无描述");
+	}
+}
+
+function colorBlur(){
+	var reg = /^[\u4e00-\u9fa5]|[a-zA-z0-9]*$/;
+	if(!reg.test($('#color').val())){
+		alert("颜色请输入中文、英文或数字");
+		$('#color').val("白");
+	}
+}
+
+function colorContentBlur(){
+	var numberreg = /^[0-9]*$/;
+	if(!numberreg.test($('#colorContent').val())){
+		alert("商品数量请输入数字");
+		$('#colorContent').val(200);
+	}
+}
 
 $('.addForm').submit(function(){
-	var goodsName = $('#goodsName').val();
 	var photo1 = $('#photo1').val();
 	var photo2 = $('#photo2').val();
 	var photo3 = $('#photo3').val();
-	var price = $('#price').val();
-	var introduction = $('#introduction').val();
-	var color = $('#color').val();
-	var colorContent = $('#colorContent').val();
-	
-	var numberReg = /^[0-9]*$/;
-	var reg = /^[\u4e00-\u9fa5]|[a-zA-z0-9]*$/;
-	var picReg = /\.(jpg|png|PNG)$/;
-	if(reg.test(goodsName)){
-		return true;
-	}else{
-		alter("商品名请输入中文、英文或数字");
+	var picreg = /\.(jpg|png|PNG)$/;
+		
+	if(photo1==null && photo2==null && photo3==null){
+		alert("请上传图片");
 		return false;
+	}else{
+		return true;
 	}
 	
-	if(picReg.test(photo1)){
-		return true;
-	}else{
+	if(!picreg.test(photo1) && !picreg.test(photo2) && !picreg.test(photo3)){
 		alert("请上传正确的图片类型");
 		return false;
-	}
-	
-	if(picReg.test(photo2)){
-		return true;
 	}else{
-		alert("请上传正确的图片类型");
-		return false;
-	}
-	
-	if(picReg.test(photo3)){
 		return true;
-	}else{
-		alert("请上传正确的图片类型");
-		return false;
-	}
-	
-	if(numberReg.test(price)){
-		return true;
-	}else{
-		alter("价格请输入数字");
-		return false;
-	}
-	
-	if(reg.test(introduction)){
-		return true;
-	}else{
-		alter("描述请输入中文、英文或数字");
-		return false;
-	}
-	
-	if(reg.test(color)){
-		return true;
-	}else{
-		alter("颜色请输入中文、英文或数字");
-		return false;
-	}
-	
-	if(numberReg.test(colorContent)){
-		return true;
-	}else{
-		alter("商品数量请输入数字");
-		return false;
 	}
 });
+
 function show1(obj){
 	var fr = new FileReader();
 	var f = obj.files[0];
@@ -274,6 +264,7 @@ function show3(obj){
 }
 var f = function(){
 	$('.left>ul>li>h3').eq(1).css('background-color', 'red').siblings('.title').show().parent('li').siblings('li').children('.title').hide().siblings('h3').css('background-color', 'blue');;
+	
 }
 (f)();
 </script>
