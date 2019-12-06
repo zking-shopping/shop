@@ -346,7 +346,8 @@ $(function(){
 			    </tr>
 				<tr>
 					<td>用户名</td>
-					<td><span>${result.name}</span><input type="text" value="${result.name}" style="display:none" name="name"/></td>
+					<td><span>${result.name}</span><input type="text" placeholder="长度限制10位" value="${result.name}" style="display:none" name="name"/></td>
+					<td><p class="namePrompt"></p></td>
 				</tr>
 				<tr>
 					<td>手机号码</td>
@@ -457,6 +458,13 @@ $(function(){
 			}else if(name=='phoneNumber'){
 				//调用方法判断手机号是否符合规范
 				checkPhoneNumber(cont);
+			}else if(name=='name'){
+				//判断用户名长度<10
+				var nameInsertToP = "";
+				if(cont.length>10){
+					nameInsertToP = "用户名长度不能超过10位";					
+				}
+				$('.namePrompt').html(nameInsertToP);
 			};
 		};	
 	});
@@ -471,7 +479,9 @@ $(function(){
 			
 			checkPassword(cont);
 		}
-		if(isMyPersonInfoChange == 0 ){
+		var namePrompt = $('.namePrompt').html();
+		
+		if(isMyPersonInfoChange == 0 && namePrompt == "" ){
 			isMyPersonInfoChange = 1;
 			cont = $('.phoneNumberInput').val();
 			checkPhoneNumber(cont);
