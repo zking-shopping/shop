@@ -30,7 +30,7 @@
 						<a href="javascript:;">...</a>
 					</li>
 					<!--当页面大于x时消失-->
-					<li style="display:block;" id="page">
+					<li style="display:block;" id="page" class="three">
 						<a>3</a>
 					</li>
 					<li id="page">
@@ -50,7 +50,7 @@
 						<a href="javascript:;">...</a>
 					</li>
 				</ul>
-				   <input id="next" type="button"  style="width:50px;  height: 42px; background:gray;" value="下一页" onclick="goNext()"></input> <p style="height:42px; text-align:center; line-height:42px">&nbsp;共有20页  &nbsp;&nbsp;</p>   去<input type="text" id="find" style="height: 42px;"></input>页<input type="button" style="background:gray;" ondblclick="searchpage($(this))" value="确定"/>
+				   <input id="next" type="button"  style="width:50px;  height: 42px; background:gray;" value="下一页" onclick="goNext()"></input> <p style="height:42px; text-align:center; line-height:42px">&nbsp;共有 ${maxPage}页  &nbsp;&nbsp;</p>   去<input type="text" id="find" style="height: 42px;"></input>页<input type="button" style="background:gray;" onclick="searchpage()" value="确定"/>
 			</div>
 		</div>
 

@@ -46,11 +46,14 @@ public class SortAction extends ActionFather{
   		int pageNumber = Integer.parseInt(pageNum);
   		int pagesize =  Integer.parseInt(pageSize);
   		String sort = request.getParameter("sort");
+  		
   		int number = pageNumber;
   		int size = pagesize;
         Connection conn = DBHelper.getConnection();
         GoodsDao dao = new GoodsDaoImpl();
         PicDao picDao = new PicDaoImpl();
+        //一个种类的最大页数
+  		int maxPage = dao.selectSortCount(Integer.parseInt(sort), conn);
         int count = dao.selectSortCount(Integer.valueOf(sort), conn);
         int page = count%size == 0 ? count/size : count/size+1;
         if(number > page){
@@ -71,12 +74,13 @@ public class SortAction extends ActionFather{
 			b.setId(goods.getId());
 			list2.add(b);
 		}
-        
+        request.getSession().setAttribute("maxPage", maxPage);
         DBHelper.closeConnection(conn);
        
   		JSONArray jo = JSONArray.fromObject(list2);
   		try {
   			PrintWriter out = response.getWriter();
+  			
   			out.print(jo.toString());
   			out.flush();
   			out.close();

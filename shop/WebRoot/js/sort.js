@@ -1,18 +1,17 @@
-//var sort = $("sort");
 
-//var sort = $('[class=c]').attr("value");
 var sort = $('#id').attr("value");
+
+
+
 (function(){
 	$.ajax({
 		url:"sort.do",
 		data:{
          "page":1,
-         "pagesize":20,
+         "pagesize":2,
          "sort":sort
           },
     success: function(result){
-	//渲染
-//    	console.log(result);
     	var str = ``;
     	  $.each(result, function (i, value) {
 			 str += `
@@ -46,6 +45,8 @@ var sort = $('#id').attr("value");
 })();
 
 
+
+
   
 
 var page = 1;
@@ -60,42 +61,61 @@ $('li').click(function() {
 			url:"sort.do",
 			data:{
 	         "page":num,
-	         "pagesize":20,
+	         "pagesize":2,
 	         "sort":sort,
 			},
 		
          success:function(result){
 			//渲染
-        		for(var i = 0; i < 20; i++) {
-        			var str = `
-              <div class="col-md-3 goods">
-                <div class="thumbnail">
-                  <a href="introduction.do"><img src=${result.time} /></a>
-                  <caption>
-                    <p class="goods-name">${result.goodsName}</p>
-                    <p class="goods-desc">${result.introduction}</p>
-                    <p>价格:￥125.00;</p>
-                    <p><span class="glyphicon  glyphicon-star"></span>125</p>
-                    <button class="btn btn-info">加入购物车</button>
-                  </caption>
-                </div>
-              </div>
-              `;
+        	 var str= ``;
+        	 $.each(result, function (i, value) {
+    			 str += `
+    		      <div class="col-md-3 goods">
+    		        <div class="thumbnail">
+    		          <a value=${value.id} id='intro'>
+    		              <img src="${value.picture1}" />
+    		          <a/>
+    		          <caption>
+    		            <p class="goods-name">${value.goodsname}</p>
+    		            <p class="goods-desc">${value.introduction}</p>
+    		            <p>价格:${value.price}</p>
+    		            <button class="btn btn-info">加入购物车</button>
+    		          </caption>
+    		        </div>
+    		      </div>
+    		      `;	
+    			//每遍历一次就要去添加一次
+    			
+    		})
         			//每遍历一次就要去添加一次
         			$('#goodsList').append(str);
-        		};
-		   }
+        		}
+		   
 	})
 	page = num;
-	if(page>2 && page<=5) {
-		 $('[class="current"]').removeClass('current');
-		 $('ul').children().eq(page-1).addClass('current');
+	if(page>1 && page<=5) {
+		$('[class=three]').removeClass("three");
 		    $('ul').children('li').eq(2).addClass('ignore1');
  			$('ul').children('li').eq(7).addClass('add');
  			$('ul').children('li').eq(8).addClass('ignore2');
  			$('[class=ignore1]').hide();
 			$('[class=ignore2]').hide();
 			$('[class=add]').hide();
+			$('ul').children().eq(3).addClass("three");
+			$('ul').children().eq(3).show();
+			$('[class=three]').removeClass("three");
+			content.eq(0).text(4);
+			content.eq(1).text(5);
+			content.eq(2).text(6);
+			content.eq(3).text(7);
+			content.eq(4).text(8);
+			if(page==1&&page==2){
+				$('[class="current"]').removeClass('current');
+				$('ul').children('li').eq(page-1).addClass('current');
+			}else{
+			   $('[class="current"]').removeClass('current');
+  			   $(this).addClass('current');
+			}
 	} 
 		
 		if(page > 5) {
@@ -105,6 +125,8 @@ $('li').click(function() {
     			$('[class=ignore1]').removeClass("ignore1");
     			$('[class=ignore2]').removeClass("ignore2");
     			$('[class=add]').removeClass("add");
+    			$('ul').children().eq(3).addClass("three");
+    			$('[class=three]').removeClass("three");
     			var content = $('ul').children("#page");
     			content.eq(0).text((page-2).toString());
     			content.eq(1).text((page-1).toString());
@@ -114,6 +136,7 @@ $('li').click(function() {
                $('[class="current"]').removeClass('current');
     			$('ul').children("#page").eq(2).addClass('current');
     	    }
+		
 })
 
 
@@ -129,39 +152,58 @@ function goPrev() {
     	url:"sort.do",
     	data:{
     		"page":num,
-    		"pagesize":"20",
+    		"pagesize":2,
     			"sort":sort,
     	},
         success:function(result){
-        	for(var i = 0; i < 20; i++) {
-        		
-    			var str = `
-          <div class="col-md-3 goods">
-            <div class="thumbnail">
-              <a href="introduction.do"><img src=${result.time} /></a>
-              <caption>
-                <p class="goods-name">${result.goodsName}</p>
-                <p class="goods-desc">${result.introduction}</p>
-                <p>价格:￥125.00;</p>
-                <p><span class="glyphicon  glyphicon-star"></span>125</p>
-                <button class="btn btn-info">加入购物车</button>
-              </caption>
-            </div>
-          </div>
-          `;
+        	 var str= ``;
+        	 $.each(result, function (i, value) {
+    			 str += `
+    		      <div class="col-md-3 goods">
+    		        <div class="thumbnail">
+    		          <a value=${value.id} id='intro'>
+    		              <img src="${value.picture1}" />
+    		          <a/>
+    		          <caption>
+    		            <p class="goods-name">${value.goodsname}</p>
+    		            <p class="goods-desc">${value.introduction}</p>
+    		            <p>价格:${value.price}</p>
+    		            <button class="btn btn-info">加入购物车</button>
+    		          </caption>
+    		        </div>
+    		      </div>
+    		      `;	
     			//每遍历一次就要去添加一次
-    			$('#goodsList').append(str);
-    		};
+    			
+    		})
+        			//每遍历一次就要去添加一次
+        			$('#goodsList').append(str);
+        		
     		$('[class="current"]').removeClass('current');
     		$('ul').children().eq(page - 1).addClass('current');
     		//当页码数小于3时，回复最初的选择
-    		if(page < 6) {
+    		if(page <5) {
     			$('ul').children('li').eq(2).addClass('ignore1');
     			$('ul').children('li').eq(7).addClass('add');
     			$('ul').children('li').eq(8).addClass('ignore2');
     			$('[class="ignore1"]').hide();
     			$('[class="ignore2"]').hide();
     			$('[class="add"]').hide();
+    			
+    		
+    			
+//    			$('ul').children().eq(page).addClass('current');
+    		}
+    		if(page ==5) {
+    			$('ul').children('li').eq(2).addClass('ignore1');
+    			$('ul').children('li').eq(7).addClass('add');
+    			$('ul').children('li').eq(8).addClass('ignore2');
+    			$('[class="ignore1"]').hide();
+    			$('[class="ignore2"]').hide();
+    			$('[class="add"]').hide();
+    			$('[class="ignore1"]').removeClass('ignore1');
+    			$('[class="ignore2"]').removeClass('ignore2');
+    			$('[class="add"]').removeClass('add');
     			var content = $('ul').children("#page");
     			var a;
     			$('[class="current"]').removeClass('current');
@@ -173,6 +215,7 @@ function goPrev() {
     			$('ul').children("#page").eq(2).addClass('current');
     		}
     		if(page > 5) {
+    		
     			var content = $('ul').children("#page");
     			var a;
     			$('[class="current"]').removeClass('current');
@@ -200,39 +243,45 @@ function goNext(){
 		url:"sort.do",
 		data:{
 			"page":num,
-			"pagesize":"20",
+			"pagesize":2,
 				"sort":sort
 		},
 	    success:function(result){
-            for(var i = 0; i < 20; i++) {
-        		
-    			var str = `
-			          <div class="col-md-3 goods">
-			            <div class="thumbnail">
-			              <a href="introduction.do"><img src=${result.time} /></a>
-			              <caption>
-			                <p class="goods-name">${result.goodsName}</p>
-			                <p class="goods-desc">${result.introduction}</p>
-			                <p>价格:￥125.00;</p>
-			                <p><span class="glyphicon  glyphicon-star"></span>125</p>
-			                <button class="btn btn-info">加入购物车</button>
-			              </caption>
-			            </div>
-			          </div>
-			          `;
+	    	 var str= ``;
+        	 $.each(result, function (i, value) {
+    			 str += `
+    		      <div class="col-md-3 goods">
+    		        <div class="thumbnail">
+    		          <a value=${value.id} id='intro'>
+    		              <img src="${value.picture1}" />
+    		          <a/>
+    		          <caption>
+    		            <p class="goods-name">${value.goodsname}</p>
+    		            <p class="goods-desc">${value.introduction}</p>
+    		            <p>价格:${value.price}</p>
+    		            <button class="btn btn-info">加入购物车</button>
+    		          </caption>
+    		        </div>
+    		      </div>
+    		      `;	
     			//每遍历一次就要去添加一次
-	    			$('#goodsList').append(str);
-	    		};
+    			
+    		})
+        			//每遍历一次就要去添加一次
+        			$('#goodsList').append(str);
+        		
 	    		$('[class="current"]').removeClass('current');
     		if(page > 2&&page<6) {
+    			$('[class="three"]').removeClass('three');
 		    			$('ul').children().eq(page).addClass('current');
-		    		} else {
-		    			$('ul').children().eq(page - 1).addClass('current');
 		    		}
     		//当页码数大于4时，选择需要改变
 
 //    		$('[class="current"]').removeClass('current');
-    		if(page > 5) {
+    		if(page ==6) {
+    			$('ul').children('li').eq(2).addClass('ignore1');
+    			$('ul').children('li').eq(7).addClass('add');
+    			$('ul').children('li').eq(8).addClass('ignore2');
     			$('[class=ignore1]').show();
     			$('[class=ignore2]').show();
     			$('[class=add]').show();
@@ -251,185 +300,225 @@ function goNext(){
                $('[class="current"]').removeClass('current');
     			$('ul').children("#page").eq(2).addClass('current');
     	    }
+    		
+    		if(page >6) {
+    		
+    			var content = $('ul').children("#page");
+    			var a;
+
+    			content.each(function(){
+    				a = parseInt($(this).text());
+    				a = a + 1;
+    				$(this).text(a.toString());
+
+    			})
+               $('[class="current"]').removeClass('current');
+    			$('ul').children("#page").eq(2).addClass('current');
+    	    }
     	 
 	    }
 	})
+}
+
 //}
 ////
 //点击第一个省略号
 $('[class="ignore1"]').click(function() {
-
-       page--;
+	page--;
 	//记录哪一页
 	var num = page;
 	$('#goodsList .goods').remove();
 	//分类ID
-       $.ajax({
-    	   url:"sort.do",
-    	   data:{
-    		   "page":page,
-    		   "pagesize":20,
-    		   "sort":sort
-    	   },
-    	   success:function(result){
-    		   for(var i = 0; i < 20; i++) {
-           		
-       			var str = `
-   			          <div class="col-md-3 goods">
-   			            <div class="thumbnail">
-   			              <a href="introduction.do"><img src=${result.time} /></a>
-   			              <caption>
-   			                <p class="goods-name">${result.goodsName}</p>
-   			                <p class="goods-desc">${result.introduction}</p>
-   			                <p>价格:￥125.00;</p>
-   			                <p><span class="glyphicon  glyphicon-star"></span>125</p>
-   			                <button class="btn btn-info">加入购物车</button>
-   			              </caption>
-   			            </div>
-   			          </div>
-   			          `;
-       			//每遍历一次就要去添加一次
-   	    			$('#goodsList').append(str);
-   	    		};
-   	    		$('[class="current"]').removeClass('current');
-   	 		$('ul').children().eq(page - 1).addClass('current');
-   	 		//当页码数小于3时，回复最初的选择
-   	 		if(page < 6) {
-   	 			$('ul').children('li').eq(2).addClass('ignore1');
-   	 			$('ul').children('li').eq(7).addClass('add');
-   	 			$('ul').children('li').eq(8).addClass('ignore2');
-   	 			$('[class="ignore1"]').hide();
-   	 			$('[class="ignore2"]').hide();
-   	 			$('[class="add"]').hide();
-   	 			var content = $('ul').children("#page");
-   	 			var a;
-   	 			$('[class="current"]').removeClass('current');
-   	 			content.each(function() {
-   	 				a = parseInt($(this).text());
-   	 				a = a - 1;
-   	 				$(this).text(a.toString());
-
-   	 			})
-   	 			$('ul').children("#page").eq(2).addClass('current');
-   	 		}
-   	 		if(page > 5) {
-
-   	 			var content = $('ul').children("#page");
-   	 			var a;
-   	 			$('[class="current"]').removeClass('current');
-   	 			content.each(function() {
-   	 				a = parseInt($(this).text());
-   	 				a = a - 1;
-   	 				$(this).text(a.toString());
-
-   	 			})
-   	 			$('ul').children("#page").eq(2).addClass('current');
-   	 		}
-    	   }
-       })
+  $.ajax({
+  	url:"sort.do",
+  	data:{
+  		"page":num,
+  		"pagesize":2,
+  			"sort":sort,
+  	},
+      success:function(result){
+      	 var str= ``;
+      	 $.each(result, function (i, value) {
+  			 str += `
+  		      <div class="col-md-3 goods">
+  		        <div class="thumbnail">
+  		          <a value=${value.id} id='intro'>
+  		              <img src="${value.picture1}" />
+  		          <a/>
+  		          <caption>
+  		            <p class="goods-name">${value.goodsname}</p>
+  		            <p class="goods-desc">${value.introduction}</p>
+  		            <p>价格:${value.price}</p>
+  		            <button class="btn btn-info">加入购物车</button>
+  		          </caption>
+  		        </div>
+  		      </div>
+  		      `;	
+  			//每遍历一次就要去添加一次
+  			
+  		})
+      			//每遍历一次就要去添加一次
+      			$('#goodsList').append(str);
+      		
+  		$('[class="current"]').removeClass('current');
+  		$('ul').children().eq(page - 1).addClass('current');
+  		//当页码数小于3时，回复最初的选择
+  		if(page <5) {
+  			$('ul').children('li').eq(2).addClass('ignore1');
+  			$('ul').children('li').eq(7).addClass('add');
+  			$('ul').children('li').eq(8).addClass('ignore2');
+  			$('[class="ignore1"]').hide();
+  			$('[class="ignore2"]').hide();
+  			$('[class="add"]').hide();
+  			$('[class="current"]').removeClass('current');
+  			
+  			$('ul').children().eq(page).addClass('current');
+  		}
+  		if(page ==5) {
+  			$('ul').children('li').eq(2).addClass('ignore1');
+  			$('ul').children('li').eq(7).addClass('add');
+  			$('ul').children('li').eq(8).addClass('ignore2');
+  			$('[class="ignore1"]').hide();
+  			$('[class="ignore2"]').hide();
+  			$('[class="add"]').hide();
+  			$('[class="ignore1"]').removeClass('ignore1');
+  			$('[class="ignore2"]').removeClass('ignore2');
+  			$('[class="add"]').removeClass('add');
+  			var content = $('ul').children("#page");
+  			var a;
+  			$('[class="current"]').removeClass('current');
+  			content.each(function() {
+  				a = parseInt($(this).text());
+  				a = a - 1;
+  				$(this).text(a.toString());
+  			})
+  			$('ul').children("#page").eq(2).addClass('current');
+  		}
+  		if(page > 5) {
+  		
+  			var content = $('ul').children("#page");
+  			var a;
+  			$('[class="current"]').removeClass('current');
+  			content.each(function() {
+  				a = parseInt($(this).text());
+  				a = a - 1;
+  				$(this).text(a.toString());
+  			})
+  			$('ul').children("#page").eq(2).addClass('current');
+  		}
+      }
+  })
 })
-//
+
 //点击第二个省略号
 $('[class="ignore2"]').click(function() {
 	page++;
-
+	alert(page)
 	//记录哪一页
 	var num = page;
-
 	$('#goodsList .goods').remove();
-
 	//分类ID
-	 $.ajax({
-  	   url:"sort.do",
-  	   data:{
-  		   "page":page,
-  		   "pagesize":20,
-  		 "sort":sort
-  	   },
-  	   success:function(result){
-  		   for(var i = 0; i < 20; i++) {
-         		
-     			var str = `
- 			          <div class="col-md-3 goods">
- 			            <div class="thumbnail">
- 			              <a href="introduction.do"><img src=${result.time} /></a>
- 			              <caption>
- 			                <p class="goods-name">${result.goodsName}</p>
- 			                <p class="goods-desc">${result.introduction}</p>
- 			                <p>价格:￥125.00;</p>
- 			                <p><span class="glyphicon  glyphicon-star"></span>125</p>
- 			                <button class="btn btn-info">加入购物车</button>
- 			              </caption>
- 			            </div>
- 			          </div>
- 			          `;
-     			//每遍历一次就要去添加一次
- 	    			$('#goodsList').append(str);
- 	    		};
-		
-		$('[class="current"]').removeClass('current');
-		if(page > 2&&page<6) {
-			$('ul').children().eq(page).addClass('current');
-		} else {
-			$('ul').children().eq(page - 1).addClass('current');
-		}
-		//当页码数大于4时，选择需要改变
+	$.ajax({
+		url:"sort.do",
+		data:{
+			"page":num,
+			"pagesize":2,
+				"sort":sort
+		},
+	    success:function(result){
+	    	 var str= ``;
+      	 $.each(result, function (i, value) {
+  			 str += `
+  		      <div class="col-md-3 goods">
+  		        <div class="thumbnail">
+  		          <a value=${value.id} id='intro'>
+  		              <img src="${value.picture1}" />
+  		          <a/>
+  		          <caption>
+  		            <p class="goods-name">${value.goodsname}</p>
+  		            <p class="goods-desc">${value.introduction}</p>
+  		            <p>价格:${value.price}</p>
+  		            <button class="btn btn-info">加入购物车</button>
+  		          </caption>
+  		        </div>
+  		      </div>
+  		      `;	
+  			//每遍历一次就要去添加一次
+  			
+  		})
+      			//每遍历一次就要去添加一次
+      			$('#goodsList').append(str);
+      		
+	    		$('[class="current"]').removeClass('current');
+  		if(page > 2&&page<6) {
+  			$('[class="three"]').removeClass('three');
+		    			$('ul').children().eq(page).addClass('current');
+		    		} else {
+		    			$('ul').children().eq(page - 1).addClass('current');
+		    		}
+  		//当页码数大于4时，选择需要改变
 
-//		$('[class="current"]').removeClass('current');
-		if(page > 5) {
-			$('[class="ignore1"]').show();
-			$('[class="ignore2"]').show();
-			$('[class="add"]').show();
-			$('[class="ignore1"]').removeClass("ignore1");
-			$('[class="ignore2"]').removeClass("ignore2");
-			$('[class="add"]').removeClass("add");
-			var content = $('ul').children("#page");
-			var a;
+//  		$('[class="current"]').removeClass('current');
+  		if(page > 5) {
+  			$('[class=ignore1]').show();
+  			$('[class=ignore2]').show();
+  			$('[class=add]').show();
+  			$('[class=ignore1]').removeClass("ignore1");
+  			$('[class=ignore2]').removeClass("ignore2");
+  			$('[class=add]').removeClass("add");
+  			var content = $('ul').children("#page");
+  			var a;
 
-			content.each(function(){
-				a = parseInt($(this).text());
-				a = a + 1;
-				$(this).text(a.toString());
+  			content.each(function(){
+  				a = parseInt($(this).text());
+  				a = a + 1;
+  				$(this).text(a.toString());
 
-			})
-           $('[class="current"]').removeClass('current');
-			$('ul').children("#page").eq(2).addClass('current');
+  			})
+             $('[class="current"]').removeClass('current');
+  			$('ul').children("#page").eq(2).addClass('current');
+  	    }
+  	 
 	    }
-    }
-   })
 })
-//
-////
-function searchpage(obj){
+})
+
+
+function searchpage(){
 	     var num = parseInt($('#find').val());
 	     $('#goodsList .goods').remove();
 		//分类ID
 		$.ajax({
 			url:"sort.do",
 			data:{
-				"page":page,
-				"pagesize":20,
-				"sort":sort
+				page:num,
+				pagesize:2,
+				sort:sort,
 			},
 			success:function(result){
-				  for(var i = 0; i < 20; i++) {
-		     			var str = `
-		 			          <div class="col-md-3 goods">
-		 			            <div class="thumbnail">
-		 			              <a href="introduction.do"><img src=${result.time} /></a>
-		 			              <caption>
-		 			                <p class="goods-name">${result.goodsName}</p>
-		 			                <p class="goods-desc">${result.introduction}</p>
-		 			                <p>价格:￥125.00;</p>
-		 			                <p><span class="glyphicon  glyphicon-star"></span>125</p>
-		 			                <button class="btn btn-info">加入购物车</button>
-		 			              </caption>
-		 			            </div>
-		 			          </div>
-		 			          `;
-		     			//每遍历一次就要去添加一次
-		 	    			$('#goodsList').append(str);
-		 	    		};
+				 var str= ``;
+		    	 $.each(result, function (i, value) {
+					 str += `
+				      <div class="col-md-3 goods">
+				        <div class="thumbnail">
+				          <a value=${value.id} id='intro'>
+				              <img src="${value.picture1}" />
+				          <a/>
+				          <caption>
+				            <p class="goods-name">${value.goodsname}</p>
+				            <p class="goods-desc">${value.introduction}</p>
+				            <p>价格:${value.price}</p>
+				            <button class="btn btn-info">加入购物车</button>
+				          </caption>
+				        </div>
+				      </div>
+				      `;	
+					//每遍历一次就要去添加一次
+					
+				})
+		    			//每遍历一次就要去添加一次
+		    			$('#goodsList').append(str);
+		    		
 				page = num;
 				//选择的页面大于4，选择方式改变
 				if(num > 3) {
@@ -473,4 +562,4 @@ function searchpage(obj){
 			}
 		})
 	}
-}
+

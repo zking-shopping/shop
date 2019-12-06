@@ -34,17 +34,24 @@ public class BettergoodsAction extends ActionFather{
         Connection conn = DBHelper.getConnection();
         BaseDao bd = new GoodsDaoImpl();
         PicDao pd = new PicDaoImpl();
-        List<Object> list = new ArrayList<Object>();
-    	list =  bd.selectAll(new Goods(),conn);
-    	Random r = new Random();
-    	int n = r.nextInt(list.size()-8);
-    	list = list.subList(n, n+8);
-    	List<String> picture = new ArrayList<String>();
-    	List<Object> list1 = new ArrayList<Object>();
-		list1 =  bd.selectAll(new Pic(),conn);
-		list1 = list1.subList(n, n+8);
-		List<BetterGoods> list2 = new ArrayList<BetterGoods>();
-		for(int i = 0;i<8;i++){
+       List<Object> goodslist = new ArrayList<Object>();
+    		  goodslist =  bd.selectAll(new Goods(),conn);
+    		  List<Object> list = new ArrayList<Object>();
+    		  int num = 0;
+    		  
+    		  for(int i = 0;i<8;i++){
+    			  num= (int)(Math.random() * 10);
+    			  list.add(goodslist.get(num));
+    		  }
+            List<Object> list1 = new ArrayList<Object>();
+		  for(int i =0;i<list.size();i++){
+			  Pic p = new Pic();
+			  p.setId(((Goods)list.get(i)).getId());
+			  list1.add(pd.selectById(p, conn));
+			  p = null;
+		  }
+		  List<BetterGoods> list2 = new ArrayList<BetterGoods>();
+		  for(int i = 0;i<8;i++){
 			  BetterGoods bds = new BetterGoods();
 			  Goods goods = (Goods)list.get(i);
 			  Pic pic = (Pic)list1.get(i);
