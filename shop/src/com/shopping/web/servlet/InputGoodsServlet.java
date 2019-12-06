@@ -65,6 +65,7 @@ public class InputGoodsServlet extends HttpServlet {
 		DBHelper.closeConnection(conn);
 		request.setAttribute("typeList", typeList);
 		request.getRequestDispatcher("/admin/insertGoods.jsp").forward(request, response);
+		
 	}
 
 	/**

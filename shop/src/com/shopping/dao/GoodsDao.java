@@ -27,4 +27,6 @@ public interface GoodsDao {
 	
 	public List<Goods> selectByPages(int pageNumber, int pageSize, Connection conn);
 	public List<GoodsDto> selectGoodsDto(int pageNumber, int pageSize, Connection conn);
+	
+	public int selectMaxId(Connection conn);
 }

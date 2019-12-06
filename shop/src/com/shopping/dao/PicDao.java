@@ -11,4 +11,6 @@ public interface PicDao {
 	public Boolean updateExId(Object obj, Connection conn);
 	public Object select(String id, Object o, Connection conn);
 	public Boolean update(String id, Object o, Connection conn);
+	
+	public int selectMaxId(Connection conn);
 }
