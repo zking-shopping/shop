@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 			<!--用户 包含登录注册-->
-			<span class="glyphicon glyphicon-user text-center hidden-sm hidden-xs hidden-md " id="user" value="${sessionScope.member}">
+			<span class="glyphicon glyphicon-user text-center hidden-sm hidden-xs hidden-md " id="user" value="${sessionScope.member}" >
 			              <div class="dropdown" style="display:none;" >
 								<a href='register.jsp'>
 									<button class="btn btn-default navbar-btn navbar-right">注册</button>

@@ -118,6 +118,10 @@ function betterGoods(){
 		$('#user .dropdown1').hide();
 	})
 	
+	$('#user').click(function(){
+		location.href="persionInfo.jsp";
+	})
+	
 	//	购物车
 	$('.glyphicon-shopping-cart').mouseover(function() {
 		//如果没有登录

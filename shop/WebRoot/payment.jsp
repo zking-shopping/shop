@@ -36,15 +36,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<header>
 			<div class="header-nav">	
 				<div class="left-logo">
-			        <a href="index.html">OurLogo</a>
+			        <a href="index.jsp">OurLogo</a>
 			    </div>
 			    <!--跳转个人信息页面-->
 			    <div class="user-header">
-			    	<a href="personInfo.html"></a>
+			    	<a href="personInfo.jsp"></a>
 			    </div>
 			    <!--注册登录-->
 			    <div class="dropdown">
-					<a href="register.html">
+					<a href="register.jsp">
 						<button class="register-btn">注册</button>
 					</a>
 					<a href="login.html">

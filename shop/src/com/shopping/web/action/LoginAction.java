@@ -70,12 +70,12 @@ public class LoginAction extends ActionFather{
 				            g.setId(Integer.parseInt(goodid));		          
 				            Goods goodOne = (Goods)gd.selectById(g, conn);
 				            Cart c = new Cart();
-//				            c.setColorId();
-				            c.setId(Integer.parseInt(cookie.getName().substring(10)));
+				             int index = cookie.getName().length();
+				            String checkId = cookie.getName().substring(0, index-1);
+				            c.setId(Integer.parseInt(checkId.substring(10)));
 				            c.setGoodsColor(goodtype);
 				            c.setGoodsId(goodOne.getId());
 				            c.setGoodsName(goodOne.getGoodsName());
-				            
 				            c.setMemberId(memberId);
 				            c.setNumber(Integer.parseInt(goodcount));
 				            c.setPrice(goodOne.getPrice());
@@ -87,6 +87,7 @@ public class LoginAction extends ActionFather{
 							c.setUrl(pic.getPicture1());
 				            //把cart  insert到用户对应的购物车
 							cd.insert(c, conn);
+							checkId = null;
 				            g = null;
 				            cookie.setMaxAge(0);
 				            response.addCookie(cookie);

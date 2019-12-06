@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<header>
 			<div class="header-nav">	
 				<div class="left-logo">
-			        <a href="index.html">OurLogo</a>
+			        <a href="index.jsp">OurLogo</a>
 			    </div>
 			    <!--跳转个人信息页面-->
 			    <div class="user-header">
