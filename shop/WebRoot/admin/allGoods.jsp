@@ -124,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th>商品价格</th>
 							<th>商品描述</th>
 							<th>商品类别</th>
-							<th>颜色</th>
+							
 							<th>操作</th>
 						</tr>
 						<jsp:useBean id="goods" class="com.shopping.dto.GoodsDto" scope="page"></jsp:useBean>
@@ -135,7 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td>${goods.price }</td>
 							<td>${goods.introduction }</td>
 							<td>${goods.sort }</td>
-							<td>${goods.color }</td>
+							
 							<c:if test="${goods.del==true }">
 								<td><button type="button" onclick="add(${goods.id})" style="width:60px; height:30px; background:red; color:white;">上架</button></td>
 							</c:if>
