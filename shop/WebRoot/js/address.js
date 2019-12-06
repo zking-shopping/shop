@@ -380,8 +380,9 @@ $(function(){
 				url:"deleteAddress.do",
 				data:"deleteId="+id,
 				success:function(result){
-					if(result=="0"){
-						alert("地址删除失败！请刷新页面重试！");
+					if(result=="-1"){
+						alert("地址删除失败！请重试！");
+						window.location.reload();
 					}else if(result=="1"){
 						//清除界面中对应的地址
 						$(".address-list tbody tr").each(function(e){
@@ -421,4 +422,8 @@ $(function(){
 		};
 	});
 	
+});
+
+$(".clicked").click(function(){
+	window.location.reload();
 });
