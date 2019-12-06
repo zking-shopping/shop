@@ -11,13 +11,15 @@ public class DeleteCart1Action extends ActionFather{
 			HttpServletResponse response, Object o) {
 		  String forward = null;
 		    String id = request.getParameter("id");
-		    System.out.println(id);
 		     id = "goodsToCar"+id+"1";
-		    System.out.println(id+"删除的商品ID");
+		     
+		    
 		    Cookie[] cookies = request.getCookies();
 		    for (Cookie cookie : cookies) {
-				 if(cookie.getName().equals(id)){
+				 if(id.equals(cookie.getName())){
+					 System.out.println("需要删除的购物==========="+id);
 					 cookie.setMaxAge(0);
+					 response.addCookie(cookie);
 				 }
 			}
 		    forward = "success";

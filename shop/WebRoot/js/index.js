@@ -190,7 +190,7 @@ function betterGoods(){
 												"<p style='display: block;'>价格:￥"+ value.price+"</p>"+
 												"<p style='display: block; float:left;'>×"+value.number+
 											"</div>"+
-											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;' value="+value.id+"></span>"+
+											"<span class='glyphicon glyphicon-remove' id='remove' style='float: right;' value="+value.goodsId+"></span>"+
 										"</li>"
 							       ;
 							 priceAll+=Number(value.price)*Number(value.number);
@@ -208,13 +208,12 @@ function betterGoods(){
 						 $('#shop-down').hide();
 						 $('.dropdown2').show();
 						 $('#nogoods').show();
-//						 $('#goshopping').show();
 					}
 					  $(document).on('click','#remove',function(e){
-						  var id = e.target.getAttribute("value");
+						  var goodsId = e.target.getAttribute("value");
 						  e.target.parentNode.parentNode.removeChild(e.target.parentNode);
 						  location.method = "post";
-						  location.href = "deleteCart2.do?id="+id;
+						  location.href = "deleteCart2.do?goodsId="+goodsId;
 					  })
 					
 				}

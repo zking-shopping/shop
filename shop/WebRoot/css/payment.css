@@ -98,7 +98,11 @@ section>h1 #buy-tips{
 }
 
 .pay-info{
-	background: white;
+	padding: 40px 40px 50px;
+    background: #FFFFFF;
+    font-size: 16px;
+    line-height: 26px;
+    color: #666;
 }
 .order-info{
 	position: relative;
@@ -106,13 +110,78 @@ section>h1 #buy-tips{
     padding-bottom: 25px;
     border-bottom: 1px solid #e9e9e9;
     font-size: 14px;
-    color: #666;
+    color: #666666;
 }
 .order-info p{
 	height: 30px;
+	line-height: 30px;
 	font-size: 14px;
-	color: #666666;
 }
 .order-info p span{
 	margin-left: 20px;
+}
+
+/*支付方式*/
+.payment-method{
+	padding-top: 25px;
+    font-size: 16px;
+    color: #333333;
+    line-height: 16px;
+}
+.pay{
+	width: 840px;
+    margin: 0px auto;
+    position: relative;
+}
+.pay-method{
+	margin: 30px 0px 20px;
+}
+h2.select-method{
+	margin-bottom: 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+.total-paynumber,h2.select-method,.total-paynumber>p{
+	height: 20px;
+	line-height: 20px;
+}
+.total-paynumber>p{
+	display: inline-block;
+}
+p.total-left{
+	color: #999999;
+}
+p.total-right{
+	float: right;
+	font-size: 18px;
+	font-weight: normal;
+	
+}
+p.total-right span#total{
+	color: #d4282d;
+	font-weight: normal;
+}
+
+/*去支付*/
+.pay-now{
+	
+}
+
+/*立即付款按钮样式*/
+#immediate-payment{
+	float: right;
+	width: 168px;
+    height: 49px;
+    line-height: 47px;
+    font-size: 18px;
+    color: #FFFFFF;
+    border: 1px solid #1989E9;
+    border-radius: 9px;
+    background-color: #1989E9;
+    cursor: pointer;
+    outline: none;
+}
+#immediate-payment:hover{
+    border-color: #1995F9;
+    background-color: #1995F9;
 }

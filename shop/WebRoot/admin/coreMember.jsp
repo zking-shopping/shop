@@ -233,8 +233,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="bottom">
 						<form action="admin/coreMember.do" method="post">
 							<table>
-								<tr><td>核心用户：平均在线><input type="text" name="coreTime" value="${coreTime }" onblur="verification1(this)">平均消费><input type="text" name="coreCost" value="${coreCost }"></td></tr>
-								<tr><td>边缘用户：平均在线<<input type="text" name="edgeTime" value="${edgeTime }">平均消费<<input type="text" name="edgeCost" value="${edgeCost }"><input type="hidden" name="month" value="${month }"></td></tr>
+								<tr><td>核心用户：平均在线><input type="text" name="coreTime" id="coreTime" value="${coreTime }" onblur="verificationOne()">平均消费><input type="text" name="coreCost" id="coreCost" value="${coreCost }" onblur="verificationTwo()"></td></tr>
+								<tr><td>边缘用户：平均在线<<input type="text" name="edgeTime" id="edgeTime" value="${edgeTime }" onblur="verificationThree()">平均消费<<input type="text" name="edgeCost" id="edgeCost" value="${edgeCost }" onblur="verificationFour()"><input type="hidden" name="month" value="${month }"></td></tr>
 								<tr><td style="text-align: center;"><input id="button" type="submit" value="查询 "></td></tr>
 							</table>
 						</form>
@@ -247,32 +247,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="/shop/admin/js/jquery-3.4.1.min.js"></script>
 <script src="/shop/admin/js/base.js"></script>
 <script>
-	function verification1(obj){
+	function verificationOne(){
 		var reg = /^[0-9]*$/;
-		var value = obj.val();
+		var value = $('#coreTime').val();
 		if(!reg.test(value)){
-			obj.val(1800);
+			$('#coreTime').val(1800);
 		}
 	}
-	function verification2(obj){
+	function verificationTwo(){
 		var reg = /^[0-9]*$/;
-		var value = obj.val();
+		var value = $('#coreCost').val();
 		if(!reg.test(value)){
-			obj.val(1000);
+			$('#coreCost').val(1000);
 		}
 	}
-	function verification3(obj){
+	function verificationThree(){
 		var reg = /^[0-9]*$/;
-		var value = obj.val();
+		var value = $('#edgeTime').val();
 		if(!reg.test(value)){
-			obj.val(600);
+			$('#edgeTime').val(600);
 		}
 	}
-	function verification4(obj){
+	function verificationFour(){
 		var reg = /^[0-9]*$/;
-		var value = obj.val();
+		var value = $('#edgeCost').val();
 		if(!reg.test(value)){
-			obj.val(200);
+			$('#edgeCost').val(200);
 		}
 	}
 	function prev(month){

@@ -29,9 +29,9 @@ public class SavaAddressAction extends ActionFather{
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
   		
 		//获得会员id
-//		Member m = (Member)request.getSession().getAttribute("member");
-//		String memberId = m.getId();
-		String memberId = "125a2177-a2be-4ee4-8223-8ecfe0eefef4";
+		Member m = (Member)request.getSession().getAttribute("member");
+		String memberId = m.getId();
+//		String memberId = "125a2177-a2be-4ee4-8223-8ecfe0eefef4";
 		Address add = new Address();
 		add.setMemberId(memberId);
 		add.setCousignee(request.getParameter("cousignee"));
@@ -43,18 +43,19 @@ public class SavaAddressAction extends ActionFather{
 		String defaults = request.getParameter("defaultAddress");
 		add.setDefaultAddress(defaults);
 
+		AddressDao ad = new AddressDaoImpl();
+		List<Address> list = new ArrayList<Address>();
 		Connection conn = DBHelper.getConnection();
+  		PrintWriter out = null;
 		try {
 			conn.setAutoCommit(false);
-			AddressDao ad = new AddressDaoImpl();
 			//查询地址列表
-			List<Address> list = new ArrayList<Address>();
 			list = ad.selectByMemberId(memberId, conn);
 			//判断有没有设置默认
 			if(defaults.equals("true")){
 				Address add1 = new Address();
 				String savaId = request.getParameter("saveId");
-				if(savaId!=null && savaId.equals("") && savaId.equals("undefined")){
+				if(savaId!=null && savaId.equals("null") && savaId.equals("undefined")){
 					add1.setId(Integer.parseInt(savaId));
 					add1.setDefaultAddress("false");
 					ad.update("updateDefaultAddress", add1, conn);
@@ -77,9 +78,7 @@ public class SavaAddressAction extends ActionFather{
 				add5.setPhoneNumber(number);
 			}
 			conn.commit();
-	  		PrintWriter out = response.getWriter();
-	  		JSONArray jarr = JSONArray.fromObject(list);
-	  		out.print(jarr.toString());
+			out = response.getWriter();
 		} catch (SQLException e) {
 			try {
 				if(conn!=null){
@@ -94,6 +93,8 @@ public class SavaAddressAction extends ActionFather{
 		} finally {
 			DBHelper.closeConnection(conn);
 		}
+  		JSONArray jarr = JSONArray.fromObject(list);
+  		out.print(jarr.toString());
 		
 		return null;
 	}
