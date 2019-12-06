@@ -89,6 +89,11 @@ public class AddGoodsServlet extends HttpServlet {
 		String color = su.getRequest().getParameter("color");
 		String colorContent = su.getRequest().getParameter("colorContent");
 		
+		if(goodsName.length()==0 || price.length()==0 || introduction.length()==0 || type.length()==0 || color.length()==0 || colorContent.length()==0){
+			response.sendRedirect("/shop/admin/index.jsp");
+			return;
+		}
+		
 		Connection conn = DBHelper.getConnection();
 		Goods goods = new Goods();
 		Color c = new Color();
@@ -151,7 +156,7 @@ public class AddGoodsServlet extends HttpServlet {
 		}finally{
 			DBHelper.closeConnection(conn);
 		}
-		
+		request.getRequestDispatcher("/admin/allGoods.do").forward(request, response);
 	}
 
 	/**
