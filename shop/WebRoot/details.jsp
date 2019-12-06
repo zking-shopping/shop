@@ -248,14 +248,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="buy_module">
 					<p>您选择了以下产品</p>
-					<p class="setMeal">套餐一</p>
+					<p class="setMeal">${bd.color}</p>
 					<p class="price">￥ ${bd.price}</p>
 					<a class="buy_now"  value="${bd.id }">立即购买</a>
 					<a class="buy_intocar"  value="${bd.id }">加入购物车</a>
 				</div>
 				</div>
 			</div>
-			<div class="pic">
+			<div class="pic" id="bigpic">
 				<img src="${bd.picture3 }" class="animated zoomIn wow" data-wow-offset="200" />
 			</div>
 		</div>
