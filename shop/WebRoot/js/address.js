@@ -11,6 +11,22 @@ function cleanAllInput(){
 	$("#save").attr("data-id","");
 };
 
+//地址框变换事件
+function changeState(obj){
+	$(obj).css({
+		"margin" : "9px",
+		"border" : "2px solid #1989E9",
+		"background" : "url(./img/default.png) no-repeat right bottom",
+		"background-origin" : "border-box"
+	}).siblings().css({
+		"margin" : "10px",
+		"border" : "1px solid #d6d6d6",
+		"background" : "none"
+	});
+	$(obj).attr("data-selected","true");
+	$(obj).siblings().attr("data-selected","false");
+};
+
 //设置确认你删除界面的大小
 function autoSize(){
 	//获得窗口的大小
@@ -188,6 +204,13 @@ function updateAddressList(result){
 			};
 		};
 	})
+	
+	//设置显示状况
+	if($("#exit-add").length!=0){
+		$(".select-address").css("display","block");
+		$(".main-info").css("display","none");
+	};
+	
 };
 
 //保存地址
@@ -195,9 +218,9 @@ function saveAddress(){
 	//获得输入的值
 	var cousignee = $("#consignee").val();
 	var phoneNumbers = $("#phone-number").val();
-	var provinces = $("#provinces").val();
-	var city = $("#city").val();
-	var area = $("#area").val();
+	var provinces = $("#provinces option:selected").attr("value");
+	var city = $("#city option:selected").attr("value");
+	var area = $("#area option:selected").attr("value");
 	var detailAddress = $("#detail-address").val();
 	var defaultAddress = $("#default").prop("checked");
 	
@@ -228,20 +251,23 @@ function saveAddress(){
 			tip = "手机号码格式不正确！";
 			object = "#phone-number";
 		}else{
-			if(provinces==""){
+			if(provinces=="省"){
 				tip = "请选择省份！";
 				object = "#provinces";
 			}else{
-				if(city==""){
+				if(city=="市"){
 					tip = "请选择城市！";
 					object = "#city";
 				}else{
-					if(area==""){
+					if(area=="区&县"){
 						tip = "请选择地区！";
 						object = "#area";
 					}else{
 						if(detailAddress==""){
 							tip = "请填写详细地址！";
+							object = "#detail-address";
+						}else if(detailAddress.length<5){
+							tip = "详细地址至少5位！";
 							object = "#detail-address";
 						}else{
 							canSave = true;
@@ -289,10 +315,6 @@ function saveAddress(){
 					updateAddressList(result);
 					//清空输入的数据
 					cleanAllInput();
-					if($("#exit-add").length!=0){
-						$(".select-address").css("display","block");
-						$(".main-info").css("display","none");
-					};
 				};
 			}
 		});
@@ -355,6 +377,7 @@ function modifyAddress(obj){
 };
 
 $(function(){
+	cleanAllInput();
 	autoSize();
 	$(window).resize(autoSize);
 	

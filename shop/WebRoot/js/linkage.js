@@ -418,7 +418,7 @@ var provinceList = [
 window.onload = function allProvince(){
 
 	for (var i in provinceList){
-		$("#provinces").append($("<option>"+provinceList[i].name+"</option>"));
+		$("#provinces").append($("<option value='"+provinceList[i].name+"'>"+provinceList[i].name+"</option>"));
 	};
 
 
@@ -426,9 +426,10 @@ window.onload = function allProvince(){
 
 function changeCity(){
 	// 将city 列表中的值清空,放置再选择省份后,出现城市乱增加的情况
-	$("#city").empty().append($("<option>市</option>"));
+	$("#city").empty().append($("<option value='市'>市</option>"));
+	$("#city")
 	// 将area 列表中的值清空,放置再选择市份后,出现区或县乱增加的情况
-	$("#area").empty().append($("<option>区&县</option>"));
+	$("#area").empty().append($("<option value='区&县'>区&县</option>"));
 	
 	// 遍历
 	for (var i in provinceList){
@@ -436,7 +437,8 @@ function changeCity(){
 		if (provinceList[i].name == $("#provinces").val()){
 			for (var j in provinceList[i].cityList){
 				// 将 Option标签添加到Select中
-				$("#city").append($("<option>"+provinceList[i].cityList[j].name+"</option>"));								
+				$("#city").append($("<option value='"+provinceList[i].cityList[j].name+"'>"
+						+provinceList[i].cityList[j].name+"</option>"));								
 			};
 		};
 	};	
@@ -444,7 +446,7 @@ function changeCity(){
 
 function changeArea(){
 	// 将area 列表中的值清空,放置再选择市份后,出现区或县乱增加的情况
-	$("#area").empty().append($("<option>区&县</option>"));
+	$("#area").empty().append($("<option value='区&县'>区&县</option>"));
 	// 遍历
 	for (var i in provinceList){
 		//获得对应省份或者市的列表
@@ -452,7 +454,8 @@ function changeArea(){
 			for (var j in provinceList[i].cityList){
 				if(provinceList[i].cityList[j].name == $("#city").val()){
 					for(var k in provinceList[i].cityList[j].areaList){
-						$("#area").append($("<option>"+provinceList[i].cityList[j].areaList[k]+"</option>"));
+						$("#area").append($("<option value='"+provinceList[i].cityList[j].areaList[k]+"'>"
+								+provinceList[i].cityList[j].areaList[k]+"</option>"));
 					};
 				};
 			};

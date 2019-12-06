@@ -25,9 +25,9 @@ public class ShowAddressAction extends ActionFather{
   		response.setCharacterEncoding("UTF-8");
   		response.setHeader("Content-Type", "application/json;charset=utf-8");
 		//获得session存储的member对象
-//		Member m = (Member)request.getSession().getAttribute("member");
-//		String id = m.getId();
-		String id = "125a2177-a2be-4ee4-8223-8ecfe0eefef4";
+		Member m = (Member)request.getSession().getAttribute("member");
+		String id = m.getId();
+//		String id = "125a2177-a2be-4ee4-8223-8ecfe0eefef4";
 
 		Connection conn = DBHelper.getConnection();
 		AddressDao ad = new AddressDaoImpl();

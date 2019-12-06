@@ -5,22 +5,6 @@ function addAddress(){
 	cleanAllInput();
 };
 
-//地址框变换事件
-function changeState(obj){
-	$(obj).css({
-		"margin" : "9px",
-		"border" : "2px solid #1989E9",
-		"background" : "url(./img/default.png) no-repeat right bottom",
-		"background-origin" : "border-box"
-	}).siblings().css({
-		"margin" : "10px",
-		"border" : "1px solid #d6d6d6",
-		"background" : "none"
-	});
-	$(obj).attr("data-selected","true");
-	$(obj).siblings().attr("data-selected","false");
-};
-
 $(function(){
 	//加载地址列表
 	$.ajax({
@@ -28,21 +12,21 @@ $(function(){
 		url:"showAddress.do",
 		data:"",
 		success:function(result){
-			console.log(result);
 			if(result.length!=0){
 				//移除原本已有的地址数据
 				$('.address-list tbody tr').each(function(){
 					$(this).remove();
 				});
-				
 				//更新表格
 				updateAddressList(result);
+				var url = window.location.href;
+				var pageName = url.substring(url.lastIndexOf("/")+1,url.IndexOf("."));
+				console.log(url);
 			}else{
 				$(".select-address").css("display","none");
 				$(".main-info").css("display","block");
 				$("#exit-add").css("display","none");
 			};
-			cleanAllInput();
 		}
 	});
 	
