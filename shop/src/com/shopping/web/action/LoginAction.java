@@ -89,6 +89,7 @@ public class LoginAction extends ActionFather{
 							cd.insert(c, conn);
 				            g = null;
 				            cookie.setMaxAge(0);
+				            response.addCookie(cookie);
 				        }
 
 				     }
