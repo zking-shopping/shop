@@ -35,7 +35,7 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			// 拿到对应的pojo对象
 			Member newInfo = (Member) arg0.getValue();   //新账户对应的member对象
 			// 拿到新的对象的名字
-			if (map.get(infoName) != null) { // 如果新对象的账号对应的session值不为空，说明已经有人登录过了
+			if (map.get(newInfo.getUsername()) != null) { // 如果新对象的账号对应的session值不为空，说明已经有人登录过了
 				HttpSession session = map.get(newInfo.getUsername());
 				session.setAttribute("msg", "您的帐号已经在其他机器上登录，您被迫下线。");
 				session.removeAttribute("member");
@@ -66,6 +66,9 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 		application.setAttribute("loginMap", map);
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpSessionAttributeListener#attributeReplaced(javax.servlet.http.HttpSessionBindingEvent)
+	 */
 	@Override
 	public void attributeReplaced(HttpSessionBindingEvent arg0) {
          
@@ -82,13 +85,6 @@ public class SingleLogListener implements HttpSessionAttributeListener {
 			if(map.get(newMember.getUsername()) != null){
 				HttpSession session = map.get(newMember.getUsername());
 				session.setAttribute("msg", "您的帐号已经在其他机器上登录，您被迫下线。");
-				Member a = (Member) session.getAttribute("member");
-				if(a.getId() != null){
-					long startTime = (Long) session.getAttribute("startTime");
-					if(startTime > 0){
-						statictis(a, startTime);
-					}
-				}
 				session.removeAttribute("member");
 			}
 			map.put(newMember.getUsername(), arg0.getSession());

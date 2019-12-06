@@ -233,7 +233,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="bottom">
 						<form action="admin/coreMember.do" method="post">
 							<table>
-								<tr><td>核心用户：平均在线><input type="text" name="coreTime" value="${coreTime }">平均消费><input type="text" name="coreCost" value="${coreCost }"></td></tr>
+								<tr><td>核心用户：平均在线><input type="text" name="coreTime" value="${coreTime }" onblur="verification1(this)">平均消费><input type="text" name="coreCost" value="${coreCost }"></td></tr>
 								<tr><td>边缘用户：平均在线<<input type="text" name="edgeTime" value="${edgeTime }">平均消费<<input type="text" name="edgeCost" value="${edgeCost }"><input type="hidden" name="month" value="${month }"></td></tr>
 								<tr><td style="text-align: center;"><input id="button" type="submit" value="查询 "></td></tr>
 							</table>
@@ -247,6 +247,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="/shop/admin/js/jquery-3.4.1.min.js"></script>
 <script src="/shop/admin/js/base.js"></script>
 <script>
+	function verification1(obj){
+		var reg = /^[0-9]*$/;
+		var value = obj.val();
+		if(!reg.test(value)){
+			obj.val(1800);
+		}
+	}
+	function verification2(obj){
+		var reg = /^[0-9]*$/;
+		var value = obj.val();
+		if(!reg.test(value)){
+			obj.val(1000);
+		}
+	}
+	function verification3(obj){
+		var reg = /^[0-9]*$/;
+		var value = obj.val();
+		if(!reg.test(value)){
+			obj.val(600);
+		}
+	}
+	function verification4(obj){
+		var reg = /^[0-9]*$/;
+		var value = obj.val();
+		if(!reg.test(value)){
+			obj.val(200);
+		}
+	}
 	function prev(month){
 		month = month - 1;
 		location.href = "admin/coreMember.do?month="+month;
