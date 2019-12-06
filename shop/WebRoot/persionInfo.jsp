@@ -381,4 +381,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/address.js" ></script>
 <script type="text/javascript" src="js/personInfoJs.js"></script>
 <script type="text/javascript" src="js/linkage.js"></script>
-<script type="text/javascript" src="js/submitOrder.js"></script>
+
