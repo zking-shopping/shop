@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'Settlement.jsp' starting page</title>
+    <title>选择付款方式</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -26,8 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
-  <body>
-  		<div style="display: none;">
+  <div style="display: none;">
 			<input type="text" id="addressId" value="${addressId}" />
 			<input type="text" id="total" value="${total}" />
 			<input type="text" id="receiveInfo" value="${receiveInfo}" />
@@ -54,7 +53,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</header>
-		
 		<section class="content">
 			<h1>
 				支付订单
@@ -64,14 +62,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="order-info">
 					<p>
 						订单编号
-						<span id="order-id"></span>
+						<span id="order-id">519956215178989568</span>
 					</p>
 					<p>
 						收货信息
-						<span id="receive-info"></span>
+						<span id="receive-info">黑龙江省佳木斯市其他区15115403633 151****3633</span>
 					</p>
 				</div>
-				<button id="immediate-payment">立即付款</button>
+				<div class="payment-method">
+					<p>支付方式</p>
+					<div class="pay">
+						<div class="pay-method">
+							<h2 class="select-method">选择支付方式</h2>
+							<div class="total-paynumber">
+								<p class="total-left">交易号：20191205192022YX3CDD1644459347</p>
+								<p class="total-right">
+									实付：
+									<span id="total">¥${total}</span>
+								</p>
+							</div>
+						</div>
+						<div class="pay-now">
+							<button id="immediate-payment">立即付款</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 	</body>
