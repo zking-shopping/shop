@@ -1,5 +1,6 @@
 package com.shopping.web.action;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -29,6 +30,14 @@ public class AddToShoppingCarAction extends ActionFather{
 		Member m = (Member)request.getSession().getAttribute("member");
 		int id = Integer.parseInt(request.getParameter("id"));
 		String type_selected = request.getParameter("type_selected");
+		try {
+			type_selected = new String(type_selected.getBytes("ISO-8859-1"),"utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.setContentType("text/html;charset=utf-8");//设置页面的字符编码
+		
 		GoodsDao gd = new GoodsDaoImpl();
 		Goods g = new Goods();
 		g.setId(id);
@@ -77,7 +86,7 @@ public class AddToShoppingCarAction extends ActionFather{
 			
 			Goods good = (Goods)gd.selectById(g, conn);
 //			c.setColorId(colorId);
-			c.setGoodsColor(good.getColor());
+			c.setGoodsColor(type_selected);
 			c.setGoodsId(good.getId());
 			c.setGoodsName(good.getGoodsName());
 			c.setMemberId(m.getId());
