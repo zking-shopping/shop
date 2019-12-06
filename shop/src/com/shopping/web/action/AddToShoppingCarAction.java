@@ -53,13 +53,13 @@ public class AddToShoppingCarAction extends ActionFather{
 		            	int count = Integer.parseInt(goodInfo.split("=-=")[1])+1;
 		            	Cookie c = new Cookie("goodsToCar"+id+"1",id+"=-="+String.valueOf(count)+"=-=1");
 		            	response.addCookie(c);
-		            	return null;
+		            	return "true";
 //		            }		            
 		        }
 		     } 
 			Cookie c = new Cookie("goodsToCar"+id+"1",id+"=-="+1+"=-=1");
 			response.addCookie(c);
-			return null;
+			return "true";
 		}
 		
 		
@@ -75,11 +75,12 @@ public class AddToShoppingCarAction extends ActionFather{
 			}			
 		}
 		Cart c = null;
+		Boolean b = false;
 		if(flag){
 			//表示购物车有此产品，数量加一
 			c = new Cart();
 			c.setId(cartId);
-			cd.update("addNumber", c, conn);			
+			b = cd.update("addNumber", c, conn);			
 		}else{
 			//表示购物车没有此产品，加入购物车
 			c = new Cart();
@@ -98,10 +99,14 @@ public class AddToShoppingCarAction extends ActionFather{
 			p.setId(picId);
 			Pic pic = (Pic)pd.selectById(p, conn);
 			c.setUrl(pic.getPicture1());
-			cd.insert(c, conn);
+			b = cd.insert(c, conn);
 		}
 		
-		return null;
+		if(b){			
+			return "true";
+		}else{
+			return "success";
+		}
 	}
 
 }

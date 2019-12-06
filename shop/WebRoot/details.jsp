@@ -301,6 +301,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a>English</a>
 				</div>
 		</div>
+		
+		<!-- 
+		<div class="aaa">
+		<div class="modal fade" id="addToShoppingCarPrompt">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<h3>
+							加入购物车成功！
+						</h3>
+						
+					</div>
+				</div>
+			</div>
+			</div> -->
+		</div>		
 	</body>
 	</html>
 <script src="js/jquery-3.4.1.min.js"></script>
