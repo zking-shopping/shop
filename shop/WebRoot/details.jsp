@@ -307,6 +307,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/details.js"></script>
+
 <script src="js/index.js"></script>
 <script>
 	new WOW().init();

@@ -127,7 +127,7 @@
     
      <action name="introduction" class="com.shopping.web.action.IntroductionAction">
         <form>com.shopping.web.form.IntroductionForm</form>
-        <result name="success" direct="false">introduction.jsp</result>
+        <result name="success" direct="true">introduction.jsp</result>
         <result name="error">introduction.jsp</result>
         <pagejump>true</pagejump>
     </action>
@@ -148,7 +148,7 @@
     
      <action name="details" class="com.shopping.web.action.DetailsAction">
         <form>com.shopping.web.form.DetailsForm</form>
-        <result name="success" direct="false">details.jsp</result>
+        <result name="success" direct="true">details.jsp</result>
         <pagejump>true</pagejump>
     </action>
     
