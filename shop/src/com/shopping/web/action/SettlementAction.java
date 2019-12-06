@@ -89,6 +89,18 @@ public class SettlementAction extends ActionFather{
 						dos.setGoodsColor(idCart.getGoodsColor());
 						//插入详细订单表
 						dod.insert(dos, conn);
+			  			
+			  			//更新购物车中对应商品的数量
+						int surplus = idCart.getNumber()-number;
+						if(surplus!=0){
+							//购物车中对应的商品数量不为0
+							cart.setNumber(surplus);
+				  			cd.update("changeNumber", cart, conn);
+						}else{
+							//删除购物车对应的商品
+							cd.deleteById(cart, conn);
+						}
+						
 					}
 		  			conn.commit();
 	  			}

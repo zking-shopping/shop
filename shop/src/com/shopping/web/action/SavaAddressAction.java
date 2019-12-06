@@ -53,9 +53,12 @@ public class SavaAddressAction extends ActionFather{
 			//判断有没有设置默认
 			if(defaults.equals("true")){
 				Address add1 = new Address();
-				add1.setId(Integer.parseInt(request.getParameter("saveId")));
-				add1.setDefaultAddress("false");
-				ad.update("updateDefaultAddress", add1, conn);
+				String savaId = request.getParameter("saveId");
+				if(savaId!=null && savaId.equals("") && savaId.equals("undefined")){
+					add1.setId(Integer.parseInt(savaId));
+					add1.setDefaultAddress("false");
+					ad.update("updateDefaultAddress", add1, conn);
+				}
 			}
 			//自动默认
 			if(list.size()==0){
