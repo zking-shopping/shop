@@ -232,6 +232,10 @@ function betterGoods(){
 		$('#shopdown').hide();
 	})
 	
+	$('#carsign').click(function(){
+		location.href="shoppingCar.jsp"
+	})
+	
 
 	
 	//点击去购物车
