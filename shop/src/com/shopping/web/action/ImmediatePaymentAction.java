@@ -52,7 +52,7 @@ public class ImmediatePaymentAction extends ActionFather{
   			Order order2 = (Order) od.selectById(order, conn);
   			DetailOrderDao dod = new DetailOrderDaoImpl();
   			DetailOrder detail = new DetailOrder();
-  			List<Object> list = dod.selectAll(dod, conn);
+  			List<Object> list = dod.selectAll(detail, conn);
   			GoodsDao gd = new GoodsDaoImpl();
   			MemberDao md = new MemberDaoImpl();
   			GoodsStatisticsDao gs = new GoodsStatisticsImpl();
@@ -102,12 +102,14 @@ public class ImmediatePaymentAction extends ActionFather{
   				Boolean res6 = msd.insert(mstatistics, conn);
   				System.out.println(res6);
   			}
+			conn.commit();
   		}catch(Exception e){
   			try {
 				conn.rollback();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+			e.printStackTrace();
   		}finally{
   			DBHelper.closeConnection(conn);
   		}

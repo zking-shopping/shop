@@ -66,12 +66,10 @@ h2,h3,label{
 
 .title>p{
 	display: inline-block;
-	width: 100px;
-	height: 25px;
-	padding: 30px 0px 0px;
-	margin-left: 40px;
-	font-size: 25px;
-	color: #333333;
+    line-height: 25px;
+    font-size: 25px;
+    color: #333333;
+    padding: 30px 0px 20px;
 }
 /*收货信息*/
 
@@ -94,20 +92,17 @@ h2,h3,label{
 	margin-top: 21px;
 	
 }
-.main-address{
-	height: 140px;
-	font-size: 0px;
-}
 /*不支持港澳台地区配送*/
 p.no-delivery,
 p.no-deliverys{
 	color: #DD0000;
 	font-size: 16px;
+	margin-top: 10px;
 	height: 30px;
 	line-height: 30px;
 }
 p.no-delivery{
-	margin-left: 96px;
+	margin-left: 110px;
 }
 
 /*添加地址信息*/
@@ -124,8 +119,7 @@ p.no-delivery{
 	display: inline-block;
 	width: 92px;
 	height: 20px;
-	padding-left: 18px;
-	/*text-align: center;*/
+	margin: 0px 0px 0px 18px;
 	color: #333333;
 	font-size: 14px;
 }
@@ -156,6 +150,7 @@ textarea{
 	resize:none;
 	padding: 10px;
 	line-height: 20px;
+	vertical-align: top;
 }
 /*选择框样式*/
 select{
@@ -178,6 +173,7 @@ select{
 /*复选框样式*/
 .set-default{
 	height: 20px;
+	margin-top: 10px;
 	font-size: 0px;
 	position: relative;
 }
@@ -185,7 +181,7 @@ select{
 #agree-bule{
 	width: 20px;
 	height: 20px;
-	margin: 0px 0px 0px 92px;
+	margin: 0px 0px 0px 110px;
 	background: white;
 	cursor: pointer;
 }
@@ -197,7 +193,7 @@ select{
 	color: #666666;
 	font-size: 14px;
 	position: absolute;
-	left: 120px;
+	left: 138px;
 }
 /*保存*/
 .keep{
@@ -207,7 +203,7 @@ select{
 button{
 	width: 200px;
 	height: 50px;
-	margin-left: 85px;
+	margin-left: 110px;
 	background: #1989E9;
 	border: none;
 	cursor: pointer;
@@ -601,7 +597,7 @@ footer{
 }
 
 .error-tip{
-	margin: 5px 0px 5px 96px;
+	margin: 5px 0px 5px 120px;
 }
 .error-tip img{
 	width: 20px;

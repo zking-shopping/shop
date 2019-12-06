@@ -22,6 +22,7 @@ import com.shopping.db.DBHelper;
 import com.shopping.pojo.Address;
 import com.shopping.pojo.Member;
 import com.shopping.pojo.Order;
+import com.shopping.util.EncryptionHelper;
 
 public class ModifyAddressAction extends ActionFather{
 
@@ -33,7 +34,6 @@ public class ModifyAddressAction extends ActionFather{
 
 		Member m = (Member)request.getSession().getAttribute("member");
 		String memberId = m.getId();
-		System.out.println("memberId："+memberId);
 //		String memberId = "125a2177-a2be-4ee4-8223-8ecfe0eefef4";
 		Address add = new Address();
 		add.setMemberId(memberId);
@@ -67,25 +67,23 @@ public class ModifyAddressAction extends ActionFather{
 					add.setMemberId(memberId);
 					ad.insert(add, conn);
 				}else{
+					//判断对应会员id里面有没有默认地址
+					if(defaults.equals("true")){
+						Address add1 = new Address();
+						String defaultId = request.getParameter("defaultId");
+						if(defaultId!=null && !defaultId.equals("null") && !defaultId.equals("undefined")){
+							add1.setId(Integer.parseInt(defaultId));
+							add1.setDefaultAddress("false");
+							ad.update("updateDefaultAddress", add1, conn);
+						}
+					}
 					//更新对应id的地址信息
 					ad.updateExId(add, conn);
 				}
 				list = ad.selectByMemberId(memberId, conn);
-				if(list.size()!=0){
-					Iterator<Address> iterator = list.iterator();
-					//手机号码加密
-					while (iterator.hasNext()) {
-						Address add5 = iterator.next();
-						String number = add.getPhoneNumber();
-						number = number.substring(0, 3)+"****"+number.substring(7);
-						add5.setPhoneNumber(number);
-					}
-				}
+				EncryptionHelper.encryptMobileNumber(list);
 	  		}
 			conn.commit();
-	  		PrintWriter out = response.getWriter();
-	  		JSONArray jarr = JSONArray.fromObject(list);
-	  		out.print(jarr.toString());
 		} catch (SQLException e) {
 			try {
 				if(conn!=null){
@@ -95,13 +93,11 @@ public class ModifyAddressAction extends ActionFather{
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		} finally {
 			DBHelper.closeConnection(conn);
 		}
 		
-		return null;
+		return list;
 	}
 
 }

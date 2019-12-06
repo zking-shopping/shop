@@ -229,3 +229,10 @@ function replaceImageCode(){
 	//加载验证码
 	$('#codeImage').attr("src","/shop/imgCode?id="+new Date().getTime());
 };
+
+function getPageName(){
+	var url = window.location.href;
+	var pageName = url.substring(url.lastIndexOf("/")+1,url.indexOf("."));
+	
+	return pageName;
+};

@@ -2,11 +2,11 @@
 function cleanAllInput(){
 	$("#consignee").val("");
 	$("#phone-number").val("");
-	$("#provinces option").eq(0).attr("selected",true);
-	$("#city option").eq(0).attr("selected",true);
-	$("#area option").eq(0).attr("selected",true);
+	$("#provinces option:first").prop("selected",true);
+	$("#city option:first").prop("selected",true);
+	$("#area option:first").prop("selected",true);
 	$("#detail-address").val("");
-	$("#default").attr("checked",false);
+	$("#default").prop("checked",false);
 	
 	$("#save").attr("data-id","");
 };
@@ -46,6 +46,33 @@ function autoSize(){
 	});
 };
 
+//地址条数提示方法
+function tipAddressNumber(result){
+	if(getPageName()=="persionInfo"){
+		if($(".number-title").length!=0){
+			var info = "";
+			var length = "0";
+			if(result=="1"){
+				length = $(".number-title").attr("data-address-number")-1;
+				info = "新增收货地址（您目前已有"+length+"个地址，最多还可增加"+(10-length)+"个）";
+			}else{
+				info = "新增收货地址（您目前已有"+result.length+"个地址，最多还可增加"+(10-result.length)+"个）";
+				length = result.length+"";
+			};
+			$(".number-title").attr("data-address-number",length);
+			$(".number-title").html(info);
+		}else{
+			//添加地址条数提示信息
+			var havedAddress = `
+				<h3 class="number-title" data-address-number=${result.length}>
+					新增收货地址（您目前已有${result.length}个地址，最多还可增加${10-result.length}个）
+				</h3>
+			`;
+			$('.receiver').before(havedAddress);
+		};
+	};
+};
+
 //隐藏和显示设为默认按钮的方法
 function defaultDisplayOver(obj){
 	var len = $(obj).parent().siblings("thead").length;
@@ -69,6 +96,7 @@ function defaultDisplayOut(obj){
 		};
 	};
 };
+
 //更改默认地址
 function setDefaultAddress(obj){
 	//获得已经默认的地址的id
@@ -177,7 +205,7 @@ function updateAddressList(result){
 			</tr>
 		`;
 		
-		if($('.address-list thead').length!=0){
+		if(getPageName()=="persionInfo"){
 			$('.address-list tbody').append(myAddress1);
 		}else{
 			$('.address-list tbody').append(myAddress2);
@@ -198,7 +226,7 @@ function updateAddressList(result){
 		var defaultAddress = value.defaultAddress;
 		if(defaultAddress=="true"){
 			$('.address-list #default-address').eq(i).css("display","inline-block");
-			if($("#exit-add").length!=0){
+			if(getPageName()=="submitOrder"){
 				$('.address-list #set-defaults').eq(i).css("display","none");
 				changeState($('.address-list #set-defaults').eq(i).parents("tr"));
 			};
@@ -206,9 +234,13 @@ function updateAddressList(result){
 	})
 	
 	//设置显示状况
-	if($("#exit-add").length!=0){
+	if(getPageName()=="submitOrder"){
 		$(".select-address").css("display","block");
 		$(".main-info").css("display","none");
+		//如果只有一个地址则直接选中
+		if($(".address-list tr").length==2){
+			changeState($(".address-list tr").eq(0));
+		};
 	};
 	
 };
@@ -216,20 +248,20 @@ function updateAddressList(result){
 //保存地址
 function saveAddress(){
 	//获得输入的值
-	var cousignee = $("#consignee").val();
-	var phoneNumbers = $("#phone-number").val();
-	var provinces = $("#provinces option:selected").attr("value");
-	var city = $("#city option:selected").attr("value");
-	var area = $("#area option:selected").attr("value");
-	var detailAddress = $("#detail-address").val();
+	var cousignee = $("#consignee").val().trim().replace(/\s/g,"");
+	var phoneNumbers = $("#phone-number").val().trim().replace(/\s/g,"");
+	var provinces = $("#provinces option:selected").prop("value");
+	var city = $("#city option:selected").prop("value");
+	var area = $("#area option:selected").prop("value");
+	var detailAddress = $("#detail-address").val().trim().replace(/\s/g,"");
 	var defaultAddress = $("#default").prop("checked");
 	
 	//获得默认的id
-	var id = null;
+	var defaultId = null;
 	$(".address-list tbody tr").each(function(){
 		var defaults = $(this).attr("data-defaultAddress");
 		if(defaults=="true"){
-			id = $(this).attr("data-id");
+			defaultId = $(this).attr("data-id");
 		}
 	});
 	
@@ -279,11 +311,12 @@ function saveAddress(){
 	};
 	
 	//设置跳转方式
+	var saveId = "";
 	var jumpMode = "savaAddress.do";
 	if($("#save").attr("data-id")!=""){
-		console.log(999);
 		jumpMode = "modifyAddress.do";
-		id = $("#save").attr("data-id");
+		//获得要修改的地址的id
+		saveId = $("#save").attr("data-id");
 	};
 	
 	if(canSave==false){
@@ -295,7 +328,7 @@ function saveAddress(){
 				</p>
 			`;
 			//添加提示
-			$(object).parent().append(ele);
+			$(object).siblings("span").after(ele);
 			$(object).css("border-color","#FF6700");
 		};
 	}else{
@@ -304,12 +337,14 @@ function saveAddress(){
 			type:"post",
 			url: jumpMode,
 			data:"cousignee="+cousignee+"&phoneNumber="+phoneNumbers+"&provinces="+provinces+"&city="+city+
-				"&area="+area+"&detailAddress="+detailAddress+"&defaultAddress="+defaultAddress+"&saveId="+id,
+				"&area="+area+"&detailAddress="+detailAddress+
+				"&defaultAddress="+defaultAddress+"&saveId="+saveId+"&defaultId="+defaultId,
 			success:function(result){
 				if(result.length==0){
 					alert("地址设置出现错误，请重试！");
 					window.location.reload();
 				}else{
+					tipAddressNumber(result);
 					$(".address-list tbody tr").remove();
 					//更新表格
 					updateAddressList(result);
@@ -343,7 +378,7 @@ function deleteAddress(obj){
 
 //修改地址
 function modifyAddress(obj){
-	if($("#exit-add").length!=0){
+	if(getPageName()=="submitOrder"){
 		$(".select-address").css("display","none");
 		$(".main-info").css("display","block");
 		$("#exit-add").css("display","inline-block");
@@ -360,14 +395,14 @@ function modifyAddress(obj){
 	//填入
 	$("#consignee").val(cousignee);
 	$("#phone-number").val(phoneNumbers);
-	$("#provinces").find("option:contains('"+provinces+"')").attr("selected",true);
+	$("#provinces").find("option:contains('"+provinces+"')").prop("selected",true);
 	changeCity();
-	$("#city").find("option:contains('"+city+"')").attr("selected",true);
+	$("#city").find("option:contains('"+city+"')").prop("selected",true);
 	changeArea();
-	$("#area").find("option:contains('"+area+"')").attr("selected",true);
+	$("#area").find("option:contains('"+area+"')").prop("selected",true);
 	$("#detail-address").val(detailAddress);
 	if(defaultAddress=="true"){
-		$("#default").attr("checked",true);
+		$("#default").prop("checked",true);
 	};
 	
 	//传id
@@ -407,6 +442,7 @@ $(function(){
 						alert("地址删除失败！请重试！");
 						window.location.reload();
 					}else if(result=="1"){
+						tipAddressNumber(result);
 						//清除界面中对应的地址
 						$(".address-list tbody tr").each(function(e){
 							var trId = $(this).attr("data-id");
@@ -414,16 +450,20 @@ $(function(){
 								$(this).remove();
 							};
 						});
+						
+						var len = $(".address-list tr").length;
 						//清空地址列
-						if($(".address-list tbody tr").length==0){
+						if(getPageName()=="persionInfo" && len==1){
+							//判断地址列表是否为空，空就显示新增地址界面
 							$('.haved-address').empty();
 						};
 						//判断地址列表是否为空，空就显示新增地址界面
-						if($(".address-list tr#add-address").length==1 && $(".address-list tr").length==1){
+						if(getPageName()=="submitOrder" && len==1){
 							$(".select-address").css("display","none");
 							$(".main-info").css("display","block");
 							$("#exit-add").css("display","none");
 						};
+						updateAddressList(result);
 					};
 				}
 			});
@@ -440,7 +480,16 @@ $(function(){
 	$("#consignee,#phone-number,#detail-address").keydown(function(event){
 		var borderColor = colorRGBtoHex($(this).css("border"));
 		if(borderColor = "#ff6700" && event.keyCode!=8){
-			$(this).css("border-color","#d6d6d6")
+			$(this).css("border-color","#d6d6d6");
+			$(this).parent().find(".error-tip").remove();
+		};
+	});
+	
+	//select选择框的变换事件
+	$("#provinces,#city,#area").click(function(){
+		var val = $(this).children("option:selected").prop("value");
+		if(val!="省"&&val!="市"&&val!="区&县"){
+			$(this).css("border-color","#d6d6d6");
 			$(this).parent().find(".error-tip").remove();
 		};
 	});

@@ -19,9 +19,6 @@ $(function(){
 				});
 				//更新表格
 				updateAddressList(result);
-				var url = window.location.href;
-				var pageName = url.substring(url.lastIndexOf("/")+1,url.IndexOf("."));
-				console.log(url);
 			}else{
 				$(".select-address").css("display","none");
 				$(".main-info").css("display","block");

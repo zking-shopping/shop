@@ -412,24 +412,13 @@ $(function(){
 			url:"showAddress.do",
 			data:"",
 			success:function(result){
+				tipAddressNumber(result);
 				if(result.length!=0){
-					//显示可添加地址的数量
-					if($(".number-title").length!=0){
-						$('.number-title').remove();
-					};
-					var havedAddress = `
-						<h3 class="number-title">
-							新增收货地址（您目前已有${result.length}个地址，最多还可增加${10-result.length}个）
-						</h3>
-					`;
-					$('.main-info').prepend(havedAddress);
-					
 					//移除原本已有的地址数据
 					var lens = $('.address-list tbody tr').length;
 					if(lens!=0){
 						$('.address-list tbody').empty();
 					};
-					
 					//更新表格
 					updateAddressList(result);
 				};

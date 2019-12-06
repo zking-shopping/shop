@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    </div>
 			    <!--跳转个人信息页面-->
 			    <div class="user-header">
-			    	<a href="personInfo.jsp"></a>
+			    	<a href="persionInfo.jsp"></a>
 			    </div>
 			    <!--注册登录-->
 			    <div class="dropdown">

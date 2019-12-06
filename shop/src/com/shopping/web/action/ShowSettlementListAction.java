@@ -30,12 +30,10 @@ public class ShowSettlementListAction extends ActionFather{
   		Connection conn = DBHelper.getConnection();
 		CartDao cd = new CartDaoImpl();
 		Member m = (Member)request.getSession().getAttribute("member");
+  		List<Cart> list = new ArrayList<Cart>();
 		if(m!=null){
-		String memberId = m.getId();
-
+			String memberId = m.getId();
 	  		String balanceGooods = (String) request.getSession().getAttribute("balanceGooods");
-			System.out.println("balanceGooods："+balanceGooods);
-	  		List<Cart> list = new ArrayList<Cart>();
 	  		try {
 				conn.setAutoCommit(false);
 		  		String[] data = balanceGooods.split("-__-");
@@ -50,9 +48,6 @@ public class ShowSettlementListAction extends ActionFather{
 					list.add(carts);
 				}
 		  		conn.commit();
-		  		JSONArray jarr = JSONArray.fromObject(list);
-		  		PrintWriter out = response.getWriter();
-		  		out.print(jarr.toString());
 			} catch (SQLException e) {
 				try {
 					if(conn!=null){
@@ -61,18 +56,10 @@ public class ShowSettlementListAction extends ActionFather{
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
 			} finally {
-				if(conn!=null){
-					DBHelper.closeConnection(conn);
-				}
+				DBHelper.closeConnection(conn);
 			}
 		};
-		return null;
+		return list;
 	}
-	public static void main(String[] args) {
-		
-	}
-
 }

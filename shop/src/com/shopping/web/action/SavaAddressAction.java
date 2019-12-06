@@ -2,7 +2,6 @@
 package com.shopping.web.action;
 
 import java.io.IOException;
-
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,6 +19,7 @@ import com.shopping.dao.daoImpl.AddressDaoImpl;
 import com.shopping.db.DBHelper;
 import com.shopping.pojo.Address;
 import com.shopping.pojo.Member;
+import com.shopping.util.EncryptionHelper;
 
 public class SavaAddressAction extends ActionFather{
 	
@@ -46,7 +46,6 @@ public class SavaAddressAction extends ActionFather{
 		AddressDao ad = new AddressDaoImpl();
 		List<Address> list = new ArrayList<Address>();
 		Connection conn = DBHelper.getConnection();
-  		PrintWriter out = null;
 		try {
 			conn.setAutoCommit(false);
 			//查询地址列表
@@ -54,9 +53,9 @@ public class SavaAddressAction extends ActionFather{
 			//判断有没有设置默认
 			if(defaults.equals("true")){
 				Address add1 = new Address();
-				String savaId = request.getParameter("saveId");
-				if(savaId!=null && savaId.equals("null") && savaId.equals("undefined")){
-					add1.setId(Integer.parseInt(savaId));
+				String defaultId = request.getParameter("defaultId");
+				if(defaultId!=null && !defaultId.equals("null") && !defaultId.equals("undefined")){
+					add1.setId(Integer.parseInt(defaultId));
 					add1.setDefaultAddress("false");
 					ad.update("updateDefaultAddress", add1, conn);
 				}
@@ -69,16 +68,9 @@ public class SavaAddressAction extends ActionFather{
 			ad.insert(add, conn);
 			//查询
 			list = ad.selectByMemberId(memberId, conn);
-			Iterator<Address> iterator = list.iterator();
 			//手机号码加密
-			while (iterator.hasNext()) {
-				Address add5 = iterator.next();
-				String number = add.getPhoneNumber();
-				number = number.substring(0, 3)+"****"+number.substring(7);
-				add5.setPhoneNumber(number);
-			}
+			EncryptionHelper.encryptMobileNumber(list);
 			conn.commit();
-			out = response.getWriter();
 		} catch (SQLException e) {
 			try {
 				if(conn!=null){
@@ -88,15 +80,11 @@ public class SavaAddressAction extends ActionFather{
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		} finally {
 			DBHelper.closeConnection(conn);
 		}
-  		JSONArray jarr = JSONArray.fromObject(list);
-  		out.print(jarr.toString());
 		
-		return null;
+		return list;
 	}
 
 }
