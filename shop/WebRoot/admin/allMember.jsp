@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -155,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</body>
 </html>
-<script src="/shopp/admin/js/jquery-3.4.1.min.js"></script>
+<script src="/shop/admin/js/jquery-3.4.1.min.js"></script>
 <script src="/shop/admin/js/base.js"></script>
 <script>
 $('.del').click(function(){
@@ -173,7 +172,7 @@ $('.del').click(function(){
 });
 
 var f = function(){
-	$('.left>ul>li>h3').eq(3).css('background-color', 'red').siblings('.title').show().parent('li').siblings('li').children('.title').hide().siblings('h3').css('background-color', 'blue');;
+	$('.left>ul>li>h3').eq(3).css('background-color', 'red').siblings('.title').show().parent('li').siblings('li').children('.title').hide().siblings('h3').css('background-color', 'blue');
 	var s = 24;
 	$('.enlarge').click(function(){
 		if(s > 32){
