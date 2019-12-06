@@ -217,6 +217,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="pic">
 				<img src="${bd.picture3 }" class="animated zoomIn wow" data-wow-offset="200" />
 			</div>
+			<div id="wall"></div>
 		</div>
 		
 		<!-- 底部 -->
