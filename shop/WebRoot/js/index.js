@@ -128,7 +128,6 @@ function betterGoods(){
 					var str ="";
 					var priceAll = 0;
 					var num = 0;
-					console.log(result.length)
 					if(result.length!=0){
 						 $.each(result,function(i, value){
 							 console.log(value.id);
