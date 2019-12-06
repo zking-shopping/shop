@@ -13,5 +13,8 @@
 	<update id="updateDefaultAddress">
 		update t_address set defaultAddress=#{defaultAddress} where id=#{id};
 	</update>
+	<update id="updateMemberIdNull">
+		update t_address set memberId=#{memberId} where id=#{id};
+	</update>
 	
 </class>

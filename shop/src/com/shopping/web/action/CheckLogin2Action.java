@@ -41,7 +41,6 @@ public class CheckLogin2Action extends ActionFather{
 			        if(cookie.getName().startsWith("goodsToCar")){
 			        	g = new Goods();
 			            String goodInfo = cookie.getValue();
-			            System.out.println(goodInfo);
 			            String goodid = goodInfo.split("=-=")[0];
 			            String goodcount = goodInfo.split("=-=")[1];
 			            String goodtype = goodInfo.split("=-=")[2];
@@ -49,12 +48,13 @@ public class CheckLogin2Action extends ActionFather{
 			            Goods goodOne = (Goods)gd.selectById(g, conn);
 			            Cart c = new Cart();
 //			            c.setColorId();
-			            c.setId(Integer.parseInt(cookie.getName().substring(10)));
+			            int index = cookie.getName().length();
+			            String checkId = cookie.getName().substring(0, index-1);
+			            c.setId(Integer.parseInt(checkId.substring(10)));
 			            c.setGoodsColor(goodtype);
 			            c.setGoodsId(goodOne.getId());
 			            c.setGoodsName(goodOne.getGoodsName());
 			            
-//			            c.setMemberId(memberId);
 			            c.setNumber(Integer.parseInt(goodcount));
 			            c.setPrice(goodOne.getPrice());
 			            int picId = goodOne.getPicId();
@@ -65,21 +65,10 @@ public class CheckLogin2Action extends ActionFather{
 						c.setUrl(pic.getPicture1().substring(22));
 			           
 			            cart1.add(c);
-			        
+			            checkId = null;
 			            g = null;
 			        }
 			     } 
-			 System.out.println(cart1.size());
-			 if(cart1.size()>1){
-			    for(int i =0;i<cart1.size()-1;i++){
-					for(int j = i;j<cart1.size();j++){
-						if(cart1.get(i).getGoodsId()==cart1.get(i).getGoodsId()){
-							cart1.get(i).setNumber(cart1.get(i).getNumber()+1);
-							cart1.remove(j);
-						}
-					}
-				}
-			 }
 			  PrintWriter pw = response.getWriter();
 		    	 DBHelper.closeConnection(conn);
 			    JSONArray ja = JSONArray.fromObject(cart1);

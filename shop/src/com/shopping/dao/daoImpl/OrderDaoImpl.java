@@ -89,4 +89,20 @@ public class OrderDaoImpl extends BaseDao implements OrderDao{
 		}
 		return id;
 	}
+
+	@Override
+	public boolean selectByAddressId(int addressId, Connection conn) {
+		String sql = "select * from t_order where addressId=?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, addressId);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

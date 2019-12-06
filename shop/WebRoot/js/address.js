@@ -281,7 +281,8 @@ function saveAddress(){
 				"&area="+area+"&detailAddress="+detailAddress+"&defaultAddress="+defaultAddress+"&saveId="+id,
 			success:function(result){
 				if(result.length==0){
-					alert("请刷新重试！");
+					alert("地址设置出现错误，请重试！");
+					window.location.reload();
 				}else{
 					$(".address-list tbody tr").remove();
 					//更新表格
