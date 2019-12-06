@@ -30,9 +30,9 @@ public class BuyAgainAction extends ActionFather{
 		String id = request.getParameter("id");//得到订单id,在数据库通过订单id找到订单下的商品，并加入购物车
 		DetailOrderDao detailOrder = new DetailOrderDaoImpl();//详细订单表
 		List<DetailOrder> detailOrders = detailOrder.selectByOrderId(id, conn);
-		System.out.println(detailOrders.size());
 		CartDao cd = new CartDaoImpl();
 		for (DetailOrder detailOrder2 : detailOrders) {
+			
 			Cart c = new Cart();
 			c.setMemberId(memberId);
 			c.setColorId(detailOrder2.getColorId());

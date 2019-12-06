@@ -114,7 +114,7 @@ function showMyProducts(result){
         }else{state = "已关闭"}
         
     	for (var j = 0; j < detailOrderss[i].length; j++) {
-    		var waitToPay = '<a href="buyAgain.do?id="'+orders[i].id+'">重新购买</a>';
+    		var waitToPay = '<a href="buyAgain.do?id='+orders[i].id+'">重新购买</a>';
     		if(stateid==1){
     			waitToPay = '<a href="toPay.do?id='+detailOrderss[i][j].orderId+'&total='+paiedMoney+'&addressId=1&receiveInfo=1">去付款</a>';
     		}
