@@ -6,6 +6,10 @@
 	<property name="clickNumber">clickNumber</property>
 	<property name="buyNumber">buyNumber</property>
 	
+	<select id="selectByGD"  target="com.shopping.pojo.GoodsStatistics">
+		select * from t_goodsstatistics where goodsId=#{goodsId} and time=#{time};
+	</select>
+	
 	<update id="updateBuyNumber">
 		update t_goodsstatistics set buyNumber=#{buyNumber} where goodsId=#{goodsId} and time=#{time};
 	</update>

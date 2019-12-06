@@ -154,8 +154,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							
 						</div>
 						
-						<div id="goshopping" style="display: none;">
-							<a style="margin: 50% 20%;" href="shoppingCar.jsp"><button>去购物车</button></a>
+						
+					     <div id="nogoods" style=" color: gray; height: 50%; display: none;">
+								<span style="margin: 40% 20%; font-size:18px; font-weight:lighter; letter-spacing:1px">还没有商品,快去选中商品</span>
+					     </div>
+					     <div id="goshopping" style="display: none;">
+							<a style="margin: 50% 20%; " href="shoppingCar.jsp"><button style="height:30px;width:72px;">去购物车</button></a>
 						</div>
 					</div>
 				</div>

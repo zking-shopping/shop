@@ -1,6 +1,7 @@
 package com.shopping.web.action;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,16 +58,37 @@ public class DetailsAction extends ActionFather{
 		 request.setAttribute("bd", bd);
 		 
 		 
-		
 		GoodsStatisticsDao goodsStatisticsDao = new GoodsStatisticsImpl();
-		GoodsStatistics statistics = new GoodsStatistics();
-		statistics.setGoodsId(0);
-		statistics.setTime(DateHelper.getSimpleDate());
-		goodsStatisticsDao.update("addClickNumber", statistics, conn);
-		System.out.println("end");
-		
-		DBHelper.closeConnection(conn);
-		
+		String nowTime = DateHelper.getSimpleDate();
+		try{
+			conn.setAutoCommit(false);
+			if(nowTime.equalsIgnoreCase(goods1.getTime())){
+				GoodsStatistics statistics = new GoodsStatistics();
+				statistics.setGoodsId(id);
+				statistics.setTime(DateHelper.getSimpleDate());
+				goodsStatisticsDao.update("addClickNumber", statistics, conn);
+			}else{
+				Goods aGood = new Goods();
+				aGood.setTime(nowTime);
+				gd.update("updateTime", aGood, conn);
+				GoodsStatistics statistics = new GoodsStatistics();
+				statistics.setGoodsId(id);
+				statistics.setTime(nowTime);
+				statistics.setClickNumber(1);
+				statistics.setBuyNumber(0);
+				goodsStatisticsDao.insert(statistics, conn);
+				}
+				conn.commit();
+			}catch (Exception e) {
+				try {
+					conn.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}finally{
+				DBHelper.closeConnection(conn);
+			}
+
 		forward="success";
 		return forward;
 	}

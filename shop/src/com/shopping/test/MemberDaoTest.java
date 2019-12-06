@@ -9,6 +9,7 @@ import com.shopping.dao.daoImpl.MemberDaoImpl;
 import com.shopping.db.DBHe;
 import com.shopping.pojo.Member;
 import com.shopping.util.DateHelper;
+import com.shopping.util.TimeHelper;
 import com.shopping.util.UUIDHelper;
 
 public class MemberDaoTest {
@@ -41,4 +42,19 @@ public class MemberDaoTest {
 		System.out.println(res);
 	}
 	
+	@Test
+	public void testUpdateStatistics(){
+		Connection conn = DBHe.getConnection();
+		MemberDao dao = new MemberDaoImpl();
+		Member m = new Member();
+		m.setId("3c1dc732-422d-4639-8d07-aa7e2c445bb0");
+		m.setCost("1");
+		m.setDate(DateHelper.getSimpleDate());
+		m.setTime("1");
+		Boolean b = dao.update("updateStatistics", m, conn);
+		long lo = 1575557094150l;
+		int i = TimeHelper.duration(lo, TimeHelper.getTime());
+		System.out.println(i);
+		System.out.println(b);
+	}
 }

@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</header>
 		<section class="content">
 			<div class="title">账号登录</div>
-			<form id="frm" action="login.do">
+			<form id="frm" action="login.do" method="post">
 				<div>
 					<input name="username" class="username" type="text" placeholder="请输入账号"/>
 					<p class="name-tip"></p>

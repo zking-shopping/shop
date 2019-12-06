@@ -23,10 +23,13 @@
 	<update id="updateStatistics">
 		update t_member set cost=#{cost}, time=#{time}, date=#{date} where id=#{id};
 	</update>
-	<update id="updateTime">
+	<update id="updateMemberTime">
 		update t_member set time=#{time} where id=#{id};
 	</update>
-	<update id="updateCost">
+	<update id="updateMemberCost">
 		update t_member set cost=#{cost} where id=#{id};
+	</update>
+	<update id="updateDate">
+		update t_member set date=#{date} where id=#{id};
 	</update>
 </class>
