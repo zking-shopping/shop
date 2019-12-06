@@ -67,16 +67,27 @@
   	  location.href = "buy_now.do?id="+id+"&type_selected="+type_selected;
     })
 
-
-
-
-
-
 //点击加入购物车
      $(".buy_intocar").click(function(){
     	 var id = $(this).attr("value");
     	    var type_selected = $(".type_selected").html();
-    	    $.get('addToShoppingCar.do',{'id':id,'type_selected':type_selected});
+    	    $.get('addToShoppingCar.do',
+    	    		{'id':id,'type_selected':type_selected},
+    	            function(result){
+    	    			if(result=="true"){
+//    	    				$(".aaa").attr('data-toggle','modal');
+//    	    				$(".aaa").attr('data-target','#addToShoppingCarPrompt');
+//    	    				setTimeout(
+//    	    						function(){
+//    	    						//事件处理
+//    	    						},
+//    	    						3000);
+    	    				alert("加入购物车成功");
+    	    			}else{
+    	    				alert("加入购物车失败");
+    	    			}
+    	    		}		
+    	    );
     })
     
  //点击深入了解
