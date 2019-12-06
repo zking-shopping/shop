@@ -111,7 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li>
 							<h3>下载中心</h3>
 							<div class="title">
-								<p><a href="/shoppingcenter/admin/upload.jsp">商品数据下载</a></p>
+								<p><a href="/shop/admin/upload.jsp">商品数据下载</a></p>
 							</div>
 						</li>
 					</ul>
@@ -133,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td>${member.name }</td>
 							<td>${member.phoneNumber }</td>
 							<c:if test="${member.del==true }">
-								<td><button type="button" class="del" value="${member.id}" style="width:60px; height:30px; background:red; color:white;">已封</button></td>
+								<td><button type="button" value="${member.id}" style="width:60px; height:30px; background:red; color:white;">已封</button></td>
 							</c:if>
 							<c:if test="${member.del==false }">
 								<td><button type="button" class="del" value="${member.id}" style="width:60px; height:30px;">封号</button></td>
@@ -154,16 +154,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</body>
 </html>
-<script src="/shopp/admin/js/jquery-3.4.1.min.js"></script>
+<script src="/shop/admin/js/jquery-3.4.1.min.js"></script>
 <script src="/shop/admin/js/base.js"></script>
 <script>
 $('.del').click(function(){
 	var id = $(this).attr('value');
 	$.ajax({
 		url : 'admin/del.do?id='+id,
-		type : 'post',
 		success : function(result){
-				location.href = "allMember.do?adminPageNumber=${adminPageNumber }&adminPageSize=${adminPageSize }";
+				location.href = "admin/allMember.do?adminPageNumber=${adminPageNumber }&adminPageSize=${adminPageSize }";
 		},
 		error : function(){
 			alert("失败");
@@ -172,7 +171,7 @@ $('.del').click(function(){
 });
 
 var f = function(){
-	$('.left>ul>li>h3').eq(3).css('background-color', 'red').siblings('.title').show().parent('li').siblings('li').children('.title').hide().siblings('h3').css('background-color', 'blue');;
+	$('.left>ul>li>h3').eq(3).css('background-color', 'red').siblings('.title').show().parent('li').siblings('li').children('.title').hide().siblings('h3').css('background-color', 'blue');
 	var s = 24;
 	$('.enlarge').click(function(){
 		if(s > 32){

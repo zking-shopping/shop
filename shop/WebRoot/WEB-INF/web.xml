@@ -233,6 +233,13 @@
     <servlet-name>upload</servlet-name>
     <servlet-class>com.shopping.web.servlet.UploadServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdminOut</servlet-name>
+    <servlet-class>com.shopping.web.servlet.AdminOutServlet</servlet-class>
+  </servlet>
+
 
   <servlet-mapping>
     <servlet-name>addGoods</servlet-name>
@@ -269,6 +276,10 @@
   <servlet-mapping>
     <servlet-name>upload</servlet-name>
     <url-pattern>/admin/upload.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminOut</servlet-name>
+    <url-pattern>/admin/AdminOut.do</url-pattern>
   </servlet-mapping>
 	
 </web-app>

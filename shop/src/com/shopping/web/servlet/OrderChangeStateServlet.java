@@ -58,6 +58,9 @@ public class OrderChangeStateServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String state = request.getParameter("state");
+		if(state == null){
+			state = "2";
+		}
 		String id = request.getParameter("id");
 		Connection conn = DBHelper.getConnection();
 		OrderDao dao = new OrderDaoImpl();
