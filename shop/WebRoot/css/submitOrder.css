@@ -112,7 +112,7 @@ p.no-delivery{
 
 /*添加地址信息*/
 .main-info{
-	display: block;
+	display: none;
 	font-size: 0px;
 }
 .main-info span{
