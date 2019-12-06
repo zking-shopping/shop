@@ -1,4 +1,5 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+<%@ page language="java" import="java.util.*" pageEncoding="gbk"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
@@ -54,9 +55,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="logo"><a href="/shop/admin/index.jsp">Admin</a></div>
 					<div class="strip">
 						<ul>
-							<li class="normal">æ­£å¸¸å­—ä½“</li>
-							<li class="enlarge">å¢å¤§å­—ä½“</li>
-							<li class="narrow">ç¼©å°å­—ä½“</li>
+							<li class="normal">Õı³£×ÖÌå</li>
+							<li class="enlarge">Ôö´ó×ÖÌå</li>
+							<li class="narrow">ËõĞ¡×ÖÌå</li>
 						</ul>
 					</div>
 				</div>
@@ -67,80 +68,80 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="left">
 					<ul>
 						<li>
-							<h3>ç³»ç»Ÿç®¡ç†</h3>
+							<h3>ÏµÍ³¹ÜÀí</h3>
 							<div class="title">
-								<p><a href="/shop/admin/system.jsp">ç³»ç»Ÿè¯´æ˜</a></p>
-								<p><a href="/shop/admin/operation.jsp">æƒé™ç®¡ç†</a></p>
+								<p><a href="/shop/admin/system.jsp">ÏµÍ³ËµÃ÷</a></p>
+								<p><a href="/shop/admin/operation.jsp">È¨ÏŞ¹ÜÀí</a></p>
 							</div>
 						</li>
 						<li>
-							<h3>äº§å“ç®¡ç†</h3>
+							<h3>²úÆ·¹ÜÀí</h3>
 							<div class="title">
-								<p><a href="admin/allGoods.do">å…¨éƒ¨å•†å“</a></p>
-								<p style="background : yellow;"><a>æ·»åŠ å•†å“</a></p>
+								<p><a href="admin/allGoods.do">È«²¿ÉÌÆ·</a></p>
+								<p style="background : yellow;"><a>Ìí¼ÓÉÌÆ·</a></p>
 							</div>
 						</li>
 						<li>
-							<h3>è®¢å•ç®¡ç†</h3>
+							<h3>¶©µ¥¹ÜÀí</h3>
 							<div class="title">
-								<p><a href="admin/allOrder.do?state=2">è®¢å•ç®¡ç†</a></p>
+								<p><a href="admin/allOrder.do?state=2">¶©µ¥¹ÜÀí</a></p>
 							</div>
 						</li>
 						<li>
-							<h3>ä¼šå‘˜ç®¡ç†</h3>
+							<h3>»áÔ±¹ÜÀí</h3>
 							<div class="title">
-								<p><a href="admin/allMember.do">å…¨éƒ¨ç”¨æˆ·</a></p>
-								<p><a href="admin/memberAcc.do">ç”¨æˆ·å°å·ä¸æ¢å¤</a></p>
+								<p><a href="admin/allMember.do">È«²¿ÓÃ»§</a></p>
+								<p><a href="admin/memberAcc.do">ÓÃ»§·âºÅÓë»Ö¸´</a></p>
 							</div>
 						</li>
 						<li>
-							<h3>æ•°æ®åˆ†æ</h3>
+							<h3>Êı¾İ·ÖÎö</h3>
 							<div class="title">
-								<p><a href="admin/coreMember.do">ç”¨æˆ·æ•°æ®</a></p>
-								<p><a href="admin/rank.do">å•†å“æ’è¡Œæ¦œ</a></p>
-								<p><a href="admin/analysis.do">å•†å“æ•°æ®åˆ†æ</a></p>
+								<p><a href="admin/coreMember.do">ÓÃ»§Êı¾İ</a></p>
+								<p><a href="admin/rank.do">ÉÌÆ·ÅÅĞĞ°ñ</a></p>
+								<p><a href="admin/analysis.do">ÉÌÆ·Êı¾İ·ÖÎö</a></p>
 							</div>
 						</li>
 						<li>
-							<h3>ä¸‹è½½ä¸­å¿ƒ</h3>
+							<h3>ÏÂÔØÖĞĞÄ</h3>
 							<div class="title">
-								<p><a href="/shop/admin/upload.jsp">å•†å“æ•°æ®ä¸‹è½½</a></p>
+								<p><a href="/shop/admin/upload.jsp">ÉÌÆ·Êı¾İÏÂÔØ</a></p>
 							</div>
 						</li>
 					</ul>
 				</div>
 				<div class="right">
-					<form class="addForm" method="post" action="admin/addGoods.do" enctype="multipart/form-data">
+					<form class="addForm" method="post" action="admin/addGoods.do" enctype="multipart/form-data" >
 						<table class="table">
 							<tr>
-								<td colspan="2">æ–°å¢å•†å“</td>
+								<td colspan="2">ĞÂÔöÉÌÆ·</td>
 							</tr>
 							<tr>
-								<td>å•†å“åç§°ï¼š</td>
+								<td>ÉÌÆ·Ãû³Æ£º</td>
 								<td><input type="text" name="goodsName" id="goodsName"></td>
 							</tr>
 							<tr>
-								<td>å•†å“å›¾ç‰‡ï¼š</td>
-								<td><img src="" width="60px" height="60px" id="img1"><input type="file" name = "photo1" onchange="show1(this)"/></td>
+								<td>ÉÌÆ·Í¼Æ¬£º</td>
+								<td><img src="" width="60px" height="60px" id="img1"><input type="file" name="photo1" id="photo1" onchange="show1(this)" onblur=""/></td>
 							</tr>
 							<tr>
-								<td>å•†å“ä»‹ç»å›¾ç‰‡1ï¼š</td>
-								<td><img src="" width="60px" height="60px" id="img2"><input type="file" name = "photo2" onchange="show2(this)"/></td>
+								<td>ÉÌÆ·½éÉÜÍ¼Æ¬1£º</td>
+								<td><img src="" width="60px" height="60px" id="img2"><input type="file" name="photo2" id="photo2" onchange="show2(this)"/></td>
 							</tr>
 							<tr>
-								<td>å•†å“ä»‹ç»å›¾ç‰‡2ï¼š</td>
-								<td><img src="" width="60px" height="60px" id="img3"><input type="file" name = "photo3" onchange="show3(this)"/></td>
+								<td>ÉÌÆ·½éÉÜÍ¼Æ¬2£º</td>
+								<td><img src="" width="60px" height="60px" id="img3"><input type="file" name="photo3" id="photo3" onchange="show3(this)"/></td>
 							</tr>
 							<tr>
-								<td>å•†å“ä»·æ ¼ï¼š</td>
-								<td>ï¿¥<input type="text" name="price" id="price"></td>
+								<td>ÉÌÆ·¼Û¸ñ£º</td>
+								<td>£¤<input type="text" name="price" id="price"></td>
 							</tr>
 							<tr>
-								<td>å•†å“æè¿°ï¼š</td>
+								<td>ÉÌÆ·ÃèÊö£º</td>
 								<td><input type="text" name="introduction" id="introduction"></td>
 							</tr>
 							<tr>
-								<td>å•†å“ç±»å‹ï¼š</td>
+								<td>ÉÌÆ·ÀàĞÍ£º</td>
 								<td>
 									<select name="type">
 										<jsp:useBean id="type" class="com.shopping.pojo.Type" scope="page"></jsp:useBean>
@@ -151,18 +152,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</td>
 							</tr>
 							<tr>
-								<td colspan="2">é¢œè‰²</td>
+								<td colspan="2">ÑÕÉ«</td>
 							</tr>
 							<tr>
-								<td>é¢œè‰²</td>
-								<td>å­˜è´§</td>
+								<td>ÑÕÉ«</td>
+								<td>´æ»õ</td>
 							</tr>
 							<tr>
-								<td><input type="text" name="color"></td>
-								<td><input type="text" name="colorContent"></td>
+								<td><input type="text" name="color" id="color"></td>
+								<td><input type="text" name="colorContent" id="colorContent"></td>
 							</tr>
 							<tr>
-								<td colspan="2"><input class="submit" type="submit" value="æäº¤"></td>
+								<td colspan="2"><input class="submit" type="submit" value="Ìá½»"></td>
 							</tr>
 						</table>
 					</form>
@@ -174,8 +175,76 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="/shop/admin/js/jquery-3.4.1.min.js"></script>
 <script src="/shop/admin/js/base.js"></script>
 <script>
+
+
 $('.addForm').submit(function(){
-	alert("aa");
+	var goodsName = $('#goodsName').val();
+	var photo1 = $('#photo1').val();
+	var photo2 = $('#photo2').val();
+	var photo3 = $('#photo3').val();
+	var price = $('#price').val();
+	var introduction = $('#introduction').val();
+	var color = $('#color').val();
+	var colorContent = $('#colorContent').val();
+	
+	var numberReg = /^[0-9]*$/;
+	var reg = /^[\u4e00-\u9fa5]|[a-zA-z0-9]*$/;
+	var picReg = /\.(jpg|png|PNG)$/;
+	if(reg.test(goodsName)){
+		return true;
+	}else{
+		alter("ÉÌÆ·ÃûÇëÊäÈëÖĞÎÄ¡¢Ó¢ÎÄ»òÊı×Ö");
+		return false;
+	}
+	
+	if(picReg.test(photo1)){
+		return true;
+	}else{
+		alert("ÇëÉÏ´«ÕıÈ·µÄÍ¼Æ¬ÀàĞÍ");
+		return false;
+	}
+	
+	if(picReg.test(photo2)){
+		return true;
+	}else{
+		alert("ÇëÉÏ´«ÕıÈ·µÄÍ¼Æ¬ÀàĞÍ");
+		return false;
+	}
+	
+	if(picReg.test(photo3)){
+		return true;
+	}else{
+		alert("ÇëÉÏ´«ÕıÈ·µÄÍ¼Æ¬ÀàĞÍ");
+		return false;
+	}
+	
+	if(numberReg.test(price)){
+		return true;
+	}else{
+		alter("¼Û¸ñÇëÊäÈëÊı×Ö");
+		return false;
+	}
+	
+	if(reg.test(introduction)){
+		return true;
+	}else{
+		alter("ÃèÊöÇëÊäÈëÖĞÎÄ¡¢Ó¢ÎÄ»òÊı×Ö");
+		return false;
+	}
+	
+	if(reg.test(color)){
+		return true;
+	}else{
+		alter("ÑÕÉ«ÇëÊäÈëÖĞÎÄ¡¢Ó¢ÎÄ»òÊı×Ö");
+		return false;
+	}
+	
+	if(numberReg.test(colorContent)){
+		return true;
+	}else{
+		alter("ÉÌÆ·ÊıÁ¿ÇëÊäÈëÊı×Ö");
+		return false;
+	}
 });
 function show1(obj){
 	var fr = new FileReader();

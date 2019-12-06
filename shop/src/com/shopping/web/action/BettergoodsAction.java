@@ -43,7 +43,7 @@ public class BettergoodsAction extends ActionFather{
     			  num= (int)(Math.random() * 10);
     			  list.add(goodslist.get(num));
     		  }
-       List<Object> list1 = new ArrayList<Object>();
+            List<Object> list1 = new ArrayList<Object>();
 		  for(int i =0;i<list.size();i++){
 			  Pic p = new Pic();
 			  p.setId(((Goods)list.get(i)).getId());

@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="receive-info">
 				<h3>收货信息</h3>
 				<!--填写信息-->
-				<div class="main-info" style="display: none;">
+				<div class="main-info">
 					<!--收货人-->
 					<div class="receiver">
 						<label>收货人</label>
@@ -67,13 +67,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="address">
 						<label>所在地区</label>
 						<select name="provinces" id="provinces" onChange="changeCity()">
-							<option value="">省</option>
+							<option value="省">省</option>
 						</select>
 						<select name="city" id="city" onChange="changeArea()">
-							<option value="">市</option>
+							<option value="市">市</option>
 						</select>
 						<select name="area" id="area">
-							<option value="">区&县</option>
+							<option value="区&县">区&县</option>
 						</select>
 						<span>*</span>
 					</div>

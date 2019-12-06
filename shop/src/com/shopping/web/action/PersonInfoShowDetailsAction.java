@@ -31,7 +31,8 @@ public class PersonInfoShowDetailsAction extends ActionFather{
 		//查到相关收货人地址信息  并加到list集合中
 		AddressDao ad = new AddressDaoImpl();
 		Address a = new Address();
-		a.setId(Integer.parseInt(id));
+		String addressId = request.getParameter("addressId");
+		a.setId(Integer.parseInt(addressId));
 		Object obj = ad.selectById(a, conn);
 		list.add(obj);
 		

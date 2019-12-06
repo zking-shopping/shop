@@ -20,7 +20,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<link rel="stylesheet" type="text/css" href="/shop/admin/css/base.css">
-	
+	<style>
+		.out{
+			width: 100px;
+			height: 40px;
+			font-size: 24px;
+			margin-top: 200px;
+			margin-left: 400px;
+			background-color: blue;
+			color: white;
+			text-align: center;
+			line-height: 40px;
+			border: 2px solid yellow; 
+			border-radius: 16px;
+			cursor: pointer;
+		}
+		.out:hover{
+			color: gray;
+			background-color: buttonhighlight;
+		}
+	</style>
   </head>
   
   <body>
@@ -89,6 +108,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>欢迎您，管理员</p>
 					<p>已注册账号用户：${allMember }人</p>
 					<p>在线人数：${online }人</p>
+					
+					<div class="out">退出</div>
 				</div>
 			</container>
 		</div>
@@ -97,7 +118,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="/shop/admin/js/jquery-3.4.1.min.js"></script>
 <script src="/shop/admin/js/base.js"></script>
 <script>
-
+$('.out').click(function(){
+	location.href = "admin/AdminOut.do";
+});
 var f = function(){
 	$('.left>ul>li>h3').eq(0).css('background-color', 'red').siblings('.title').show().parent('li').siblings('li').children('.title').hide().siblings('h3').css('background-color', 'blue');;
 }

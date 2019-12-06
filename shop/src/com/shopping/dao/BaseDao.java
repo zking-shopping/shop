@@ -362,6 +362,7 @@ public abstract class BaseDao {
 		}
 		return false;
 	}
+	
 	public int selectMaxId(Connection conn){
 		String sql = "select last_insert_id()";
 		int res = 0;

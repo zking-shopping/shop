@@ -69,7 +69,7 @@ public class AddGoodsServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("gbk");
 		
 		SmartUpload su = new SmartUpload();
 		su.initialize(this.getServletConfig(), request, response);
@@ -89,62 +89,74 @@ public class AddGoodsServlet extends HttpServlet {
 		String color = su.getRequest().getParameter("color");
 		String colorContent = su.getRequest().getParameter("colorContent");
 		
-		Connection conn = DBHelper.getConnection();
-		try {
-			conn.setAutoCommit(false);
-		} catch (SQLException e2) {
-			e2.printStackTrace();
+		if(goodsName.length()==0 || price.length()==0 || introduction.length()==0 || type.length()==0 || color.length()==0 || colorContent.length()==0){
+			response.sendRedirect("/shop/admin/index.jsp");
+			return;
 		}
+		
+		Connection conn = DBHelper.getConnection();
 		Goods goods = new Goods();
 		Color c = new Color();
 		Pic p = new Pic();
-		String goodsId = UUIDHelper.getUUID();
-		String picId = UUIDHelper.getUUID();
+		
 		goods.setGoodsName(goodsName);
 		goods.setPrice(price);
 		goods.setIntroduction(introduction);
 		goods.setSort(type);
-		goods.setPicId(Integer.valueOf(picId));
 		goods.setTime(DateHelper.getSimpleDate());
 		goods.setDel("false");
-		c.setGoodsId(Integer.valueOf(goodsId));
+		
 		c.setGoodsColor(color);
 		c.setStock(Integer.valueOf(colorContent));
-		
+		c.setHide("false");
 		for (int i = 0; i < su.getFiles().getCount(); i++) {
 			File pic = su.getFiles().getFile(i);
-			String path = this.getServletContext().getRealPath("/")+"/admin/img/"+ UUIDHelper.getUUID() + pic.getFileExt();
+			String name = UUIDHelper.getUUID();
+			String path = "/admin/img/"+ name + "." + pic.getFileExt();
+			String path1 = "aaaaaaaaaaaaaaaaaaaaaa/shop/admin/img/"+ name + "." + pic.getFileExt();
 			try {
-				pic.saveAs(path);
+				pic.saveAs(path, File.SAVEAS_AUTO);
 				if(i == 0){
-					p.setPicture1(path);
+					p.setPicture1(path1);
 				}
 				if(i == 1){
-					p.setPicture2(path);
+					p.setPicture2(path1);
+					pic.saveAs(path, File.SAVEAS_AUTO);
 				}
 				if(i == 2){
-					p.setPicture3(path);
+					p.setPicture3(path1);
+					pic.saveAs(path, File.SAVEAS_AUTO);
 				}
 			} catch (SmartUploadException e) {
 				e.printStackTrace();
 			}
 		}
-		p.setId(Integer.valueOf(picId));
 		p.setDel("false");
-//		try{
-//			goodsDao.insert(goods, conn);
-//			colorDao.insert(c, conn);
-//			picDao.insert(p, conn);
-//		}catch(Exception e){
-//			try {
-//				conn.rollback();
-//			} catch (SQLException e1) {
-//				e1.printStackTrace();
-//			}
-//		}finally{
-//			DBHelper.closeConnection(conn);
-//		}
 		
+		
+		try{
+			conn.setAutoCommit(false);
+			Boolean res1 = picDao.insert(p, conn);
+			int picId = picDao.selectMaxId(conn);
+			System.out.println(picId+"==res1=="+res1);
+			goods.setPicId(picId);
+			Boolean res2 = goodsDao.insert(goods, conn);
+			int goodsId = goodsDao.selectMaxId(conn);
+			System.out.println(goodsId+"==res2=="+res2);
+			c.setGoodsId(goodsId);
+			Boolean res3 = colorDao.insert(c, conn);
+			System.out.println("res3=="+res3);
+			conn.commit();
+		}catch(Exception e){
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}finally{
+			DBHelper.closeConnection(conn);
+		}
+		request.getRequestDispatcher("/admin/allGoods.do").forward(request, response);
 	}
 
 	/**
