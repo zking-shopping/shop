@@ -111,8 +111,6 @@ function betterGoods(){
 					$('#user .dropdown1').show();
 				}
 		})
-	
-	
 	$('#user').mouseleave(function(){
 		$('#user .dropdown').hide();
 		$('#user .dropdown1').hide();
@@ -131,10 +129,9 @@ function betterGoods(){
 				success:function(result){
 					var str ="";
 					var priceAll = 0;
-					var num = 0;
+				
 					if(result.length!=0){
 						 $.each(result,function(i, value){
-							 console.log(value.id);
 							 str+="<li>"+
 										  "<a>"+
 										     "<img src="+value.url+" style='width:16%;height:40px;'/>"+
@@ -156,11 +153,13 @@ function betterGoods(){
 						$('#shop-down').html(qian)
 						$('.dropdown2').show();
 					    $('#carts').html(str);
-					  
+					    $('.count').html(num);
 						 $('#shop-top').show();
 						 $('#shop-down').show();
 						 
 				   }else{
+					   
+					   $('.count').html(0);
 					   $('#shop-top').hide();
 						 $('#shop-down').hide();
 						 $('.dropdown2').show();
@@ -184,6 +183,7 @@ function betterGoods(){
 					var num = 0;
 					if(result.length!=0){
 						 $.each(result,function(i, value){
+							 num++;
 							 str+="<li>"+
 										  "<a>"+
 										     "<img src="+value.url+" style='width:16%;height:40px;'/>"+
@@ -202,6 +202,7 @@ function betterGoods(){
 						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去购物车</button></a>"
 						$('#shop-down').html(qian);
 						$('.dropdown2').show();
+						$('.count').text(num);
 					    $('#carts').html(str);
 					 
 						 $('#shop-top').show();

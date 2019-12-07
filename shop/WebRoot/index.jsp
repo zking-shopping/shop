@@ -139,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				style="background: white;"> <!--购物车车标-->
 				<div id="shopsign">
 					<!--数量-->
-					<p class="count">8</p>
+					<p class="count"></p>
 					<!--购物车-->
 					<span class="glyphicon glyphicon-shopping-cart text-left "></span>
 
