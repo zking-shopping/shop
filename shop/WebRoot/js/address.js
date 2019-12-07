@@ -274,6 +274,10 @@ function saveAddress(){
 	if(cousignee==""){
 		tip = "输入不可为空！";
 		object = "#consignee";
+	}else if(!(/^[\u4e00-\u9fa5a-zA-Z\d]+$/.test(cousignee))){
+		//判断手机号码是否符合规范
+		tip = "不能输入中文、字母数字之外的字符！";
+		object = "#consignee";
 	}else{
 		if(phoneNumbers==""){
 			tip = "输入不可为空！";
@@ -297,6 +301,10 @@ function saveAddress(){
 					}else{
 						if(detailAddress==""){
 							tip = "请填写详细地址！";
+							object = "#detail-address";
+						}else if(!(/^[\u4e00-\u9fa5a-zA-Z\d]+$/.test(detailAddress))){
+							//判断手机号码是否符合规范
+							tip = "不能输入中文、字母数字之外的字符！";
 							object = "#detail-address";
 						}else if(detailAddress.length<5){
 							tip = "详细地址至少5位！";
@@ -479,7 +487,7 @@ $(function(){
 	//输入事件
 	$("#consignee,#phone-number,#detail-address").keydown(function(event){
 		var borderColor = colorRGBtoHex($(this).css("border"));
-		if(borderColor = "#ff6700" && event.keyCode!=8){
+		if(borderColor = "#ff6700"){
 			$(this).css("border-color","#d6d6d6");
 			$(this).parent().find(".error-tip").remove();
 		};
