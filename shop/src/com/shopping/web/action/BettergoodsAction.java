@@ -40,7 +40,7 @@ public class BettergoodsAction extends ActionFather{
     		  int num = 0;
     		  
     		  for(int i = 0;i<8;i++){
-    			  num= (int)(Math.random() * 10);
+    			  num= (int)(Math.random() * 60);
     			  list.add(goodslist.get(num));
     		  }
             List<Object> list1 = new ArrayList<Object>();
