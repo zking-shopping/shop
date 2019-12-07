@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-	<video muted autoplay loop><source src="/shoppingcenter/video/00.mp4" type="video/mp4"></video>
+	<video muted autoplay loop><source src="/shop/video/00.mp4" type="video/mp4"></video>
 	<div class="login">
 		<form action="adminLogin.do" method="post">
 			<ul>
