@@ -163,7 +163,7 @@ $('.del').click(function(){
 		url : 'admin/del.do?id='+id,
 		type : 'post',
 		success : function(result){
-				location.href = "allMember.do?adminPageNumber=${adminPageNumber }&adminPageSize=${adminPageSize }";
+				location.href = "admin/allMember.do?adminPageNumber=${adminPageNumber }&adminPageSize=${adminPageSize }";
 		},
 		error : function(){
 			alert("失败");
