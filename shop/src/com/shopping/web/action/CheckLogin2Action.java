@@ -54,6 +54,7 @@ public class CheckLogin2Action extends ActionFather{
 			            c.setGoodsColor(goodtype);
 			            c.setGoodsId(goodOne.getId());
 			            c.setGoodsName(goodOne.getGoodsName());
+			            System.out.println(goodOne.getGoodsName()+"=========");
 			            
 			            c.setNumber(Integer.parseInt(goodcount));
 			            c.setPrice(goodOne.getPrice());

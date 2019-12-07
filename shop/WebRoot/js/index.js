@@ -153,7 +153,6 @@ function betterGoods(){
 						$('#shop-down').html(qian)
 						$('.dropdown2').show();
 					    $('#carts').html(str);
-					    $('.count').html(num);
 						 $('#shop-top').show();
 						 $('#shop-down').show();
 						 
@@ -202,7 +201,6 @@ function betterGoods(){
 						"<a href='shoppingCar.jsp'><button style='font-size:18px; letter-spacing:2px'>去购物车</button></a>"
 						$('#shop-down').html(qian);
 						$('.dropdown2').show();
-						$('.count').text(num);
 					    $('#carts').html(str);
 					 
 						 $('#shop-top').show();

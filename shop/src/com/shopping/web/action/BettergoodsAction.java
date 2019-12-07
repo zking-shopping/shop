@@ -48,6 +48,7 @@ public class BettergoodsAction extends ActionFather{
 			  Pic p = new Pic();
 			  p.setId(((Goods)list.get(i)).getId());
 			  list1.add(pd.selectById(p, conn));
+		
 			  p = null;
 		  }
 		  List<BetterGoods> list2 = new ArrayList<BetterGoods>();
